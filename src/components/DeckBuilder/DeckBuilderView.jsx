@@ -1,0 +1,260 @@
+import React, { useState } from 'react';
+import { Plus, Minus, Layers, Play, BarChart3, Search, Sparkles, Filter, ChevronRight, X } from 'lucide-react';
+import CardFrame from '../Card/CardFrame';
+import DeckStats from './DeckStats';
+import TurnSimulator from './TurnSimulator';
+import DeckManager from './DeckManager';
+import FilterBar from '../CardDatabase/FilterBar';
+import TableView from '../CardDatabase/TableView';
+import { CARDS_DATA } from '../../data/cardsData';
+
+export default function DeckBuilderView({
+  deckName,
+  setDeckName,
+  deckCards,
+  onAddCard,
+  onRemoveCard,
+  onClearDeck,
+  onLoadDeck,
+  savedDecks,
+  onSaveDeck,
+  onDeleteSavedDeck,
+  onInspectCard,
+  ownedCardIds = []
+}) {
+  const [activeTab, setActiveTab] = useState('cards'); // 'cards' | 'stats' | 'simulator'
+  
+  // Card Library Search & Filter State inside Deckbuilder
+  const [filters, setFilters] = useState({
+    search: '',
+    clan: 'ALL',
+    series: 'ALL',
+    cost: 'ALL',
+    archetype: 'ALL',
+    rarity: 'ALL',
+    type: 'ALL',
+    onlyOwned: false,
+    sortBy: 'cost-asc'
+  });
+  const [viewMode, setViewMode] = useState('grid');
+
+  const onResetFilters = () => {
+    setFilters({
+      search: '',
+      clan: 'ALL',
+      series: 'ALL',
+      cost: 'ALL',
+      archetype: 'ALL',
+      rarity: 'ALL',
+      type: 'ALL',
+      onlyOwned: false,
+      sortBy: 'cost-asc'
+    });
+  };
+
+  // Filter and sort catalog cards
+  const filteredCards = CARDS_DATA.filter(card => {
+    if (filters.onlyOwned && !ownedCardIds.includes(card.id)) return false;
+    if (filters.clan !== 'ALL' && card.clan !== filters.clan) return false;
+    if (filters.series !== 'ALL' && card.series !== filters.series) return false;
+    if (filters.cost !== 'ALL') {
+      if (filters.cost === '7+' && card.cost < 7) return false;
+      if (typeof filters.cost === 'number' && card.cost !== filters.cost) return false;
+    }
+    if (filters.archetype !== 'ALL' && card.archetype !== filters.archetype) return false;
+    if (filters.rarity !== 'ALL' && card.rarity !== filters.rarity) return false;
+    if (filters.type !== 'ALL' && card.type !== filters.type) return false;
+
+    if (filters.search) {
+      const q = filters.search.toLowerCase();
+      const matchName = card.name.toLowerCase().includes(q);
+      const matchAbility = card.ability.toLowerCase().includes(q);
+      const matchFlavor = card.flavorText?.toLowerCase().includes(q);
+      const matchKeywords = card.keywords?.some(k => k.toLowerCase().includes(q));
+      const matchClan = card.clan.toLowerCase().includes(q);
+      const matchWiki = card.wikiUrl?.toLowerCase().includes(q) || (q.includes('kate') && card.name.toLowerCase().includes('katie'));
+      if (!matchName && !matchAbility && !matchFlavor && !matchKeywords && !matchClan && !matchWiki) return false;
+    }
+
+    return true;
+  }).sort((a, b) => {
+    switch (filters.sortBy) {
+      case 'cost-asc': return a.cost - b.cost || a.name.localeCompare(b.name);
+      case 'cost-desc': return b.cost - a.cost || a.name.localeCompare(b.name);
+      case 'power-desc': return b.power - a.power;
+      case 'power-asc': return a.power - b.power;
+      case 'name-asc': return a.name.localeCompare(b.name);
+      case 'series-asc': return a.series - b.series;
+      case 'rarity-desc': {
+        const rOrder = { 'Légendaire': 4, 'Legendary': 4, 'Épique': 3, 'Epic': 3, 'Rare': 2, 'Commune': 1, 'Common': 1 };
+        return (rOrder[b.rarity] || 0) - (rOrder[a.rarity] || 0);
+      }
+      default: return a.cost - b.cost;
+    }
+  });
+
+  // Map of card counts in deck
+  const deckCardsMap = deckCards.reduce((acc, card) => {
+    acc[card.id] = (acc[card.id] || 0) + 1;
+    return acc;
+  }, {});
+
+  return (
+    <div className="space-y-6">
+      {/* Top Deck Management Header */}
+      <DeckManager
+        deckName={deckName}
+        setDeckName={setDeckName}
+        deckCards={deckCards}
+        onClearDeck={onClearDeck}
+        onLoadDeck={onLoadDeck}
+        savedDecks={savedDecks}
+        onSaveDeck={onSaveDeck}
+        onDeleteSavedDeck={onDeleteSavedDeck}
+      />
+
+      {/* Main Builder Grid (Deck on Left / Catalog on Right on Large Screens) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        {/* Left Column : Current Deck Area (5 cols) */}
+        <div className="lg:col-span-5 space-y-4">
+          
+          {/* Tabs: Cartes du Deck / Stats Analytiques / Simulateur de Match */}
+          <div className="flex items-center space-x-1 p-1 rounded-xl bg-[#0e111a] border border-white/10">
+            <button
+              onClick={() => setActiveTab('cards')}
+              className={`flex-1 flex items-center justify-center space-x-1.5 py-2 rounded-lg text-xs font-gothic font-bold transition-all ${
+                activeTab === 'cards'
+                  ? 'bg-gradient-to-r from-red-800 to-rose-900 text-white shadow-blood'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              <Layers className="w-3.5 h-3.5" />
+              <span>Deck ({deckCards.length}/15)</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('stats')}
+              className={`flex-1 flex items-center justify-center space-x-1.5 py-2 rounded-lg text-xs font-gothic font-bold transition-all ${
+                activeTab === 'stats'
+                  ? 'bg-gradient-to-r from-red-800 to-rose-900 text-white shadow-blood'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              <BarChart3 className="w-3.5 h-3.5" />
+              <span>Courbes & Stats</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('simulator')}
+              className={`flex-1 flex items-center justify-center space-x-1.5 py-2 rounded-lg text-xs font-gothic font-bold transition-all ${
+                activeTab === 'simulator'
+                  ? 'bg-gradient-to-r from-red-800 to-rose-900 text-white shadow-blood'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              <Play className="w-3.5 h-3.5" />
+              <span>Simulateur 7 Tours</span>
+            </button>
+          </div>
+
+          {/* TAB 1: Visual Card Slots in Deck */}
+          {activeTab === 'cards' && (
+            <div className="glass-panel rounded-2xl p-4 border border-white/10 space-y-3 shadow-2xl">
+              <div className="flex items-center justify-between text-xs text-gray-300 font-gothic font-semibold uppercase tracking-wider pb-2 border-b border-white/10">
+                <span>Cartes dans votre Deck :</span>
+                <span className="font-mono text-amber-400 font-bold">{deckCards.length} / 15 cartes</span>
+              </div>
+
+              {deckCards.length === 0 ? (
+                <div className="p-8 text-center text-gray-500 space-y-2">
+                  <Layers className="w-8 h-8 mx-auto text-gray-600 opacity-50" />
+                  <p className="text-sm font-gothic">Votre deck est vide.</p>
+                  <p className="text-xs text-gray-500">
+                    Sélectionnez des cartes dans la bibliothèque à droite pour construire votre stratégie.
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-1.5 max-h-[600px] overflow-y-auto pr-1">
+                  {deckCards
+                    .sort((a, b) => a.cost - b.cost || a.name.localeCompare(b.name))
+                    .map((card) => (
+                      <CardFrame
+                        key={card.id}
+                        card={card}
+                        compact={true}
+                        countInDeck={deckCardsMap[card.id] || 0}
+                        onInspect={onInspectCard}
+                        onAdd={onAddCard}
+                        onRemove={onRemoveCard}
+                      />
+                    ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* TAB 2: Stats & Mana Curve */}
+          {activeTab === 'stats' && (
+            <DeckStats deckCards={deckCards} />
+          )}
+
+          {/* TAB 3: 7-Turn Conflict Simulator */}
+          {activeTab === 'simulator' && (
+            <TurnSimulator deckCards={deckCards} onInspectCard={onInspectCard} />
+          )}
+
+        </div>
+
+        {/* Right Column : Card Catalog & Filters (7 cols) */}
+        <div className="lg:col-span-7 space-y-4">
+          {/* Card Filter Bar */}
+          <FilterBar
+            filters={filters}
+            setFilters={setFilters}
+            onResetFilters={onResetFilters}
+            viewMode={viewMode}
+            setViewMode={setViewMode}
+            totalResults={filteredCards.length}
+            allCount={CARDS_DATA.length}
+          />
+
+          {/* Results Grid / Table */}
+          {filteredCards.length === 0 ? (
+            <div className="glass-panel rounded-2xl p-8 text-center text-gray-500 border border-white/10 space-y-2">
+              <p className="text-sm font-gothic">Aucune carte ne correspond à ces critères.</p>
+              <button
+                onClick={onResetFilters}
+                className="px-4 py-1.5 rounded-lg bg-red-950 text-red-200 border border-red-500/40 text-xs font-semibold"
+              >
+                Réinitialiser les filtres
+              </button>
+            </div>
+          ) : viewMode === 'table' ? (
+            <TableView
+              cards={filteredCards}
+              onInspect={onInspectCard}
+              onAdd={onAddCard}
+              onRemove={onRemoveCard}
+              deckCardsMap={deckCardsMap}
+            />
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3.5">
+              {filteredCards.map((card) => (
+                <CardFrame
+                  key={card.id}
+                  card={card}
+                  countInDeck={deckCardsMap[card.id] || 0}
+                  onInspect={onInspectCard}
+                  onAdd={onAddCard}
+                  onRemove={onRemoveCard}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+
+      </div>
+    </div>
+  );
+}
