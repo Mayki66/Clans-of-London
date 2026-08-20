@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plus, Minus, Eye, Sparkles, Shield, Droplets, Flame, Crown, Skull, PawPrint, Eye as EyeIcon, Ghost, Heart } from 'lucide-react';
+import { Plus, Minus, Eye, Sparkles, Shield, Droplets, Flame, Crown, Skull, PawPrint, Eye as EyeIcon, Ghost, Heart, Moon } from 'lucide-react';
 import CardArtwork from './CardArtwork';
 import { CLANS } from '../../data/clansData';
 
@@ -13,7 +13,8 @@ const CLAN_ICONS = {
   Eye: EyeIcon,
   Ghost: Ghost,
   Heart: Heart,
-  Shield: Shield
+  Shield: Shield,
+  Moon: Moon
 };
 
 export default function CardFrame({
@@ -140,10 +141,10 @@ export default function CardFrame({
         <div className="flex items-center space-x-1.5">
           <div 
             className="w-8 h-8 rounded-full bg-gradient-to-br from-red-500 via-red-700 to-rose-950 border-2 border-red-400/80 flex items-center justify-center font-bold text-sm text-white shadow-blood"
-            title={`Coût : ${card.cost} Sang`}
+            title={`Coût : ${card.costDisplay || card.cost} Sang`}
           >
             <Droplets className="w-3 h-3 text-red-200 mr-0.5" />
-            <span>{card.cost}</span>
+            <span>{card.costDisplay || card.cost}</span>
           </div>
 
           {/* Clan Badge */}

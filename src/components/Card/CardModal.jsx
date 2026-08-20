@@ -62,7 +62,7 @@ export default function CardModal({
             <div className="px-4 py-2.5 bg-[#0d0f17] border-b border-white/10 flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 rounded-full bg-gradient-to-br from-red-500 to-rose-950 border-2 border-red-400 flex items-center justify-center font-bold text-sm text-white shadow-blood">
-                  {card.cost}
+                  {card.costDisplay || card.cost}
                 </div>
                 <span className="font-semibold text-xs text-gray-200" style={{ color: clanInfo.themeColor }}>
                   {card.clan}
@@ -86,10 +86,21 @@ export default function CardModal({
               className="w-full h-56" 
             />
 
-            {/* Title */}
-            <div className="p-3 bg-[#131722] border-t border-b border-white/10">
-              <h3 className="font-gothic font-bold text-lg text-amber-300 text-center">{card.name}</h3>
-              <p className="text-center text-xs text-gray-400 font-mono mt-0.5">{card.type} • {card.rarity}</p>
+            {/* Title & Subtitle */}
+            <div className="p-3 bg-[#131722] border-t border-b border-white/10 text-center">
+              <h3 className="font-gothic font-bold text-lg text-amber-300">{card.name}</h3>
+              {card.subtitle && (
+                <p className="text-[11px] font-mono tracking-wider text-amber-400/90 uppercase -mt-0.5 font-bold">
+                  {card.subtitle}
+                </p>
+              )}
+              <div className="flex items-center justify-center gap-1.5 mt-1.5 flex-wrap">
+                {card.keywords?.filter(k => ['Vampire', 'Mortel', 'Mortal', 'Objet', 'Ingrédient', 'Alchimie'].some(tag => k.toLowerCase().includes(tag.toLowerCase()))).map((kw, i) => (
+                  <span key={i} className="px-2 py-0.5 rounded-full bg-black/70 border border-white/20 text-[9px] font-bold uppercase tracking-wider text-gray-300">
+                    {kw}
+                  </span>
+                ))}
+              </div>
             </div>
 
             {/* Effect */}

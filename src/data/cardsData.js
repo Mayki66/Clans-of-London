@@ -5433,25 +5433,30 @@ export const CARDS_DATA = [
     "id": "col-192",
     "name": "Cormac Flynn",
     "originalName": "Cormac Flynn",
-    "clan": "Mortel",
+    "subtitle": "Chef de l'Alsatia",
+    "clan": "Duskborn",
     "series": 5,
-    "cost": 1,
+    "cost": "X",
+    "costDisplay": "X",
     "power": 2,
-    "type": "Mortel",
-    "archetype": "Neutre",
+    "type": "Vampire",
+    "archetype": "Alchimie",
     "keywords": [
-      "Neutre",
-      "Vampire, Mortal"
+      "Duskborn",
+      "Vampire",
+      "Mortel",
+      "Ingrédient",
+      "Alchimie"
     ],
-    "ability": "X is equal to your current Sang. À la Révélation : Use X random Ingredient abilities. (The effect is increased by cost reductions)",
+    "ability": "X est égal à votre Sang actuel. À la révélation : Utilisez X(🩸) capacités Ingrédient aléatoires. (L'effet est augmenté par les réductions de coût)",
     "ability_en": "X is equal to your current Blood. On Reveal: Use X random Ingredient abilities. (The effect is increased by cost reductions)",
-    "flavorText": "\"Cormac Flynn - Carte officielle Vampire: The Masquerade – Clans of London (Série 5).\"",
-    "rarity": "Commune",
-    "notes": "Featured Season Pass card for the \"Rise of the Duskborn\" Season, added August 6th, 2026.",
+    "flavorText": "\"Cormac Flynn - Chef de l'Alsatia (Légendaire Duskborn - Saison Rise of the Duskborn).\"",
+    "rarity": "Légendaire",
+    "notes": "Carte Passe de Saison 'Rise of the Duskborn'. Capacités Ingrédient : Bleach (Eau de Javel), Caffeine Powder (Poudre de Caféine), Blood Bag (Poche de Sang).",
     "synergies": [
-      "Luis Castaño",
-      "Katie Dixon",
-      "Amy West"
+      "Natalya Volkova",
+      "Jax Cook",
+      "Luis Castaño"
     ],
     "artType": "vampire",
     "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Cormac_Flynn.jpg",
@@ -6169,5 +6174,98 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Justicar_Parr.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Justicar_Parr&amp;action=edit&amp;redlink=1"
+  },
+  {
+    "id": "col-ing-01",
+    "name": "Blood Bag",
+    "originalName": "Blood Bag",
+    "subtitle": "Ingrédient d'Alchimie",
+    "clan": "Duskborn",
+    "series": 5,
+    "cost": 1,
+    "power": 0,
+    "type": "Objet",
+    "archetype": "Alchimie",
+    "keywords": [
+      "Duskborn",
+      "Objet",
+      "Ingrédient",
+      "Alchimie"
+    ],
+    "ability": "À la révélation : Une carte aléatoire en main coûte 1 de moins. (minimum de 1)",
+    "ability_en": "On Reveal: A random card in hand costs 1 less. (minimum of 1)",
+    "flavorText": "\"Blood Bag - Ingrédient d'Alchimie du Sang-Clair (Saison Rise of the Duskborn).\"",
+    "rarity": "Commune",
+    "notes": "Ingrédient d'Alchimie généré ou joué dans les decks Duskborn.",
+    "synergies": [
+      "Cormac Flynn",
+      "Jax Cook",
+      "Natalya Volkova"
+    ],
+    "artType": "object",
+    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Blood_Bag.jpg",
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Blood_Bag"
+  },
+  {
+    "id": "col-ing-02",
+    "name": "Bleach",
+    "originalName": "Bleach",
+    "subtitle": "Ingrédient d'Alchimie",
+    "clan": "Duskborn",
+    "series": 5,
+    "cost": 1,
+    "power": 0,
+    "type": "Objet",
+    "archetype": "Alchimie",
+    "keywords": [
+      "Duskborn",
+      "Objet",
+      "Ingrédient",
+      "Alchimie"
+    ],
+    "ability": "À la révélation : Infligez -2 Puissance à la carte ennemie ayant la plus grande Puissance.",
+    "ability_en": "On Reveal: Deal -2 Power to the enemy card with the highest Power.",
+    "flavorText": "\"Bleach - Ingrédient corrosif pour neutraliser les bêtes et vampires adverses.\"",
+    "rarity": "Commune",
+    "notes": "Ingrédient d'Alchimie généré ou joué dans les decks Duskborn.",
+    "synergies": [
+      "Cormac Flynn",
+      "Jax Cook",
+      "Natalya Volkova"
+    ],
+    "artType": "object",
+    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Bleach.jpg",
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Bleach"
+  },
+  {
+    "id": "col-ing-03",
+    "name": "Caffeine Powder",
+    "originalName": "Caffeine Powder",
+    "subtitle": "Ingrédient d'Alchimie",
+    "clan": "Duskborn",
+    "series": 5,
+    "cost": 1,
+    "power": 0,
+    "type": "Objet",
+    "archetype": "Alchimie",
+    "keywords": [
+      "Duskborn",
+      "Objet",
+      "Ingrédient",
+      "Alchimie"
+    ],
+    "ability": "À la révélation : Donnez +3 Puissance au Mortel le plus à droite en main.",
+    "ability_en": "On Reveal: Give +3 Power to the rightmost Mortal in hand.",
+    "flavorText": "\"Caffeine Powder - Stimulant puissant pour renforcer les mortels sous votre influence.\"",
+    "rarity": "Commune",
+    "notes": "Ingrédient d'Alchimie généré ou joué dans les decks Duskborn.",
+    "synergies": [
+      "Cormac Flynn",
+      "Jax Cook",
+      "Natalya Volkova"
+    ],
+    "artType": "object",
+    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Caffeine_Powder.jpg",
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Caffeine_Powder"
   }
 ];

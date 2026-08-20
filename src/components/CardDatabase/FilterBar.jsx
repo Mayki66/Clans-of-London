@@ -239,7 +239,7 @@ export default function FilterBar({
             >
               Tous
             </button>
-            {[1, 2, 3, 4, 5, 6, '7+'].map(c => (
+            {[1, 2, 3, 4, 5, 6, '7+', 'X'].map(c => (
               <button
                 key={c}
                 onClick={() => handleCostToggle(c)}

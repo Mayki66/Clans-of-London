@@ -97,7 +97,7 @@ export const CLANS = {
   },
   Mortal: {
     id: 'Mortal',
-    name: 'Mortels & Inquisition',
+    name: 'Mortel',
     title: 'Les Pions & Chasseurs de Londres',
     themeColor: '#94a3b8',
     bgColor: 'rgba(148, 163, 184, 0.15)',
@@ -106,6 +106,18 @@ export const CLANS = {
     icon: 'Shield',
     description: 'Humains, goules fidèles, journalistes et agents de la Seconde Inquisition manipulant les ficelles diurnes.',
     playstyle: 'Génération de Sang / Support / Tactiques de diversion'
+  },
+  Duskborn: {
+    id: 'Duskborn',
+    name: 'Duskborn (Sang-Clair)',
+    title: 'Les Alchimistes du Crépuscule',
+    themeColor: '#e2e8f0',
+    bgColor: 'rgba(226, 232, 240, 0.15)',
+    borderColor: '#cbd5e1',
+    archetype: 'Alchimie',
+    icon: 'Moon',
+    description: 'Vampires de basse génération capables de pratiquer l\'Alchimie du Sang-Clair en concoctant des Ingrédients (Bleach, Caffeine Powder, Blood Bag).',
+    playstyle: 'Alchimie / Ingrédients / Coûts de Sang flexibles (X)'
   }
 };
 
@@ -118,7 +130,14 @@ export const ARCHETYPES = [
   { id: 'Delusion', name: 'Illusion & Folie', clan: 'Malkavian', color: '#38bdf8', desc: 'Défausse forcée et duplication d\'illusions' },
   { id: 'Obfuscate', name: 'Furtivité', clan: 'Nosferatu', color: '#10b981', desc: 'Cartes indétectables et surprises au tour 7' },
   { id: 'Charm', name: 'Charme & Présence', clan: 'Toreador', color: '#ec4899', desc: 'Séduction et blocage des capacités adverses' },
+  { id: 'Alchimie', name: 'Alchimie (Ingrédients)', clan: 'Duskborn', color: '#cbd5e1', desc: 'Effets modulaires basés sur Bleach, Caffeine Powder et Blood Bag' },
   { id: 'Neutral', name: 'Neutre / Support', clan: 'Mortal', color: '#94a3b8', desc: 'Accélération de ressources et temporisation' }
+];
+
+export const INGREDIENTS = [
+  { id: 'bleach', name: 'Bleach (Eau de Javel)', desc: 'Affaiblit ou détruit les défenses adverses' },
+  { id: 'caffeine_powder', name: 'Caffeine Powder (Poudre de Caféine)', desc: 'Bonus d\'agilité et d\'accélération de puissance' },
+  { id: 'blood_bag', name: 'Blood Bag (Poche de Sang)', desc: 'Restaure ou amplifie le Sang disponible' }
 ];
 
 export const SERIES_LIST = [0, 1, 2, 3, 4, 5];

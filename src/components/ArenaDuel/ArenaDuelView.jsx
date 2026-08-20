@@ -277,8 +277,12 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
   // Deploy Card
   const handleDeployToSpace = (spaceKey) => {
     if (!selectedHandCard) return;
-    if (selectedHandCard.cost > bloodAvailable) {
-      alert(`Pas assez de Sang ! Coût : ${selectedHandCard.cost} Sang (Disponible : ${bloodAvailable})`);
+
+    // Evaluate dynamic cost for 'X' cost cards (e.g. Cormac Flynn)
+    const effectiveCost = selectedHandCard.cost === 'X' ? bloodAvailable : selectedHandCard.cost;
+
+    if (effectiveCost > bloodAvailable) {
+      alert(`Pas assez de Sang ! Coût : ${effectiveCost} Sang (Disponible : ${bloodAvailable})`);
       return;
     }
 
@@ -303,7 +307,7 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
       spaceKey
     }]);
 
-    setBloodAvailable(prev => prev - selectedHandCard.cost);
+    setBloodAvailable(prev => Math.max(0, prev - effectiveCost));
     setPlayerHand(prev => prev.filter(c => c.id !== selectedHandCard.id));
 
     let updatedBoard = { ...board };

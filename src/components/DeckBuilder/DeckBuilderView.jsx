@@ -55,15 +55,58 @@ export default function DeckBuilderView({
   // Filter and sort catalog cards
   const filteredCards = CARDS_DATA.filter(card => {
     if (filters.onlyOwned && !ownedCardIds.includes(card.id)) return false;
-    if (filters.clan !== 'ALL' && card.clan !== filters.clan) return false;
-    if (filters.series !== 'ALL' && card.series !== filters.series) return false;
-    if (filters.cost !== 'ALL') {
-      if (filters.cost === '7+' && card.cost < 7) return false;
-      if (typeof filters.cost === 'number' && card.cost !== filters.cost) return false;
+    
+    // Clan / Faction filter (with Mortal and Duskborn support)
+    if (filters.clan !== 'ALL') {
+      if (filters.clan === 'Mortal' || filters.clan === 'Mortel') {
+        const isMortal = card.clan === 'Mortel' || card.clan === 'Mortal' || card.type === 'Mortel' || card.type === 'Mortal' || card.keywords?.some(k => k.toLowerCase().includes('mortal') || k.toLowerCase().includes('mortel'));
+        if (!isMortal) return false;
+      } else if (filters.clan === 'Duskborn') {
+        const isDuskborn = card.clan === 'Duskborn' || card.keywords?.some(k => k.toLowerCase().includes('duskborn'));
+        if (!isDuskborn) return false;
+      } else {
+        if (card.clan !== filters.clan && card.clan?.toLowerCase() !== filters.clan.toLowerCase()) return false;
+      }
     }
-    if (filters.archetype !== 'ALL' && card.archetype !== filters.archetype) return false;
+
+    if (filters.series !== 'ALL' && card.series !== filters.series) return false;
+
+    // Cost filter (handling X and 7+)
+    if (filters.cost !== 'ALL') {
+      if (filters.cost === 'X') {
+        if (card.cost !== 'X' && card.costDisplay !== 'X') return false;
+      } else if (filters.cost === '7+') {
+        const numCost = typeof card.cost === 'number' ? card.cost : 0;
+        if (numCost < 7) return false;
+      } else if (typeof filters.cost === 'number') {
+        if (card.cost !== filters.cost) return false;
+      }
+    }
+
+    // Archetype filter
+    if (filters.archetype !== 'ALL') {
+      if (filters.archetype === 'Alchimie') {
+        const isAlch = card.archetype === 'Alchimie' || card.keywords?.some(k => k.toLowerCase().includes('ingrédient') || k.toLowerCase().includes('ingredient') || k.toLowerCase().includes('alchimie'));
+        if (!isAlch) return false;
+      } else if (filters.archetype === 'Neutral' || filters.archetype === 'Neutre') {
+        const isNeut = card.archetype === 'Neutral' || card.archetype === 'Neutre';
+        if (!isNeut) return false;
+      } else if (card.archetype !== filters.archetype) {
+        return false;
+      }
+    }
+
     if (filters.rarity !== 'ALL' && card.rarity !== filters.rarity) return false;
-    if (filters.type !== 'ALL' && card.type !== filters.type) return false;
+
+    // Type filter (Vampire / Mortel)
+    if (filters.type !== 'ALL') {
+      if (filters.type === 'Mortal' || filters.type === 'Mortel') {
+        const isMortal = card.type === 'Mortel' || card.type === 'Mortal' || card.clan === 'Mortel' || card.clan === 'Mortal' || card.keywords?.some(k => k.toLowerCase().includes('mortal') || k.toLowerCase().includes('mortel'));
+        if (!isMortal) return false;
+      } else if (card.type !== filters.type) {
+        return false;
+      }
+    }
 
     if (filters.search) {
       const q = filters.search.toLowerCase();
@@ -78,9 +121,12 @@ export default function DeckBuilderView({
 
     return true;
   }).sort((a, b) => {
+    const costA = typeof a.cost === 'number' ? a.cost : 0;
+    const costB = typeof b.cost === 'number' ? b.cost : 0;
+
     switch (filters.sortBy) {
-      case 'cost-asc': return a.cost - b.cost || a.name.localeCompare(b.name);
-      case 'cost-desc': return b.cost - a.cost || a.name.localeCompare(b.name);
+      case 'cost-asc': return costA - costB || a.name.localeCompare(b.name);
+      case 'cost-desc': return costB - costA || a.name.localeCompare(b.name);
       case 'power-desc': return b.power - a.power;
       case 'power-asc': return a.power - b.power;
       case 'name-asc': return a.name.localeCompare(b.name);
@@ -89,7 +135,7 @@ export default function DeckBuilderView({
         const rOrder = { 'Légendaire': 4, 'Legendary': 4, 'Épique': 3, 'Epic': 3, 'Rare': 2, 'Commune': 1, 'Common': 1 };
         return (rOrder[b.rarity] || 0) - (rOrder[a.rarity] || 0);
       }
-      default: return a.cost - b.cost;
+      default: return costA - costB;
     }
   });
 
