@@ -64,15 +64,25 @@ export default function RulesGuideView({ onGoToDeckBuilder }) {
         </div>
 
         {/* Support Chain Callout */}
-        <div className="p-4 rounded-xl bg-amber-950/30 border border-amber-500/40 space-y-2 text-xs text-amber-200">
+        <div className="p-4 rounded-xl bg-amber-950/30 border border-amber-500/40 space-y-3 text-xs text-amber-200">
           <div className="flex items-center space-x-2 font-bold font-gothic text-sm text-amber-300">
             <ArrowUpCircle className="w-4 h-4 text-amber-400" />
-            <span>Mécanique de Chaîne de Soutien (Support Chain)</span>
+            <span>Règle de Déploiement en Chaîne & Soutien (Support Chain)</span>
           </div>
-          <p className="leading-relaxed">
-            Lors d'un conflit, chaque unité alliée connectée en ligne droite derrière l'unité engagée <strong>transmet l'intégralité de sa Puissance en soutien</strong> vers l'avant (Pion ➔ Tour ➔ Cavalier/Prince).<br />
-            <em>Attention : Les cartes possédant la mention explicite <strong>« Cannot give support »</strong> (ex: Horatio Drake, Lord Colville) ne transmettent aucune Puissance en avant.</em>
-          </p>
+          <ul className="space-y-1.5 list-disc list-inside leading-relaxed text-gray-300">
+            <li>
+              <strong>Condition de Pose :</strong> Tant qu'il n'y a pas de lien établi en partant de votre base (Pion), <strong>vous ne pouvez pas poser de carte plus loin</strong> (une Tour nécessite un Pion derrière elle, et les Cavaliers nécessitent leur Tour respective).
+            </li>
+            <li>
+              <strong>Convergence vers le Trône du Prince :</strong> Les <strong>Tours Gauche, Centrale et Droite</strong> fournissent toutes un lien direct vers la case centrale du <strong>Trône du Prince</strong>.
+            </li>
+            <li>
+              <strong>Transmission de Puissance :</strong> En conflit, chaque unité connectée transmet l'intégralité de sa Puissance vers l'avant (sauf mention <em>« Cannot give support »</em> comme <em>Horatio Drake</em> ou <em>Lord Colville</em>).
+            </li>
+            <li>
+              <strong>Exceptions :</strong> Certaines cartes furtives comme <em>Shifa</em> (peut être jouée n'importe où) ou <em>Brixton</em> (jouable sur Cavalier sans aucun soutien requis) ignorent ces contraintes de pose.
+            </li>
+          </ul>
         </div>
       </div>
 

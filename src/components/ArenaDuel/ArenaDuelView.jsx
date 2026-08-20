@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Crown, Shield, Droplets, Trophy, RotateCcw, Play, ChevronRight, 
-  Sparkles, Swords, ArrowUp, Undo2, HelpCircle, Eye, RefreshCw, Zap, X, Info
+  Sparkles, Swords, ArrowUp, Undo2, HelpCircle, Eye, RefreshCw, Zap, X, Info, Layers, BookOpen, ScrollText
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { CARDS_DATA } from '../../data/cardsData';
@@ -25,6 +25,9 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
   const [playerScore, setPlayerScore] = useState(0);
   const [aiScore, setAIScore] = useState(0);
   
+  // Entire 15-Card Player Deck (for Left Column Deck Tracker)
+  const [fullPlayerDeck, setFullPlayerDeck] = useState([]);
+
   // Hands & Piles
   const [playerHand, setPlayerHand] = useState([]);
   const [playerDrawPile, setPlayerDrawPile] = useState([]);
@@ -65,15 +68,13 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
     player_pawn_2: { key: 'player_pawn_2', name: 'Pion Sud Est', row: 'player_pawn', col: 2, card: null, power: 0, faceDown: false },
   });
 
-  // Calculate Real-time Dynamic Buffs (Cynthia Hargreaves +1 to Prince, Mr Moore +2 to Prince, Abigail Smith +2 in front, etc.)
+  // Dynamic Passive Powers (Cynthia +1 to Prince, Mr Moore +2 to Prince, Abigail Smith +2 in front, etc.)
   const computeBoardPowers = (currentBoard) => {
     let updated = { ...currentBoard };
 
-    // 1. Calculate Prince Buffs
     let playerPrinceBonus = 0;
     let aiPrinceBonus = 0;
 
-    // Check all player spaces for Prince buffers
     ['player_pawn_0', 'player_pawn_1', 'player_pawn_2', 'player_rook_0', 'player_rook_1', 'player_rook_2'].forEach(k => {
       const c = updated[k]?.card;
       if (!c) return;
@@ -90,7 +91,6 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
       if (c.name === 'Jürgen Mayer' && updated.prince.aiCard?.archetype === 'Élitiste') aiPrinceBonus += 2;
     });
 
-    // Update Prince base power + buffs
     if (updated.prince.playerCard) {
       updated.prince = {
         ...updated.prince,
@@ -104,7 +104,6 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
       };
     }
 
-    // 2. Abigail Smith (+2 to Elitist card in front)
     [0, 1, 2].forEach(col => {
       const pawnCard = updated[`player_pawn_${col}`]?.card;
       const rookSpace = updated[`player_rook_${col}`];
@@ -119,7 +118,7 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
     return updated;
   };
 
-  // Support Chains (Pawn ➔ Rook ➔ Frontline)
+  // Support Chains Calculation (including diagonal links to Prince)
   const calculateEffectivePower = () => {
     const playerChain = [0, 1, 2].map(col => {
       const pawn = board[`player_pawn_${col}`]?.card;
@@ -162,6 +161,48 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
 
   const { playerChain, aiChain } = calculateEffectivePower();
 
+  // Validate placement according to Support Chain rules:
+  // - Pawn: Always allowed (Row 1 base)
+  // - Rook Col i: Requires Pawn Col i
+  // - Knight Left: Requires Rook 0
+  // - Knight Right: Requires Rook 2
+  // - Prince: Requires Rook 0 OR Rook 1 OR Rook 2!
+  const isPlacementValid = (spaceKey, card) => {
+    if (!card) return false;
+
+    // Special bypass: Shifa can be played anywhere
+    if (card.name === 'Shifa' || card.ability_en?.toLowerCase().includes('can be played anywhere')) {
+      return true;
+    }
+    // Special bypass: Brixton can only be Knight and requires no support
+    if (card.name === 'Brixton' || card.originalName === 'Brixton') {
+      return spaceKey === 'knight_left' || spaceKey === 'knight_right';
+    }
+
+    // Pawn row: always valid base
+    if (spaceKey.startsWith('player_pawn')) {
+      return true;
+    }
+
+    // Rook row: requires pawn behind in same column
+    if (spaceKey === 'player_rook_0') return !!board.player_pawn_0.card;
+    if (spaceKey === 'player_rook_1') return !!board.player_pawn_1.card;
+    if (spaceKey === 'player_rook_2') return !!board.player_pawn_2.card;
+
+    // Knight Left: requires Rook 0
+    if (spaceKey === 'knight_left') return !!board.player_rook_0.card;
+
+    // Knight Right: requires Rook 2
+    if (spaceKey === 'knight_right') return !!board.player_rook_2.card;
+
+    // Prince (Center Throne): Connected from Rook 0, Rook 1, OR Rook 2!
+    if (spaceKey === 'prince') {
+      return !!board.player_rook_0.card || !!board.player_rook_1.card || !!board.player_rook_2.card;
+    }
+
+    return false;
+  };
+
   // Start match
   const initMatch = () => {
     let pCards = [];
@@ -171,6 +212,8 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
       const selectedMeta = META_DECKS.find(d => d.id === playerDeckId) || META_DECKS[0];
       pCards = selectedMeta.cardIds.map(id => CARDS_DATA.find(c => c.id === id)).filter(Boolean);
     }
+
+    setFullPlayerDeck(pCards);
 
     const pGuaranteed = pCards.filter(c => c.ability_en?.toLowerCase().includes('starts in your opening hand') || c.name === 'Katie Dixon');
     const pRest = pCards.filter(c => !pGuaranteed.some(g => g.id === c.id)).sort(() => Math.random() - 0.5);
@@ -239,6 +282,12 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
       return;
     }
 
+    // Check Placement Connection Rule
+    if (!isPlacementValid(spaceKey, selectedHandCard)) {
+      alert("Placement interdit : Vous devez d'abord poser une carte sur le Pion (ou la Tour) derrière pour établir le lien de chaîne !");
+      return;
+    }
+
     const targetSpace = board[spaceKey];
     if (targetSpace.card || (targetSpace.playerCard && (spaceKey === 'prince' || spaceKey.startsWith('knight')))) {
       alert('Cet emplacement est déjà occupé par une de vos unités !');
@@ -274,7 +323,6 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
       };
     }
 
-    // Apply live passive calculations
     const finalBoard = computeBoardPowers(updatedBoard);
     setBoard(finalBoard);
 
@@ -297,11 +345,10 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
     setTurnActionHistory(prev => prev.slice(0, -1));
   };
 
-  // Sequential Reveal & Combat Resolution Phase (As seen in the official video recording!)
+  // End Turn & Combat Phase
   const handleEndTurn = async () => {
     setGamePhase('revealing');
 
-    // 1. AI decides moves
     const aiResult = playAITurn(
       { hand: aiHand, bloodAvailable: totalBloodTurn, board },
       { hand: playerHand, bloodAvailable, board },
@@ -311,10 +358,7 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
     let tempBoard = { ...aiResult.updatedBoard };
     let tempAIHand = aiResult.remainingHand;
 
-    // Collect all newly placed cards to showcase them in reveal sequence
     const cardsToReveal = [];
-
-    // Check player faceDown cards
     Object.keys(tempBoard).forEach(k => {
       if (tempBoard[k].faceDown && tempBoard[k].card) {
         cardsToReveal.push({ card: tempBoard[k].card, spaceKey: k, owner: 'player' });
@@ -324,30 +368,25 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
       }
     });
 
-    // Add AI played cards
     aiResult.playedCards.forEach(pc => {
       cardsToReveal.push({ card: pc.card, spaceKey: pc.spaceKey, owner: 'ai' });
     });
 
-    // Play reveal showcase animation for each card
     for (const item of cardsToReveal) {
       setRevealingCard(item.card);
-      await new Promise(r => setTimeout(r, 1100)); // 1.1s showcase zoom
+      await new Promise(r => setTimeout(r, 1100));
     }
     setRevealingCard(null);
 
-    // Unflip all cards on board
     Object.keys(tempBoard).forEach(k => {
       tempBoard[k].faceDown = false;
       tempBoard[k].faceDownPlayer = false;
       tempBoard[k].faceDownAI = false;
     });
 
-    // Recalculate dynamic passive powers on board
     tempBoard = computeBoardPowers(tempBoard);
     setBoard(tempBoard);
 
-    // 2. Point Counting & Scoring Sequence
     setGamePhase('scoring');
     await new Promise(r => setTimeout(r, 800));
 
@@ -355,7 +394,6 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
     let roundAIPts = 0;
     const combatLogs = [...aiResult.logs];
 
-    // Compute Support Chains
     const { playerChain: pCh, aiChain: aCh } = calculateEffectivePower();
 
     // Knight West
@@ -388,7 +426,7 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
       combatLogs.push(`⚔️ Cavalier Est : ${selectedAI.name} l'emporte (${aKE} vs ${pKE}) -> +2 Pts IA.`);
     }
 
-    // Prince Throne (1 pt per ally on entire board)
+    // Prince Throne (Support from Col 0, 1, 2)
     const pr = tempBoard.prince;
     const pPr = (pr.playerCard ? pr.playerPower : 0) + pCh[1].totalSupportToFront;
     const aPr = (pr.aiCard ? pr.aiPower : 0) + aCh[1].totalSupportToFront;
@@ -409,11 +447,9 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
       combatLogs.push(`👑 Trône du Prince : ${selectedAI.name} règne ! (${aPr} vs ${pPr}) -> +${totalAIAllies} Pts IA.`);
     }
 
-    // Show floating score medals on board
     setScoringMedals({ knight_left: kwMedal, prince: prMedal, knight_right: keMedal });
     await new Promise(r => setTimeout(r, 1200));
 
-    // 3. Location Modifier check (St Paul's Cathedral - Résilience Impie)
     let newPlayerDiscard = [...playerDiscard];
     let newPlayerHand = [...playerHand];
     if (selectedLocation.id === 'st-pauls-cathedral' && newPlayerDiscard.length > 0) {
@@ -429,7 +465,6 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
     setTurnActionHistory([]);
     setScoringMedals({ knight_left: 0, prince: 0, knight_right: 0 });
 
-    // Check End of Match (Round 7 Climax)
     if (turn >= maxTurns) {
       setGamePhase('game_over');
       if (updatedPScore > updatedAIScore) {
@@ -443,7 +478,6 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
       return;
     }
 
-    // 4. Round Transition Banner ("MANCHE X SUR 7")
     const nextTurnNum = turn + 1;
     const nextBlood = nextTurnNum + 1;
 
@@ -452,7 +486,6 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
     await new Promise(r => setTimeout(r, 1400));
     setRoundTransitionText('');
 
-    // Draw cards
     let pDraw = [...playerDrawPile];
     let pDrawn = pDraw.shift();
     if (pDrawn) newPlayerHand.push(pDrawn);
@@ -476,6 +509,19 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
       ...combatLogs,
       ...prev
     ]);
+  };
+
+  // Helper to determine card state for the Deck Tracker
+  const getDeckCardStatus = (card) => {
+    // 1. Is in Hand?
+    if (playerHand.some(c => c.id === card.id)) return 'hand';
+    // 2. Is on Board?
+    const onBoard = Object.values(board).some(sp => sp.card?.id === card.id || sp.playerCard?.id === card.id);
+    if (onBoard) return 'board';
+    // 3. Is Defeated / in Discard?
+    if (playerDiscard.some(c => c.id === card.id)) return 'defeated';
+    // 4. Default in deck
+    return 'deck';
   };
 
   // Setup / Matchmaking Screen
@@ -609,11 +655,11 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
     );
   }
 
-  // Active Arena Screen
+  // Active Match: 3-Column Ergonomic Layout (Left: Deck | Center: Board & Hand | Right: Combat Log)
   return (
-    <div className="max-w-xl mx-auto space-y-2 pb-8 select-none relative">
+    <div className="max-w-7xl mx-auto pb-8 select-none relative space-y-3">
       
-      {/* 1. Location Rule Modal (Matches Screenshot 1) */}
+      {/* 1. Location Rule Modal */}
       {showLocationModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
           <div className="glass-panel-blood max-w-sm w-full rounded-2xl overflow-hidden border border-red-500/40 shadow-2xl p-6 text-center space-y-4 relative">
@@ -652,7 +698,7 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
         </div>
       )}
 
-      {/* 2. Giant Card Showcase Zoom Reveal Overlay (Official Animation from Video) */}
+      {/* 2. Giant Card Showcase Zoom Reveal Overlay */}
       {revealingCard && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-zoomIn pointer-events-none">
           <div className="w-72 sm:w-80 rounded-2xl overflow-hidden border-2 border-amber-400 shadow-[0_0_40px_rgba(212,175,55,0.6)] bg-gradient-to-b from-[#1c1424] to-[#0b0810] p-4 text-center space-y-3 animate-pulse">
@@ -692,7 +738,7 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
         </div>
       )}
 
-      {/* 4. Victory / Game Over Screen (Official Climax from Video) */}
+      {/* 4. Victory Screen */}
       {gamePhase === 'game_over' && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-lg animate-fadeIn">
           <div className="max-w-md w-full rounded-2xl glass-panel-blood border-2 border-amber-400 p-6 text-center space-y-5 shadow-[0_0_50px_rgba(212,175,55,0.4)]">
@@ -705,7 +751,6 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
               </p>
             </div>
 
-            {/* Final Scores Medallion */}
             <div className="grid grid-cols-2 gap-4 p-4 rounded-xl bg-black/60 border border-white/10">
               <div>
                 <span className="text-[10px] font-mono uppercase text-gray-400">Votre Score</span>
@@ -735,424 +780,534 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
         </div>
       )}
 
-      {/* Top Header Bar */}
-      <div className="flex items-center justify-between px-2 pt-1">
-        {/* Left: Player Avatar & Score */}
-        <div className="flex items-center space-x-2">
-          <div className="relative">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-900 to-indigo-700 border-2 border-cyan-400 flex items-center justify-center text-white font-bold shadow-[0_0_12px_rgba(6,182,212,0.5)] text-sm">
-              ☥
+      {/* 3-COLUMN RESPONSIVE LAYOUT */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
+        
+        {/* LEFT COLUMN: Deck Tracker (15 Cards) */}
+        <div className="lg:col-span-3 glass-panel rounded-2xl p-3.5 border border-white/10 space-y-3">
+          <div className="flex items-center justify-between border-b border-white/10 pb-2">
+            <div className="flex items-center space-x-2 text-amber-400 font-gothic font-bold text-xs">
+              <Layers className="w-4 h-4" />
+              <span>Votre Deck ({fullPlayerDeck.length})</span>
             </div>
-            <span className="text-[9px] font-gothic font-bold text-gray-300 block text-center mt-0.5">MAYKI</span>
-          </div>
-          <div className="w-9 h-9 rounded-full bg-gradient-to-b from-[#2a2416] to-[#120f09] border-2 border-amber-400/80 flex items-center justify-center font-gothic font-bold text-amber-300 text-sm shadow-gold">
-            {playerScore}
-          </div>
-        </div>
-
-        {/* Center: Location Badge & Turn Seal */}
-        <div 
-          onClick={() => setShowLocationModal(true)}
-          className="flex flex-col items-center cursor-pointer group"
-          title="Cliquez pour voir la règle du lieu"
-        >
-          <div className="w-9 h-9 rounded-full bg-red-950/90 border-2 border-red-500 flex items-center justify-center text-red-200 font-mono font-bold text-sm shadow-blood group-hover:scale-105 transition-transform">
-            {turn}
-          </div>
-          <div className="flex items-center space-x-1 mt-0.5 text-amber-300/90 font-gothic font-bold text-[11px]">
-            <span>👑 {selectedLocation.name}</span>
-          </div>
-        </div>
-
-        {/* Right: Opponent AI Avatar & Score */}
-        <div className="flex items-center space-x-2">
-          <div className="w-9 h-9 rounded-full bg-gradient-to-b from-[#2a2416] to-[#120f09] border-2 border-amber-400/80 flex items-center justify-center font-gothic font-bold text-amber-300 text-sm shadow-gold">
-            {aiScore}
-          </div>
-          <div className="relative text-right">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-red-950 to-rose-900 border-2 border-red-500 overflow-hidden flex items-center justify-center shadow-blood">
-              <img src={selectedAI.avatarUrl} alt={selectedAI.name} className="w-full h-full object-cover" />
-            </div>
-            <span className="text-[9px] font-gothic font-bold text-gray-300 block text-center mt-0.5 uppercase">{selectedAI.name}</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Main 15-Space Tactical Board */}
-      <div className="relative rounded-2xl bg-gradient-to-b from-[#12080a] via-[#0d090d] to-[#070910] border border-red-900/40 p-2.5 shadow-2xl overflow-hidden">
-        {/* Support Laser Beams */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
-          {playerChain.map((chain, i) => {
-            if (chain.hasPawn && (chain.hasRook || board.prince.playerCard || board[`knight_${i === 0 ? 'left' : 'right'}`]?.playerCard)) {
-              return (
-                <line
-                  key={`p-beam-${i}`}
-                  x1={`${18 + i * 32}%`}
-                  y1="90%"
-                  x2={`${18 + i * 32}%`}
-                  y2="52%"
-                  stroke="#10b981"
-                  strokeWidth="3.5"
-                  strokeDasharray="4 2"
-                  className="animate-pulse"
-                  opacity="0.85"
-                />
-              );
-            }
-            return null;
-          })}
-
-          {aiChain.map((chain, i) => {
-            if (chain.hasPawn && (chain.hasRook || board.prince.aiCard || board[`knight_${i === 0 ? 'left' : 'right'}`]?.aiCard)) {
-              return (
-                <line
-                  key={`ai-beam-${i}`}
-                  x1={`${18 + i * 32}%`}
-                  y1="10%"
-                  x2={`${18 + i * 32}%`}
-                  y2="48%"
-                  stroke="#a855f7"
-                  strokeWidth="3.5"
-                  strokeDasharray="4 2"
-                  className="animate-pulse"
-                  opacity="0.85"
-                />
-              );
-            }
-            return null;
-          })}
-        </svg>
-
-        {/* Undo Button */}
-        {turnActionHistory.length > 0 && (
-          <button
-            onClick={handleUndo}
-            className="absolute top-1/2 left-2 transform -translate-y-1/2 z-20 p-2 rounded-full bg-slate-900/90 border border-white/20 text-gray-300 hover:text-white shadow-xl hover:scale-110 transition-all"
-            title="Annuler le dernier coup"
-          >
-            <Undo2 className="w-4 h-4 text-cyan-400" />
-          </button>
-        )}
-
-        <div className="relative z-10 space-y-1.5">
-          {/* Row 1: AI Pawns */}
-          <div className="grid grid-cols-3 gap-2">
-            {[0, 1, 2].map(col => {
-              const sp = board[`ai_pawn_${col}`];
-              return (
-                <div key={sp.key} className="h-16 rounded-xl bg-black/40 border border-purple-500/20 flex flex-col items-center justify-center p-1 text-center">
-                  {sp.card ? (
-                    <div onClick={() => onInspectCard?.(sp.card)} className="w-full h-full rounded-lg bg-purple-950/80 border border-purple-400/50 p-1 flex flex-col justify-between cursor-pointer">
-                      <div className="flex justify-between items-center text-[10px]">
-                        <span className="font-gothic text-purple-200 truncate">{sp.card.name}</span>
-                        <span className="font-mono font-bold text-amber-400">P{sp.power}</span>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="w-2 h-2 rounded-full bg-purple-500/40" />
-                  )}
-                </div>
-              );
-            })}
+            <span className="text-[10px] font-mono text-gray-400">
+              Main : {playerHand.length}
+            </span>
           </div>
 
-          {/* Row 2: AI Rooks */}
-          <div className="grid grid-cols-3 gap-2">
-            {[0, 1, 2].map(col => {
-              const sp = board[`ai_rook_${col}`];
-              return (
-                <div key={sp.key} className="h-16 rounded-xl bg-black/40 border border-purple-500/20 flex flex-col items-center justify-center p-1 text-center">
-                  {sp.card ? (
-                    <div onClick={() => onInspectCard?.(sp.card)} className="w-full h-full rounded-lg bg-purple-950/80 border border-purple-400/50 p-1 flex flex-col justify-between cursor-pointer">
-                      <div className="flex justify-between items-center text-[10px]">
-                        <span className="font-gothic text-purple-200 truncate">{sp.card.name}</span>
-                        <span className="font-mono font-bold text-amber-400">P{sp.power}</span>
-                      </div>
-                    </div>
-                  ) : (
-                    <span className="text-[9px] font-mono text-gray-600">Tour AI</span>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+          <div className="space-y-1.5 max-h-[580px] overflow-y-auto pr-1">
+            {fullPlayerDeck.map((card) => {
+              const status = getDeckCardStatus(card);
 
-          {/* Row 3: Contested Frontline (Knight Left, Prince Center, Knight Right) */}
-          <div className="grid grid-cols-3 gap-2 py-1">
-            {/* Knight Left */}
-            <div
-              onClick={() => selectedHandCard && handleDeployToSpace('knight_left')}
-              className={`h-24 rounded-2xl border-2 transition-all p-1.5 flex flex-col justify-between relative ${
-                board.knight_left.playerCard
-                  ? 'bg-emerald-950/60 border-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.3)]'
-                  : board.knight_left.aiCard
-                    ? 'bg-purple-950/60 border-purple-400 shadow-[0_0_12px_rgba(168,85,247,0.3)]'
-                    : selectedHandCard
-                      ? 'bg-red-950/40 border-red-500/70 hover:scale-105 cursor-pointer animate-pulse'
-                      : 'bg-[#180f12] border-amber-500/30'
-              }`}
-            >
-              {scoringMedals.knight_left > 0 && (
-                <div className="absolute inset-0 z-30 flex items-center justify-center bg-amber-500/30 rounded-2xl animate-ping">
-                  <span className="w-8 h-8 rounded-full bg-amber-400 text-black font-extrabold flex items-center justify-center text-sm shadow-gold">
-                    +{scoringMedals.knight_left}
-                  </span>
-                </div>
-              )}
-              <div className="flex justify-between items-center text-[10px]">
-                <span className="font-gothic font-bold text-amber-300">♞ Cavalier Ouest</span>
-                <span className="text-[9px] font-mono text-amber-400 bg-black/60 px-1 rounded">+2 Pts</span>
-              </div>
-              <div className="text-center my-auto">
-                {board.knight_left.playerCard ? (
-                  <div onClick={(e) => { e.stopPropagation(); onInspectCard?.(board.knight_left.playerCard); }} className="cursor-pointer">
-                    <div className="font-gothic font-bold text-xs text-emerald-300 truncate">{board.knight_left.playerCard.name}</div>
-                    <div className="text-[10px] font-mono text-amber-400 font-bold">{board.knight_left.playerPower} (+{playerChain[0].totalSupportToFront})</div>
-                  </div>
-                ) : board.knight_left.aiCard ? (
-                  <div onClick={(e) => { e.stopPropagation(); onInspectCard?.(board.knight_left.aiCard); }} className="cursor-pointer">
-                    <div className="font-gothic font-bold text-xs text-purple-300 truncate">{board.knight_left.aiCard.name}</div>
-                    <div className="text-[10px] font-mono text-amber-400 font-bold">{board.knight_left.aiPower} (+{aiChain[0].totalSupportToFront})</div>
-                  </div>
-                ) : (
-                  <span className="text-xs text-gray-500">{selectedHandCard ? 'Déployer ici' : 'Contesté'}</span>
-                )}
-              </div>
-            </div>
-
-            {/* Prince Center */}
-            <div
-              onClick={() => selectedHandCard && handleDeployToSpace('prince')}
-              className={`h-24 rounded-2xl border-2 transition-all p-1.5 flex flex-col justify-between relative ${
-                board.prince.playerCard
-                  ? 'bg-gradient-to-b from-amber-950/80 to-[#120e06] border-amber-400 shadow-[0_0_18px_rgba(212,175,55,0.5)]'
-                  : board.prince.aiCard
-                    ? 'bg-purple-950/80 border-purple-400 shadow-[0_0_18px_rgba(168,85,247,0.4)]'
-                    : selectedHandCard
-                      ? 'bg-red-950/60 border-red-500 hover:scale-105 cursor-pointer animate-pulse'
-                      : 'bg-gradient-to-b from-[#22160d] to-[#0c0906] border-amber-500/50'
-              }`}
-            >
-              {scoringMedals.prince > 0 && (
-                <div className="absolute inset-0 z-30 flex items-center justify-center bg-amber-500/30 rounded-2xl animate-ping">
-                  <span className="w-9 h-9 rounded-full bg-amber-400 text-black font-extrabold flex items-center justify-center text-sm shadow-gold">
-                    +{scoringMedals.prince}
-                  </span>
-                </div>
-              )}
-              <div className="flex justify-between items-center text-[10px]">
-                <span className="font-gothic font-bold text-amber-300 flex items-center space-x-1">
-                  <Crown className="w-3 h-3 text-amber-400" />
-                  <span>Trône du Prince</span>
-                </span>
-                <span className="text-[9px] font-mono text-amber-300 bg-black/60 px-1 rounded">1 pt/allié</span>
-              </div>
-              <div className="text-center my-auto">
-                {board.prince.playerCard ? (
-                  <div onClick={(e) => { e.stopPropagation(); onInspectCard?.(board.prince.playerCard); }} className="cursor-pointer">
-                    <div className="font-gothic font-bold text-xs text-amber-200 truncate">{board.prince.playerCard.name}</div>
-                    <div className="text-[10px] font-mono text-amber-400 font-bold">{board.prince.playerPower} (+{playerChain[1].totalSupportToFront})</div>
-                  </div>
-                ) : board.prince.aiCard ? (
-                  <div onClick={(e) => { e.stopPropagation(); onInspectCard?.(board.prince.aiCard); }} className="cursor-pointer">
-                    <div className="font-gothic font-bold text-xs text-purple-200 truncate">{board.prince.aiCard.name}</div>
-                    <div className="text-[10px] font-mono text-amber-400 font-bold">{board.prince.aiPower} (+{aiChain[1].totalSupportToFront})</div>
-                  </div>
-                ) : (
-                  <span className="text-xs text-amber-400/80 font-gothic font-bold">{selectedHandCard ? '👑 Régner' : 'Trône Vacant'}</span>
-                )}
-              </div>
-            </div>
-
-            {/* Knight Right */}
-            <div
-              onClick={() => selectedHandCard && handleDeployToSpace('knight_right')}
-              className={`h-24 rounded-2xl border-2 transition-all p-1.5 flex flex-col justify-between relative ${
-                board.knight_right.playerCard
-                  ? 'bg-emerald-950/60 border-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.3)]'
-                  : board.knight_right.aiCard
-                    ? 'bg-purple-950/60 border-purple-400 shadow-[0_0_12px_rgba(168,85,247,0.3)]'
-                    : selectedHandCard
-                      ? 'bg-red-950/40 border-red-500/70 hover:scale-105 cursor-pointer animate-pulse'
-                      : 'bg-[#180f12] border-amber-500/30'
-              }`}
-            >
-              {scoringMedals.knight_right > 0 && (
-                <div className="absolute inset-0 z-30 flex items-center justify-center bg-amber-500/30 rounded-2xl animate-ping">
-                  <span className="w-8 h-8 rounded-full bg-amber-400 text-black font-extrabold flex items-center justify-center text-sm shadow-gold">
-                    +{scoringMedals.knight_right}
-                  </span>
-                </div>
-              )}
-              <div className="flex justify-between items-center text-[10px]">
-                <span className="font-gothic font-bold text-amber-300">♞ Cavalier Est</span>
-                <span className="text-[9px] font-mono text-amber-400 bg-black/60 px-1 rounded">+2 Pts</span>
-              </div>
-              <div className="text-center my-auto">
-                {board.knight_right.playerCard ? (
-                  <div onClick={(e) => { e.stopPropagation(); onInspectCard?.(board.knight_right.playerCard); }} className="cursor-pointer">
-                    <div className="font-gothic font-bold text-xs text-emerald-300 truncate">{board.knight_right.playerCard.name}</div>
-                    <div className="text-[10px] font-mono text-amber-400 font-bold">{board.knight_right.playerPower} (+{playerChain[2].totalSupportToFront})</div>
-                  </div>
-                ) : board.knight_right.aiCard ? (
-                  <div onClick={(e) => { e.stopPropagation(); onInspectCard?.(board.knight_right.aiCard); }} className="cursor-pointer">
-                    <div className="font-gothic font-bold text-xs text-purple-300 truncate">{board.knight_right.aiCard.name}</div>
-                    <div className="text-[10px] font-mono text-amber-400 font-bold">{board.knight_right.aiPower} (+{aiChain[2].totalSupportToFront})</div>
-                  </div>
-                ) : (
-                  <span className="text-xs text-gray-500">{selectedHandCard ? 'Déployer ici' : 'Contesté'}</span>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Row 4: Player Rooks */}
-          <div className="grid grid-cols-3 gap-2">
-            {[0, 1, 2].map(col => {
-              const sp = board[`player_rook_${col}`];
               return (
                 <div
-                  key={sp.key}
-                  onClick={() => selectedHandCard && handleDeployToSpace(sp.key)}
-                  className={`h-16 rounded-xl border transition-all flex flex-col items-center justify-between p-1.5 ${
-                    sp.card
-                      ? 'bg-emerald-950/50 border-emerald-500/70 shadow-[0_0_10px_rgba(16,185,129,0.2)]'
-                      : selectedHandCard
-                        ? 'bg-red-950/30 border-red-500/50 hover:border-emerald-400 cursor-pointer animate-pulse'
-                        : 'bg-black/40 border-white/10'
+                  key={card.id}
+                  onClick={() => onInspectCard?.(card)}
+                  className={`p-1.5 rounded-xl border text-xs flex items-center justify-between cursor-pointer transition-all ${
+                    status === 'hand'
+                      ? 'bg-blue-950/40 border-cyan-400/80 text-cyan-200 shadow-[0_0_8px_rgba(6,182,212,0.3)]'
+                      : status === 'board'
+                        ? 'bg-emerald-950/60 border-emerald-400 text-emerald-200 shadow-[0_0_10px_rgba(16,185,129,0.3)] ring-1 ring-emerald-400/50'
+                        : status === 'defeated'
+                          ? 'bg-black/40 border-white/5 text-gray-600 grayscale opacity-35 line-through'
+                          : 'bg-[#0d1017] border-white/10 text-gray-300 hover:border-white/25'
                   }`}
+                  title={`${card.name} (${card.cost} Sang / ${card.power} Puiss)`}
                 >
-                  {sp.card ? (
-                    <div onClick={(e) => { e.stopPropagation(); onInspectCard?.(sp.card); }} className="w-full h-full flex flex-col justify-between cursor-pointer">
-                      <div className="flex justify-between items-center text-[10px]">
-                        <span className="font-gothic text-emerald-300 truncate">{sp.card.name}</span>
-                        <span className="font-mono font-bold text-amber-400">P{sp.power}</span>
-                      </div>
-                      <span className="text-[8px] font-mono text-emerald-400/80 text-center">↑ Soutien Relais</span>
-                    </div>
-                  ) : (
-                    <span className="text-[9px] font-mono text-gray-500 my-auto">Tour</span>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+                  <div className="flex items-center space-x-2 truncate">
+                    <span className="w-4 h-4 rounded-full bg-red-900 border border-red-500 text-[9px] font-bold text-white flex items-center justify-center font-mono">
+                      {card.cost}
+                    </span>
+                    <span className="font-gothic text-[11px] truncate">{card.name}</span>
+                  </div>
 
-          {/* Row 5: Player Pawns */}
-          <div className="grid grid-cols-3 gap-2">
-            {[0, 1, 2].map(col => {
-              const sp = board[`player_pawn_${col}`];
-              return (
-                <div
-                  key={sp.key}
-                  onClick={() => selectedHandCard && handleDeployToSpace(sp.key)}
-                  className={`h-16 rounded-xl border transition-all flex flex-col items-center justify-between p-1.5 ${
-                    sp.card
-                      ? 'bg-emerald-950/50 border-emerald-500/70 shadow-[0_0_10px_rgba(16,185,129,0.2)]'
-                      : selectedHandCard
-                        ? 'bg-red-950/30 border-red-500/50 hover:border-emerald-400 cursor-pointer animate-pulse'
-                        : 'bg-black/40 border-white/10'
-                  }`}
-                >
-                  {sp.card ? (
-                    <div onClick={(e) => { e.stopPropagation(); onInspectCard?.(sp.card); }} className="w-full h-full flex flex-col justify-between cursor-pointer">
-                      <div className="flex justify-between items-center text-[10px]">
-                        <span className="font-gothic text-emerald-300 truncate">{sp.card.name}</span>
-                        <span className="font-mono font-bold text-amber-400">P{sp.power}</span>
-                      </div>
-                      <span className="text-[8px] font-mono text-emerald-400/80 text-center">♟️ Base Pion</span>
-                    </div>
-                  ) : (
-                    <span className="text-[9px] font-mono text-gray-500 my-auto">♟️ Pion</span>
-                  )}
+                  <div className="flex items-center space-x-1.5">
+                    <span className="font-mono text-[10px] font-bold text-amber-400">P{card.power}</span>
+                    {/* "M" badge when in Hand */}
+                    {status === 'hand' && (
+                      <span className="px-1.5 py-0.2 rounded-md bg-cyan-500 text-black font-bold font-mono text-[9px] shadow-[0_0_6px_rgba(6,182,212,0.8)]">
+                        M
+                      </span>
+                    )}
+                    {status === 'board' && (
+                      <span className="text-[9px] text-emerald-400 font-mono">✓ Jeu</span>
+                    )}
+                  </div>
                 </div>
               );
             })}
           </div>
         </div>
-      </div>
 
-      {/* Bottom Player Hand & Action Controls */}
-      <div className="space-y-2 pt-1">
-        {/* Hand Fan */}
-        <div className="flex items-center justify-center gap-1.5 overflow-x-auto py-1 px-1">
-          {playerHand.map((card) => {
-            const canAfford = card.cost <= bloodAvailable;
-            const isSelected = selectedHandCard?.id === card.id;
+        {/* CENTER COLUMN: Main Arena Board Canvas & Controls */}
+        <div className="lg:col-span-6 space-y-2">
+          {/* Top Header Bar */}
+          <div className="flex items-center justify-between px-2 pt-1">
+            {/* Left: Player Avatar & Score */}
+            <div className="flex items-center space-x-2">
+              <div className="relative">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-900 to-indigo-700 border-2 border-cyan-400 flex items-center justify-center text-white font-bold shadow-[0_0_12px_rgba(6,182,212,0.5)] text-sm">
+                  ☥
+                </div>
+                <span className="text-[9px] font-gothic font-bold text-gray-300 block text-center mt-0.5">MAYKI</span>
+              </div>
+              <div className="w-9 h-9 rounded-full bg-gradient-to-b from-[#2a2416] to-[#120f09] border-2 border-amber-400/80 flex items-center justify-center font-gothic font-bold text-amber-300 text-sm shadow-gold">
+                {playerScore}
+              </div>
+            </div>
 
-            return (
-              <div
-                key={card.id}
-                onClick={() => {
-                  if (isSelected) setSelectedHandCard(null);
-                  else if (canAfford) setSelectedHandCard(card);
-                }}
-                className={`w-20 sm:w-24 h-28 rounded-xl border-2 transition-all p-1 flex flex-col justify-between cursor-pointer transform ${
-                  isSelected
-                    ? 'bg-red-950 border-red-500 shadow-blood -translate-y-2 scale-105'
-                    : canAfford
-                      ? 'bg-[#10141f] border-white/20 hover:border-amber-400 hover:-translate-y-1'
-                      : 'bg-[#080a0f] border-white/5 opacity-40 cursor-not-allowed'
+            {/* Center: Location Badge & Turn Seal */}
+            <div 
+              onClick={() => setShowLocationModal(true)}
+              className="flex flex-col items-center cursor-pointer group"
+              title="Cliquez pour voir la règle du lieu"
+            >
+              <div className="w-9 h-9 rounded-full bg-red-950/90 border-2 border-red-500 flex items-center justify-center text-red-200 font-mono font-bold text-sm shadow-blood group-hover:scale-105 transition-transform">
+                {turn}
+              </div>
+              <div className="flex items-center space-x-1 mt-0.5 text-amber-300/90 font-gothic font-bold text-[11px]">
+                <span>👑 {selectedLocation.name}</span>
+              </div>
+            </div>
+
+            {/* Right: Opponent AI Avatar & Score */}
+            <div className="flex items-center space-x-2">
+              <div className="w-9 h-9 rounded-full bg-gradient-to-b from-[#2a2416] to-[#120f09] border-2 border-amber-400/80 flex items-center justify-center font-gothic font-bold text-amber-300 text-sm shadow-gold">
+                {aiScore}
+              </div>
+              <div className="relative text-right">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-red-950 to-rose-900 border-2 border-red-500 overflow-hidden flex items-center justify-center shadow-blood">
+                  <img src={selectedAI.avatarUrl} alt={selectedAI.name} className="w-full h-full object-cover" />
+                </div>
+                <span className="text-[9px] font-gothic font-bold text-gray-300 block text-center mt-0.5 uppercase">{selectedAI.name}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Main 15-Space Tactical Board */}
+          <div className="relative rounded-2xl bg-gradient-to-b from-[#12080a] via-[#0d090d] to-[#070910] border border-red-900/40 p-2.5 shadow-2xl overflow-hidden">
+            {/* Support Laser Beams (including diagonal links to Prince) */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
+              {/* Player Support Lines */}
+              {playerChain.map((chain, i) => {
+                if (chain.hasPawn && (chain.hasRook || board.prince.playerCard || board[`knight_${i === 0 ? 'left' : 'right'}`]?.playerCard)) {
+                  return (
+                    <line
+                      key={`p-beam-${i}`}
+                      x1={`${18 + i * 32}%`}
+                      y1="90%"
+                      x2={i === 1 ? '50%' : `${18 + i * 32}%`}
+                      y2="52%"
+                      stroke="#10b981"
+                      strokeWidth="3.5"
+                      strokeDasharray="4 2"
+                      className="animate-pulse"
+                      opacity="0.85"
+                    />
+                  );
+                }
+                return null;
+              })}
+
+              {/* Diagonal Support lines to Prince from Left & Right Rooks */}
+              {board.player_rook_0.card && board.prince.playerCard && (
+                <line x1="18%" y1="72%" x2="50%" y2="52%" stroke="#10b981" strokeWidth="2.5" strokeDasharray="3 2" opacity="0.6" />
+              )}
+              {board.player_rook_2.card && board.prince.playerCard && (
+                <line x1="82%" y1="72%" x2="50%" y2="52%" stroke="#10b981" strokeWidth="2.5" strokeDasharray="3 2" opacity="0.6" />
+              )}
+
+              {/* AI Support Lines */}
+              {aiChain.map((chain, i) => {
+                if (chain.hasPawn && (chain.hasRook || board.prince.aiCard || board[`knight_${i === 0 ? 'left' : 'right'}`]?.aiCard)) {
+                  return (
+                    <line
+                      key={`ai-beam-${i}`}
+                      x1={`${18 + i * 32}%`}
+                      y1="10%"
+                      x2={i === 1 ? '50%' : `${18 + i * 32}%`}
+                      y2="48%"
+                      stroke="#a855f7"
+                      strokeWidth="3.5"
+                      strokeDasharray="4 2"
+                      className="animate-pulse"
+                      opacity="0.85"
+                    />
+                  );
+                }
+                return null;
+              })}
+            </svg>
+
+            {/* Undo Button */}
+            {turnActionHistory.length > 0 && (
+              <button
+                onClick={handleUndo}
+                className="absolute top-1/2 left-2 transform -translate-y-1/2 z-20 p-2 rounded-full bg-slate-900/90 border border-white/20 text-gray-300 hover:text-white shadow-xl hover:scale-110 transition-all"
+                title="Annuler le dernier coup"
+              >
+                <Undo2 className="w-4 h-4 text-cyan-400" />
+              </button>
+            )}
+
+            <div className="relative z-10 space-y-1.5">
+              {/* Row 1: AI Pawns */}
+              <div className="grid grid-cols-3 gap-2">
+                {[0, 1, 2].map(col => {
+                  const sp = board[`ai_pawn_${col}`];
+                  return (
+                    <div key={sp.key} className="h-16 rounded-xl bg-black/40 border border-purple-500/20 overflow-hidden relative flex flex-col justify-between p-1 text-center">
+                      {sp.card ? (
+                        <>
+                          <img src={sp.card.imageUrl} alt={sp.card.name} className="absolute inset-0 w-full h-full object-cover opacity-50" />
+                          <div className="relative z-10 flex justify-between items-center text-[10px] bg-black/70 px-1 py-0.5 rounded">
+                            <span className="font-gothic text-purple-200 truncate">{sp.card.name}</span>
+                            <span className="font-mono font-bold text-amber-400">P{sp.power}</span>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="w-2 h-2 rounded-full bg-purple-500/40 mx-auto my-auto" />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Row 2: AI Rooks */}
+              <div className="grid grid-cols-3 gap-2">
+                {[0, 1, 2].map(col => {
+                  const sp = board[`ai_rook_${col}`];
+                  return (
+                    <div key={sp.key} className="h-16 rounded-xl bg-black/40 border border-purple-500/20 overflow-hidden relative flex flex-col justify-between p-1 text-center">
+                      {sp.card ? (
+                        <>
+                          <img src={sp.card.imageUrl} alt={sp.card.name} className="absolute inset-0 w-full h-full object-cover opacity-50" />
+                          <div className="relative z-10 flex justify-between items-center text-[10px] bg-black/70 px-1 py-0.5 rounded">
+                            <span className="font-gothic text-purple-200 truncate">{sp.card.name}</span>
+                            <span className="font-mono font-bold text-amber-400">P{sp.power}</span>
+                          </div>
+                        </>
+                      ) : (
+                        <span className="text-[9px] font-mono text-gray-600 my-auto">Tour AI</span>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Row 3: Contested Frontline (Knight Left, Prince Center, Knight Right) */}
+              <div className="grid grid-cols-3 gap-2 py-1">
+                {/* Knight Left */}
+                <div
+                  onClick={() => selectedHandCard && handleDeployToSpace('knight_left')}
+                  className={`h-24 rounded-2xl border-2 transition-all p-1.5 flex flex-col justify-between relative overflow-hidden ${
+                    board.knight_left.playerCard
+                      ? 'bg-emerald-950/60 border-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.3)]'
+                      : board.knight_left.aiCard
+                        ? 'bg-purple-950/60 border-purple-400 shadow-[0_0_12px_rgba(168,85,247,0.3)]'
+                        : selectedHandCard && isPlacementValid('knight_left', selectedHandCard)
+                          ? 'bg-red-950/40 border-red-500/70 hover:scale-105 cursor-pointer animate-pulse'
+                          : 'bg-[#180f12] border-amber-500/30'
+                  }`}
+                >
+                  {board.knight_left.playerCard && (
+                    <img src={board.knight_left.playerCard.imageUrl} alt={board.knight_left.playerCard.name} className="absolute inset-0 w-full h-full object-cover opacity-45" />
+                  )}
+                  {board.knight_left.aiCard && (
+                    <img src={board.knight_left.aiCard.imageUrl} alt={board.knight_left.aiCard.name} className="absolute inset-0 w-full h-full object-cover opacity-45" />
+                  )}
+
+                  {scoringMedals.knight_left > 0 && (
+                    <div className="absolute inset-0 z-30 flex items-center justify-center bg-amber-500/30 rounded-2xl animate-ping">
+                      <span className="w-8 h-8 rounded-full bg-amber-400 text-black font-extrabold flex items-center justify-center text-sm shadow-gold">
+                        +{scoringMedals.knight_left}
+                      </span>
+                    </div>
+                  )}
+                  <div className="relative z-10 flex justify-between items-center text-[10px]">
+                    <span className="font-gothic font-bold text-amber-300 bg-black/60 px-1 rounded">♞ Cavalier Ouest</span>
+                    <span className="text-[9px] font-mono text-amber-400 bg-black/60 px-1 rounded">+2 Pts</span>
+                  </div>
+                  <div className="relative z-10 text-center my-auto">
+                    {board.knight_left.playerCard ? (
+                      <div onClick={(e) => { e.stopPropagation(); onInspectCard?.(board.knight_left.playerCard); }} className="cursor-pointer bg-black/60 p-1 rounded">
+                        <div className="font-gothic font-bold text-xs text-emerald-300 truncate">{board.knight_left.playerCard.name}</div>
+                        <div className="text-[10px] font-mono text-amber-400 font-bold">{board.knight_left.playerPower} (+{playerChain[0].totalSupportToFront})</div>
+                      </div>
+                    ) : board.knight_left.aiCard ? (
+                      <div onClick={(e) => { e.stopPropagation(); onInspectCard?.(board.knight_left.aiCard); }} className="cursor-pointer bg-black/60 p-1 rounded">
+                        <div className="font-gothic font-bold text-xs text-purple-300 truncate">{board.knight_left.aiCard.name}</div>
+                        <div className="text-[10px] font-mono text-amber-400 font-bold">{board.knight_left.aiPower} (+{aiChain[0].totalSupportToFront})</div>
+                      </div>
+                    ) : (
+                      <span className="text-xs text-gray-500">{selectedHandCard ? 'Déployer ici' : 'Contesté'}</span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Prince Center (Crown 👑) */}
+                <div
+                  onClick={() => selectedHandCard && handleDeployToSpace('prince')}
+                  className={`h-24 rounded-2xl border-2 transition-all p-1.5 flex flex-col justify-between relative overflow-hidden ${
+                    board.prince.playerCard
+                      ? 'bg-gradient-to-b from-amber-950/80 to-[#120e06] border-amber-400 shadow-[0_0_18px_rgba(212,175,55,0.5)]'
+                      : board.prince.aiCard
+                        ? 'bg-purple-950/80 border-purple-400 shadow-[0_0_18px_rgba(168,85,247,0.4)]'
+                        : selectedHandCard && isPlacementValid('prince', selectedHandCard)
+                          ? 'bg-red-950/60 border-red-500 hover:scale-105 cursor-pointer animate-pulse'
+                          : 'bg-gradient-to-b from-[#22160d] to-[#0c0906] border-amber-500/50'
+                  }`}
+                >
+                  {board.prince.playerCard && (
+                    <img src={board.prince.playerCard.imageUrl} alt={board.prince.playerCard.name} className="absolute inset-0 w-full h-full object-cover opacity-50" />
+                  )}
+                  {board.prince.aiCard && (
+                    <img src={board.prince.aiCard.imageUrl} alt={board.prince.aiCard.name} className="absolute inset-0 w-full h-full object-cover opacity-50" />
+                  )}
+
+                  {scoringMedals.prince > 0 && (
+                    <div className="absolute inset-0 z-30 flex items-center justify-center bg-amber-500/30 rounded-2xl animate-ping">
+                      <span className="w-9 h-9 rounded-full bg-amber-400 text-black font-extrabold flex items-center justify-center text-sm shadow-gold">
+                        +{scoringMedals.prince}
+                      </span>
+                    </div>
+                  )}
+                  <div className="relative z-10 flex justify-between items-center text-[10px]">
+                    <span className="font-gothic font-bold text-amber-300 flex items-center space-x-1 bg-black/60 px-1 rounded">
+                      <Crown className="w-3 h-3 text-amber-400" />
+                      <span>Trône du Prince</span>
+                    </span>
+                    <span className="text-[9px] font-mono text-amber-300 bg-black/60 px-1 rounded">1 pt/allié</span>
+                  </div>
+                  <div className="relative z-10 text-center my-auto">
+                    {board.prince.playerCard ? (
+                      <div onClick={(e) => { e.stopPropagation(); onInspectCard?.(board.prince.playerCard); }} className="cursor-pointer bg-black/60 p-1 rounded">
+                        <div className="font-gothic font-bold text-xs text-amber-200 truncate">{board.prince.playerCard.name}</div>
+                        <div className="text-[10px] font-mono text-amber-400 font-bold">{board.prince.playerPower} (+{playerChain[1].totalSupportToFront})</div>
+                      </div>
+                    ) : board.prince.aiCard ? (
+                      <div onClick={(e) => { e.stopPropagation(); onInspectCard?.(board.prince.aiCard); }} className="cursor-pointer bg-black/60 p-1 rounded">
+                        <div className="font-gothic font-bold text-xs text-purple-200 truncate">{board.prince.aiCard.name}</div>
+                        <div className="text-[10px] font-mono text-amber-400 font-bold">{board.prince.aiPower} (+{aiChain[1].totalSupportToFront})</div>
+                      </div>
+                    ) : (
+                      <span className="text-xs text-amber-400/80 font-gothic font-bold bg-black/50 px-1 rounded">{selectedHandCard ? '👑 Régner' : 'Trône Vacant'}</span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Knight Right */}
+                <div
+                  onClick={() => selectedHandCard && handleDeployToSpace('knight_right')}
+                  className={`h-24 rounded-2xl border-2 transition-all p-1.5 flex flex-col justify-between relative overflow-hidden ${
+                    board.knight_right.playerCard
+                      ? 'bg-emerald-950/60 border-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.3)]'
+                      : board.knight_right.aiCard
+                        ? 'bg-purple-950/60 border-purple-400 shadow-[0_0_12px_rgba(168,85,247,0.3)]'
+                        : selectedHandCard && isPlacementValid('knight_right', selectedHandCard)
+                          ? 'bg-red-950/40 border-red-500/70 hover:scale-105 cursor-pointer animate-pulse'
+                          : 'bg-[#180f12] border-amber-500/30'
+                  }`}
+                >
+                  {board.knight_right.playerCard && (
+                    <img src={board.knight_right.playerCard.imageUrl} alt={board.knight_right.playerCard.name} className="absolute inset-0 w-full h-full object-cover opacity-45" />
+                  )}
+                  {board.knight_right.aiCard && (
+                    <img src={board.knight_right.aiCard.imageUrl} alt={board.knight_right.aiCard.name} className="absolute inset-0 w-full h-full object-cover opacity-45" />
+                  )}
+
+                  {scoringMedals.knight_right > 0 && (
+                    <div className="absolute inset-0 z-30 flex items-center justify-center bg-amber-500/30 rounded-2xl animate-ping">
+                      <span className="w-8 h-8 rounded-full bg-amber-400 text-black font-extrabold flex items-center justify-center text-sm shadow-gold">
+                        +{scoringMedals.knight_right}
+                      </span>
+                    </div>
+                  )}
+                  <div className="relative z-10 flex justify-between items-center text-[10px]">
+                    <span className="font-gothic font-bold text-amber-300 bg-black/60 px-1 rounded">♞ Cavalier Est</span>
+                    <span className="text-[9px] font-mono text-amber-400 bg-black/60 px-1 rounded">+2 Pts</span>
+                  </div>
+                  <div className="relative z-10 text-center my-auto">
+                    {board.knight_right.playerCard ? (
+                      <div onClick={(e) => { e.stopPropagation(); onInspectCard?.(board.knight_right.playerCard); }} className="cursor-pointer bg-black/60 p-1 rounded">
+                        <div className="font-gothic font-bold text-xs text-emerald-300 truncate">{board.knight_right.playerCard.name}</div>
+                        <div className="text-[10px] font-mono text-amber-400 font-bold">{board.knight_right.playerPower} (+{playerChain[2].totalSupportToFront})</div>
+                      </div>
+                    ) : board.knight_right.aiCard ? (
+                      <div onClick={(e) => { e.stopPropagation(); onInspectCard?.(board.knight_right.aiCard); }} className="cursor-pointer bg-black/60 p-1 rounded">
+                        <div className="font-gothic font-bold text-xs text-purple-300 truncate">{board.knight_right.aiCard.name}</div>
+                        <div className="text-[10px] font-mono text-amber-400 font-bold">{board.knight_right.aiPower} (+{aiChain[2].totalSupportToFront})</div>
+                      </div>
+                    ) : (
+                      <span className="text-xs text-gray-500">{selectedHandCard ? 'Déployer ici' : 'Contesté'}</span>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Row 4: Player Rooks */}
+              <div className="grid grid-cols-3 gap-2">
+                {[0, 1, 2].map(col => {
+                  const sp = board[`player_rook_${col}`];
+                  const isValidTarget = selectedHandCard && isPlacementValid(sp.key, selectedHandCard);
+
+                  return (
+                    <div
+                      key={sp.key}
+                      onClick={() => selectedHandCard && handleDeployToSpace(sp.key)}
+                      className={`h-16 rounded-xl border transition-all flex flex-col justify-between p-1 relative overflow-hidden ${
+                        sp.card
+                          ? 'bg-emerald-950/50 border-emerald-500/70 shadow-[0_0_10px_rgba(16,185,129,0.2)]'
+                          : isValidTarget
+                            ? 'bg-red-950/30 border-red-500/60 hover:border-emerald-400 cursor-pointer animate-pulse'
+                            : 'bg-black/40 border-white/10 opacity-60'
+                      }`}
+                    >
+                      {sp.card ? (
+                        <>
+                          <img src={sp.card.imageUrl} alt={sp.card.name} className="absolute inset-0 w-full h-full object-cover opacity-50" />
+                          <div className="relative z-10 flex justify-between items-center text-[10px] bg-black/70 px-1 py-0.5 rounded">
+                            <span className="font-gothic text-emerald-300 truncate">{sp.card.name}</span>
+                            <span className="font-mono font-bold text-amber-400">P{sp.power}</span>
+                          </div>
+                          <span className="relative z-10 text-[8px] font-mono text-emerald-400/90 text-center bg-black/60 rounded">↑ Soutien Relais</span>
+                        </>
+                      ) : (
+                        <span className="text-[9px] font-mono text-gray-500 my-auto text-center">Tour {col === 1 ? 'Centre' : col === 0 ? 'Ouest' : 'Est'}</span>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Row 5: Player Pawns */}
+              <div className="grid grid-cols-3 gap-2">
+                {[0, 1, 2].map(col => {
+                  const sp = board[`player_pawn_${col}`];
+                  return (
+                    <div
+                      key={sp.key}
+                      onClick={() => selectedHandCard && handleDeployToSpace(sp.key)}
+                      className={`h-16 rounded-xl border transition-all flex flex-col justify-between p-1 relative overflow-hidden ${
+                        sp.card
+                          ? 'bg-emerald-950/50 border-emerald-500/70 shadow-[0_0_10px_rgba(16,185,129,0.2)]'
+                          : selectedHandCard
+                            ? 'bg-red-950/30 border-red-500/60 hover:border-emerald-400 cursor-pointer animate-pulse'
+                            : 'bg-black/40 border-white/10'
+                      }`}
+                    >
+                      {sp.card ? (
+                        <>
+                          <img src={sp.card.imageUrl} alt={sp.card.name} className="absolute inset-0 w-full h-full object-cover opacity-50" />
+                          <div className="relative z-10 flex justify-between items-center text-[10px] bg-black/70 px-1 py-0.5 rounded">
+                            <span className="font-gothic text-emerald-300 truncate">{sp.card.name}</span>
+                            <span className="font-mono font-bold text-amber-400">P{sp.power}</span>
+                          </div>
+                          <span className="relative z-10 text-[8px] font-mono text-emerald-400/90 text-center bg-black/60 rounded">♟️ Base Pion</span>
+                        </>
+                      ) : (
+                        <span className="text-[9px] font-mono text-gray-500 my-auto text-center">♟️ Pion {col === 1 ? 'Centre' : col === 0 ? 'Ouest' : 'Est'}</span>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Player Hand & Action Controls */}
+          <div className="space-y-2 pt-1">
+            {/* Hand Fan with Card Portraits */}
+            <div className="flex items-center justify-center gap-1.5 overflow-x-auto py-1 px-1">
+              {playerHand.map((card) => {
+                const canAfford = card.cost <= bloodAvailable;
+                const isSelected = selectedHandCard?.id === card.id;
+
+                return (
+                  <div
+                    key={card.id}
+                    onClick={() => {
+                      if (isSelected) setSelectedHandCard(null);
+                      else if (canAfford) setSelectedHandCard(card);
+                    }}
+                    className={`w-20 sm:w-24 h-28 rounded-xl border-2 transition-all p-1 flex flex-col justify-between cursor-pointer transform relative overflow-hidden ${
+                      isSelected
+                        ? 'bg-red-950 border-red-500 shadow-blood -translate-y-2 scale-105'
+                        : canAfford
+                          ? 'bg-[#10141f] border-white/20 hover:border-amber-400 hover:-translate-y-1'
+                          : 'bg-[#080a0f] border-white/5 opacity-40 cursor-not-allowed'
+                    }`}
+                  >
+                    {/* Background Portrait Image */}
+                    <img src={card.imageUrl} alt={card.name} className="absolute inset-0 w-full h-full object-cover opacity-60" />
+
+                    <div className="relative z-10 flex items-center justify-between">
+                      <span className="w-5 h-5 rounded-full bg-red-900 border border-red-500 text-[10px] font-bold text-white flex items-center justify-center font-mono shadow-blood">
+                        {card.cost}
+                      </span>
+                      <span className="font-mono text-amber-300 text-xs font-bold bg-black/70 px-1 rounded">
+                        P{card.power}
+                      </span>
+                    </div>
+
+                    <div className="relative z-10 text-center bg-black/75 p-0.5 rounded">
+                      <div className="font-gothic font-bold text-[10px] text-gray-100 truncate">{card.name}</div>
+                      <div className="text-[8px] font-mono text-gray-400 truncate">{card.clan}</div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Action Bar (ABANDONNER | BLOOD DROP | FIN DU TOUR) */}
+            <div className="flex items-center justify-between gap-3 px-1">
+              <button
+                onClick={() => setGamePhase('setup')}
+                className="flex-1 py-2.5 rounded-full bg-[#12151f] hover:bg-[#1c2233] border border-white/15 text-gray-400 hover:text-white font-gothic font-bold text-xs transition-all text-center tracking-wider"
+              >
+                ABANDONNER
+              </button>
+
+              <div className="w-12 h-12 rounded-full bg-gradient-to-b from-red-700 to-rose-950 border-2 border-red-500 flex items-center justify-center text-white font-mono font-bold text-lg shadow-blood animate-pulse">
+                {bloodAvailable}
+              </div>
+
+              <button
+                onClick={handleEndTurn}
+                disabled={gamePhase !== 'playing'}
+                className={`flex-1 py-2.5 rounded-full text-white font-gothic font-bold text-xs shadow-blood transition-all transform active:scale-95 text-center tracking-wider ${
+                  gamePhase === 'playing'
+                    ? 'bg-gradient-to-r from-red-700 via-red-600 to-rose-900 hover:from-red-600 hover:to-rose-800'
+                    : 'bg-gray-800 opacity-50 cursor-wait'
                 }`}
               >
-                <div className="flex items-center justify-between">
-                  <span className="w-5 h-5 rounded-full bg-red-900 border border-red-500 text-[10px] font-bold text-white flex items-center justify-center font-mono shadow-blood">
-                    {card.cost}
-                  </span>
-                  <span className="font-mono text-amber-400 text-xs font-bold">
-                    {card.power}
-                  </span>
-                </div>
-
-                <div className="text-center">
-                  <div className="font-gothic font-bold text-[10px] text-gray-100 truncate">{card.name}</div>
-                  <div className="text-[8px] font-mono text-gray-400 truncate">{card.clan}</div>
-                </div>
-              </div>
-            );
-          })}
+                {gamePhase === 'revealing' ? 'RÉSOLUTION...' : gamePhase === 'scoring' ? 'COMPTAGE DES POINTS...' : (
+                  <>
+                    FIN DU TOUR<br />
+                    <span className="text-[9px] font-mono opacity-80">MANCHE {turn}/7</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* Action Bar (ABANDONNER | BLOOD DROP | FIN DU TOUR) */}
-        <div className="flex items-center justify-between gap-3 px-1">
-          <button
-            onClick={() => setGamePhase('setup')}
-            className="flex-1 py-2.5 rounded-full bg-[#12151f] hover:bg-[#1c2233] border border-white/15 text-gray-400 hover:text-white font-gothic font-bold text-xs transition-all text-center tracking-wider"
-          >
-            ABANDONNER
-          </button>
-
-          <div className="w-12 h-12 rounded-full bg-gradient-to-b from-red-700 to-rose-950 border-2 border-red-500 flex items-center justify-center text-white font-mono font-bold text-lg shadow-blood animate-pulse">
-            {bloodAvailable}
+        {/* RIGHT COLUMN: Combat Chronicle (Journal de Combat) */}
+        <div className="lg:col-span-3 glass-panel rounded-2xl p-3.5 border border-white/10 space-y-3">
+          <div className="flex items-center space-x-2 text-red-400 font-gothic font-bold text-xs border-b border-white/10 pb-2">
+            <ScrollText className="w-4 h-4" />
+            <span>Journal de Combat</span>
           </div>
 
-          <button
-            onClick={handleEndTurn}
-            disabled={gamePhase !== 'playing'}
-            className={`flex-1 py-2.5 rounded-full text-white font-gothic font-bold text-xs shadow-blood transition-all transform active:scale-95 text-center tracking-wider ${
-              gamePhase === 'playing'
-                ? 'bg-gradient-to-r from-red-700 via-red-600 to-rose-900 hover:from-red-600 hover:to-rose-800'
-                : 'bg-gray-800 opacity-50 cursor-wait'
-            }`}
-          >
-            {gamePhase === 'revealing' ? 'RÉSOLUTION...' : gamePhase === 'scoring' ? 'COMPTAGE DES POINTS...' : (
-              <>
-                FIN DU TOUR<br />
-                <span className="text-[9px] font-mono opacity-80">MANCHE {turn}/7</span>
-              </>
-            )}
-          </button>
+          <div className="space-y-1.5 max-h-[580px] overflow-y-auto text-[11px] font-mono pr-1">
+            {historyLogs.map((log, index) => (
+              <div key={index} className="p-1.5 rounded-lg bg-black/40 border border-white/5 text-gray-300 leading-relaxed">
+                • {log}
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Chronicle History Log */}
-        <div className="glass-panel p-2.5 rounded-xl border border-white/10 max-h-20 overflow-y-auto text-[11px] font-mono space-y-0.5">
-          <div className="text-gray-500 font-bold uppercase text-[10px]">Journal de Combat :</div>
-          {historyLogs.map((log, index) => (
-            <div key={index} className="text-gray-300">
-              • {log}
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );
