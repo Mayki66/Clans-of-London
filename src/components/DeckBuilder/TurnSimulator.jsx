@@ -1,34 +1,53 @@
 import React, { useState, useEffect } from 'react';
-import { Play, RotateCcw, Shuffle, Droplets, Shield, Trophy, ChevronRight, Crown, Sparkles } from 'lucide-react';
+import { Play, RotateCcw, Shuffle, Droplets, Shield, Trophy, ChevronRight, Crown, Sparkles, Swords, ArrowUp } from 'lucide-react';
 import CardFrame from '../Card/CardFrame';
 import confetti from 'canvas-confetti';
 
 export default function TurnSimulator({ deckCards, onInspectCard }) {
   const [gameState, setGameState] = useState(null);
 
-  // Initialize a new simulation
+  // Initialize a new simulation with exact 15-space topology
   const startSimulation = () => {
     if (deckCards.length === 0) return;
 
-    // Shuffle deck
-    const shuffled = [...deckCards].sort(() => Math.random() - 0.5);
-    const startingHand = shuffled.slice(0, 4);
-    const drawPile = shuffled.slice(4);
+    // Check if any card starts in opening hand (e.g. Katie Dixon)
+    const guaranteedInHand = deckCards.filter(c => 
+      c.ability_en?.toLowerCase().includes('starts in your opening hand') || 
+      c.ability?.toLowerCase().includes('main de départ')
+    );
+    const restOfDeck = deckCards.filter(c => !guaranteedInHand.some(g => g.id === c.id));
+    const shuffled = [...restOfDeck].sort(() => Math.random() - 0.5);
+    
+    const needed = 4 - guaranteedInHand.length;
+    const startingHand = [...guaranteedInHand, ...shuffled.slice(0, Math.max(0, needed))];
+    const drawPile = shuffled.slice(Math.max(0, needed));
 
     setGameState({
       turn: 1,
       maxTurns: 7,
       bloodAvailable: 2,
       totalBloodThisTurn: 2,
+      victoryPoints: 0,
+      roundScoreHistory: [],
       hand: startingHand,
       drawPile: drawPile,
-      zones: {
-        north: { name: 'Camden & Soho (Zone Nord)', cards: [], power: 0 },
-        prince: { name: 'Le Prince de Londres (Zone Centrale)', cards: [], power: 0 },
-        south: { name: 'Whitechapel & Docks (Zone Sud)', cards: [], power: 0 }
+      // Exact 15-space topology layout (3 lines of 3 columns)
+      board: {
+        // Frontline
+        knight_left: { id: 'knight_left', name: 'Cavalier Ouest', type: 'Knight', points: 2, cards: [], power: 0, col: 0, row: 'front' },
+        prince: { id: 'prince', name: 'Trône du Prince', type: 'Prince', points: '1 pt / carte alliée', cards: [], power: 0, col: 1, row: 'front' },
+        knight_right: { id: 'knight_right', name: 'Cavalier Est', type: 'Knight', points: 2, cards: [], power: 0, col: 2, row: 'front' },
+        // Midline
+        rook_left: { id: 'rook_left', name: 'Tour Ouest', type: 'Rook', cards: [], power: 0, col: 0, row: 'mid' },
+        rook_center: { id: 'rook_center', name: 'Tour Centrale', type: 'Rook', cards: [], power: 0, col: 1, row: 'mid' },
+        rook_right: { id: 'rook_right', name: 'Tour Est', type: 'Rook', cards: [], power: 0, col: 2, row: 'mid' },
+        // Backline
+        pawn_left: { id: 'pawn_left', name: 'Pion Ouest', type: 'Pawn', cards: [], power: 0, col: 0, row: 'back' },
+        pawn_center: { id: 'pawn_center', name: 'Pion Central', type: 'Pawn', cards: [], power: 0, col: 1, row: 'back' },
+        pawn_right: { id: 'pawn_right', name: 'Pion Est', type: 'Pawn', cards: [], power: 0, col: 2, row: 'back' }
       },
       selectedCard: null,
-      turnHistory: ['Partie lancée : Tour 1. 2 Sang disponibles.'],
+      turnHistory: ['Partie officielle lancée : Tour 1 (2 Sang disponibles). Main de départ générée.'],
       isFinished: false
     });
   };
@@ -43,8 +62,8 @@ export default function TurnSimulator({ deckCards, onInspectCard }) {
     return (
       <div className="glass-panel rounded-2xl p-6 text-center border border-white/10 text-gray-400">
         <Play className="w-10 h-10 mx-auto text-red-500 mb-2 opacity-60 animate-pulse" />
-        <h4 className="font-gothic font-bold text-base text-gray-200">Simulateur de Duel (7 Tours)</h4>
-        <p className="text-xs text-gray-400 mt-1">Ajoutez au moins 5 cartes à votre deck pour tester la pioche et les 7 tours de jeu.</p>
+        <h4 className="font-gothic font-bold text-base text-gray-200">Simulateur Officiel de Duel (7 Rounds)</h4>
+        <p className="text-xs text-gray-400 mt-1">Ajoutez au moins 5 cartes à votre deck pour tester la pioche, la chaîne de soutien et le score officiel.</p>
       </div>
     );
   }
@@ -56,27 +75,28 @@ export default function TurnSimulator({ deckCards, onInspectCard }) {
           onClick={startSimulation}
           className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-red-700 to-rose-900 hover:from-red-600 hover:to-rose-800 text-white font-gothic font-bold text-sm shadow-blood transition-all"
         >
-          Lancer la Simulation de Duel
+          Lancer la Simulation Tactique
         </button>
       </div>
     );
   }
 
-  // Play a card into a zone
-  const playCardToZone = (zoneKey) => {
+  // Play a card into an exact space
+  const playCardToSpace = (spaceKey) => {
     if (!gameState.selectedCard) return;
     const card = gameState.selectedCard;
 
     if (card.cost > gameState.bloodAvailable) {
-      alert(`Pas assez de Sang ! Coût : ${card.cost}, Disponible : ${gameState.bloodAvailable}`);
+      alert(`Pas assez de Sang ! Coût : ${card.cost} Sang, Disponible : ${gameState.bloodAvailable} Sang`);
       return;
     }
 
     const newHand = gameState.hand.filter(c => c.id !== card.id);
-    const updatedZone = {
-      ...gameState.zones[zoneKey],
-      cards: [...gameState.zones[zoneKey].cards, card],
-      power: gameState.zones[zoneKey].power + card.power
+    const targetSpace = gameState.board[spaceKey];
+    const updatedSpace = {
+      ...targetSpace,
+      cards: [...targetSpace.cards, card],
+      power: targetSpace.power + card.power
     };
 
     setGameState(prev => ({
@@ -84,24 +104,59 @@ export default function TurnSimulator({ deckCards, onInspectCard }) {
       bloodAvailable: prev.bloodAvailable - card.cost,
       hand: newHand,
       selectedCard: null,
-      zones: {
-        ...prev.zones,
-        [zoneKey]: updatedZone
+      board: {
+        ...prev.board,
+        [spaceKey]: updatedSpace
       },
       turnHistory: [
-        `Tour ${prev.turn} : "${card.name}" déployé sur ${prev.zones[zoneKey].name} (+${card.power} Puissance).`,
+        `Tour ${prev.turn} : "${card.name}" déployé sur ${targetSpace.name} (+${card.power} Puissance).`,
         ...prev.turnHistory
       ]
     }));
   };
 
-  // Next Turn
+  // Next Turn & Exact Official Scoring
   const nextTurn = () => {
+    // 1. Calculate round score according to official rules:
+    // - 2 pts per controlled Knight
+    // - 1 pt per ally card on the entire board if Prince is controlled
+    const totalAlliesOnBoard = Object.values(gameState.board).reduce((acc, s) => acc + s.cards.length, 0);
+    let roundPoints = 0;
+    const scoreDetails = [];
+
+    if (gameState.board.knight_left.cards.length > 0) {
+      roundPoints += 2;
+      scoreDetails.push('Cavalier Ouest (+2 pts)');
+    }
+    if (gameState.board.knight_right.cards.length > 0) {
+      roundPoints += 2;
+      scoreDetails.push('Cavalier Est (+2 pts)');
+    }
+    if (gameState.board.prince.cards.length > 0) {
+      const princePts = totalAlliesOnBoard;
+      roundPoints += princePts;
+      scoreDetails.push(`Trône du Prince (+${princePts} pts pour ${totalAlliesOnBoard} unités alliées)`);
+    }
+
+    const newVictoryPoints = gameState.victoryPoints + roundPoints;
+    const roundSummary = scoreDetails.length > 0
+      ? `Fin Round ${gameState.turn} : +${roundPoints} Points (${scoreDetails.join(' • ')})`
+      : `Fin Round ${gameState.turn} : 0 point marqué (aucun contrôle de front).`;
+
     if (gameState.turn >= gameState.maxTurns) {
       // Climax turn 7
-      setGameState(prev => ({ ...prev, isFinished: true }));
+      setGameState(prev => ({
+        ...prev,
+        victoryPoints: newVictoryPoints,
+        isFinished: true,
+        turnHistory: [
+          `🏆 VICTOIRE FINALE : Score total de ${newVictoryPoints} Points de Victoire au terme des 7 rounds !`,
+          roundSummary,
+          ...prev.turnHistory
+        ]
+      }));
       confetti({
-        particleCount: 80,
+        particleCount: 100,
         spread: 70,
         origin: { y: 0.6 }
       });
@@ -119,17 +174,19 @@ export default function TurnSimulator({ deckCards, onInspectCard }) {
       turn: nextTurnNum,
       bloodAvailable: bloodForTurn,
       totalBloodThisTurn: bloodForTurn,
+      victoryPoints: newVictoryPoints,
       hand: newHand,
       drawPile: newDrawPile,
       selectedCard: null,
       turnHistory: [
-        `Début du Tour ${nextTurnNum} : +${nextTurnNum} Sang disponible. ${drawnCard ? `Carte piochée : ${drawnCard.name}.` : 'Plus de cartes dans la pioche.'}`,
+        `Début du Tour ${nextTurnNum} : +${bloodForTurn} Sang disponible. ${drawnCard ? `Carte piochée : "${drawnCard.name}".` : 'Pioche vide.'}`,
+        roundSummary,
         ...prev.turnHistory
       ]
     }));
   };
 
-  const totalBoardPower = Object.values(gameState.zones).reduce((acc, z) => acc + z.power, 0);
+  const totalBoardPower = Object.values(gameState.board).reduce((acc, z) => acc + z.power, 0);
 
   return (
     <div className="glass-panel rounded-2xl p-5 space-y-5 border border-white/10 shadow-2xl">
@@ -139,16 +196,16 @@ export default function TurnSimulator({ deckCards, onInspectCard }) {
           <div className="flex items-center space-x-2">
             <h3 className="font-gothic font-extrabold text-lg text-gray-100 flex items-center space-x-2">
               <Crown className="w-5 h-5 text-amber-400" />
-              <span>Simulateur de Match : Tour {gameState.turn} / {gameState.maxTurns}</span>
+              <span>Plateau Tactique : Tour {gameState.turn} / {gameState.maxTurns}</span>
             </h3>
             {gameState.isFinished && (
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/20 border border-amber-500/40 text-amber-300">
-                Match Terminé (Tour 7 Climax)
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/20 border border-amber-500/40 text-amber-300 animate-pulse">
+                Match Terminé (7 Rounds Climax)
               </span>
             )}
           </div>
           <p className="text-xs text-gray-400">
-            Format King of the Hill de Londres • Pioche 1 carte par tour • Gestion de Sang
+            Topologie officielle 15 cases • Chaîne de Soutien • Score officiel (Cavaliers = 2 pts, Prince = 1 pt/allié)
           </p>
         </div>
 
@@ -167,24 +224,38 @@ export default function TurnSimulator({ deckCards, onInspectCard }) {
               onClick={nextTurn}
               className="flex items-center space-x-1.5 px-4 py-1.5 rounded-xl bg-gradient-to-r from-red-700 to-rose-900 hover:from-red-600 hover:to-rose-800 text-white font-gothic font-bold text-xs shadow-blood transition-all"
             >
-              <span>{gameState.turn === 7 ? 'Résoudre le Match' : 'Fin du Tour'}</span>
+              <span>{gameState.turn === 7 ? 'Calculer le Score Final' : 'Fin du Round & Décompte'}</span>
               <ChevronRight className="w-4 h-4" />
             </button>
           )}
         </div>
       </div>
 
-      {/* Resource & Total Power Bar */}
-      <div className="grid grid-cols-3 gap-3">
+      {/* Resource, Victory Points & Total Power Bar */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <div className="p-3 rounded-xl bg-[#0b0e14] border border-red-500/30 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 rounded-full bg-red-900 border border-red-500 flex items-center justify-center font-bold text-white shadow-blood">
               <Droplets className="w-4 h-4" />
             </div>
             <div>
-              <div className="text-[10px] uppercase font-mono text-gray-400">Sang Disponible</div>
-              <div className="text-lg font-bold font-mono text-red-400">
+              <div className="text-[10px] uppercase font-mono text-gray-400">Sang Actuel</div>
+              <div className="text-base font-bold font-mono text-red-400">
                 {gameState.bloodAvailable} / {gameState.totalBloodThisTurn}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="p-3 rounded-xl bg-[#0b0e14] border border-emerald-500/30 flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <div className="w-8 h-8 rounded-xl bg-emerald-900 border border-emerald-500 flex items-center justify-center font-bold text-white shadow-[0_0_10px_rgba(16,185,129,0.3)]">
+              <Trophy className="w-4 h-4 text-emerald-300" />
+            </div>
+            <div>
+              <div className="text-[10px] uppercase font-mono text-gray-400">Points de Victoire</div>
+              <div className="text-base font-bold font-mono text-emerald-400">
+                {gameState.victoryPoints} Pts
               </div>
             </div>
           </div>
@@ -197,7 +268,7 @@ export default function TurnSimulator({ deckCards, onInspectCard }) {
             </div>
             <div>
               <div className="text-[10px] uppercase font-mono text-gray-400">Puissance Totale</div>
-              <div className="text-lg font-bold font-mono text-amber-400">
+              <div className="text-base font-bold font-mono text-amber-400">
                 {totalBoardPower}
               </div>
             </div>
@@ -210,8 +281,8 @@ export default function TurnSimulator({ deckCards, onInspectCard }) {
               <Shuffle className="w-4 h-4 text-purple-400" />
             </div>
             <div>
-              <div className="text-[10px] uppercase font-mono text-gray-400">Pioche Restante</div>
-              <div className="text-lg font-bold font-mono text-purple-300">
+              <div className="text-[10px] uppercase font-mono text-gray-400">Pioche</div>
+              <div className="text-base font-bold font-mono text-purple-300">
                 {gameState.drawPile.length} cartes
               </div>
             </div>
@@ -219,86 +290,180 @@ export default function TurnSimulator({ deckCards, onInspectCard }) {
         </div>
       </div>
 
-      {/* Board Zones (King of the Hill 3 zones) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-        {Object.entries(gameState.zones).map(([key, zone]) => {
-          const isPrince = key === 'prince';
-          return (
-            <div
-              key={key}
-              onClick={() => gameState.selectedCard && playCardToZone(key)}
-              className={`p-3.5 rounded-xl border-2 transition-all flex flex-col justify-between min-h-[160px] ${
-                isPrince
-                  ? 'bg-gradient-to-b from-[#18131d] to-[#0c0a12] border-amber-500/50 shadow-[0_0_15px_rgba(212,175,55,0.2)]'
-                  : 'bg-[#0c0e15] border-white/10'
-              } ${
-                gameState.selectedCard
-                  ? 'cursor-pointer hover:border-red-500 hover:bg-red-950/20'
-                  : ''
-              }`}
-            >
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className={`font-gothic font-bold text-xs ${isPrince ? 'text-amber-300' : 'text-gray-300'}`}>
-                    {isPrince && '👑 '} {zone.name}
-                  </span>
-                  <span className="px-2 py-0.5 rounded font-mono font-bold text-xs bg-slate-900 border border-amber-500/40 text-amber-400">
-                    {zone.power} Pts
-                  </span>
-                </div>
+      {/* Official 15-Space Tactical Board */}
+      <div className="space-y-3">
+        <div className="flex items-center justify-between text-[11px] uppercase font-mono text-gray-400 font-bold px-1">
+          <span>Topologie Officielle du Plateau :</span>
+          <span className="text-amber-400">Soutien ascendant : Pions ➔ Tours ➔ Cavaliers/Prince</span>
+        </div>
 
-                {/* Deployed Cards list */}
-                <div className="space-y-1">
-                  {zone.cards.length === 0 ? (
-                    <p className="text-[11px] text-gray-500 italic text-center py-4">
-                      {gameState.selectedCard ? 'Cliquez pour déployer ici' : 'Zone inoccupée'}
-                    </p>
-                  ) : (
-                    zone.cards.map((c, i) => (
-                      <div
-                        key={i}
-                        onClick={(e) => { e.stopPropagation(); onInspectCard?.(c); }}
-                        className="flex items-center justify-between p-1.5 rounded bg-black/60 border border-white/10 text-xs hover:border-amber-400/50 cursor-pointer"
-                      >
-                        <div className="flex items-center space-x-1.5 truncate">
-                          <span className="w-4 h-4 rounded-full bg-red-900 text-[10px] font-bold text-white flex items-center justify-center">
-                            {c.cost}
-                          </span>
+        {/* Row 1: Frontline (Knight Left, Prince Center, Knight Right) */}
+        <div className="space-y-1">
+          <div className="text-[10px] uppercase font-mono text-red-400 font-bold px-1 flex items-center space-x-1">
+            <Swords className="w-3 h-3" />
+            <span>Ligne de Front Disputée (Score actif en fin de round)</span>
+          </div>
+          <div className="grid grid-cols-3 gap-2">
+            {['knight_left', 'prince', 'knight_right'].map(key => {
+              const space = gameState.board[key];
+              const isPrince = key === 'prince';
+              return (
+                <div
+                  key={key}
+                  onClick={() => gameState.selectedCard && playCardToSpace(key)}
+                  className={`p-3 rounded-xl border-2 transition-all flex flex-col justify-between min-h-[120px] ${
+                    isPrince
+                      ? 'bg-gradient-to-b from-[#201509] to-[#0d0905] border-amber-500/70 shadow-[0_0_15px_rgba(212,175,55,0.3)]'
+                      : 'bg-[#180d0d] border-red-500/40'
+                  } ${
+                    gameState.selectedCard
+                      ? 'cursor-pointer hover:border-red-400 hover:scale-[1.02]'
+                      : ''
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <span className={`font-gothic font-bold text-xs ${isPrince ? 'text-amber-300 flex items-center space-x-1' : 'text-red-300'}`}>
+                      {isPrince && <Crown className="w-3.5 h-3.5 text-amber-400 inline" />}
+                      <span>{space.name}</span>
+                    </span>
+                    <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-black/60 border border-white/10 text-amber-300">
+                      {space.points}
+                    </span>
+                  </div>
+
+                  <div className="space-y-1 my-1">
+                    {space.cards.length === 0 ? (
+                      <p className="text-[10px] text-gray-500 italic text-center py-2">
+                        {gameState.selectedCard ? 'Cliquer pour déployer' : 'Emplacement libre'}
+                      </p>
+                    ) : (
+                      space.cards.map((c, i) => (
+                        <div
+                          key={i}
+                          onClick={(e) => { e.stopPropagation(); onInspectCard?.(c); }}
+                          className="flex items-center justify-between p-1 rounded bg-black/70 border border-white/10 text-[11px] hover:border-amber-400/50 cursor-pointer"
+                        >
                           <span className="font-gothic text-gray-200 truncate">{c.name}</span>
+                          <span className="font-mono text-amber-400 font-bold">P{c.power}</span>
                         </div>
-                        <span className="font-mono text-amber-400 text-[11px] font-bold">
-                          +{c.power}
-                        </span>
-                      </div>
-                    ))
-                  )}
-                </div>
-              </div>
+                      ))
+                    )}
+                  </div>
 
-              {gameState.selectedCard && (
-                <div className="mt-2 pt-2 border-t border-white/10 text-center">
-                  <span className="text-[10px] font-bold uppercase text-red-400 font-gothic animate-pulse">
-                    → Déployer "{gameState.selectedCard.name}" ici
-                  </span>
+                  <div className="text-[10px] font-mono text-gray-400 flex items-center justify-between pt-1 border-t border-white/5">
+                    <span>Puissance totale :</span>
+                    <span className="font-bold text-amber-300">{space.power} Pts</span>
+                  </div>
                 </div>
-              )}
-            </div>
-          );
-        })}
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Row 2: Midline (Rooks) */}
+        <div className="space-y-1">
+          <div className="text-[10px] uppercase font-mono text-purple-400 font-bold px-1 flex items-center space-x-1">
+            <ArrowUp className="w-3 h-3" />
+            <span>Rangée Médiane : 3 Tours (Rooks - Relais de Soutien)</span>
+          </div>
+          <div className="grid grid-cols-3 gap-2">
+            {['rook_left', 'rook_center', 'rook_right'].map(key => {
+              const space = gameState.board[key];
+              return (
+                <div
+                  key={key}
+                  onClick={() => gameState.selectedCard && playCardToSpace(key)}
+                  className={`p-2.5 rounded-xl border transition-all flex flex-col justify-between min-h-[100px] bg-[#100c17] border-purple-500/30 ${
+                    gameState.selectedCard
+                      ? 'cursor-pointer hover:border-purple-400 hover:scale-[1.02]'
+                      : ''
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-gothic font-bold text-xs text-purple-300">{space.name}</span>
+                    <span className="text-[10px] font-mono text-purple-400">P{space.power}</span>
+                  </div>
+
+                  <div className="space-y-1 my-1">
+                    {space.cards.length === 0 ? (
+                      <p className="text-[10px] text-gray-600 italic text-center py-1">Libre</p>
+                    ) : (
+                      space.cards.map((c, i) => (
+                        <div
+                          key={i}
+                          onClick={(e) => { e.stopPropagation(); onInspectCard?.(c); }}
+                          className="flex items-center justify-between p-1 rounded bg-black/60 border border-white/10 text-[11px] cursor-pointer"
+                        >
+                          <span className="font-gothic text-gray-200 truncate">{c.name}</span>
+                          <span className="font-mono text-amber-400 font-bold">P{c.power}</span>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Row 3: Backline (Pawns) */}
+        <div className="space-y-1">
+          <div className="text-[10px] uppercase font-mono text-blue-400 font-bold px-1 flex items-center space-x-1">
+            <span>Rangée Arrière : 3 Pions (Pawns - Base & Ancrage)</span>
+          </div>
+          <div className="grid grid-cols-3 gap-2">
+            {['pawn_left', 'pawn_center', 'pawn_right'].map(key => {
+              const space = gameState.board[key];
+              return (
+                <div
+                  key={key}
+                  onClick={() => gameState.selectedCard && playCardToSpace(key)}
+                  className={`p-2.5 rounded-xl border transition-all flex flex-col justify-between min-h-[90px] bg-[#0c1018] border-blue-500/30 ${
+                    gameState.selectedCard
+                      ? 'cursor-pointer hover:border-blue-400 hover:scale-[1.02]'
+                      : ''
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-gothic font-bold text-xs text-blue-300">{space.name}</span>
+                    <span className="text-[10px] font-mono text-blue-400">P{space.power}</span>
+                  </div>
+
+                  <div className="space-y-1 my-1">
+                    {space.cards.length === 0 ? (
+                      <p className="text-[10px] text-gray-600 italic text-center py-1">Libre</p>
+                    ) : (
+                      space.cards.map((c, i) => (
+                        <div
+                          key={i}
+                          onClick={(e) => { e.stopPropagation(); onInspectCard?.(c); }}
+                          className="flex items-center justify-between p-1 rounded bg-black/60 border border-white/10 text-[11px] cursor-pointer"
+                        >
+                          <span className="font-gothic text-gray-200 truncate">{c.name}</span>
+                          <span className="font-mono text-amber-400 font-bold">P{c.power}</span>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
 
       {/* Hand Cards */}
       <div className="space-y-2 pt-2 border-t border-white/10">
         <div className="flex items-center justify-between text-xs text-gray-300 font-gothic font-semibold uppercase tracking-wider">
           <span>Main Actuelle ({gameState.hand.length} cartes) :</span>
-          <span className="text-[11px] font-mono text-gray-400">
-            {gameState.selectedCard ? `Sélectionnée : ${gameState.selectedCard.name} (Cliquez sur une zone)` : 'Sélectionnez une carte à jouer'}
+          <span className="text-[11px] font-mono text-amber-400">
+            {gameState.selectedCard ? `Sélectionnée : "${gameState.selectedCard.name}" (Cliquez sur une case du plateau pour la jouer)` : 'Cliquez sur une carte abordable pour la sélectionner'}
           </span>
         </div>
 
         {gameState.hand.length === 0 ? (
           <p className="text-xs text-gray-500 italic p-3 text-center bg-[#090b10] rounded-xl">
-            Votre main est vide pour ce tour. Cliquez sur "Fin du Tour" pour piocher et recharger votre Sang.
+            Votre main est vide pour ce tour. Cliquez sur "Fin du Round" pour piocher et recharger votre réserve de Sang.
           </p>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2">
@@ -346,8 +511,8 @@ export default function TurnSimulator({ deckCards, onInspectCard }) {
       </div>
 
       {/* Turn Activity Log */}
-      <div className="space-y-1 bg-[#090b10] p-3 rounded-xl border border-white/5 max-h-28 overflow-y-auto text-[11px] font-mono text-gray-400">
-        <div className="text-gray-500 font-bold uppercase text-[10px] mb-1">Journal de Combat :</div>
+      <div className="space-y-1 bg-[#090b10] p-3 rounded-xl border border-white/5 max-h-32 overflow-y-auto text-[11px] font-mono text-gray-400">
+        <div className="text-gray-500 font-bold uppercase text-[10px] mb-1">Journal de Combat & Décompte Officiel :</div>
         {gameState.turnHistory.map((log, index) => (
           <div key={index} className="text-gray-300">
             • {log}
