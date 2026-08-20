@@ -1,7 +1,7 @@
 import React from 'react';
-import { Layers, BookOpen, Trophy, Shield, Droplets, User } from 'lucide-react';
+import { Layers, BookOpen, Trophy, Shield, Droplets, User, Swords } from 'lucide-react';
 
-export default function Navbar({ activeView, setActiveView, deckCardsCount = 0, ownedCount = 0, totalCount = 70 }) {
+export default function Navbar({ activeView, setActiveView, deckCardsCount = 0, ownedCount = 0, totalCount = 217 }) {
   return (
     <header className="sticky top-0 z-40 w-full glass-panel border-b border-white/10 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,12 +33,12 @@ export default function Navbar({ activeView, setActiveView, deckCardsCount = 0, 
           </div>
 
           {/* Navigation Links */}
-          <nav className="flex items-center space-x-1 sm:space-x-2">
+          <nav className="flex items-center space-x-1 sm:space-x-1.5">
             
             {/* Deck Builder Tab */}
             <button
               onClick={() => setActiveView('deckbuilder')}
-              className={`flex items-center space-x-1.5 px-3.5 py-2 rounded-xl text-xs font-gothic font-bold transition-all ${
+              className={`flex items-center space-x-1.5 px-3 py-2 rounded-xl text-xs font-gothic font-bold transition-all ${
                 activeView === 'deckbuilder'
                   ? 'bg-gradient-to-r from-red-800 to-rose-900 text-white border border-red-500/60 shadow-blood'
                   : 'text-gray-400 hover:text-gray-200 hover:bg-white/5'
@@ -58,7 +58,7 @@ export default function Navbar({ activeView, setActiveView, deckCardsCount = 0, 
             {/* Card Database Tab */}
             <button
               onClick={() => setActiveView('database')}
-              className={`flex items-center space-x-1.5 px-3.5 py-2 rounded-xl text-xs font-gothic font-bold transition-all ${
+              className={`flex items-center space-x-1.5 px-3 py-2 rounded-xl text-xs font-gothic font-bold transition-all ${
                 activeView === 'database'
                   ? 'bg-gradient-to-r from-red-800 to-rose-900 text-white border border-red-500/60 shadow-blood'
                   : 'text-gray-400 hover:text-gray-200 hover:bg-white/5'
@@ -71,7 +71,7 @@ export default function Navbar({ activeView, setActiveView, deckCardsCount = 0, 
             {/* Meta Decks Tab */}
             <button
               onClick={() => setActiveView('metadecks')}
-              className={`flex items-center space-x-1.5 px-3.5 py-2 rounded-xl text-xs font-gothic font-bold transition-all ${
+              className={`flex items-center space-x-1.5 px-3 py-2 rounded-xl text-xs font-gothic font-bold transition-all ${
                 activeView === 'metadecks'
                   ? 'bg-gradient-to-r from-red-800 to-rose-900 text-white border border-red-500/60 shadow-blood'
                   : 'text-gray-400 hover:text-gray-200 hover:bg-white/5'
@@ -81,10 +81,23 @@ export default function Navbar({ activeView, setActiveView, deckCardsCount = 0, 
               <span className="hidden md:inline">Decks Méta</span>
             </button>
 
+            {/* STANDALONE ARENA & AI DUEL TAB (Between Meta Decks and Rules) */}
+            <button
+              onClick={() => setActiveView('arena')}
+              className={`flex items-center space-x-1.5 px-3 py-2 rounded-xl text-xs font-gothic font-bold transition-all ${
+                activeView === 'arena'
+                  ? 'bg-gradient-to-r from-purple-900 via-red-900 to-rose-900 text-white border border-amber-400 shadow-[0_0_15px_rgba(212,175,55,0.4)]'
+                  : 'text-amber-300/90 hover:text-white hover:bg-purple-950/40 border border-amber-500/20'
+              }`}
+            >
+              <Swords className="w-4 h-4 text-amber-400 animate-pulse" />
+              <span className="font-bold">Arène & Duel IA</span>
+            </button>
+
             {/* Rules Guide Tab */}
             <button
               onClick={() => setActiveView('rules')}
-              className={`flex items-center space-x-1.5 px-3.5 py-2 rounded-xl text-xs font-gothic font-bold transition-all ${
+              className={`flex items-center space-x-1.5 px-3 py-2 rounded-xl text-xs font-gothic font-bold transition-all ${
                 activeView === 'rules'
                   ? 'bg-gradient-to-r from-red-800 to-rose-900 text-white border border-red-500/60 shadow-blood'
                   : 'text-gray-400 hover:text-gray-200 hover:bg-white/5'
@@ -94,17 +107,17 @@ export default function Navbar({ activeView, setActiveView, deckCardsCount = 0, 
               <span className="hidden md:inline">Règles</span>
             </button>
 
-            {/* Profile & Arena Bridge Tab */}
+            {/* Profile Tab */}
             <button
               onClick={() => setActiveView('profile')}
-              className={`flex items-center space-x-1.5 px-3.5 py-2 rounded-xl text-xs font-gothic font-bold transition-all ${
+              className={`flex items-center space-x-1.5 px-3 py-2 rounded-xl text-xs font-gothic font-bold transition-all ${
                 activeView === 'profile'
                   ? 'bg-gradient-to-r from-amber-600 via-red-700 to-amber-700 text-white border border-amber-400 shadow-gold'
                   : 'text-gray-400 hover:text-amber-300 hover:bg-white/5'
               }`}
             >
               <User className="w-4 h-4 text-amber-400" />
-              <span className="hidden sm:inline">Mon Profil & Arène</span>
+              <span className="hidden sm:inline">Mon Profil</span>
               <span className="px-1.5 py-0.2 rounded-full text-[10px] font-mono font-bold bg-black/40 text-emerald-300">
                 {ownedCount}/217
               </span>

@@ -4,6 +4,7 @@ import DeckBuilderView from './components/DeckBuilder/DeckBuilderView';
 import DatabaseView from './components/CardDatabase/DatabaseView';
 import MetaDecksView from './components/MetaDecks/MetaDecksView';
 import RulesGuideView from './components/RulesGuide/RulesGuideView';
+import ArenaDuelView from './components/ArenaDuel/ArenaDuelView';
 import ProfileView from './components/Profile/ProfileView';
 import CardModal from './components/Card/CardModal';
 import { CARDS_DATA } from './data/cardsData';
@@ -279,6 +280,13 @@ export default function App() {
             onLoadMetaDeck={handleLoadDeck}
             onInspectCard={setInspectedCard}
             ownedCardIds={userProfile.ownedCardIds || []}
+          />
+        )}
+
+        {activeView === 'arena' && (
+          <ArenaDuelView
+            customDeckCardIds={deckCards.map(c => c.id)}
+            onInspectCard={setInspectedCard}
           />
         )}
 
