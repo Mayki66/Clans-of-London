@@ -50,8 +50,54 @@ export const AI_OPPONENTS = [
 ];
 
 /**
+ * Strict placement rule checker for the AI:
+ * - Pawns: Always valid
+ * - Rooks: Requires Pawn behind in same column
+ * - Knight Left: Requires Rook Left
+ * - Knight Right: Requires Rook Right
+ * - Prince: Requires Rook Left OR Rook Center OR Rook Right
+ * - Special card bypasses: Shifa (anywhere), Brixton (Knight without support)
+ */
+export function isAIPlacementValid(spaceKey, card, board) {
+  if (!card) return false;
+
+  // 1. Shifa bypass
+  if (card.name === 'Shifa' || card.ability_en?.toLowerCase().includes('can be played anywhere')) {
+    return true;
+  }
+
+  // 2. Brixton bypass
+  if (card.name === 'Brixton' || card.originalName === 'Brixton') {
+    return spaceKey === 'knight_left' || spaceKey === 'knight_right';
+  }
+
+  // 3. AI Pawns (Base row): Always valid
+  if (spaceKey === 'ai_pawn_0' || spaceKey === 'ai_pawn_1' || spaceKey === 'ai_pawn_2') {
+    return true;
+  }
+
+  // 4. AI Rooks: Requires AI Pawn behind in same column
+  if (spaceKey === 'ai_rook_0') return !!board.ai_pawn_0?.card;
+  if (spaceKey === 'ai_rook_1') return !!board.ai_pawn_1?.card;
+  if (spaceKey === 'ai_rook_2') return !!board.ai_pawn_2?.card;
+
+  // 5. Knight Left: Requires AI Rook 0
+  if (spaceKey === 'knight_left') return !!board.ai_rook_0?.card;
+
+  // 6. Knight Right: Requires AI Rook 2
+  if (spaceKey === 'knight_right') return !!board.ai_rook_2?.card;
+
+  // 7. Prince (Center Throne): Connected from AI Rook 0, AI Rook 1, OR AI Rook 2
+  if (spaceKey === 'prince') {
+    return !!board.ai_rook_0?.card || !!board.ai_rook_1?.card || !!board.ai_rook_2?.card;
+  }
+
+  return false;
+}
+
+/**
  * Executes the AI decision making for a given turn.
- * Evaluates board state, affordable cards, and places units strategically.
+ * Strictly adheres to all game rules: placement chains, support links, blood costs.
  */
 export function playAITurn(aiState, playerState, locationModifier) {
   const { hand, bloodAvailable, board } = aiState;
@@ -61,62 +107,80 @@ export function playAITurn(aiState, playerState, locationModifier) {
   const updatedBoard = { ...board };
   const playedCards = [];
 
-  // Filter playable cards
+  // All possible AI target spaces with base strategic weights
+  const allSpaces = [
+    { key: 'prince', weight: 100 },
+    { key: 'knight_left', weight: 85 },
+    { key: 'knight_right', weight: 85 },
+    { key: 'ai_rook_1', weight: 70 },
+    { key: 'ai_rook_0', weight: 60 },
+    { key: 'ai_rook_2', weight: 60 },
+    { key: 'ai_pawn_1', weight: 55 },
+    { key: 'ai_pawn_0', weight: 45 },
+    { key: 'ai_pawn_2', weight: 45 }
+  ];
+
   let playable = currentHand.filter(c => c.cost <= currentBlood);
 
-  // Strategy loop: play cards while blood allows
   while (playable.length > 0) {
-    // Sort playable by priority: prefer matching curve or high impact
+    // Sort cards by cost descending / power
     playable.sort((a, b) => b.cost - a.cost || b.power - a.power);
-    const cardToPlay = playable[0];
+    
+    let moveMade = false;
 
-    // Find best target space on AI's board (ai_pawn, ai_rook, or contested prince/knights)
-    const openSpaces = [];
+    // Try finding a valid placement for the best affordable card
+    for (const cardToPlay of playable) {
+      // Find all empty spaces that are strictly legally valid for this card
+      const validSpaces = allSpaces.filter(sp => {
+        // Space must be empty of AI units
+        if (sp.key === 'prince' || sp.key === 'knight_left' || sp.key === 'knight_right') {
+          if (updatedBoard[sp.key]?.aiCard) return false;
+        } else {
+          if (updatedBoard[sp.key]?.card) return false;
+        }
 
-    // 1. Contested frontline (Knight West, Prince Center, Knight East)
-    if (!updatedBoard.knight_left?.aiCard) openSpaces.push({ key: 'knight_left', weight: 80 });
-    if (!updatedBoard.prince?.aiCard) openSpaces.push({ key: 'prince', weight: 100 });
-    if (!updatedBoard.knight_right?.aiCard) openSpaces.push({ key: 'knight_right', weight: 80 });
+        // Must strictly satisfy connection placement rules
+        return isAIPlacementValid(sp.key, cardToPlay, updatedBoard);
+      });
 
-    // 2. Midline Rooks (support relays)
-    if (!updatedBoard.ai_rook_left?.card) openSpaces.push({ key: 'ai_rook_left', weight: 60 });
-    if (!updatedBoard.ai_rook_center?.card) openSpaces.push({ key: 'ai_rook_center', weight: 70 });
-    if (!updatedBoard.ai_rook_right?.card) openSpaces.push({ key: 'ai_rook_right', weight: 60 });
+      if (validSpaces.length > 0) {
+        // Pick best valid space
+        validSpaces.sort((a, b) => b.weight - a.weight);
+        const chosenSpace = validSpaces[0];
 
-    // 3. Backline Pawns (base anchors)
-    if (!updatedBoard.ai_pawn_left?.card) openSpaces.push({ key: 'ai_pawn_left', weight: 40 });
-    if (!updatedBoard.ai_pawn_center?.card) openSpaces.push({ key: 'ai_pawn_center', weight: 50 });
-    if (!updatedBoard.ai_pawn_right?.card) openSpaces.push({ key: 'ai_pawn_right', weight: 40 });
+        // Deduct blood & update hand
+        currentBlood -= cardToPlay.cost;
+        currentHand = currentHand.filter(c => c.id !== cardToPlay.id);
+        playedCards.push({ card: cardToPlay, spaceKey: chosenSpace.key });
 
-    if (openSpaces.length === 0) break;
+        // Place on board
+        if (chosenSpace.key === 'prince' || chosenSpace.key === 'knight_left' || chosenSpace.key === 'knight_right') {
+          updatedBoard[chosenSpace.key] = {
+            ...updatedBoard[chosenSpace.key],
+            aiCard: cardToPlay,
+            aiPower: cardToPlay.power,
+            faceDownAI: true
+          };
+        } else {
+          updatedBoard[chosenSpace.key] = {
+            ...updatedBoard[chosenSpace.key],
+            card: cardToPlay,
+            power: cardToPlay.power,
+            faceDown: true
+          };
+        }
 
-    // Pick highest weight available space
-    openSpaces.sort((a, b) => b.weight - a.weight);
-    const chosenSpace = openSpaces[0];
-
-    // Deduct blood & update hand
-    currentBlood -= cardToPlay.cost;
-    currentHand = currentHand.filter(c => c.id !== cardToPlay.id);
-    playedCards.push({ card: cardToPlay, spaceKey: chosenSpace.key });
-
-    // Apply to board
-    if (chosenSpace.key === 'prince' || chosenSpace.key === 'knight_left' || chosenSpace.key === 'knight_right') {
-      updatedBoard[chosenSpace.key] = {
-        ...updatedBoard[chosenSpace.key],
-        aiCard: cardToPlay,
-        aiPower: cardToPlay.power
-      };
-    } else {
-      updatedBoard[chosenSpace.key] = {
-        ...updatedBoard[chosenSpace.key],
-        card: cardToPlay,
-        power: cardToPlay.power
-      };
+        logs.push(`L'IA a joué "${cardToPlay.name}" (Coût: ${cardToPlay.cost} Sang, Puissance: ${cardToPlay.power}) sur ${chosenSpace.key}.`);
+        moveMade = true;
+        break; // Re-evaluate with updated board state
+      }
     }
 
-    logs.push(`L'IA a joué "${cardToPlay.name}" (Coût: ${cardToPlay.cost}, Puissance: ${cardToPlay.power}) sur ${chosenSpace.key}.`);
+    if (!moveMade) {
+      // No legal placement possible with remaining blood & hand
+      break;
+    }
 
-    // Re-check playable cards
     playable = currentHand.filter(c => c.cost <= currentBlood);
   }
 
