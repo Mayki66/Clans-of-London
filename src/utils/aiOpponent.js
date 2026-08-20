@@ -3,6 +3,15 @@ import { CARDS_DATA } from '../data/cardsData';
 
 export const AI_OPPONENTS = [
   {
+    id: 'klinklecut',
+    name: 'Klinklecut',
+    title: 'Amant des Projecteurs',
+    clan: 'Toreador',
+    avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
+    metaDeckId: 'meta-toreador-seduction',
+    personality: 'Séducteur & Charme : Déploie Abir, Roland Heffé, Eliza Iyer et Damon pour capturer vos cartes et dominer le Trône.'
+  },
+  {
     id: 'dukaul',
     name: 'Dukaul',
     title: 'Champion des Arènes de Whitechapel',

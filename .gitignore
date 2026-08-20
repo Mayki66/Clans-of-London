@@ -13,6 +13,10 @@ dist-ssr
 *.local
 scratch/
 .system_generated/
+*.mp4
+*.mov
+*.webm
+*.avi
 
 # Editor directories and files
 .vscode/*
