@@ -228,7 +228,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Jürgen_Mayer.jpg",
+    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Jurgen_Mayer.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Jurgen_Mayer"
   },
   {
@@ -437,16 +437,15 @@ export const CARDS_DATA = [
     "id": "col-016",
     "name": "Razor",
     "originalName": "Razor",
-    "clan": "Nosferatu",
+    "clan": "Brujah",
     "series": 0,
     "cost": 3,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Occultation",
+    "archetype": "Violent",
     "keywords": [
-      "Occultation",
-      "Nosferatu",
-      "Violent"
+      "Violent",
+      "Brujah"
     ],
     "ability": "À la Révélation : If this is on the côté adverse, Gagne +4 Puissance.",
     "ability_en": "On Reveal: If this is on the opponent's side, gain +4 Power.",
@@ -1435,7 +1434,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Roland_Heffé.jpg",
+    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Roland_Heffe.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Roland_Heffe"
   },
   {

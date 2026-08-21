@@ -26,11 +26,11 @@ export default function CardArtwork({
   const getClanColors = (c) => {
     switch (c) {
       case 'Brujah':
-        return { primary: '#e63946', secondary: '#ff6b6b', dark: '#3a0c10', glow: '#ff2a4b', border: '#e63946' };
+        return { primary: '#f97316', secondary: '#fb923c', dark: '#431407', glow: '#ea580c', border: '#f97316' };
       case 'Ventrue':
-        return { primary: '#d4af37', secondary: '#f3e5ab', dark: '#2b2308', glow: '#ffd700', border: '#d4af37' };
+        return { primary: '#93c5fd', secondary: '#bfdbfe', dark: '#172554', glow: '#60a5fa', border: '#93c5fd' };
       case 'Hecata':
-        return { primary: '#a855f7', secondary: '#c084fc', dark: '#240f3b', glow: '#9333ea', border: '#a855f7' };
+        return { primary: '#3b82f6', secondary: '#60a5fa', dark: '#172554', glow: '#1d4ed8', border: '#3b82f6' };
       case 'Gangrel':
         return { primary: '#22c55e', secondary: '#86efac', dark: '#0a2f16', glow: '#10b981', border: '#22c55e' };
       case 'Tremere':
@@ -38,7 +38,7 @@ export default function CardArtwork({
       case 'Malkavian':
         return { primary: '#38bdf8', secondary: '#7dd3fc', dark: '#082f49', glow: '#0284c7', border: '#38bdf8' };
       case 'Nosferatu':
-        return { primary: '#10b981', secondary: '#6ee7b7', dark: '#064e3b', glow: '#059669', border: '#10b981' };
+        return { primary: '#9ca3af', secondary: '#d1d5db', dark: '#1f2937', glow: '#6b7280', border: '#9ca3af' };
       case 'Toreador':
         return { primary: '#ec4899', secondary: '#f472b6', dark: '#500724', glow: '#db2777', border: '#ec4899' };
       default:
