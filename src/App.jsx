@@ -9,10 +9,13 @@ import ArenaDuelView from './components/ArenaDuel/ArenaDuelView';
 import ProfileView from './components/Profile/ProfileView';
 import CardModal from './components/Card/CardModal';
 import OnboardingModal from './components/Onboarding/OnboardingModal';
+import AdminLoginModal from './components/Admin/AdminLoginModal';
+import GhostAdminModal from './components/Admin/GhostAdminModal';
 import { CARDS_DATA } from './data/cardsData';
 import { TRANSLATIONS } from './i18n/translations';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { trackVisit, trackInteraction, trackProfileExport, trackUserRegistration } from './utils/adminTelemetry';
 import confetti from 'canvas-confetti';
 
 const LOCAL_STORAGE_SAVED_DECKS = 'col_saved_decks_v1';
@@ -52,6 +55,9 @@ export default function App() {
     }
   });
 
+  const [showAdminLogin, setShowAdminLogin] = useState(false);
+  const [showAdminDashboard, setShowAdminDashboard] = useState(false);
+
   const [deckName, setDeckName] = useState('Nouveau Deck Londonien');
   const [deckCards, setDeckCards] = useState([]);
   const [savedDecks, setSavedDecks] = useState([]);
@@ -82,8 +88,14 @@ export default function App() {
     ]
   });
 
-  // Load saved data on mount
+  // Load saved data on mount & track visit
   useEffect(() => {
+    try {
+      trackVisit();
+    } catch (e) {
+      console.error("Error tracking visit", e);
+    }
+
     try {
       const saved = localStorage.getItem(LOCAL_STORAGE_SAVED_DECKS);
       if (saved) {
@@ -474,11 +486,39 @@ export default function App() {
             </span>
           </div>
 
-          <div className="flex items-center space-x-2 font-mono text-[11px] text-amber-400/90 font-semibold">
-            <span>{t?.brand?.footerAttribution || "Application développée, créée, éditée et remplie par Mayki via Antigravity"}</span>
+          <div className="flex items-center space-x-2 font-mono text-[11px] text-amber-400/90 font-semibold select-none">
+            <span>
+              {lang === 'fr' ? 'Application développée, créée, éditée et remplie par ' : 'Application developed, created, edited and curated by '}
+              <span
+                onClick={() => setShowAdminLogin(true)}
+                className="underline hover:text-white cursor-pointer transition-colors font-bold text-amber-300 hover:text-amber-200"
+                title="⚙️ Administration"
+              >
+                Mayki
+              </span>
+              {' via Antigravity'}
+            </span>
           </div>
         </div>
       </footer>
+
+      {/* Secret Admin Authentication Modal */}
+      {showAdminLogin && (
+        <AdminLoginModal
+          onClose={() => setShowAdminLogin(false)}
+          onSuccess={() => {
+            setShowAdminLogin(false);
+            setShowAdminDashboard(true);
+          }}
+        />
+      )}
+
+      {/* Ghost Admin Telemetry & Registration Dashboard */}
+      {showAdminDashboard && (
+        <GhostAdminModal
+          onClose={() => setShowAdminDashboard(false)}
+        />
+      )}
 
       {/* Vercel Web Analytics & Speed Insights Tracking */}
       <Analytics />

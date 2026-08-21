@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Droplets, Shield, Sparkles, Upload, User, ArrowRight, Check, Globe } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { trackUserRegistration } from '../../utils/adminTelemetry';
 
 export default function OnboardingModal({
   onComplete,
@@ -16,6 +17,11 @@ export default function OnboardingModal({
     e.preventDefault();
     const finalName = pseudo.trim() || (lang === 'fr' ? 'Kindred de Londres' : 'London Kindred');
     confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+    try {
+      trackUserRegistration(finalName, 1, 'Néophyte');
+    } catch (err) {
+      console.error("Error tracking registration", err);
+    }
     onComplete({ playerName: finalName });
   };
 

@@ -7,6 +7,7 @@ import {
 import confetti from 'canvas-confetti';
 import { CARDS_DATA } from '../../data/cardsData';
 import { CLANS } from '../../data/clansData';
+import { trackProfileExport, trackUserRegistration } from '../../utils/adminTelemetry';
 
 const GAME_TOTAL_CARDS = 217;
 
@@ -75,6 +76,12 @@ export default function ProfileView({
 
     setImportNotification(`Profil de ${userProfile.playerName || 'Mayki'} exporté avec succès !`);
     setTimeout(() => setImportNotification(''), 3500);
+
+    try {
+      trackProfileExport(userProfile.playerName || 'Mayki', userProfile.collectionLevel || 1);
+    } catch (e) {
+      console.error("Error tracking export", e);
+    }
   };
 
   // Import User Profile from JSON File
