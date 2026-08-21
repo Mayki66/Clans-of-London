@@ -11,6 +11,8 @@ import CardModal from './components/Card/CardModal';
 import OnboardingModal from './components/Onboarding/OnboardingModal';
 import { CARDS_DATA } from './data/cardsData';
 import { TRANSLATIONS } from './i18n/translations';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import confetti from 'canvas-confetti';
 
 const LOCAL_STORAGE_SAVED_DECKS = 'col_saved_decks_v1';
@@ -477,6 +479,10 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Vercel Web Analytics & Speed Insights Tracking */}
+      <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
