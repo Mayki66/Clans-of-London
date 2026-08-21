@@ -4,7 +4,7 @@ import {
   Clock, Award, Lock, RefreshCw, Layers, Database, Settings, ExternalLink, Key, Check, Copy
 } from 'lucide-react';
 import { getTelemetryData } from '../../utils/adminTelemetry';
-import { fetchAllCloudTelemetry, getSupabaseConfig, saveSupabaseConfig } from '../../utils/cloudDatabase';
+import { fetchAllCloudTelemetry, getSupabaseConfig, saveSupabaseConfig, syncCloudVisit, syncCloudUser } from '../../utils/cloudDatabase';
 
 export default function GhostAdminModal({ onClose }) {
   const [telemetry, setTelemetry] = useState(getTelemetryData());
@@ -46,6 +46,12 @@ export default function GhostAdminModal({ onClose }) {
     e.preventDefault();
     saveSupabaseConfig(supabaseUrl, supabaseKey);
     setConfigSaved(true);
+    try {
+      await syncCloudVisit();
+      await syncCloudUser('Mayki', 14, 'Ancilla de Soho');
+    } catch (err) {
+      console.error("Initial cloud sync error", err);
+    }
     setTimeout(() => setConfigSaved(false), 2000);
     await loadData();
   };
