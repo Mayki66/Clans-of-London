@@ -57,6 +57,7 @@ export default function CardArtwork({
         <img
           src={imageUrl}
           alt={clan}
+          referrerPolicy="no-referrer"
           onError={() => setImageError(true)}
           className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-500 brightness-95 contrast-105"
           loading="lazy"

@@ -6,6 +6,7 @@ import {
 import { CARDS_DATA } from '../../data/cardsData';
 import { CLANS } from '../../data/clansData';
 import { getCommunityDecks, publishCommunityDeck } from '../../data/communityDecks';
+import CardArtwork from '../Card/CardArtwork';
 import confetti from 'canvas-confetti';
 
 export default function CommunityDecksView({
@@ -232,25 +233,50 @@ export default function CommunityDecksView({
                   </div>
                 </div>
 
-                {/* 15 Cards Mini Visual Strip */}
-                <div className="grid grid-cols-5 gap-1.5 pt-1">
-                  {cards.slice(0, 10).map((card) => (
-                    <div
-                      key={card.id}
-                      onClick={() => onInspectCard(card)}
-                      className="cursor-pointer group relative rounded-lg overflow-hidden border border-white/10 hover:border-amber-400 transition-all bg-[#121520] p-1 text-center"
-                    >
-                      <div className="text-[10px] font-bold text-red-400 font-mono">
-                        {card.costDisplay || card.cost}💧
+                {/* 15 Cards Visual Artworks Grid */}
+                <div className="space-y-1.5 pt-1">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-gray-400">
+                    <span>{lang === 'en' ? "Deck Cards (15) :" : "Cartes du Deck (15) :"}</span>
+                    <span className="text-gray-500">{lang === 'en' ? "Click to inspect" : "Cliquer pour inspecter"}</span>
+                  </div>
+
+                  <div className="grid grid-cols-5 gap-2">
+                    {cards.slice(0, 10).map((card) => (
+                      <div
+                        key={card.id}
+                        onClick={() => onInspectCard(card)}
+                        className="cursor-pointer group relative rounded-xl overflow-hidden border border-white/15 hover:border-amber-400 transition-all bg-[#0e111a] flex flex-col justify-between shadow-md hover:scale-105"
+                        title={`${card.name} (${card.costDisplay || card.cost} Sang • P${card.power})`}
+                      >
+                        {/* Artwork */}
+                        <div className="relative w-full h-20 overflow-hidden bg-black">
+                          <CardArtwork
+                            artType={card.artType}
+                            clan={card.clan}
+                            imageUrl={card.imageUrl}
+                            className="w-full h-full object-cover"
+                          />
+
+                          {/* Top Badges: Cost & Power */}
+                          <div className="absolute top-1 left-1 right-1 flex items-center justify-between z-10 pointer-events-none">
+                            <div className="w-4 h-4 rounded-full bg-gradient-to-br from-red-600 to-rose-950 border border-red-400 flex items-center justify-center font-bold text-[9px] text-white shadow-blood">
+                              {card.costDisplay || card.cost}
+                            </div>
+                            <div className="w-4 h-4 rounded-lg bg-gradient-to-br from-amber-600 to-amber-950 border border-amber-400 flex items-center justify-center font-bold text-[9px] text-white shadow-gold">
+                              {card.power}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Name */}
+                        <div className="p-1 bg-gradient-to-t from-black via-[#0d0f17] to-[#121520] border-t border-white/10 text-center">
+                          <p className="font-gothic font-bold text-[10px] text-gray-200 truncate group-hover:text-amber-300 transition-colors">
+                            {card.name}
+                          </p>
+                        </div>
                       </div>
-                      <div className="text-[10px] font-gothic font-semibold text-gray-200 truncate">
-                        {card.name}
-                      </div>
-                      <div className="text-[9px] font-mono text-amber-400">
-                        P{card.power}
-                      </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
 

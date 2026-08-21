@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Trophy, Sparkles, Layers, ArrowRight, Shield, Droplets, CheckCircle2, XCircle, Filter, Check, Eye, RefreshCw, Zap, HelpCircle } from 'lucide-react';
+import CardArtwork from '../Card/CardArtwork';
 import { META_DECKS } from '../../data/metaDecks';
 import { CARDS_DATA } from '../../data/cardsData';
 import { CLANS } from '../../data/clansData';
@@ -211,33 +212,124 @@ export default function MetaDecksView({
                   </div>
                 </div>
 
-                {/* 15 Cards Mini Visual Strip */}
-                <div className="grid grid-cols-5 gap-1.5 pt-1">
-                  {deck.cardsInDeck.map((card) => {
-                    const isOwned = ownedCardIds.includes(card.id);
-                    return (
-                      <div
-                        key={card.id}
-                        onClick={() => onInspectCard(card)}
-                        className={`cursor-pointer group relative rounded-lg overflow-hidden border p-1 text-center transition-all ${
-                          isOwned
-                            ? 'border-emerald-500/60 bg-emerald-950/20 hover:border-emerald-400'
-                            : 'border-white/10 bg-[#0e111a] opacity-60 hover:opacity-100 hover:border-amber-400'
-                        }`}
-                      >
-                        <div className="text-[10px] font-bold text-red-400 font-mono">
-                          {card.costDisplay || card.cost}💧
+                {/* 15 Cards Visual Artworks Grid */}
+                <div className="space-y-1.5 pt-1">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-gray-400">
+                    <span>{isEn ? "Deck Composition (15 Cards) :" : "Composition du Deck (15 Cartes) :"}</span>
+                    <span className="text-gray-500">{isEn ? "Click to inspect" : "Cliquer pour inspecter"}</span>
+                  </div>
+
+                  <div className="grid grid-cols-5 gap-2">
+                    {deck.cardsInDeck.map((card) => {
+                      const isOwned = ownedCardIds.includes(card.id);
+                      return (
+                        <div
+                          key={card.id}
+                          onClick={() => onInspectCard(card)}
+                          className={`group relative rounded-xl overflow-hidden border transition-all duration-300 cursor-pointer flex flex-col justify-between shadow-md ${
+                            isOwned
+                              ? 'border-emerald-500/70 shadow-[0_0_10px_rgba(16,185,129,0.25)] hover:border-emerald-400 hover:scale-105'
+                              : 'border-white/15 opacity-75 hover:opacity-100 hover:border-amber-400 hover:scale-105'
+                          }`}
+                          title={`${card.name} (${card.costDisplay || card.cost} Sang • P${card.power} • ${isOwned ? 'Possédée' : 'Non possédée'})`}
+                        >
+                          {/* Card Artwork */}
+                          <div className="relative w-full h-24 overflow-hidden bg-black">
+                            <CardArtwork
+                              artType={card.artType}
+                              clan={card.clan}
+                              imageUrl={card.imageUrl}
+                              className="w-full h-full object-cover"
+                            />
+
+                            {/* Top Badges: Cost & Power */}
+                            <div className="absolute top-1 left-1 right-1 flex items-center justify-between z-10 pointer-events-none">
+                              <div className="w-5 h-5 rounded-full bg-gradient-to-br from-red-600 to-rose-950 border border-red-400 flex items-center justify-center font-bold text-[10px] text-white shadow-blood">
+                                {card.costDisplay || card.cost}
+                              </div>
+                              <div className="w-5 h-5 rounded-lg bg-gradient-to-br from-amber-600 to-amber-950 border border-amber-400 flex items-center justify-center font-bold text-[10px] text-white shadow-gold">
+                                {card.power}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Card Name Footer */}
+                          <div className="p-1 bg-gradient-to-t from-black via-[#0d0f17] to-[#121520] border-t border-white/10 text-center">
+                            <p className="font-gothic font-bold text-[10px] text-gray-200 truncate group-hover:text-amber-300 transition-colors">
+                              {card.name}
+                            </p>
+                          </div>
                         </div>
-                        <div className="text-[10px] font-gothic font-semibold text-gray-200 truncate">
-                          {card.name}
-                        </div>
-                        <div className="text-[9px] font-mono text-amber-400">
-                          P{card.power}
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Smart Substitutions Accordion (when missing cards exist) */}
+                {!deck.isFullyReady && deck.substitutions.length > 0 && (
+                  <div className="pt-2">
+                    <button
+                      onClick={() => toggleSubstitutions(deck.id)}
+                      className="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-purple-950/40 hover:bg-purple-900/50 border border-purple-500/40 text-purple-300 text-xs font-gothic transition-all"
+                    >
+                      <div className="flex items-center space-x-2">
+                        <RefreshCw className={`w-3.5 h-3.5 text-purple-400 ${isExpanded ? 'rotate-180' : ''} transition-transform`} />
+                        <span className="font-bold">
+                          {isExpanded 
+                            ? (isEn ? 'Hide substitute suggestions' : 'Masquer les suggestions de remplacement') 
+                            : (isEn ? `View ${deck.substitutions.length} suggested substitutes` : `Voir les ${deck.substitutions.length} remplacements suggérés`)}
+                        </span>
+                      </div>
+                      <span className="text-[10px] font-mono bg-purple-900 px-2 py-0.5 rounded-full text-purple-200">
+                        {deck.substitutions.length} {isEn ? "cards" : "cartes"}
+                      </span>
+                    </button>
+
+                    {isExpanded && (
+                      <div className="mt-2 p-3 rounded-xl bg-[#0b0e15] border border-purple-500/30 space-y-2 text-xs animate-fadeIn">
+                        <p className="text-[11px] text-gray-400 font-mono">
+                          {isEn ? `Optimal substitutes found in your collection (${ownedCardIds.length} cards):` : `Équivalents optimaux trouvés dans votre collection (${ownedCardIds.length} cartes) :`}
+                        </p>
+                        <div className="space-y-2">
+                          {deck.substitutions.map((sub, idx) => (
+                            <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between p-2 rounded-lg bg-black/40 border border-white/5 gap-2">
+                              {/* Missing Card */}
+                              <div
+                                onClick={() => onInspectCard?.(sub.missing)}
+                                className="flex items-center space-x-1.5 text-gray-400 line-through cursor-pointer hover:text-gray-200"
+                                title={isEn ? "Missing card" : "Carte manquante"}
+                              >
+                                <span className="w-5 h-5 rounded-full bg-red-950/80 border border-red-500/50 flex items-center justify-center text-[10px] font-bold text-red-300">
+                                  {sub.missing.costDisplay || sub.missing.cost}
+                                </span>
+                                <span className="font-gothic">{sub.missing.name}</span>
+                              </div>
+
+                              <span className="text-purple-400 font-bold self-center text-xs">➔</span>
+
+                              {/* Substitute Card */}
+                              <div
+                                onClick={() => onInspectCard?.(sub.substitute)}
+                                className="flex items-center justify-between sm:justify-end space-x-2 cursor-pointer group/sub"
+                              >
+                                <div className="text-right">
+                                  <div className="font-gothic font-bold text-emerald-300 group-hover/sub:text-white flex items-center space-x-1">
+                                    <span>{sub.substitute.name}</span>
+                                    <span className="text-[10px] text-amber-400 font-mono">P{sub.substitute.power}</span>
+                                  </div>
+                                  <span className="text-[9px] text-purple-300 block font-mono">{sub.reason}</span>
+                                </div>
+                                <span className="w-5 h-5 rounded-full bg-emerald-900 border border-emerald-400 flex items-center justify-center text-[10px] font-bold text-emerald-200">
+                                  {sub.substitute.costDisplay || sub.substitute.cost}
+                                </span>
+                              </div>
+                            </div>
+                          ))}
                         </div>
                       </div>
-                    );
-                  })}
-                </div>
+                    )}
+                  </div>
+                )}
               </div>
 
               {/* Action Buttons */}
