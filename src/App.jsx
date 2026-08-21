@@ -491,8 +491,7 @@ export default function App() {
               {lang === 'fr' ? 'Application développée, créée, éditée et remplie par ' : 'Application developed, created, edited and curated by '}
               <span
                 onClick={() => setShowAdminLogin(true)}
-                className="underline hover:text-white cursor-pointer transition-colors font-bold text-amber-300 hover:text-amber-200"
-                title="⚙️ Administration"
+                className="cursor-default"
               >
                 Mayki
               </span>
