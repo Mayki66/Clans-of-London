@@ -285,6 +285,35 @@ export default function CommunityDecksView({
         })}
       </div>
 
+      {/* Empty State */}
+      {filteredDecks.length === 0 && (
+        <div className="text-center py-16 px-4 glass-panel rounded-3xl border border-white/10 space-y-4 max-w-xl mx-auto">
+          <div className="w-16 h-16 rounded-2xl bg-indigo-950/60 border border-indigo-500/40 flex items-center justify-center text-3xl mx-auto shadow-[0_0_20px_rgba(99,102,241,0.3)]">
+            🃏
+          </div>
+          <div className="space-y-1">
+            <h3 className="font-gothic font-bold text-xl text-gray-100">
+              {lang === 'fr' ? 'Aucun deck communautaire pour le moment' : 'No community decks yet'}
+            </h3>
+            <p className="text-xs text-gray-400 leading-relaxed font-sans">
+              {lang === 'fr' 
+                ? 'Soyez le premier à partager votre deck avec les joueurs de Clans of London du monde entier !' 
+                : 'Be the first player to share your custom deck with the worldwide Clans of London community!'}
+            </p>
+          </div>
+          <button
+            onClick={() => {
+              setPublishName(currentDeckName);
+              setShowPublishModal(true);
+            }}
+            className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-800 to-indigo-900 hover:from-purple-700 text-white font-gothic font-bold text-xs shadow-gold transition-all"
+          >
+            <Share2 className="w-4 h-4" />
+            <span>{lang === 'fr' ? 'Partager le Premier Deck' : 'Share the First Deck'}</span>
+          </button>
+        </div>
+      )}
+
       {/* Publish Modal */}
       {showPublishModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">

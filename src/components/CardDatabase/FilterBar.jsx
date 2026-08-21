@@ -9,8 +9,11 @@ export default function FilterBar({
   viewMode,
   setViewMode,
   totalResults,
-  allCount
+  allCount,
+  lang = 'fr'
 }) {
+  const isEn = lang === 'en';
+
   const handleClanToggle = (clanName) => {
     if (filters.clan === clanName) {
       setFilters(prev => ({ ...prev, clan: 'ALL' }));
@@ -54,7 +57,7 @@ export default function FilterBar({
             type="text"
             value={filters.search}
             onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
-            placeholder="Rechercher une carte, un effet, un mot-clé (ex: Morag, Murder, Violent)..."
+            placeholder={isEn ? "Search a card, ability, keyword (e.g. Morag, Murder, Violent)..." : "Rechercher une carte, un effet, un mot-clé (ex: Morag, Murder, Violent)..."}
             className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#0b0e14] border border-white/15 focus:border-red-500 focus:ring-1 focus:ring-red-500 text-sm text-gray-100 placeholder-gray-500 transition-all"
           />
           {filters.search && (
@@ -62,7 +65,7 @@ export default function FilterBar({
               onClick={() => setFilters(prev => ({ ...prev, search: '' }))}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400 hover:text-white"
             >
-              Effacer
+              {isEn ? "Clear" : "Effacer"}
             </button>
           )}
         </div>
@@ -77,13 +80,13 @@ export default function FilterBar({
               onChange={(e) => setFilters(prev => ({ ...prev, sortBy: e.target.value }))}
               className="bg-transparent border-none text-xs text-gray-200 focus:outline-none cursor-pointer pr-2 font-mono"
             >
-              <option value="cost-asc" className="bg-[#121520]">Coût : Sang (1 → 7)</option>
-              <option value="cost-desc" className="bg-[#121520]">Coût : Sang (7 → 1)</option>
-              <option value="power-desc" className="bg-[#121520]">Puissance : Haute → Basse</option>
-              <option value="power-asc" className="bg-[#121520]">Puissance : Basse → Haute</option>
-              <option value="name-asc" className="bg-[#121520]">Nom : A → Z</option>
-              <option value="series-asc" className="bg-[#121520]">Série : S0 → S5</option>
-              <option value="rarity-desc" className="bg-[#121520]">Rareté : Légendaire → Commune</option>
+              <option value="cost-asc" className="bg-[#121520]">{isEn ? "Cost: Blood (1 → 7)" : "Coût : Sang (1 → 7)"}</option>
+              <option value="cost-desc" className="bg-[#121520]">{isEn ? "Cost: Blood (7 → 1)" : "Coût : Sang (7 → 1)"}</option>
+              <option value="power-desc" className="bg-[#121520]">{isEn ? "Power: High → Low" : "Puissance : Haute → Basse"}</option>
+              <option value="power-asc" className="bg-[#121520]">{isEn ? "Power: Low → High" : "Puissance : Basse → Haute"}</option>
+              <option value="name-asc" className="bg-[#121520]">{isEn ? "Name: A → Z" : "Nom : A → Z"}</option>
+              <option value="series-asc" className="bg-[#121520]">{isEn ? "Series: S0 → S5" : "Série : S0 → S5"}</option>
+              <option value="rarity-desc" className="bg-[#121520]">{isEn ? "Rarity: Legendary → Common" : "Rareté : Légendaire → Commune"}</option>
             </select>
           </div>
 
@@ -96,7 +99,7 @@ export default function FilterBar({
                   ? 'bg-gradient-to-r from-red-800 to-rose-900 text-white shadow-blood'
                   : 'text-gray-400 hover:text-white'
               }`}
-              title="Vue Grille de Cartes"
+              title={isEn ? "Grid View" : "Vue Grille de Cartes"}
             >
               <LayoutGrid className="w-4 h-4" />
             </button>
@@ -107,7 +110,7 @@ export default function FilterBar({
                   ? 'bg-gradient-to-r from-red-800 to-rose-900 text-white shadow-blood'
                   : 'text-gray-400 hover:text-white'
               }`}
-              title="Vue Tableau Compact"
+              title={isEn ? "Table View" : "Vue Liste Compacte"}
             >
               <ListFilter className="w-4 h-4" />
             </button>
@@ -116,137 +119,81 @@ export default function FilterBar({
           {/* Reset Filters */}
           <button
             onClick={onResetFilters}
-            className="flex items-center space-x-1 px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-gray-300 hover:text-white text-xs font-semibold transition-all"
-            title="Réinitialiser tous les filtres"
+            className="flex items-center space-x-1.5 px-3 py-2 rounded-xl bg-[#0b0e14] hover:bg-[#151926] border border-white/15 text-xs text-gray-300 hover:text-white transition-all"
+            title={isEn ? "Reset all filters" : "Réinitialiser tous les filtres"}
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Réinitialiser</span>
+            <span className="hidden sm:inline">{isEn ? "Reset" : "Réinitialiser"}</span>
           </button>
         </div>
       </div>
 
-      {/* Quick Collection Toggle */}
-      <div className="flex items-center justify-between p-2 rounded-xl bg-[#090b10] border border-white/5">
-        <span className="text-xs text-gray-400 font-gothic">
-          Filtrer par statut de possession (Mon Jeu) :
-        </span>
-        <button
-          onClick={() => setFilters(prev => ({ ...prev, onlyOwned: !prev.onlyOwned }))}
-          className={`flex items-center space-x-1.5 px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all border ${
-            filters.onlyOwned
-              ? 'bg-emerald-950 text-emerald-300 border-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.3)]'
-              : 'bg-[#121520] text-gray-400 border-white/10 hover:text-white'
-          }`}
-        >
-          <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-          <span>{filters.onlyOwned ? '✔ Uniquement mes cartes possédées' : 'Toutes les cartes (Possédées + Non possédées)'}</span>
-        </button>
-      </div>
-
-      {/* Clan Filter Pills */}
+      {/* Quick Clan Buttons */}
       <div className="space-y-1.5">
-        <div className="flex items-center justify-between text-xs text-gray-400 font-gothic uppercase tracking-wider font-semibold">
-          <span>Filtrer par Clan / Faction :</span>
-          <span className="text-amber-400/90 font-mono font-normal">
-            {totalResults} / {allCount} cartes
-          </span>
+        <div className="flex items-center justify-between text-xs font-mono text-gray-400">
+          <span className="uppercase tracking-wider font-semibold">{isEn ? "Clans & Factions" : "Clans & Factions"} :</span>
+          <span>{totalResults} / {allCount} {isEn ? "cards" : "cartes"}</span>
         </div>
+
         <div className="flex flex-wrap gap-1.5">
           <button
             onClick={() => setFilters(prev => ({ ...prev, clan: 'ALL' }))}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold font-gothic transition-all border ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-gothic font-bold transition-all border ${
               filters.clan === 'ALL'
-                ? 'bg-red-800/80 text-white border-red-500 shadow-blood'
-                : 'bg-[#10131d] text-gray-400 border-white/10 hover:text-white hover:border-white/20'
+                ? 'bg-gradient-to-r from-red-800 to-rose-900 text-white border-red-500 shadow-blood'
+                : 'bg-[#0e111a] text-gray-400 border-white/10 hover:text-white hover:border-white/20'
             }`}
           >
-            Tous les Clans
+            {isEn ? "All Clans" : "Tous les Clans"}
           </button>
 
-          {Object.entries(CLANS).map(([clanKey, clan]) => {
+          {Object.entries(CLANS).map(([clanKey, clanData]) => {
             const isSelected = filters.clan === clanKey;
             return (
               <button
                 key={clanKey}
                 onClick={() => handleClanToggle(clanKey)}
-                style={isSelected ? {
-                  backgroundColor: clan.bgColor,
-                  borderColor: clan.borderColor,
-                  color: clan.themeColor,
-                  boxShadow: `0 0 10px ${clan.borderColor}40`
-                } : {}}
-                className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
+                style={isSelected ? { backgroundColor: clanData.bgColor, borderColor: clanData.borderColor, color: clanData.themeColor } : {}}
+                className={`px-3 py-1.5 rounded-xl text-xs font-gothic transition-all border flex items-center space-x-1.5 ${
                   isSelected
-                    ? 'font-bold'
-                    : 'bg-[#10131d] text-gray-400 border-white/10 hover:text-gray-200 hover:border-white/20'
+                    ? 'font-bold shadow-sm'
+                    : 'bg-[#0e111a] text-gray-400 border-white/10 hover:text-gray-200 hover:border-white/20'
                 }`}
               >
-                {clan.name}
+                <span>{clanData.name}</span>
               </button>
             );
           })}
         </div>
       </div>
 
-      {/* Row with Series, Blood Cost, Archetypes & Rarity */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2 border-t border-white/10">
+      {/* Secondary Filter Chips (Cost, Power, Series, Ownership) */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 pt-2 border-t border-white/10 text-xs">
         
-        {/* Series Filter */}
+        {/* Cost Filter */}
         <div>
-          <label className="block text-[11px] font-mono text-gray-400 mb-1.5">
-            SÉRIES DU JEU
-          </label>
-          <div className="flex flex-wrap gap-1">
-            <button
-              onClick={() => setFilters(prev => ({ ...prev, series: 'ALL' }))}
-              className={`px-2 py-1 rounded-lg text-xs font-mono font-bold border transition-all ${
-                filters.series === 'ALL'
-                  ? 'bg-amber-600/80 text-white border-amber-400 shadow-gold'
-                  : 'bg-[#10131d] text-gray-400 border-white/10 hover:text-white'
-              }`}
-            >
-              Toutes
-            </button>
-            {SERIES_LIST.map(s => (
-              <button
-                key={s}
-                onClick={() => handleSeriesToggle(s)}
-                className={`px-2 py-1 rounded-lg text-xs font-mono font-bold border transition-all ${
-                  filters.series === s
-                    ? 'bg-amber-600/80 text-white border-amber-400 shadow-gold'
-                    : 'bg-[#10131d] text-gray-400 border-white/10 hover:text-white'
-                }`}
-              >
-                S{s}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Blood Cost Filter */}
-        <div>
-          <label className="block text-[11px] font-mono text-gray-400 mb-1.5">
-            COÛT EN SANG
-          </label>
-          <div className="flex flex-wrap gap-1">
+          <span className="font-mono text-[11px] text-gray-400 uppercase font-semibold block mb-1.5">
+            {isEn ? "Blood Cost" : "Coût en Sang"} :
+          </span>
+          <div className="flex flex-wrap items-center gap-1">
             <button
               onClick={() => setFilters(prev => ({ ...prev, cost: 'ALL' }))}
               className={`px-2 py-1 rounded-lg text-xs font-mono font-bold border transition-all ${
                 filters.cost === 'ALL'
-                  ? 'bg-red-700 text-white border-red-400 shadow-blood'
-                  : 'bg-[#10131d] text-gray-400 border-white/10 hover:text-white'
+                  ? 'bg-red-800 text-white border-red-500 shadow-blood'
+                  : 'bg-[#0e111a] text-gray-400 border-white/10 hover:text-white'
               }`}
             >
-              Tous
+              {isEn ? "All" : "Tous"}
             </button>
-            {[1, 2, 3, 4, 5, 6, '7+', 'X'].map(c => (
+            {[1, 2, 3, 4, 5, 6, '7+', 'X'].map((c) => (
               <button
                 key={c}
                 onClick={() => handleCostToggle(c)}
-                className={`w-7 h-7 rounded-lg text-xs font-mono font-bold border flex items-center justify-center transition-all ${
+                className={`w-7 h-7 rounded-lg text-xs font-mono font-bold border transition-all flex items-center justify-center ${
                   filters.cost === c
-                    ? 'bg-gradient-to-br from-red-600 to-rose-950 text-white border-red-400 shadow-blood'
-                    : 'bg-[#10131d] text-gray-400 border-white/10 hover:text-white'
+                    ? 'bg-red-600 text-white border-red-400 shadow-blood'
+                    : 'bg-[#0e111a] text-gray-400 border-white/10 hover:text-white hover:border-red-500/50'
                 }`}
               >
                 {c}
@@ -255,61 +202,93 @@ export default function FilterBar({
           </div>
         </div>
 
-        {/* Archetype / Keyword Filter */}
+        {/* Series Filter */}
         <div>
-          <label className="block text-[11px] font-mono text-gray-400 mb-1.5">
-            MOTS-CLÉS & ARCHÉTYPES
-          </label>
-          <div className="relative">
-            <select
-              value={filters.archetype}
-              onChange={(e) => setFilters(prev => ({ ...prev, archetype: e.target.value }))}
-              className="w-full bg-[#10131d] border border-white/15 rounded-xl px-3 py-1.5 text-xs text-gray-200 focus:outline-none focus:border-red-500 font-sans"
+          <span className="font-mono text-[11px] text-gray-400 uppercase font-semibold block mb-1.5">
+            {isEn ? "Release Series" : "Série d'extension"} :
+          </span>
+          <div className="flex flex-wrap items-center gap-1">
+            <button
+              onClick={() => setFilters(prev => ({ ...prev, series: 'ALL' }))}
+              className={`px-2 py-1 rounded-lg text-xs font-mono font-bold border transition-all ${
+                filters.series === 'ALL'
+                  ? 'bg-amber-600 text-white border-amber-400 shadow-gold'
+                  : 'bg-[#0e111a] text-gray-400 border-white/10 hover:text-white'
+              }`}
             >
-              <option value="ALL" className="bg-[#121520]">Tous les Archétypes</option>
-              {ARCHETYPES.map(arch => (
-                <option key={arch.id} value={arch.id} className="bg-[#121520]">
-                  {arch.name} ({arch.clan})
-                </option>
-              ))}
-            </select>
+              {isEn ? "All" : "Toutes"}
+            </button>
+            {SERIES_LIST.map((s) => (
+              <button
+                key={s.id}
+                onClick={() => handleSeriesToggle(s.id)}
+                className={`px-2 py-1 rounded-lg text-xs font-mono font-bold border transition-all ${
+                  filters.series === s.id
+                    ? 'bg-amber-600 text-white border-amber-400 shadow-gold'
+                    : 'bg-[#0e111a] text-gray-400 border-white/10 hover:text-white'
+                }`}
+              >
+                S{s.id}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Rarity & Card Type */}
-        <div className="grid grid-cols-2 gap-2">
-          <div>
-            <label className="block text-[11px] font-mono text-gray-400 mb-1.5">
-              RARETÉ
-            </label>
-            <select
-              value={filters.rarity}
-              onChange={(e) => setFilters(prev => ({ ...prev, rarity: e.target.value }))}
-              className="w-full bg-[#10131d] border border-white/15 rounded-xl px-2 py-1.5 text-xs text-gray-200 focus:outline-none focus:border-red-500"
-            >
-              <option value="ALL" className="bg-[#121520]">Toutes</option>
-              <option value="Common" className="bg-[#121520]">Commune</option>
-              <option value="Rare" className="bg-[#121520]">Rare</option>
-              <option value="Epic" className="bg-[#121520]">Épique</option>
-              <option value="Legendary" className="bg-[#121520]">Légendaire</option>
-            </select>
-          </div>
+        {/* Archetypes Filter */}
+        <div>
+          <span className="font-mono text-[11px] text-gray-400 uppercase font-semibold block mb-1.5">
+            {isEn ? "Archetype" : "Archétype Tactique"} :
+          </span>
+          <select
+            value={filters.archetype}
+            onChange={(e) => setFilters(prev => ({ ...prev, archetype: e.target.value }))}
+            className="w-full px-2.5 py-1.5 rounded-xl bg-[#0e111a] border border-white/15 text-xs text-gray-200 focus:outline-none focus:border-red-500 font-mono"
+          >
+            <option value="ALL">{isEn ? "All Archetypes" : "Tous les Archétypes"}</option>
+            {ARCHETYPES.map((arch) => (
+              <option key={arch.id} value={arch.id} className="bg-[#121520]">
+                {arch.name}
+              </option>
+            ))}
+          </select>
+        </div>
 
-          <div>
-            <label className="block text-[11px] font-mono text-gray-400 mb-1.5">
-              TYPE
-            </label>
-            <select
-              value={filters.type}
-              onChange={(e) => setFilters(prev => ({ ...prev, type: e.target.value }))}
-              className="w-full bg-[#10131d] border border-white/15 rounded-xl px-2 py-1.5 text-xs text-gray-200 focus:outline-none focus:border-red-500"
+        {/* Collection Ownership Filter */}
+        <div>
+          <span className="font-mono text-[11px] text-gray-400 uppercase font-semibold block mb-1.5">
+            {isEn ? "Collection Status" : "Statut de Collection"} :
+          </span>
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => setFilters(prev => ({ ...prev, ownership: 'ALL' }))}
+              className={`flex-1 py-1 rounded-lg text-xs font-gothic font-bold border transition-all ${
+                filters.ownership === 'ALL'
+                  ? 'bg-slate-700 text-white border-slate-500'
+                  : 'bg-[#0e111a] text-gray-400 border-white/10 hover:text-white'
+              }`}
             >
-              <option value="ALL" className="bg-[#121520]">Tous</option>
-              <option value="Vampire" className="bg-[#121520]">Vampire</option>
-              <option value="Mortal" className="bg-[#121520]">Mortel</option>
-              <option value="Retainer" className="bg-[#121520]">Retainer / Bête</option>
-              <option value="Tactic" className="bg-[#121520]">Tactique / Sort</option>
-            </select>
+              {isEn ? "All" : "Toutes"}
+            </button>
+            <button
+              onClick={() => setFilters(prev => ({ ...prev, ownership: 'owned' }))}
+              className={`flex-1 py-1 rounded-lg text-xs font-gothic font-bold border transition-all ${
+                filters.ownership === 'owned'
+                  ? 'bg-emerald-800 text-emerald-100 border-emerald-500 shadow-sm'
+                  : 'bg-[#0e111a] text-gray-400 border-white/10 hover:text-white'
+              }`}
+            >
+              {isEn ? "✔ Owned" : "✔ Possédées"}
+            </button>
+            <button
+              onClick={() => setFilters(prev => ({ ...prev, ownership: 'missing' }))}
+              className={`flex-1 py-1 rounded-lg text-xs font-gothic font-bold border transition-all ${
+                filters.ownership === 'missing'
+                  ? 'bg-red-950 text-red-200 border-red-500 shadow-blood'
+                  : 'bg-[#0e111a] text-gray-400 border-white/10 hover:text-white'
+              }`}
+            >
+              {isEn ? "❌ Missing" : "❌ Manquantes"}
+            </button>
           </div>
         </div>
 

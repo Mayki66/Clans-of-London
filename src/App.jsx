@@ -451,13 +451,25 @@ export default function App() {
       )}
 
       {/* Fixed Sticky Footer across entire app */}
-      <footer className="fixed bottom-0 left-0 right-0 z-30 border-t border-white/10 bg-[#050608]/95 backdrop-blur-lg py-2.5 px-4 shadow-[0_-4px_20px_rgba(0,0,0,0.8)] text-xs text-gray-500">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
-          <div className="flex items-center space-x-2">
+      <footer className="fixed bottom-0 left-0 right-0 z-30 border-t border-white/10 bg-[#050608]/95 backdrop-blur-lg py-2 px-4 shadow-[0_-4px_20px_rgba(0,0,0,0.8)] text-xs text-gray-500">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 text-center md:text-left">
+          <div className="flex items-center space-x-2 flex-wrap justify-center md:justify-start">
             <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
-            <p className="font-gothic font-bold text-gray-300 text-[11px] truncate">
+            <p className="font-gothic font-bold text-gray-300 text-[11px]">
               {t?.brand?.title || "CLANS OF LONDON"} • {t?.brand?.subtitle || "Vampire: The Masquerade"}
             </p>
+            <span className="text-gray-600 hidden sm:inline">•</span>
+            <span className="text-[11px] text-gray-400">
+              {lang === 'fr' ? 'Données :' : 'Data source:'}{' '}
+              <a 
+                href="https://vtm.paradoxwikis.com/CoL_cardlist" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-red-400 hover:text-red-300 hover:underline"
+              >
+                Wiki Paradox (CoL_cardlist)
+              </a>
+            </span>
           </div>
 
           <div className="flex items-center space-x-2 font-mono text-[11px] text-amber-400/90 font-semibold">

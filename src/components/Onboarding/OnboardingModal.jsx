@@ -9,7 +9,7 @@ export default function OnboardingModal({
   onChangeLang,
   t
 }) {
-  const [pseudo, setPseudo] = useState('Mayki');
+  const [pseudo, setPseudo] = useState('');
   const fileInputRef = useRef(null);
 
   const handleSubmitPseudo = (e) => {
@@ -89,10 +89,10 @@ export default function OnboardingModal({
         {/* Welcome Text */}
         <div className="text-center space-y-1.5">
           <h3 className="font-gothic font-extrabold text-2xl text-amber-300">
-            {t?.onboarding?.title || "Bienvenue dans les Nuits de Londres"}
+            {t?.onboarding?.title || (lang === 'fr' ? "Bienvenue dans les Nuits de Londres" : "Welcome to the Nights of London")}
           </h3>
           <p className="text-xs text-gray-400 leading-relaxed font-sans max-w-md mx-auto">
-            {t?.onboarding?.subtitle || "Vampire: The Masquerade – Deck Builder & Arène Stratégique"}
+            {t?.onboarding?.subtitle || (lang === 'fr' ? "Vampire: The Masquerade – Deck Builder & Arène Stratégique" : "Vampire: The Masquerade – Deck Builder & Tactical Arena")}
           </p>
         </div>
 
@@ -100,7 +100,7 @@ export default function OnboardingModal({
         <form onSubmit={handleSubmitPseudo} className="space-y-4 bg-[#121520] p-5 rounded-2xl border border-white/10">
           <div>
             <label className="block text-xs font-mono text-gray-300 mb-1.5 font-semibold">
-              {t?.onboarding?.enterPseudo || "Choisissez votre Pseudo de Sang :"}
+              {t?.onboarding?.enterPseudo || (lang === 'fr' ? "Choisissez votre Pseudo de Sang :" : "Choose your Blood Nickname:")}
             </label>
             <div className="relative">
               <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-amber-400" />
@@ -108,7 +108,7 @@ export default function OnboardingModal({
                 type="text"
                 value={pseudo}
                 onChange={(e) => setPseudo(e.target.value)}
-                placeholder={t?.onboarding?.pseudoPlaceholder || "Ex: Mayki, Kindred, Villon..."}
+                placeholder={lang === 'fr' ? "Entrez votre pseudo..." : "Enter your nickname..."}
                 className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#090b10] border border-amber-500/40 text-sm text-gray-100 font-gothic font-bold placeholder-gray-600 focus:outline-none focus:border-amber-400"
                 autoFocus
               />
@@ -119,7 +119,7 @@ export default function OnboardingModal({
             type="submit"
             className="w-full py-3 rounded-xl bg-gradient-to-r from-red-800 via-red-700 to-rose-900 hover:from-red-700 hover:to-rose-800 text-white font-gothic font-extrabold text-sm tracking-wider shadow-blood transition-all flex items-center justify-center space-x-2"
           >
-            <span>{t?.onboarding?.startJourney || "Pénétrer dans la Mascarade"}</span>
+            <span>{t?.onboarding?.startJourney || (lang === 'fr' ? "Pénétrer dans la Mascarade" : "Enter the Masquerade")}</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </form>
@@ -129,7 +129,7 @@ export default function OnboardingModal({
           <div className="relative flex py-1 items-center">
             <div className="flex-grow border-t border-white/10" />
             <span className="flex-shrink mx-4 text-[11px] font-mono text-gray-500 uppercase">
-              {t?.onboarding?.orImport || "OU Importez votre profil existant (.json)"}
+              {t?.onboarding?.orImport || (lang === 'fr' ? "OU Importez votre profil existant (.json)" : "OR Import your existing profile (.json)")}
             </span>
             <div className="flex-grow border-t border-white/10" />
           </div>
@@ -148,7 +148,7 @@ export default function OnboardingModal({
             className="w-full py-3 rounded-2xl bg-[#141824] hover:bg-[#1f2538] border border-indigo-500/40 text-indigo-200 text-xs font-gothic font-bold flex items-center justify-center space-x-2 transition-all"
           >
             <Upload className="w-4 h-4 text-indigo-400" />
-            <span>{t?.onboarding?.dropJson || "Glissez ou cliquez pour importer votre fichier profil .json"}</span>
+            <span>{t?.onboarding?.dropJson || (lang === 'fr' ? "Glissez ou cliquez pour importer votre fichier profil .json" : "Drag & drop or click to import your profile .json")}</span>
           </button>
         </div>
 
@@ -156,7 +156,7 @@ export default function OnboardingModal({
         <div className="p-3 rounded-xl bg-black/40 border border-white/5 text-[11px] font-mono text-gray-500 flex items-start space-x-2">
           <span className="text-sm">🛡️</span>
           <p className="leading-snug">
-            {t?.onboarding?.privacyNotice || "Respect strict du RGPD : Toutes vos données restent stockées sur votre appareil (LocalStorage). Aucun pistage ni collecte de données."}
+            {t?.onboarding?.privacyNotice || (lang === 'fr' ? "Respect strict du RGPD : Toutes vos données restent stockées sur votre appareil (LocalStorage). Aucun pistage ni collecte de données." : "Strict GDPR Compliance: All your data is stored locally on your device (LocalStorage). Zero tracking or data collection.")}
           </p>
         </div>
 
