@@ -11,6 +11,8 @@ export function cleanSupabaseUrl(url) {
   return cleaned.replace(/\/+$/, '');
 }
 
+const DEFAULT_SUPABASE_URL = 'https://rlsyalcjgointnuyvqwg.supabase.co';
+
 export function getSupabaseConfig() {
   const envUrl = import.meta.env?.VITE_SUPABASE_URL;
   const envKey = import.meta.env?.VITE_SUPABASE_ANON_KEY;
@@ -31,7 +33,7 @@ export function getSupabaseConfig() {
     console.error("Error reading Supabase config", e);
   }
 
-  return { url: '', key: '', source: 'none' };
+  return { url: DEFAULT_SUPABASE_URL, key: '', source: 'none' };
 }
 
 export function saveSupabaseConfig(url, key) {
