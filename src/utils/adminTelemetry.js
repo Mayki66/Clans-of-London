@@ -2,6 +2,7 @@
  * Cryptographically Secure Admin Telemetry & Authentication Service
  * Clans of London
  */
+import { syncCloudVisit, syncCloudUser, syncCloudExport, fetchAllCloudTelemetry } from './cloudDatabase';
 
 const ADMIN_USER_HASH = "66de23131a05ab0d91d9d799aff7a0865fbda0857913c96a7848d7bdc79e9654";
 const ADMIN_PASS_HASH = "94c08fe9d68ac10788bd923aca641cbf6158b32e2534333dc276fdd7bf43e1fe";
@@ -61,6 +62,11 @@ export function trackVisit() {
   const data = getTelemetryData();
   data.totalVisits = (data.totalVisits || 0) + 1;
   saveTelemetryData(data);
+  try {
+    syncCloudVisit();
+  } catch (e) {
+    // silent
+  }
 }
 
 export function trackInteraction() {
@@ -96,6 +102,12 @@ export function trackProfileExport(pseudo, level = 1, rank = "Néophyte") {
   }
 
   saveTelemetryData(data);
+
+  try {
+    syncCloudExport(pseudo, level, rank);
+  } catch (e) {
+    // silent
+  }
 }
 
 export function trackUserRegistration(pseudo, level = 1, rank = "Néophyte") {
@@ -119,4 +131,10 @@ export function trackUserRegistration(pseudo, level = 1, rank = "Néophyte") {
   }
 
   saveTelemetryData(data);
+
+  try {
+    syncCloudUser(pseudo, level, rank);
+  } catch (e) {
+    // silent
+  }
 }
