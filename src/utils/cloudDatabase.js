@@ -2,12 +2,21 @@ import { createClient } from '@supabase/supabase-js';
 
 const LOCAL_STORAGE_SUPABASE_CONFIG = 'col_supabase_config_v1';
 
+export function cleanSupabaseUrl(url) {
+  if (!url) return '';
+  let cleaned = url.trim();
+  cleaned = cleaned.replace(/\/+$/, '');
+  cleaned = cleaned.replace(/\/rest\/v1\/?$/, '');
+  cleaned = cleaned.replace(/\/rest\/?$/, '');
+  return cleaned.replace(/\/+$/, '');
+}
+
 export function getSupabaseConfig() {
   const envUrl = import.meta.env?.VITE_SUPABASE_URL;
   const envKey = import.meta.env?.VITE_SUPABASE_ANON_KEY;
 
   if (envUrl && envKey) {
-    return { url: envUrl, key: envKey, source: 'env' };
+    return { url: cleanSupabaseUrl(envUrl), key: envKey.trim(), source: 'env' };
   }
 
   try {
@@ -15,7 +24,7 @@ export function getSupabaseConfig() {
     if (raw) {
       const parsed = JSON.parse(raw);
       if (parsed.url && parsed.key) {
-        return { ...parsed, source: 'localStorage' };
+        return { url: cleanSupabaseUrl(parsed.url), key: parsed.key.trim(), source: 'localStorage' };
       }
     }
   } catch (e) {
@@ -27,7 +36,10 @@ export function getSupabaseConfig() {
 
 export function saveSupabaseConfig(url, key) {
   try {
-    localStorage.setItem(LOCAL_STORAGE_SUPABASE_CONFIG, JSON.stringify({ url: url.trim(), key: key.trim() }));
+    const cleanedUrl = cleanSupabaseUrl(url);
+    const cleanedKey = key.trim();
+    localStorage.setItem(LOCAL_STORAGE_SUPABASE_CONFIG, JSON.stringify({ url: cleanedUrl, key: cleanedKey }));
+    supabaseInstance = null; // reset cached instance
   } catch (e) {
     console.error("Error saving Supabase config", e);
   }
