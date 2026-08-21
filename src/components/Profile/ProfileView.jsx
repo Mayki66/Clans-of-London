@@ -27,7 +27,7 @@ export default function ProfileView({
   deckCards,
   savedDecks
 }) {
-  const [matchResult, setMatchResult] = useState('victory'); // 'victory' | 'defeat'
+  const [matchResult, setMatchResult] = useState('victory');
   const [matchDeck, setMatchDeck] = useState(savedDecks[0]?.name || 'Deck Actuel');
   const [matchOpponentClan, setMatchOpponentClan] = useState('Brujah');
   const [showSyncInfo, setShowSyncInfo] = useState(false);
@@ -37,14 +37,13 @@ export default function ProfileView({
 
   const fileInputRef = useRef(null);
 
-  // Advanced Collection Filters
+  // Clickable Filters
   const [filters, setFilters] = useState({
     search: '',
     clan: 'ALL',
     cost: 'ALL',
     power: 'ALL',
-    ownership: 'ALL', // 'ALL' | 'owned' | 'unowned'
-    sortBy: 'cost-asc'
+    ownership: 'ALL' // 'ALL' | 'owned' | 'unowned'
   });
 
   const ownedCardIds = userProfile.ownedCardIds || [];
@@ -112,7 +111,6 @@ export default function ProfileView({
     };
 
     fileReader.readAsText(file);
-    // Reset file input
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
@@ -125,7 +123,7 @@ export default function ProfileView({
       playerName: newName.trim(),
       collectionLevel: 1,
       arenaPoints: 500,
-      ownedCardIds: CARDS_DATA.slice(0, 10).map(c => c.id), // starter pack
+      ownedCardIds: CARDS_DATA.slice(0, 10).map(c => c.id),
       matchHistory: []
     };
 
@@ -139,11 +137,11 @@ export default function ProfileView({
   const displayedCards = CARDS_DATA.filter(card => {
     const isOwned = ownedCardIds.includes(card.id);
 
-    // Ownership filter
+    // Ownership clickable filter
     if (filters.ownership === 'owned' && !isOwned) return false;
     if (filters.ownership === 'unowned' && isOwned) return false;
 
-    // Clan filter (including Mortal & Duskborn)
+    // Clan clickable filter (including Mortal & Duskborn)
     if (filters.clan !== 'ALL') {
       if (filters.clan === 'Mortal' || filters.clan === 'Mortel') {
         const isMortal = card.clan === 'Mortel' || card.clan === 'Mortal' || card.type === 'Mortel' || card.type === 'Mortal' || card.keywords?.some(k => k.toLowerCase().includes('mortal') || k.toLowerCase().includes('mortel'));
@@ -156,7 +154,7 @@ export default function ProfileView({
       }
     }
 
-    // Cost filter
+    // Cost clickable filter
     if (filters.cost !== 'ALL') {
       if (filters.cost === 'X') {
         if (card.cost !== 'X' && card.costDisplay !== 'X') return false;
@@ -168,7 +166,7 @@ export default function ProfileView({
       }
     }
 
-    // Power filter
+    // Power clickable filter
     if (filters.power !== 'ALL') {
       if (filters.power === '1-3' && (card.power < 1 || card.power > 3)) return false;
       if (filters.power === '4-6' && (card.power < 4 || card.power > 6)) return false;
@@ -192,16 +190,7 @@ export default function ProfileView({
   }).sort((a, b) => {
     const costA = typeof a.cost === 'number' ? a.cost : 0;
     const costB = typeof b.cost === 'number' ? b.cost : 0;
-
-    switch (filters.sortBy) {
-      case 'cost-asc': return costA - costB || a.name.localeCompare(b.name);
-      case 'cost-desc': return costB - costA || a.name.localeCompare(b.name);
-      case 'power-desc': return b.power - a.power || a.name.localeCompare(b.name);
-      case 'power-asc': return a.power - b.power || a.name.localeCompare(b.name);
-      case 'clan': return a.clan.localeCompare(b.clan) || costA - costB;
-      case 'name-asc': return a.name.localeCompare(b.name);
-      default: return costA - costB;
-    }
+    return costA - costB || a.name.localeCompare(b.name);
   });
 
   const resetFilters = () => {
@@ -210,8 +199,7 @@ export default function ProfileView({
       clan: 'ALL',
       cost: 'ALL',
       power: 'ALL',
-      ownership: 'ALL',
-      sortBy: 'cost-asc'
+      ownership: 'ALL'
     });
   };
 
@@ -322,10 +310,8 @@ export default function ProfileView({
             </div>
           </div>
 
-          {/* Account System Action Buttons (JSON Download / Upload / New Account) */}
+          {/* Account Action Buttons */}
           <div className="flex flex-wrap items-center gap-2">
-            
-            {/* Hidden JSON File Input */}
             <input
               type="file"
               ref={fileInputRef}
@@ -334,7 +320,6 @@ export default function ProfileView({
               className="hidden"
             />
 
-            {/* Export JSON Button */}
             <button
               onClick={handleExportJSON}
               className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-600 via-amber-700 to-amber-800 hover:from-amber-500 hover:to-amber-700 text-white font-gothic font-bold text-xs shadow-gold transition-all"
@@ -344,7 +329,6 @@ export default function ProfileView({
               <span>Exporter mon Profil (.json)</span>
             </button>
 
-            {/* Import JSON Button */}
             <button
               onClick={() => fileInputRef.current?.click()}
               className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-blue-900 to-indigo-900 hover:from-blue-800 hover:to-indigo-800 border border-cyan-400/50 text-cyan-200 hover:text-white font-gothic font-bold text-xs shadow-[0_0_12px_rgba(6,182,212,0.3)] transition-all"
@@ -354,7 +338,6 @@ export default function ProfileView({
               <span>Importer un Profil (.json)</span>
             </button>
 
-            {/* Switch / New Account */}
             <button
               onClick={handleCreateNewAccount}
               className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-[#141824] hover:bg-[#1f2538] border border-white/15 text-gray-300 hover:text-white font-gothic font-bold text-xs transition-all"
@@ -367,13 +350,11 @@ export default function ProfileView({
         </div>
 
         {/* Sync Info Banner */}
-        <div className="p-3.5 rounded-xl bg-[#090b10] border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs text-gray-400">
-          <div className="flex items-center space-x-2">
-            <UserCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-            <span>
-              Vous pouvez sauvegarder votre collection en exportant votre fichier JSON, et le recharger à tout moment sur n'importe quel ordinateur pour retrouver instantanément vos <strong>{ownedCount} cartes</strong> !
-            </span>
-          </div>
+        <div className="p-3 rounded-xl bg-[#090b10] border border-white/10 flex items-center space-x-2 text-xs text-gray-400">
+          <UserCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+          <span>
+            Sauvegardez ou transférez votre collection en 1 clic grâce aux boutons d'exportation/importation JSON ci-dessus !
+          </span>
         </div>
       </div>
 
@@ -536,7 +517,7 @@ export default function ProfileView({
 
         </div>
 
-        {/* Right Column: Collection Manager Checklist with Clan/Cost/Power Filters (7 cols) */}
+        {/* Right Column: Collection Manager Checklist with Clickable Pill Buttons (7 cols) */}
         <div className="lg:col-span-7 space-y-4">
           <div className="glass-panel rounded-2xl p-5 border border-white/10 space-y-4 shadow-2xl">
             
@@ -570,137 +551,233 @@ export default function ProfileView({
               </div>
             </div>
 
-            {/* Filter Bar for Checklist */}
+            {/* Clickable Filters Panel */}
             <div className="space-y-3 p-3.5 rounded-xl bg-[#090b10] border border-white/10 text-xs">
               
-              {/* Search & Sort & Reset */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-                <div className="relative flex-1">
-                  <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" />
-                  <input
-                    type="text"
-                    value={filters.search}
-                    onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
-                    placeholder="Chercher une carte..."
-                    className="w-full pl-8 pr-3 py-1.5 rounded-lg bg-[#141824] border border-white/15 text-xs text-gray-100 placeholder-gray-500"
-                  />
-                </div>
-
-                <div className="flex items-center space-x-2">
-                  <select
-                    value={filters.ownership}
-                    onChange={(e) => setFilters(prev => ({ ...prev, ownership: e.target.value }))}
-                    className="px-2.5 py-1.5 rounded-lg bg-[#141824] border border-white/15 text-xs text-gray-200 font-mono"
-                  >
-                    <option value="ALL">Statut : Toutes</option>
-                    <option value="owned">✔ Possédées ({ownedCount})</option>
-                    <option value="unowned">❌ Manquantes ({GAME_TOTAL_CARDS - ownedCount})</option>
-                  </select>
-
-                  <select
-                    value={filters.sortBy}
-                    onChange={(e) => setFilters(prev => ({ ...prev, sortBy: e.target.value }))}
-                    className="px-2.5 py-1.5 rounded-lg bg-[#141824] border border-white/15 text-xs text-gray-200 font-mono"
-                  >
-                    <option value="cost-asc">Coût : 1 → 7+</option>
-                    <option value="cost-desc">Coût : 7+ → 1</option>
-                    <option value="power-desc">Puissance : Max → Min</option>
-                    <option value="power-asc">Puissance : Min → Max</option>
-                    <option value="clan">Clan : A → Z</option>
-                    <option value="name-asc">Nom : A → Z</option>
-                  </select>
-
-                  <button
-                    onClick={resetFilters}
-                    className="p-1.5 rounded-lg bg-[#141824] border border-white/15 text-gray-400 hover:text-white"
-                    title="Réinitialiser"
-                  >
-                    <RotateCcw className="w-3.5 h-3.5" />
-                  </button>
-                </div>
+              {/* Search Bar */}
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input
+                  type="text"
+                  value={filters.search}
+                  onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
+                  placeholder="Rechercher une carte par nom, clan, capacité..."
+                  className="w-full pl-9 pr-3 py-2 rounded-xl bg-[#141824] border border-white/15 text-xs text-gray-100 placeholder-gray-500"
+                />
               </div>
 
-              {/* Clan Quick Chips */}
-              <div className="flex flex-wrap gap-1 pt-1 border-t border-white/5">
-                <button
-                  onClick={() => setFilters(prev => ({ ...prev, clan: 'ALL' }))}
-                  className={`px-2 py-0.5 rounded-md text-[11px] font-gothic transition-all border ${
-                    filters.clan === 'ALL'
-                      ? 'bg-red-800 text-white border-red-500'
-                      : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
-                  }`}
-                >
-                  Tous
-                </button>
-                {Object.entries(CLANS).map(([ck, c]) => (
+              {/* Clickable Ownership Status */}
+              <div className="space-y-1">
+                <span className="text-[10px] font-mono text-gray-400 uppercase font-bold">Statut de possession :</span>
+                <div className="flex flex-wrap gap-1.5">
                   <button
-                    key={ck}
-                    onClick={() => setFilters(prev => ({ ...prev, clan: prev.clan === ck ? 'ALL' : ck }))}
-                    style={filters.clan === ck ? { backgroundColor: c.bgColor, borderColor: c.borderColor, color: c.themeColor } : {}}
-                    className={`px-2 py-0.5 rounded-md text-[11px] font-gothic transition-all border ${
-                      filters.clan === ck
-                        ? 'font-bold'
-                        : 'bg-[#141824] text-gray-400 border-white/10 hover:text-gray-200'
+                    onClick={() => setFilters(prev => ({ ...prev, ownership: 'ALL' }))}
+                    className={`px-3 py-1 rounded-lg text-xs font-gothic font-bold border transition-all ${
+                      filters.ownership === 'ALL'
+                        ? 'bg-amber-600 text-white border-amber-400 shadow-gold'
+                        : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
                     }`}
                   >
-                    {c.name}
+                    Toutes ({GAME_TOTAL_CARDS})
                   </button>
-                ))}
+                  <button
+                    onClick={() => setFilters(prev => ({ ...prev, ownership: 'owned' }))}
+                    className={`px-3 py-1 rounded-lg text-xs font-gothic font-bold border transition-all ${
+                      filters.ownership === 'owned'
+                        ? 'bg-emerald-700 text-white border-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.4)]'
+                        : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
+                    }`}
+                  >
+                    ✔ Possédées ({ownedCount})
+                  </button>
+                  <button
+                    onClick={() => setFilters(prev => ({ ...prev, ownership: 'unowned' }))}
+                    className={`px-3 py-1 rounded-lg text-xs font-gothic font-bold border transition-all ${
+                      filters.ownership === 'unowned'
+                        ? 'bg-red-800 text-white border-red-500 shadow-blood'
+                        : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
+                    }`}
+                  >
+                    ❌ Manquantes ({GAME_TOTAL_CARDS - ownedCount})
+                  </button>
+                </div>
               </div>
+
+              {/* Clickable Clan Quick Chips */}
+              <div className="space-y-1 pt-1 border-t border-white/5">
+                <span className="text-[10px] font-mono text-gray-400 uppercase font-bold">Clan / Faction :</span>
+                <div className="flex flex-wrap gap-1">
+                  <button
+                    onClick={() => setFilters(prev => ({ ...prev, clan: 'ALL' }))}
+                    className={`px-2.5 py-1 rounded-lg text-[11px] font-gothic font-bold transition-all border ${
+                      filters.clan === 'ALL'
+                        ? 'bg-red-800 text-white border-red-500 shadow-blood'
+                        : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
+                    }`}
+                  >
+                    Tous
+                  </button>
+                  {Object.entries(CLANS).map(([ck, c]) => (
+                    <button
+                      key={ck}
+                      onClick={() => setFilters(prev => ({ ...prev, clan: prev.clan === ck ? 'ALL' : ck }))}
+                      style={filters.clan === ck ? { backgroundColor: c.bgColor, borderColor: c.borderColor, color: c.themeColor } : {}}
+                      className={`px-2.5 py-1 rounded-lg text-[11px] font-gothic transition-all border ${
+                        filters.clan === ck
+                          ? 'font-bold shadow-sm'
+                          : 'bg-[#141824] text-gray-400 border-white/10 hover:text-gray-200'
+                      }`}
+                    >
+                      {c.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Clickable Blood Cost & Power Multi-Selector */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 border-t border-white/5">
+                
+                {/* Cost Filter */}
+                <div className="space-y-1">
+                  <span className="text-[10px] font-mono text-gray-400 uppercase font-bold flex items-center space-x-1">
+                    <Droplets className="w-3 h-3 text-red-400" />
+                    <span>Coût en Sang :</span>
+                  </span>
+                  <div className="flex flex-wrap items-center gap-1">
+                    <button
+                      onClick={() => setFilters(prev => ({ ...prev, cost: 'ALL' }))}
+                      className={`px-2 py-1 rounded-md text-[11px] font-mono font-bold border ${
+                        filters.cost === 'ALL' ? 'bg-red-800 text-white border-red-500 shadow-blood' : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
+                      }`}
+                    >
+                      Tous
+                    </button>
+                    {[1, 2, 3, 4, 5, 6, '7+', 'X'].map(cost => (
+                      <button
+                        key={cost}
+                        onClick={() => setFilters(prev => ({ ...prev, cost: filters.cost === cost ? 'ALL' : cost }))}
+                        className={`w-7 py-1 rounded-md text-[11px] font-mono font-bold border transition-all flex items-center justify-center ${
+                          filters.cost === cost
+                            ? 'bg-red-600 text-white border-red-400 shadow-blood'
+                            : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
+                        }`}
+                      >
+                        {cost}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Power Filter */}
+                <div className="space-y-1">
+                  <span className="text-[10px] font-mono text-gray-400 uppercase font-bold flex items-center space-x-1">
+                    <Shield className="w-3 h-3 text-amber-400" />
+                    <span>Puissance :</span>
+                  </span>
+                  <div className="flex flex-wrap items-center gap-1">
+                    <button
+                      onClick={() => setFilters(prev => ({ ...prev, power: 'ALL' }))}
+                      className={`px-2 py-1 rounded-md text-[11px] font-mono font-bold border ${
+                        filters.power === 'ALL' ? 'bg-amber-800 text-white border-amber-500 shadow-gold' : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
+                      }`}
+                    >
+                      Tous
+                    </button>
+                    {['1-3', '4-6', '7-9', '10+'].map(pw => (
+                      <button
+                        key={pw}
+                        onClick={() => setFilters(prev => ({ ...prev, power: filters.power === pw ? 'ALL' : pw }))}
+                        className={`px-2 py-1 rounded-md text-[10px] font-mono font-bold border transition-all ${
+                          filters.power === pw
+                            ? 'bg-amber-600 text-white border-amber-400 shadow-gold'
+                            : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
+                        }`}
+                      >
+                        {pw}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+
             </div>
 
-            {/* Checklist Results */}
-            <div className="space-y-1.5 max-h-[500px] overflow-y-auto pr-1">
+            {/* Interactive Cards Checklist */}
+            <div className="space-y-1.5 max-h-[520px] overflow-y-auto pr-1">
               <div className="flex items-center justify-between text-[11px] font-mono text-gray-400 px-2 py-1">
                 <span>{displayedCards.length} cartes affichées</span>
-                <span>Cliquer pour cocher / décocher</span>
+                <span>Cliquer sur une ligne pour cocher / décocher</span>
               </div>
 
               {displayedCards.map((card) => {
                 const isOwned = ownedCardIds.includes(card.id);
-                const clanData = CLANS[card.clan] || CLANS.Mortal;
+                const clanInfo = CLANS[card.clan] || CLANS.Mortal;
 
                 return (
                   <div
                     key={card.id}
                     onClick={() => onToggleOwnedCard(card.id)}
-                    className={`flex items-center justify-between p-2 rounded-xl border transition-all cursor-pointer select-none ${
+                    className={`flex items-center justify-between p-2.5 rounded-xl border transition-all cursor-pointer select-none ${
                       isOwned
-                        ? 'bg-emerald-950/40 border-emerald-500/60 text-gray-100 hover:bg-emerald-900/50'
-                        : 'bg-[#0a0d14] border-white/5 text-gray-500 hover:border-white/20 hover:text-gray-400'
+                        ? 'bg-[#121622] hover:bg-[#181d2e] border-emerald-500/50 shadow-sm'
+                        : 'bg-[#08090f] hover:bg-[#0d1017] border-white/5 opacity-55 hover:opacity-85'
                     }`}
                   >
                     <div className="flex items-center space-x-3 min-w-0">
-                      {isOwned ? (
-                        <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-                      ) : (
-                        <Circle className="w-5 h-5 text-gray-600 flex-shrink-0" />
-                      )}
+                      {/* Checkbox Icon */}
+                      <div className={`w-5 h-5 rounded-md flex items-center justify-center transition-all ${
+                        isOwned ? 'bg-emerald-600 text-white shadow-sm' : 'border border-gray-600 bg-black/40'
+                      }`}>
+                        {isOwned && <CheckCircle2 className="w-4 h-4" />}
+                      </div>
 
-                      <div className="flex items-center space-x-2 truncate">
-                        <span className="w-5 h-5 rounded-full bg-red-900 border border-red-400 text-[10px] font-bold text-white flex items-center justify-center font-mono">
-                          {card.costDisplay || card.cost}
-                        </span>
-                        <span className={`font-gothic font-bold text-xs truncate ${isOwned ? 'text-gray-100' : 'text-gray-400'}`}>
+                      {/* Blood Cost & Name */}
+                      <div className="w-6 h-6 rounded-full bg-red-900 border border-red-500 text-[11px] font-bold text-white flex items-center justify-center font-mono shadow-sm">
+                        {card.costDisplay || card.cost}
+                      </div>
+
+                      <div className="truncate">
+                        <div className="font-gothic font-semibold text-xs text-gray-100 truncate">
                           {card.name}
-                        </span>
-                        <span className="text-[10px] font-mono" style={{ color: clanData.themeColor }}>
-                          {card.clan}
-                        </span>
+                        </div>
+                        <div className="flex items-center space-x-1.5 text-[10px] text-gray-400">
+                          <span style={{ color: clanInfo.themeColor }} className="font-medium">{card.clan}</span>
+                          <span>•</span>
+                          <span className="text-amber-400 font-mono font-bold">P{card.power}</span>
+                          <span>•</span>
+                          <span className="text-gray-500">{card.archetype}</span>
+                        </div>
                       </div>
                     </div>
 
-                    <div className="flex items-center space-x-2 font-mono text-xs flex-shrink-0">
-                      <span className="text-amber-400 font-bold">P{card.power}</span>
-                      <span className="text-gray-500 text-[10px]">S{card.series}</span>
-                      <span className={`text-[10px] px-1.5 py-0.2 rounded font-bold uppercase ${isOwned ? 'bg-emerald-500/20 text-emerald-300' : 'bg-black/40 text-gray-600'}`}>
-                        {isOwned ? 'Acquis' : 'Manquant'}
+                    <div className="flex items-center space-x-2 flex-shrink-0">
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/40 border border-white/10 text-gray-300">
+                        {card.rarity}
+                      </span>
+                      <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-md ${
+                        isOwned ? 'bg-emerald-950/70 text-emerald-300 border border-emerald-500/40' : 'bg-black/30 text-gray-500'
+                      }`}>
+                        {isOwned ? '✓ Possédée' : 'Non possédée'}
                       </span>
                     </div>
                   </div>
                 );
               })}
+
+              {displayedCards.length === 0 && (
+                <div className="text-center py-10 text-xs text-gray-500 space-y-2">
+                  <p>Aucune carte ne correspond aux critères sélectionnés.</p>
+                  <button
+                    onClick={resetFilters}
+                    className="px-3 py-1 rounded-lg bg-slate-800 text-gray-300 hover:text-white"
+                  >
+                    Réinitialiser les filtres
+                  </button>
+                </div>
+              )}
             </div>
+
           </div>
         </div>
 
