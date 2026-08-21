@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
-import { User, Shield, Trophy, Award, CheckCircle2, Circle, Flame, Sparkles, Droplets, ArrowRight, Download, Upload, RefreshCw, Layers, Zap, Info, Plus, Search, RotateCcw, ArrowUpDown, Filter } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { 
+  User, Shield, Trophy, Award, CheckCircle2, Circle, Flame, Sparkles, Droplets, 
+  ArrowRight, Download, Upload, RefreshCw, Layers, Zap, Info, Plus, Search, 
+  RotateCcw, ArrowUpDown, Filter, UserCheck, FileJson, Check, Users
+} from 'lucide-react';
+import confetti from 'canvas-confetti';
 import { CARDS_DATA } from '../../data/cardsData';
 import { CLANS } from '../../data/clansData';
 
@@ -26,6 +31,11 @@ export default function ProfileView({
   const [matchDeck, setMatchDeck] = useState(savedDecks[0]?.name || 'Deck Actuel');
   const [matchOpponentClan, setMatchOpponentClan] = useState('Brujah');
   const [showSyncInfo, setShowSyncInfo] = useState(false);
+  const [isEditingName, setIsEditingName] = useState(false);
+  const [tempPlayerName, setTempPlayerName] = useState(userProfile.playerName || 'Mayki');
+  const [importNotification, setImportNotification] = useState('');
+
+  const fileInputRef = useRef(null);
 
   // Advanced Collection Filters
   const [filters, setFilters] = useState({
@@ -34,13 +44,96 @@ export default function ProfileView({
     cost: 'ALL',
     power: 'ALL',
     ownership: 'ALL', // 'ALL' | 'owned' | 'unowned'
-    sortBy: 'cost-asc' // 'cost-asc' | 'cost-desc' | 'power-desc' | 'power-asc' | 'name-asc' | 'clan'
+    sortBy: 'cost-asc'
   });
 
   const ownedCardIds = userProfile.ownedCardIds || [];
   const ownedCount = ownedCardIds.length;
   const gameCompletionPct = Math.round((ownedCount / GAME_TOTAL_CARDS) * 100);
-  const dbCompletionPct = Math.round((ownedCount / CARDS_DATA.length) * 100);
+
+  // Export User Profile to JSON File
+  const handleExportJSON = () => {
+    const exportData = {
+      app: "Vampire: The Masquerade – Clans of London",
+      version: "1.0",
+      exportDate: new Date().toISOString(),
+      playerName: userProfile.playerName || "Mayki",
+      collectionLevel: userProfile.collectionLevel || Math.max(1, Math.floor(ownedCount / 5)),
+      arenaPoints: userProfile.arenaPoints || 1250,
+      ownedCardIds: ownedCardIds,
+      matchHistory: userProfile.matchHistory || [],
+      savedDecks: savedDecks || []
+    };
+
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportData, null, 2));
+    const downloadAnchor = document.createElement('a');
+    const safeName = (userProfile.playerName || 'Mayki').replace(/[^a-z0-9_-]/gi, '_').toLowerCase();
+    downloadAnchor.setAttribute("href", dataStr);
+    downloadAnchor.setAttribute("download", `clans_of_london_profil_${safeName}.json`);
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+
+    setImportNotification(`Profil de ${userProfile.playerName || 'Mayki'} exporté avec succès !`);
+    setTimeout(() => setImportNotification(''), 3500);
+  };
+
+  // Import User Profile from JSON File
+  const handleImportJSON = (e) => {
+    const fileReader = new FileReader();
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    fileReader.onload = (event) => {
+      try {
+        const parsed = JSON.parse(event.target.result);
+        if (parsed.ownedCardIds && Array.isArray(parsed.ownedCardIds)) {
+          const updatedProfile = {
+            ...userProfile,
+            playerName: parsed.playerName || userProfile.playerName || 'Mayki',
+            collectionLevel: parsed.collectionLevel || Math.max(1, Math.floor(parsed.ownedCardIds.length / 5)),
+            arenaPoints: parsed.arenaPoints !== undefined ? parsed.arenaPoints : (userProfile.arenaPoints || 1250),
+            ownedCardIds: parsed.ownedCardIds,
+            matchHistory: parsed.matchHistory || userProfile.matchHistory || []
+          };
+
+          onUpdateProfile(updatedProfile);
+          setTempPlayerName(updatedProfile.playerName);
+          confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+          setImportNotification(`Compte "${updatedProfile.playerName}" importé avec succès (${parsed.ownedCardIds.length} cartes) !`);
+          setTimeout(() => setImportNotification(''), 4500);
+        } else {
+          alert('Fichier JSON invalide : structure de cartes manquante.');
+        }
+      } catch (err) {
+        console.error('Error importing JSON profile', err);
+        alert('Erreur lors de la lecture du fichier JSON.');
+      }
+    };
+
+    fileReader.readAsText(file);
+    // Reset file input
+    if (fileInputRef.current) fileInputRef.current.value = '';
+  };
+
+  // Switch to blank / guest account
+  const handleCreateNewAccount = () => {
+    const newName = prompt("Entrez le pseudo du nouveau joueur :", "Nouveau Joueur");
+    if (!newName) return;
+
+    const newProfile = {
+      playerName: newName.trim(),
+      collectionLevel: 1,
+      arenaPoints: 500,
+      ownedCardIds: CARDS_DATA.slice(0, 10).map(c => c.id), // starter pack
+      matchHistory: []
+    };
+
+    onUpdateProfile(newProfile);
+    setTempPlayerName(newProfile.playerName);
+    setImportNotification(`Nouveau compte créé pour ${newName} !`);
+    setTimeout(() => setImportNotification(''), 3500);
+  };
 
   // Filter & sort cards in collection checklist
   const displayedCards = CARDS_DATA.filter(card => {
@@ -50,13 +143,29 @@ export default function ProfileView({
     if (filters.ownership === 'owned' && !isOwned) return false;
     if (filters.ownership === 'unowned' && isOwned) return false;
 
-    // Clan filter
-    if (filters.clan !== 'ALL' && card.clan !== filters.clan) return false;
+    // Clan filter (including Mortal & Duskborn)
+    if (filters.clan !== 'ALL') {
+      if (filters.clan === 'Mortal' || filters.clan === 'Mortel') {
+        const isMortal = card.clan === 'Mortel' || card.clan === 'Mortal' || card.type === 'Mortel' || card.type === 'Mortal' || card.keywords?.some(k => k.toLowerCase().includes('mortal') || k.toLowerCase().includes('mortel'));
+        if (!isMortal) return false;
+      } else if (filters.clan === 'Duskborn') {
+        const isDuskborn = card.clan === 'Duskborn' || card.keywords?.some(k => k.toLowerCase().includes('duskborn'));
+        if (!isDuskborn) return false;
+      } else {
+        if (card.clan !== filters.clan && card.clan?.toLowerCase() !== filters.clan.toLowerCase()) return false;
+      }
+    }
 
     // Cost filter
     if (filters.cost !== 'ALL') {
-      if (filters.cost === '7+' && card.cost < 7) return false;
-      if (typeof filters.cost === 'number' && card.cost !== filters.cost) return false;
+      if (filters.cost === 'X') {
+        if (card.cost !== 'X' && card.costDisplay !== 'X') return false;
+      } else if (filters.cost === '7+') {
+        const numCost = typeof card.cost === 'number' ? card.cost : 0;
+        if (numCost < 7) return false;
+      } else if (typeof filters.cost === 'number') {
+        if (card.cost !== filters.cost) return false;
+      }
     }
 
     // Power filter
@@ -81,14 +190,17 @@ export default function ProfileView({
 
     return true;
   }).sort((a, b) => {
+    const costA = typeof a.cost === 'number' ? a.cost : 0;
+    const costB = typeof b.cost === 'number' ? b.cost : 0;
+
     switch (filters.sortBy) {
-      case 'cost-asc': return a.cost - b.cost || a.name.localeCompare(b.name);
-      case 'cost-desc': return b.cost - a.cost || a.name.localeCompare(b.name);
+      case 'cost-asc': return costA - costB || a.name.localeCompare(b.name);
+      case 'cost-desc': return costB - costA || a.name.localeCompare(b.name);
       case 'power-desc': return b.power - a.power || a.name.localeCompare(b.name);
       case 'power-asc': return a.power - b.power || a.name.localeCompare(b.name);
-      case 'clan': return a.clan.localeCompare(b.clan) || a.cost - b.cost;
+      case 'clan': return a.clan.localeCompare(b.clan) || costA - costB;
       case 'name-asc': return a.name.localeCompare(b.name);
-      default: return a.cost - b.cost;
+      default: return costA - costB;
     }
   });
 
@@ -110,6 +222,17 @@ export default function ProfileView({
   const winrate = totalMatches > 0 ? Math.round((victories / totalMatches) * 100) : 0;
 
   const currentRank = ARENA_RANKS.slice().reverse().find(r => (userProfile.arenaPoints || 0) >= r.minPts) || ARENA_RANKS[0];
+
+  const handleSaveName = (e) => {
+    e.preventDefault();
+    if (tempPlayerName.trim()) {
+      onUpdateProfile({
+        ...userProfile,
+        playerName: tempPlayerName.trim()
+      });
+      setIsEditingName(false);
+    }
+  };
 
   const handleAddMatch = (e) => {
     e.preventDefault();
@@ -134,55 +257,124 @@ export default function ProfileView({
 
   return (
     <div className="space-y-6">
-      {/* Profile & Sync Top Header */}
-      <div className="glass-panel rounded-2xl p-6 border border-white/10 shadow-2xl relative overflow-hidden">
+
+      {/* Notification Toast */}
+      {importNotification && (
+        <div className="p-4 rounded-2xl bg-emerald-950/90 border-2 border-emerald-500 text-emerald-200 text-sm font-gothic font-bold flex items-center justify-between shadow-[0_0_25px_rgba(16,185,129,0.5)] animate-fadeIn">
+          <div className="flex items-center space-x-2">
+            <Check className="w-5 h-5 text-emerald-400" />
+            <span>{importNotification}</span>
+          </div>
+          <button onClick={() => setImportNotification('')} className="text-emerald-400 hover:text-white text-xs font-mono">✕</button>
+        </div>
+      )}
+
+      {/* Profile Header & Account Management */}
+      <div className="glass-panel rounded-2xl p-6 border border-white/10 shadow-2xl relative overflow-hidden space-y-4">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          
+          {/* Avatar & Player Info */}
           <div className="flex items-center space-x-4">
             <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500 via-red-800 to-slate-950 border-2 border-amber-400/80 flex items-center justify-center text-3xl shadow-gold">
               {currentRank.icon}
             </div>
             <div>
               <div className="flex items-center space-x-2">
-                <h1 className="font-gothic font-extrabold text-2xl text-gray-100">
-                  {userProfile.playerName || 'Mayki (Kindred)'}
-                </h1>
+                {isEditingName ? (
+                  <form onSubmit={handleSaveName} className="flex items-center space-x-2">
+                    <input
+                      type="text"
+                      value={tempPlayerName}
+                      onChange={(e) => setTempPlayerName(e.target.value)}
+                      className="px-2.5 py-1 rounded-lg bg-black/60 border border-amber-400 text-sm text-gray-100 font-gothic font-bold"
+                      autoFocus
+                    />
+                    <button type="submit" className="px-2 py-1 rounded-lg bg-amber-600 text-black text-xs font-bold font-gothic">
+                      OK
+                    </button>
+                  </form>
+                ) : (
+                  <div className="flex items-center space-x-2">
+                    <h1 
+                      onClick={() => setIsEditingName(true)}
+                      className="font-gothic font-extrabold text-2xl text-gray-100 cursor-pointer hover:text-amber-400 transition-colors"
+                      title="Cliquez pour modifier votre pseudo"
+                    >
+                      {userProfile.playerName || 'Mayki'}
+                    </h1>
+                    <button 
+                      onClick={() => setIsEditingName(true)} 
+                      className="text-[10px] font-mono text-gray-400 hover:text-amber-300 underline"
+                    >
+                      (modifier)
+                    </button>
+                  </div>
+                )}
+
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-amber-500/20 border border-amber-500/40 text-amber-300">
-                  Niveau de Collection {userProfile.collectionLevel || 14}
+                  Niveau {userProfile.collectionLevel || Math.max(1, Math.floor(ownedCount / 5))}
                 </span>
               </div>
+
               <p className="text-xs text-gray-400 font-mono mt-0.5">
-                Rang : <strong className="text-amber-400">{currentRank.name}</strong> • {userProfile.arenaPoints || 1250} Points d'Arène
+                Compte Actif : <strong className="text-amber-400">{userProfile.playerName || 'Mayki'}</strong> • Rang : <strong className="text-emerald-400">{currentRank.name}</strong> • {userProfile.arenaPoints || 1250} Pts d'Arène
               </p>
             </div>
           </div>
 
-          {/* Quick Bridge Information Button */}
-          <div className="flex items-center space-x-2">
+          {/* Account System Action Buttons (JSON Download / Upload / New Account) */}
+          <div className="flex flex-wrap items-center gap-2">
+            
+            {/* Hidden JSON File Input */}
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleImportJSON}
+              accept=".json"
+              className="hidden"
+            />
+
+            {/* Export JSON Button */}
             <button
-              onClick={() => setShowSyncInfo(!showSyncInfo)}
-              className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-[#141824] hover:bg-[#1e2538] border border-white/15 text-xs text-gray-300 hover:text-white font-gothic transition-all"
+              onClick={handleExportJSON}
+              className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-600 via-amber-700 to-amber-800 hover:from-amber-500 hover:to-amber-700 text-white font-gothic font-bold text-xs shadow-gold transition-all"
+              title="Télécharger votre fichier de profil et vos cartes au format JSON"
             >
-              <Info className="w-4 h-4 text-amber-400" />
-              <span>Comment fonctionne le Pont de Jeu ?</span>
+              <Download className="w-4 h-4" />
+              <span>Exporter mon Profil (.json)</span>
+            </button>
+
+            {/* Import JSON Button */}
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-blue-900 to-indigo-900 hover:from-blue-800 hover:to-indigo-800 border border-cyan-400/50 text-cyan-200 hover:text-white font-gothic font-bold text-xs shadow-[0_0_12px_rgba(6,182,212,0.3)] transition-all"
+              title="Charger un fichier JSON existant pour retrouver vos cartes et votre compte"
+            >
+              <Upload className="w-4 h-4" />
+              <span>Importer un Profil (.json)</span>
+            </button>
+
+            {/* Switch / New Account */}
+            <button
+              onClick={handleCreateNewAccount}
+              className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-[#141824] hover:bg-[#1f2538] border border-white/15 text-gray-300 hover:text-white font-gothic font-bold text-xs transition-all"
+              title="Créer ou basculer vers un autre compte joueur"
+            >
+              <Users className="w-4 h-4 text-purple-400" />
+              <span>Changer de Compte</span>
             </button>
           </div>
         </div>
 
-        {/* Sync Info Modal / Callout */}
-        {showSyncInfo && (
-          <div className="mt-4 p-4 rounded-xl bg-[#090b10] border border-amber-500/30 text-xs text-gray-300 space-y-2 animate-fadeIn">
-            <div className="flex items-center space-x-2 text-amber-400 font-bold font-gothic">
-              <Zap className="w-4 h-4" />
-              <span>Synchronisation & Fonctionnement du Hub</span>
-            </div>
-            <p className="leading-relaxed">
-              Le jeu <em>Vampire: The Masquerade – Clans of London</em> utilise les comptes officiels mobiles (Google Play Games / Game Center). Comme les serveurs du jeu sont fermés sans API publique, ce hub vous permet de <strong>cocher vos cartes obtenues en jeu</strong> et de <strong>suivre vos victoires d'arène</strong>.
-            </p>
-            <p className="text-emerald-400 leading-relaxed font-semibold">
-              ✔ Vos données sont automatiquement enregistrées dans votre navigateur (LocalStorage). Vous pouvez filtrer tout le Deck Builder et les Decks Méta pour n'afficher que les cartes que vous possédez !
-            </p>
+        {/* Sync Info Banner */}
+        <div className="p-3.5 rounded-xl bg-[#090b10] border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs text-gray-400">
+          <div className="flex items-center space-x-2">
+            <UserCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+            <span>
+              Vous pouvez sauvegarder votre collection en exportant votre fichier JSON, et le recharger à tout moment sur n'importe quel ordinateur pour retrouver instantanément vos <strong>{ownedCount} cartes</strong> !
+            </span>
           </div>
-        )}
+        </div>
       </div>
 
       {/* Main Grid: Arena & Stats (Left) + Collection Tracker (Right) */}
@@ -193,10 +385,15 @@ export default function ProfileView({
           
           {/* Arena Stats Card */}
           <div className="glass-panel rounded-2xl p-5 border border-white/10 space-y-4 shadow-xl">
-            <h3 className="font-gothic font-bold text-base text-gray-100 flex items-center space-x-2">
-              <Trophy className="w-5 h-5 text-amber-400" />
-              <span>Statistiques d'Arène</span>
-            </h3>
+            <div className="flex items-center justify-between border-b border-white/10 pb-3">
+              <h3 className="font-gothic font-bold text-base text-gray-100 flex items-center space-x-2">
+                <Trophy className="w-5 h-5 text-amber-400" />
+                <span>Statistiques d'Arène</span>
+              </h3>
+              <span className="text-xs font-mono font-bold text-amber-400">
+                {currentRank.name}
+              </span>
+            </div>
 
             <div className="grid grid-cols-3 gap-2 text-center">
               <div className="p-3 rounded-xl bg-[#0a0d14] border border-white/5">
@@ -254,7 +451,6 @@ export default function ProfileView({
             </h3>
 
             <form onSubmit={handleAddMatch} className="space-y-3">
-              {/* Victory / Defeat switch */}
               <div className="grid grid-cols-2 gap-2">
                 <button
                   type="button"
@@ -280,7 +476,6 @@ export default function ProfileView({
                 </button>
               </div>
 
-              {/* Deck Used */}
               <div>
                 <label className="block text-[11px] font-mono text-gray-400 mb-1">
                   Deck Utilisé
@@ -294,7 +489,6 @@ export default function ProfileView({
                 />
               </div>
 
-              {/* Opponent Clan */}
               <div>
                 <label className="block text-[11px] font-mono text-gray-400 mb-1">
                   Clan Adverse Affronté
@@ -318,7 +512,6 @@ export default function ProfileView({
               </button>
             </form>
 
-            {/* Match History Logs */}
             {history.length > 0 && (
               <div className="space-y-1.5 pt-2 border-t border-white/10 max-h-48 overflow-y-auto pr-1">
                 <div className="text-[10px] font-mono text-gray-500 uppercase">Derniers Matchs :</div>
@@ -348,280 +541,166 @@ export default function ProfileView({
           <div className="glass-panel rounded-2xl p-5 border border-white/10 space-y-4 shadow-2xl">
             
             {/* Header & Global Progress */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-white/10 pb-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
               <div>
                 <h3 className="font-gothic font-bold text-lg text-gray-100 flex items-center space-x-2">
-                  <Layers className="w-5 h-5 text-purple-400" />
-                  <span>Ma Collection de Cartes ({ownedCount} / {GAME_TOTAL_CARDS})</span>
+                  <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+                  <span>Ma Collection de Cartes ({userProfile.playerName || 'Mayki'})</span>
                 </h3>
-                <p className="text-xs text-gray-400 mt-0.5">
-                  Progression Globale Jeu : <strong className="text-emerald-400">{gameCompletionPct}%</strong> • Actuellement affichées : <strong>{displayedCards.length} cartes</strong>
+                <p className="text-xs text-gray-400 mt-0.5 font-mono">
+                  {ownedCount} / {GAME_TOTAL_CARDS} cartes du jeu officiel ({gameCompletionPct}% complété)
                 </p>
               </div>
 
-              <div className="flex items-center space-x-1.5">
+              <div className="flex items-center space-x-2">
                 <button
-                  onClick={() => onUnlockBatch([0, 1, 2, 3, 4, 5])}
-                  className="px-2.5 py-1 rounded-lg bg-emerald-950/80 hover:bg-emerald-900 border border-emerald-500/40 text-emerald-300 text-xs font-semibold transition-all"
+                  onClick={() => onUnlockBatch?.('all')}
+                  className="px-3 py-1.5 rounded-xl bg-emerald-950 hover:bg-emerald-900 border border-emerald-500/50 text-emerald-300 text-xs font-semibold transition-all"
+                  title="Tout débloquer pour tester l'ensemble du jeu"
                 >
-                  Tout Cocher
+                  Tout Posséder (217)
                 </button>
                 <button
-                  onClick={() => onUnlockBatch([])}
-                  className="px-2.5 py-1 rounded-lg bg-red-950/80 hover:bg-red-900 border border-red-500/40 text-red-300 text-xs font-semibold transition-all"
+                  onClick={() => onUnlockBatch?.('reset')}
+                  className="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-red-950 border border-slate-700 hover:border-red-500 text-gray-400 hover:text-red-300 text-xs font-semibold transition-all"
+                  title="Réinitialiser ma collection"
                 >
-                  Tout Décocher
-                </button>
-              </div>
-            </div>
-
-            {/* Quick Filter Controls: Search & Sort */}
-            <div className="grid grid-cols-1 sm:grid-cols-12 gap-2">
-              <div className="sm:col-span-8 relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <input
-                  type="text"
-                  value={filters.search}
-                  onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
-                  placeholder="Rechercher une carte (nom, mot-clé, capacité)..."
-                  className="w-full pl-9 pr-3 py-2 rounded-xl bg-[#090b10] border border-white/15 text-xs text-gray-200 focus:outline-none focus:border-red-500"
-                />
-              </div>
-
-              <div className="sm:col-span-4 flex items-center space-x-1.5">
-                <select
-                  value={filters.sortBy}
-                  onChange={(e) => setFilters(prev => ({ ...prev, sortBy: e.target.value }))}
-                  className="w-full px-2.5 py-2 rounded-xl bg-[#090b10] border border-white/15 text-xs text-gray-200 focus:outline-none focus:border-red-500"
-                >
-                  <option value="cost-asc">Tri : Coût (1 → 7+)</option>
-                  <option value="cost-desc">Tri : Coût (7+ → 1)</option>
-                  <option value="power-desc">Tri : Puissance Max</option>
-                  <option value="power-asc">Tri : Puissance Min</option>
-                  <option value="name-asc">Tri : Nom A-Z</option>
-                  <option value="clan">Tri : Par Clan</option>
-                </select>
-
-                <button
-                  onClick={resetFilters}
-                  className="p-2 rounded-xl bg-[#090b10] hover:bg-[#141824] border border-white/15 text-gray-400 hover:text-white"
-                  title="Réinitialiser les filtres"
-                >
-                  <RotateCcw className="w-4 h-4" />
+                  Vider
                 </button>
               </div>
             </div>
 
-            {/* Ownership Filter Tabs */}
-            <div className="flex items-center space-x-1 p-1 rounded-xl bg-[#08090f] border border-white/5">
-              <button
-                onClick={() => setFilters(prev => ({ ...prev, ownership: 'ALL' }))}
-                className={`flex-1 py-1.5 rounded-lg text-xs font-mono font-bold transition-all ${
-                  filters.ownership === 'ALL'
-                    ? 'bg-[#181d2e] text-white border border-white/15 shadow-sm'
-                    : 'text-gray-400 hover:text-gray-200'
-                }`}
-              >
-                Toutes ({CARDS_DATA.length})
-              </button>
-              <button
-                onClick={() => setFilters(prev => ({ ...prev, ownership: 'owned' }))}
-                className={`flex-1 py-1.5 rounded-lg text-xs font-mono font-bold transition-all ${
-                  filters.ownership === 'owned'
-                    ? 'bg-emerald-950 text-emerald-300 border border-emerald-500/60 shadow-sm'
-                    : 'text-gray-400 hover:text-emerald-300'
-                }`}
-              >
-                ✔ Possédées ({ownedCount})
-              </button>
-              <button
-                onClick={() => setFilters(prev => ({ ...prev, ownership: 'unowned' }))}
-                className={`flex-1 py-1.5 rounded-lg text-xs font-mono font-bold transition-all ${
-                  filters.ownership === 'unowned'
-                    ? 'bg-red-950 text-red-300 border border-red-500/60 shadow-sm'
-                    : 'text-gray-400 hover:text-red-300'
-                }`}
-              >
-                ✗ Non Possédées ({CARDS_DATA.length - ownedCount})
-              </button>
-            </div>
+            {/* Filter Bar for Checklist */}
+            <div className="space-y-3 p-3.5 rounded-xl bg-[#090b10] border border-white/10 text-xs">
+              
+              {/* Search & Sort & Reset */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                <div className="relative flex-1">
+                  <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" />
+                  <input
+                    type="text"
+                    value={filters.search}
+                    onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
+                    placeholder="Chercher une carte..."
+                    className="w-full pl-8 pr-3 py-1.5 rounded-lg bg-[#141824] border border-white/15 text-xs text-gray-100 placeholder-gray-500"
+                  />
+                </div>
 
-            {/* Clan / Family Filter Pills */}
-            <div className="space-y-1.5">
-              <span className="text-[10px] font-mono text-gray-400 uppercase font-bold block">
-                Filtrer par Famille / Clan :
-              </span>
-              <div className="flex flex-wrap gap-1">
+                <div className="flex items-center space-x-2">
+                  <select
+                    value={filters.ownership}
+                    onChange={(e) => setFilters(prev => ({ ...prev, ownership: e.target.value }))}
+                    className="px-2.5 py-1.5 rounded-lg bg-[#141824] border border-white/15 text-xs text-gray-200 font-mono"
+                  >
+                    <option value="ALL">Statut : Toutes</option>
+                    <option value="owned">✔ Possédées ({ownedCount})</option>
+                    <option value="unowned">❌ Manquantes ({GAME_TOTAL_CARDS - ownedCount})</option>
+                  </select>
+
+                  <select
+                    value={filters.sortBy}
+                    onChange={(e) => setFilters(prev => ({ ...prev, sortBy: e.target.value }))}
+                    className="px-2.5 py-1.5 rounded-lg bg-[#141824] border border-white/15 text-xs text-gray-200 font-mono"
+                  >
+                    <option value="cost-asc">Coût : 1 → 7+</option>
+                    <option value="cost-desc">Coût : 7+ → 1</option>
+                    <option value="power-desc">Puissance : Max → Min</option>
+                    <option value="power-asc">Puissance : Min → Max</option>
+                    <option value="clan">Clan : A → Z</option>
+                    <option value="name-asc">Nom : A → Z</option>
+                  </select>
+
+                  <button
+                    onClick={resetFilters}
+                    className="p-1.5 rounded-lg bg-[#141824] border border-white/15 text-gray-400 hover:text-white"
+                    title="Réinitialiser"
+                  >
+                    <RotateCcw className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Clan Quick Chips */}
+              <div className="flex flex-wrap gap-1 pt-1 border-t border-white/5">
                 <button
                   onClick={() => setFilters(prev => ({ ...prev, clan: 'ALL' }))}
-                  className={`px-2.5 py-1 rounded-lg text-[11px] font-gothic font-bold transition-all border ${
+                  className={`px-2 py-0.5 rounded-md text-[11px] font-gothic transition-all border ${
                     filters.clan === 'ALL'
-                      ? 'bg-red-700 text-white border-red-400'
-                      : 'bg-[#090b10] text-gray-400 border-white/5 hover:text-white'
+                      ? 'bg-red-800 text-white border-red-500'
+                      : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
                   }`}
                 >
-                  Tous les Clans
+                  Tous
                 </button>
-                {Object.keys(CLANS).map(c => {
-                  const isSelected = filters.clan === c;
-                  const cInfo = CLANS[c];
-
-                  return (
-                    <button
-                      key={c}
-                      onClick={() => setFilters(prev => ({ ...prev, clan: isSelected ? 'ALL' : c }))}
-                      className={`px-2 py-1 rounded-lg text-[11px] font-gothic font-semibold transition-all border ${
-                        isSelected
-                          ? 'text-white border-white/40 shadow-sm'
-                          : 'bg-[#090b10] text-gray-400 border-white/5 hover:text-white'
-                      }`}
-                      style={{
-                        backgroundColor: isSelected ? cInfo.themeColor : undefined,
-                        borderColor: isSelected ? cInfo.themeColor : undefined
-                      }}
-                    >
-                      {c}
-                    </button>
-                  );
-                })}
+                {Object.entries(CLANS).map(([ck, c]) => (
+                  <button
+                    key={ck}
+                    onClick={() => setFilters(prev => ({ ...prev, clan: prev.clan === ck ? 'ALL' : ck }))}
+                    style={filters.clan === ck ? { backgroundColor: c.bgColor, borderColor: c.borderColor, color: c.themeColor } : {}}
+                    className={`px-2 py-0.5 rounded-md text-[11px] font-gothic transition-all border ${
+                      filters.clan === ck
+                        ? 'font-bold'
+                        : 'bg-[#141824] text-gray-400 border-white/10 hover:text-gray-200'
+                    }`}
+                  >
+                    {c.name}
+                  </button>
+                ))}
               </div>
             </div>
 
-            {/* Blood Cost & Power Multi-Selector */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 border-t border-white/5">
-              {/* Cost Filter */}
-              <div className="space-y-1">
-                <span className="text-[10px] font-mono text-gray-400 uppercase font-bold flex items-center space-x-1">
-                  <Droplets className="w-3 h-3 text-red-400" />
-                  <span>Coût en Sang :</span>
-                </span>
-                <div className="flex items-center gap-1">
-                  <button
-                    onClick={() => setFilters(prev => ({ ...prev, cost: 'ALL' }))}
-                    className={`flex-1 py-1 rounded-md text-[11px] font-mono font-bold border ${
-                      filters.cost === 'ALL' ? 'bg-red-800 text-white border-red-500' : 'bg-[#090b10] text-gray-400 border-white/5'
-                    }`}
-                  >
-                    Tous
-                  </button>
-                  {[1, 2, 3, 4, 5, 6, '7+'].map(cost => (
-                    <button
-                      key={cost}
-                      onClick={() => setFilters(prev => ({ ...prev, cost: filters.cost === cost ? 'ALL' : cost }))}
-                      className={`w-7 py-1 rounded-md text-[11px] font-mono font-bold border transition-all ${
-                        filters.cost === cost
-                          ? 'bg-red-600 text-white border-red-400 shadow-blood'
-                          : 'bg-[#090b10] text-gray-400 border-white/5 hover:text-white'
-                      }`}
-                    >
-                      {cost}
-                    </button>
-                  ))}
-                </div>
+            {/* Checklist Results */}
+            <div className="space-y-1.5 max-h-[500px] overflow-y-auto pr-1">
+              <div className="flex items-center justify-between text-[11px] font-mono text-gray-400 px-2 py-1">
+                <span>{displayedCards.length} cartes affichées</span>
+                <span>Cliquer pour cocher / décocher</span>
               </div>
 
-              {/* Power Filter */}
-              <div className="space-y-1">
-                <span className="text-[10px] font-mono text-gray-400 uppercase font-bold flex items-center space-x-1">
-                  <Shield className="w-3 h-3 text-amber-400" />
-                  <span>Puissance :</span>
-                </span>
-                <div className="flex items-center gap-1">
-                  <button
-                    onClick={() => setFilters(prev => ({ ...prev, power: 'ALL' }))}
-                    className={`flex-1 py-1 rounded-md text-[11px] font-mono font-bold border ${
-                      filters.power === 'ALL' ? 'bg-amber-800 text-white border-amber-500' : 'bg-[#090b10] text-gray-400 border-white/5'
-                    }`}
-                  >
-                    Tous
-                  </button>
-                  {['1-3', '4-6', '7-9', '10+'].map(pw => (
-                    <button
-                      key={pw}
-                      onClick={() => setFilters(prev => ({ ...prev, power: filters.power === pw ? 'ALL' : pw }))}
-                      className={`flex-1 py-1 rounded-md text-[10px] font-mono font-bold border transition-all ${
-                        filters.power === pw
-                          ? 'bg-amber-600 text-white border-amber-400 shadow-gold'
-                          : 'bg-[#090b10] text-gray-400 border-white/5 hover:text-white'
-                      }`}
-                    >
-                      {pw}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Interactive Cards Checklist */}
-            <div className="space-y-1.5 max-h-[520px] overflow-y-auto pr-1 pt-1">
               {displayedCards.map((card) => {
                 const isOwned = ownedCardIds.includes(card.id);
-                const clanInfo = CLANS[card.clan] || CLANS.Mortal;
+                const clanData = CLANS[card.clan] || CLANS.Mortal;
 
                 return (
                   <div
                     key={card.id}
                     onClick={() => onToggleOwnedCard(card.id)}
-                    className={`flex items-center justify-between p-2.5 rounded-xl border transition-all cursor-pointer select-none ${
+                    className={`flex items-center justify-between p-2 rounded-xl border transition-all cursor-pointer select-none ${
                       isOwned
-                        ? 'bg-[#121622] hover:bg-[#181d2e] border-emerald-500/50 shadow-sm'
-                        : 'bg-[#08090f] hover:bg-[#0d1017] border-white/5 opacity-55 hover:opacity-85'
+                        ? 'bg-emerald-950/40 border-emerald-500/60 text-gray-100 hover:bg-emerald-900/50'
+                        : 'bg-[#0a0d14] border-white/5 text-gray-500 hover:border-white/20 hover:text-gray-400'
                     }`}
                   >
                     <div className="flex items-center space-x-3 min-w-0">
-                      {/* Checkbox Icon */}
-                      <div className={`w-5 h-5 rounded-md flex items-center justify-center transition-all ${
-                        isOwned ? 'bg-emerald-600 text-white shadow-sm' : 'border border-gray-600 bg-black/40'
-                      }`}>
-                        {isOwned && <CheckCircle2 className="w-4 h-4" />}
-                      </div>
+                      {isOwned ? (
+                        <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+                      ) : (
+                        <Circle className="w-5 h-5 text-gray-600 flex-shrink-0" />
+                      )}
 
-                      {/* Blood Cost & Name */}
-                      <div className="w-6 h-6 rounded-full bg-red-900 border border-red-500 text-[11px] font-bold text-white flex items-center justify-center font-mono shadow-sm">
-                        {card.cost}
-                      </div>
-
-                      <div className="truncate">
-                        <div className="font-gothic font-semibold text-xs text-gray-100 truncate">
+                      <div className="flex items-center space-x-2 truncate">
+                        <span className="w-5 h-5 rounded-full bg-red-900 border border-red-400 text-[10px] font-bold text-white flex items-center justify-center font-mono">
+                          {card.costDisplay || card.cost}
+                        </span>
+                        <span className={`font-gothic font-bold text-xs truncate ${isOwned ? 'text-gray-100' : 'text-gray-400'}`}>
                           {card.name}
-                        </div>
-                        <div className="flex items-center space-x-1.5 text-[10px] text-gray-400">
-                          <span style={{ color: clanInfo.themeColor }} className="font-medium">{card.clan}</span>
-                          <span>•</span>
-                          <span className="text-amber-400 font-mono font-bold">P{card.power}</span>
-                          <span>•</span>
-                          <span className="text-gray-500">{card.archetype}</span>
-                        </div>
+                        </span>
+                        <span className="text-[10px] font-mono" style={{ color: clanData.themeColor }}>
+                          {card.clan}
+                        </span>
                       </div>
                     </div>
 
-                    <div className="flex items-center space-x-2 flex-shrink-0">
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/40 border border-white/10 text-gray-300">
-                        {card.rarity}
-                      </span>
-                      <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-md ${
-                        isOwned ? 'bg-emerald-950/70 text-emerald-300 border border-emerald-500/40' : 'bg-black/30 text-gray-500'
-                      }`}>
-                        {isOwned ? '✓ Possédée' : 'Non possédée'}
+                    <div className="flex items-center space-x-2 font-mono text-xs flex-shrink-0">
+                      <span className="text-amber-400 font-bold">P{card.power}</span>
+                      <span className="text-gray-500 text-[10px]">S{card.series}</span>
+                      <span className={`text-[10px] px-1.5 py-0.2 rounded font-bold uppercase ${isOwned ? 'bg-emerald-500/20 text-emerald-300' : 'bg-black/40 text-gray-600'}`}>
+                        {isOwned ? 'Acquis' : 'Manquant'}
                       </span>
                     </div>
                   </div>
                 );
               })}
-
-              {displayedCards.length === 0 && (
-                <div className="text-center py-10 text-xs text-gray-500 space-y-2">
-                  <p>Aucune carte ne correspond aux filtres sélectionnés.</p>
-                  <button
-                    onClick={resetFilters}
-                    className="px-3 py-1 rounded-lg bg-slate-800 text-gray-300 hover:text-white"
-                  >
-                    Réinitialiser les filtres
-                  </button>
-                </div>
-              )}
             </div>
-
           </div>
         </div>
 

@@ -29,16 +29,16 @@ const DEFAULT_OWNED_CARD_IDS = [
 ];
 
 export default function App() {
-  const [activeView, setActiveView] = useState('deckbuilder'); // 'deckbuilder' | 'database' | 'metadecks' | 'rules' | 'profile'
+  const [activeView, setActiveView] = useState('rules'); // 'rules' (Home) | 'deckbuilder' | 'database' | 'metadecks' | 'arena' | 'profile'
   const [deckName, setDeckName] = useState('Nouveau Deck Londonien');
   const [deckCards, setDeckCards] = useState([]);
   const [savedDecks, setSavedDecks] = useState([]);
   const [inspectedCard, setInspectedCard] = useState(null);
   const [customImages, setCustomImages] = useState({});
 
-  // User Profile state (Collection 64/217, Arena Points, Match History)
+  // User Profile state (Collection, Arena Points, Match History)
   const [userProfile, setUserProfile] = useState({
-    playerName: 'Mayki (Kindred)',
+    playerName: 'Mayki',
     collectionLevel: 14,
     arenaPoints: 1250,
     ownedCardIds: DEFAULT_OWNED_CARD_IDS,
@@ -63,7 +63,7 @@ export default function App() {
         setUserProfile(parsedProfile);
       } else {
         const initial = {
-          playerName: 'Mayki (Kindred)',
+          playerName: 'Mayki',
           collectionLevel: 14,
           arenaPoints: 1250,
           ownedCardIds: DEFAULT_OWNED_CARD_IDS,
@@ -333,14 +333,8 @@ export default function App() {
             </p>
           </div>
 
-          <div className="flex items-center space-x-4 font-mono text-[11px] text-gray-400">
-            <span>70+ Cartes</span>
-            <span>•</span>
-            <span>Séries 0 à 5</span>
-            <span>•</span>
-            <span>8 Clans</span>
-            <span>•</span>
-            <span>7 Tours King of the Hill</span>
+          <div className="flex items-center space-x-2 font-mono text-[11px] text-amber-400/90 font-semibold">
+            <span>Application développée, créée, éditée et remplie par Mayki via Antigravity</span>
           </div>
         </div>
       </footer>

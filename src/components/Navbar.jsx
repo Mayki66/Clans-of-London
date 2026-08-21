@@ -9,7 +9,7 @@ export default function Navbar({ activeView, setActiveView, deckCardsCount = 0, 
           
           {/* Logo & Brand */}
           <div 
-            onClick={() => setActiveView('deckbuilder')}
+            onClick={() => setActiveView('rules')}
             className="flex items-center space-x-3 cursor-pointer group select-none"
           >
             {/* Blood Drop & Crest Icon */}
