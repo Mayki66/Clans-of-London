@@ -447,7 +447,7 @@ export const CARDS_DATA = [
       "Violent",
       "Brujah"
     ],
-    "ability": "À la Révélation : If this is on the côté adverse, Gagne +4 Puissance.",
+    "ability": "À la Révélation : Si cette carte est sur le côté adverse du plateau, elle gagne +4 Puissance.",
     "ability_en": "On Reveal: If this is on the opponent's side, gain +4 Power.",
     "flavorText": "\"Razor - Carte officielle Vampire: The Masquerade – Clans of London (Série 0).\"",
     "rarity": "Rare",
@@ -534,8 +534,8 @@ export const CARDS_DATA = [
       "Toreador",
       "Neutre"
     ],
-    "ability": "À la Révélation : Gagne +1 Puissance to all cartes in your main.",
-    "ability_en": "On Reveal: Gain +1 Power to all cards in your hand.",
+    "ability": "À la Révélation : Confère +1 Puissance à toutes les cartes dans votre main.",
+    "ability_en": "On Reveal: Give +1 Power to all cards in your hand.",
     "flavorText": "\"Blaze - Carte officielle Vampire: The Masquerade – Clans of London (Série 0).\"",
     "rarity": "Rare",
     "notes": "",
@@ -994,7 +994,7 @@ export const CARDS_DATA = [
       "Brujah",
       "Neutre"
     ],
-    "ability": "À la Révélation : If it's on or before round 4, add a Scrawny Punk to your main.",
+    "ability": "À la Révélation : Si nous sommes au tour 4 ou avant, ajoute un Punk Chétif à votre main.",
     "ability_en": "On Reveal: If it's on or before round 4, add a Scrawny Punk to your hand.",
     "flavorText": "\"Lan Chen - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Commune",
@@ -1050,7 +1050,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Gangrel"
     ],
-    "ability": "À la Révélation : Add 2 Rats (Bêtes) to your main.",
+    "ability": "À la Révélation : Ajoute 2 Rats (Bêtes) à votre main.",
     "ability_en": "On Reveal: Add 2 Rats (Beasts) to your hand.",
     "flavorText": "\"Sanjay Ali - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Commune",
@@ -1308,7 +1308,7 @@ export const CARDS_DATA = [
       "Violent",
       "Brujah"
     ],
-    "ability": "After this wins a Conflit: Add a Scrawny Punk to your main.",
+    "ability": "Après avoir remporté un Conflit : Ajoute un Punk Chétif à votre main.",
     "ability_en": "After this wins a Conflict: Add a Scrawny Punk to your hand.",
     "flavorText": "\"Sid Scabies - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Rare",
@@ -1336,7 +1336,7 @@ export const CARDS_DATA = [
       "Violent",
       "Brujah"
     ],
-    "ability": "À l'Attaque : Add another Robby's Crew to your main.",
+    "ability": "À l'Attaque : Ajoute un autre Gang de Robby à votre main.",
     "ability_en": "On Attack: Add another Robby's Crew to your hand.",
     "flavorText": "\"Robby's Crew - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Rare",
@@ -1654,7 +1654,7 @@ export const CARDS_DATA = [
       "Toreador",
       "Neutre"
     ],
-    "ability": "When this would win a Conflit: Seduce la carte ennemie into your main.",
+    "ability": "Lorsque cette carte gagne un Conflit : Séduit la carte ennemie et l'ajoute à votre main.",
     "ability_en": "When this would win a Conflict: Seduce the enemy card into your hand.",
     "flavorText": "\"Eliza Iyer - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Rare",
@@ -1712,7 +1712,7 @@ export const CARDS_DATA = [
       "Gangrel",
       "Neutre"
     ],
-    "ability": "À la Révélation : Add two Gangrel Monstrosities (Bêtes) to your main.",
+    "ability": "À la Révélation : Ajoute deux Monstruosités Gangrel (Bêtes) à votre main.",
     "ability_en": "On Reveal: Add two Gangrel Monstrosities (Beasts) to your hand.",
     "flavorText": "\"Branwen White - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Rare",
@@ -1884,7 +1884,7 @@ export const CARDS_DATA = [
       "Toreador",
       "Neutre"
     ],
-    "ability": "When this would win a Conflit: Seduce la carte ennemie into your main.",
+    "ability": "Lorsque cette carte gagne un Conflit : Séduit la carte ennemie et l'ajoute à votre main.",
     "ability_en": "When this would win a Conflict: Seduce the enemy card into your hand.",
     "flavorText": "\"Damon - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Épique",
@@ -2138,8 +2138,8 @@ export const CARDS_DATA = [
       "Neutre",
       "Hecata"
     ],
-    "ability": "À la Mort : Confère +2 Puissance to your cartes connectées.",
-    "ability_en": "When Murdered: Give +2 Power to your connected cards.",
+    "ability": "À la Mort : Confère +2 Puissance à toutes vos cartes connectées.",
+    "ability_en": "On Death: Give +2 Power to your connected cards.",
     "flavorText": "\"Carlo Galli - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Commune",
     "notes": "",
@@ -2166,7 +2166,7 @@ export const CARDS_DATA = [
       "Sorcellerie du Sang",
       "Acolyte"
     ],
-    "ability": "À la Révélation : Add a Mortel Acolyte to your main.",
+    "ability": "À la Révélation : Ajoute un Acolyte Mortel à votre main.",
     "ability_en": "On Reveal: Add a Mortal Acolyte to your hand.",
     "flavorText": "\"Gillian Sardar - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Commune",
@@ -2361,7 +2361,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Hecata"
     ],
-    "ability": "À la Révélation : Murder one of your cartes connectées.",
+    "ability": "À la Révélation : Assassine une de vos cartes connectées.",
     "ability_en": "On Reveal: Murder one of your connected cards.",
     "flavorText": "\"Maria Puttanesca - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Rare",
@@ -2389,8 +2389,8 @@ export const CARDS_DATA = [
       "Neutre",
       "Hecata"
     ],
-    "ability": "When a carte is Murdered: Add a Mobster (Violent) to your main.",
-    "ability_en": "When a Card is Murdered: Add a Mobster (Violent) to your hand.",
+    "ability": "Lorsqu'une carte est Assassinée : Ajoute un Homme de Main (Violent) à votre main.",
+    "ability_en": "When a card is Murdered: Add a Mobster (Violent) to your hand.",
     "flavorText": "\"Caesar Cornello - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Rare",
     "notes": "Creates Token: Mobster",
@@ -2559,7 +2559,7 @@ export const CARDS_DATA = [
       "Sorcellerie du Sang",
       "Acolyte"
     ],
-    "ability": "Fin de Manche : Add a Mortel Acolyte to your main.",
+    "ability": "Fin de Manche : Ajoute un Acolyte Mortel à votre main.",
     "ability_en": "End of Round: Add a Mortal Acolyte to your hand.",
     "flavorText": "\"Abraham - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Rare",
@@ -2615,7 +2615,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Gangrel"
     ],
-    "ability": "À l'Attaque : Add a Wolf (Bête) to your main.",
+    "ability": "À l'Attaque : Ajoute un Loup (Bête) à votre main.",
     "ability_en": "On Attack: Add a Wolf (Beast) to your hand.",
     "flavorText": "\"Madison Wolfe - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Rare",
@@ -2665,9 +2665,9 @@ export const CARDS_DATA = [
     "cost": 5,
     "power": 8,
     "type": "Vampire",
-    "archetype": "Violent",
+    "archetype": "Murder",
     "keywords": [
-      "Violent",
+      "Murder",
       "Hecata"
     ],
     "ability": "When one of your cartes is Murdered: Move to an ennemi carte with less Puissance than this.",
@@ -2980,7 +2980,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Elitist"
     ],
-    "ability": "À la Révélation : Add Vincent's Masterpiece to your main.",
+    "ability": "À la Révélation : Ajoute le Chef-d'œuvre de Vincent à votre main.",
     "ability_en": "On Reveal: Add Vincent's Masterpiece to your hand.",
     "flavorText": "\"Vincent Monroe - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Commune",
@@ -3008,7 +3008,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Malkavian"
     ],
-    "ability": "À la Révélation : défausse the rightmost carte in your main to Gagne +2 Puissance.",
+    "ability": "À la Révélation : Défausse la carte la plus à droite de votre main pour gagner +2 Puissance.",
     "ability_en": "On Reveal: Discard the rightmost card in your hand to gain +2 Power.",
     "flavorText": "\"Rosaline Armitage - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Commune",
@@ -3149,8 +3149,8 @@ export const CARDS_DATA = [
       "Neutre",
       "Tremere"
     ],
-    "ability": "À la Révélation : Add Matome \"Defib\" and Zandile \"Landmine\" to your main.",
-    "ability_en": "On Reveal: Add Matome \"Defib\" and Zandile \"Landmine\" to your hand.",
+    "ability": "À la Révélation : Ajoute Matome « Defib » et Zandile « Landmine » à votre main.",
+    "ability_en": "On Reveal: Add Matome 'Defib' and Zandile 'Landmine' to your hand.",
     "flavorText": "\"Jacob \"Toolbox\" - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
     "notes": "Added during \"The Heist\" Season on Feb. 12th, 2026.\nCreates Tokens: Matome \"Defib\", Zandile \"Landmine\"",
@@ -3340,11 +3340,10 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Élitiste",
+    "archetype": "Delusion",
     "keywords": [
-      "Élitiste",
-      "Malkavian",
-      "Elitist"
+      "Delusion",
+      "Malkavian"
     ],
     "ability": "À la Défausse : Add 2 Illusion copies that cost 1 to main.",
     "ability_en": "When Discarded: Add 2 Illusion copies that cost 1 to hand.",
@@ -3369,13 +3368,13 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Violent",
+    "archetype": "Delusion",
     "keywords": [
-      "Violent",
+      "Delusion",
       "Malkavian"
     ],
-    "ability": "À la Révélation : Vole 1 Puissance à all odd cost cartes in your main, then défausse them.",
-    "ability_en": "On Reveal: Steal 1 Power from all odd cost cards in your hand, then Discard them.",
+    "ability": "À la Révélation : Vole 1 Puissance à chaque carte de coût impair dans votre main, puis défaussez-les.",
+    "ability_en": "On Reveal: Steal 1 Power from all odd cost cards in your hand, then discard them.",
     "flavorText": "\"\"Salvo\" Calvo - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
     "notes": "Added during the \"A Party to Remember\" Season on May 7th, 2026.",
@@ -3478,7 +3477,7 @@ export const CARDS_DATA = [
     "id": "col-123",
     "name": "Lt. Chamkaur Gupta",
     "originalName": "Lt. Chamkaur Gupta",
-    "clan": "Nosferatu",
+    "clan": "Brujah",
     "series": 3,
     "cost": 3,
     "power": 7,
@@ -3486,7 +3485,7 @@ export const CARDS_DATA = [
     "archetype": "Violent",
     "keywords": [
       "Violent",
-      "Nosferatu"
+      "Brujah"
     ],
     "ability": "À la Révélation : Donate 2 Puissance to the highest Puissance ennemi carte.",
     "ability_en": "On Reveal: Donate 2 Power to the highest Power enemy card.",
@@ -3544,7 +3543,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Gangrel"
     ],
-    "ability": "When any of your Bêtes attack: Add a Street Dog (Bête) to your main.",
+    "ability": "Lorsque l'une de vos Bêtes attaque : Ajoute un Chien Errant (Bête) à votre main.",
     "ability_en": "When any of your Beasts attack: Add a Street Dog (Beast) to your hand.",
     "flavorText": "\"Oberon - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -3572,7 +3571,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Ventrue"
     ],
-    "ability": "When any carte gains or loses Puissance définitivement: Confère +1 Puissance to a carte in your main.",
+    "ability": "Lorsqu'une carte gagne ou perd de la Puissance définitivement : Confère +1 Puissance à une carte dans votre main.",
     "ability_en": "When any card gains or loses Power permanently: Give +1 Power to a card in your hand.",
     "flavorText": "\"Miss Hidaka - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -3771,7 +3770,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Brujah"
     ],
-    "ability": "À la Révélation : Confère +2 Puissance to 2 Violent cartes in your main.",
+    "ability": "À la Révélation : Confère +2 Puissance à 2 cartes Violentes dans votre main.",
     "ability_en": "On Reveal: Give +2 Power to 2 Violent cards in your hand.",
     "flavorText": "\"Randy Brash - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -3961,11 +3960,10 @@ export const CARDS_DATA = [
     "cost": 4,
     "power": 7,
     "type": "Vampire",
-    "archetype": "Élitiste",
+    "archetype": "Delusion",
     "keywords": [
-      "Élitiste",
-      "Malkavian",
-      "Elitist"
+      "Delusion",
+      "Malkavian"
     ],
     "ability": "À la Révélation : If Prince, défausse your rightmost carte in main. If Cavalier, défausse the leftmost.",
     "ability_en": "On Reveal: If Prince, Discard your rightmost card in hand. If Knight, Discard the leftmost.",
@@ -3985,7 +3983,7 @@ export const CARDS_DATA = [
     "id": "col-141",
     "name": "Filipe the Bloody",
     "originalName": "Filipe the Bloody",
-    "clan": "Nosferatu",
+    "clan": "Brujah",
     "series": 3,
     "cost": 4,
     "power": 5,
@@ -3993,7 +3991,7 @@ export const CARDS_DATA = [
     "archetype": "Violent",
     "keywords": [
       "Violent",
-      "Nosferatu"
+      "Brujah"
     ],
     "ability": "À l'Attaque : Gagne +3 Puissance. This doesn't score Points when Prince or Cavalier.",
     "ability_en": "On Attack: Gain +3 Power. This doesn't score Points when Prince or Knight.",
@@ -4489,7 +4487,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Cécile_St-Fleur.jpg",
+    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Cecile_St-Fleur.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Cecile_St-Fleur&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4717,7 +4715,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Celine_Mușat.jpg",
+    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Celine_Musat.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Celine_Musat&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4790,8 +4788,8 @@ export const CARDS_DATA = [
       "Neutre",
       "Tremere"
     ],
-    "ability": "When you Defeat an ennemi carte: Turn it into a Skin-Bound Book and add it to your main. (Once per turn.)",
-    "ability_en": "When you Defeat an enemy card: Turn it into a Skin-Bound Book and add it to your hand. (Once per turn.)",
+    "ability": "Lorsque vous terrassez une carte ennemie : Transformez-la en Livre Relié de Peau et ajoutez-la à votre main (une fois par tour).",
+    "ability_en": "When you Defeat an enemy card: Turn it into a Skin-Bound Book and add it to your hand (once per turn).",
     "flavorText": "\"Ethan - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Commune",
     "notes": "Create Token: Skin-Bound Book; Added during \"Secrets of the City\" Season on May 28th, 2026.",
@@ -4846,7 +4844,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Gangrel"
     ],
-    "ability": "À la Révélation : Add a Rat, Pigeon, Wolf to your main.",
+    "ability": "À la Révélation : Ajoute un Rat, un Pigeon et un Loup à votre main.",
     "ability_en": "On Reveal: Add a Rat, Pigeon, Wolf to your hand.",
     "flavorText": "\"Clive Crawford - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Commune",
@@ -4869,9 +4867,9 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Violent",
+    "archetype": "Murder",
     "keywords": [
-      "Violent",
+      "Murder",
       "Hecata"
     ],
     "ability": "Fin de Manche : Murder the lowest Puissance carte.",
@@ -4897,11 +4895,10 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Élitiste",
+    "archetype": "Charm",
     "keywords": [
-      "Élitiste",
-      "Toreador",
-      "Elitist"
+      "Charm",
+      "Toreador"
     ],
     "ability": "Tant qu'en jeu : This carte has doubled Puissance.",
     "ability_en": "While in Play: This card has doubled Power.",
@@ -4959,7 +4956,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Toreador"
     ],
-    "ability": "Fin de Manche : Confère +2 Puissance to all your cartes connectées.",
+    "ability": "Fin de Manche : Confère +2 Puissance à toutes vos cartes connectées.",
     "ability_en": "End of Round: Give +2 Power to all your connected cards.",
     "flavorText": "\"Wayne Stahl - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Rare",
@@ -4982,11 +4979,10 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 10,
     "type": "Vampire",
-    "archetype": "Élitiste",
+    "archetype": "Charm",
     "keywords": [
-      "Élitiste",
-      "Toreador",
-      "Elitist"
+      "Charm",
+      "Toreador"
     ],
     "ability": "Tant qu'en jeu : Your cartes connectées cannot give support.",
     "ability_en": "While in Play: Your connected cards cannot give support.",
@@ -5074,7 +5070,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Toreador"
     ],
-    "ability": "À la Révélation : Add a Séduit copy of the top carte of your opponent's deck to your main.",
+    "ability": "À la Révélation : Ajoute une copie Séduite de la carte du dessus du deck adverse à votre main.",
     "ability_en": "On Reveal: Add a Seduced copy of the top card of your opponent's deck to your hand.",
     "flavorText": "\"Agent '<3' - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Rare",
@@ -5262,7 +5258,7 @@ export const CARDS_DATA = [
     "id": "col-186",
     "name": "Michael",
     "originalName": "Michael",
-    "clan": "Nosferatu",
+    "clan": "Brujah",
     "series": 4,
     "cost": 5,
     "power": 8,
@@ -5270,7 +5266,7 @@ export const CARDS_DATA = [
     "archetype": "Violent",
     "keywords": [
       "Violent",
-      "Nosferatu"
+      "Brujah"
     ],
     "ability": "In Conflicts with this, neither carte receives Support.",
     "ability_en": "In Conflicts with this, neither card receives Support.",
@@ -5323,11 +5319,10 @@ export const CARDS_DATA = [
     "cost": 5,
     "power": 7,
     "type": "Vampire",
-    "archetype": "Élitiste",
+    "archetype": "Charm",
     "keywords": [
-      "Élitiste",
-      "Toreador",
-      "Elitist"
+      "Charm",
+      "Toreador"
     ],
     "ability": "À la Défausse : Marque 3 Points de Victoire and return this to main.",
     "ability_en": "When Discarded: Score 3 Points and return this to hand.",
@@ -5404,7 +5399,7 @@ export const CARDS_DATA = [
     "id": "col-191",
     "name": "Forterra Face",
     "originalName": "Forterra Face",
-    "clan": "Nosferatu",
+    "clan": "Brujah",
     "series": 5,
     "cost": 1,
     "power": 3,
@@ -5412,7 +5407,7 @@ export const CARDS_DATA = [
     "archetype": "Violent",
     "keywords": [
       "Violent",
-      "Nosferatu"
+      "Brujah"
     ],
     "ability": "Tant qu'en jeu : This cannot provide Support in Conflit.",
     "ability_en": "While in Play: This cannot provide Support in Conflict.",
@@ -5498,13 +5493,12 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Élitiste",
+    "archetype": "Murder",
     "keywords": [
-      "Élitiste",
-      "Hecata",
-      "Elitist"
+      "Murder",
+      "Hecata"
     ],
-    "ability": "When a carte is Murdered: Add a Mindless Corpse to your main.",
+    "ability": "Lorsqu'une carte est Assassinée : Ajoute un Cadavre Sans Esprit à votre main.",
     "ability_en": "When a card is Murdered: Add a Mindless Corpse to your hand.",
     "flavorText": "\"Lynne Dunsirn - Carte officielle Vampire: The Masquerade – Clans of London (Série 5).\"",
     "rarity": "Commune",
@@ -5663,7 +5657,7 @@ export const CARDS_DATA = [
     "id": "col-200",
     "name": "Arturo de Vitry",
     "originalName": "Arturo de Vitry",
-    "clan": "Nosferatu",
+    "clan": "Ventrue",
     "series": 5,
     "cost": 4,
     "power": 5,
@@ -5671,8 +5665,7 @@ export const CARDS_DATA = [
     "archetype": "Élitiste",
     "keywords": [
       "Élitiste",
-      "Nosferatu",
-      "Elitist"
+      "Ventrue"
     ],
     "ability": "Tant qu'en jeu : If your Prince is Élitiste, it has +4 Puissance but cannot give Support.",
     "ability_en": "While in Play: If your Prince is Elitist, it has +4 Power but cannot give Support.",
@@ -5799,7 +5792,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Boyar_Mușat.jpg",
+    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Boyar_Musat.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Boyar_Musat&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5816,7 +5809,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Gangrel"
     ],
-    "ability": "À la Révélation : pour chaque Bête you have en jeu, add a Wolf (Bête) to your main. Give all Bêtes in main +1 Puissance.",
+    "ability": "À la Révélation : Pour chaque Bête en jeu, ajoute un Loup (Bête) à votre main. Confère +1 Puissance à toutes les Bêtes en main.",
     "ability_en": "On Reveal: For each Beast you have in play, add a Wolf (Beast) to your hand. Give all Beasts in hand +1 Power.",
     "flavorText": "\"Paulo Marques - Carte officielle Vampire: The Masquerade – Clans of London (Série 5).\"",
     "rarity": "Épique",
@@ -5925,11 +5918,10 @@ export const CARDS_DATA = [
     "cost": 6,
     "power": 10,
     "type": "Vampire",
-    "archetype": "Élitiste",
+    "archetype": "Occultation",
     "keywords": [
-      "Élitiste",
-      "Nosferatu",
-      "Elitist"
+      "Occultation",
+      "Nosferatu"
     ],
     "ability": "Tant qu'en jeu : Your cartes without Support have double Puissance.",
     "ability_en": "While in Play: Your cards without Support have double Power.",
@@ -6015,8 +6007,8 @@ export const CARDS_DATA = [
       "Neutre",
       "Toreador"
     ],
-    "ability": "After this wins a Conflit: Marque 3 Points de Victoire pour chaque Séduit carte in your main, deck or en jeu.",
-    "ability_en": "After this wins a Conflict: Score 3 Points for each Seduced card in your hand, deck or in play.",
+    "ability": "Après avoir remporté un Conflit : Marque 3 Points de Victoire pour chaque carte Séduite dans votre main, deck ou en jeu.",
+    "ability_en": "After this wins a Conflict: Score 3 Victory Points for each Seduced card in your hand, deck, or in play.",
     "flavorText": "\"Ivory Lux - Carte officielle Vampire: The Masquerade – Clans of London (Série 5).\"",
     "rarity": "Légendaire",
     "notes": "",
@@ -6055,7 +6047,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Monika_Kováč.jpg",
+    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Monika_Kovac.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Monika_Kovac&amp;action=edit&amp;redlink=1"
   },
   {
@@ -6067,11 +6059,10 @@ export const CARDS_DATA = [
     "cost": 7,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Élitiste",
+    "archetype": "Murder",
     "keywords": [
-      "Élitiste",
-      "Hecata",
-      "Elitist"
+      "Murder",
+      "Hecata"
     ],
     "ability": "Tant qu'en jeu : This has +2 pour chaque carte Murdered this game.",
     "ability_en": "While in Play: This has +2 for each card Murdered this game.",
@@ -6154,11 +6145,10 @@ export const CARDS_DATA = [
     "cost": 8,
     "power": 10,
     "type": "Vampire",
-    "archetype": "Élitiste",
+    "archetype": "Delusion",
     "keywords": [
-      "Élitiste",
-      "Malkavian",
-      "Elitist"
+      "Delusion",
+      "Malkavian"
     ],
     "ability": "À la Révélation : If Prince, défausse your lowest Puissance carte(s). When you défausse a carte: Gagne +1 Puissance and 4 Points.",
     "ability_en": "On Reveal: If Prince, Discard your lowest Power card(s). When you Discard a card: Gain +1 Power and 4 Points.",

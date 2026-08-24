@@ -20,7 +20,10 @@ export default function DeckBuilderView({
   onSaveDeck,
   onDeleteSavedDeck,
   onInspectCard,
-  ownedCardIds = []
+  ownedCardIds = [],
+  userProfile,
+  lang = 'fr',
+  t
 }) {
   const [activeTab, setActiveTab] = useState('cards'); // 'cards' | 'stats' | 'simulator'
   
@@ -108,15 +111,19 @@ export default function DeckBuilderView({
       }
     }
 
+    // Text search
     if (filters.search) {
-      const q = filters.search.toLowerCase();
-      const matchName = card.name.toLowerCase().includes(q);
-      const matchAbility = card.ability.toLowerCase().includes(q);
-      const matchFlavor = card.flavorText?.toLowerCase().includes(q);
+      const q = filters.search.toLowerCase().trim();
+      const matchName = card.name?.toLowerCase().includes(q);
+      const matchOriginal = card.originalName?.toLowerCase().includes(q);
+      const matchAbility = card.ability?.toLowerCase().includes(q);
+      const matchAbilityEn = card.ability_en?.toLowerCase().includes(q);
+      const matchClan = card.clan?.toLowerCase().includes(q);
       const matchKeywords = card.keywords?.some(k => k.toLowerCase().includes(q));
-      const matchClan = card.clan.toLowerCase().includes(q);
-      const matchWiki = card.wikiUrl?.toLowerCase().includes(q) || (q.includes('kate') && card.name.toLowerCase().includes('katie'));
-      if (!matchName && !matchAbility && !matchFlavor && !matchKeywords && !matchClan && !matchWiki) return false;
+
+      if (!matchName && !matchOriginal && !matchAbility && !matchAbilityEn && !matchClan && !matchKeywords) {
+        return false;
+      }
     }
 
     return true;
@@ -157,6 +164,7 @@ export default function DeckBuilderView({
         savedDecks={savedDecks}
         onSaveDeck={onSaveDeck}
         onDeleteSavedDeck={onDeleteSavedDeck}
+        userProfile={userProfile}
       />
 
       {/* Main Builder Grid (Deck on Left / Catalog on Right on Large Screens) */}

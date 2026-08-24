@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Save, Download, Upload, Trash2, FolderOpen, Copy, Check, AlertCircle, Sparkles } from 'lucide-react';
+import { Save, Download, Upload, Trash2, FolderOpen, Copy, Check, AlertCircle, Sparkles, Share2, Users } from 'lucide-react';
 import { CARDS_DATA } from '../../data/cardsData';
+import PublishCommunityDeckModal from './PublishCommunityDeckModal';
 import confetti from 'canvas-confetti';
 
 export default function DeckManager({
@@ -11,10 +12,12 @@ export default function DeckManager({
   onLoadDeck,
   savedDecks,
   onSaveDeck,
-  onDeleteSavedDeck
+  onDeleteSavedDeck,
+  userProfile
 }) {
   const [showSavedModal, setShowSavedModal] = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
+  const [showPublishModal, setShowPublishModal] = useState(false);
   const [importText, setImportText] = useState('');
   const [copied, setCopied] = useState(false);
 
@@ -159,6 +162,17 @@ export default function DeckManager({
             <Upload className="w-4 h-4 text-purple-400" />
             <span>Importer</span>
           </button>
+
+          {/* Ajouter Commu Button */}
+          <button
+            onClick={() => setShowPublishModal(true)}
+            disabled={cardCount === 0}
+            className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-indigo-900 to-purple-900 hover:from-indigo-800 hover:to-purple-800 border border-indigo-500/50 text-indigo-200 hover:text-white text-xs font-gothic font-bold transition-all shadow-[0_0_12px_rgba(99,102,241,0.3)] disabled:opacity-50"
+            title="Publier ce deck dans l'espace communautaire"
+          >
+            <Share2 className="w-4 h-4 text-indigo-400" />
+            <span>Ajouter Commu</span>
+          </button>
         </div>
 
         {/* Clear Deck */}
@@ -284,6 +298,15 @@ export default function DeckManager({
           </div>
         </div>
       )}
+
+      {/* Publish to Community Modal */}
+      <PublishCommunityDeckModal
+        isOpen={showPublishModal}
+        onClose={() => setShowPublishModal(false)}
+        deckName={deckName}
+        deckCards={deckCards}
+        userProfile={userProfile}
+      />
     </div>
   );
 }

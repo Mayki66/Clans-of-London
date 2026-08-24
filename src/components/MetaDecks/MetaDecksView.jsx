@@ -212,52 +212,56 @@ export default function MetaDecksView({
                   </div>
                 </div>
 
-                {/* 15 Cards Visual Artworks Grid */}
+                {/* 15 Cards Mini Visual Strip (Clean & Immediate Owned Outline) */}
                 <div className="space-y-1.5 pt-1">
                   <div className="flex items-center justify-between text-[11px] font-mono text-gray-400">
                     <span>{isEn ? "Deck Composition (15 Cards) :" : "Composition du Deck (15 Cartes) :"}</span>
                     <span className="text-gray-500">{isEn ? "Click to inspect" : "Cliquer pour inspecter"}</span>
                   </div>
 
-                  <div className="grid grid-cols-5 gap-2">
+                  <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
                     {deck.cardsInDeck.map((card) => {
                       const isOwned = ownedCardIds.includes(card.id);
                       return (
                         <div
                           key={card.id}
                           onClick={() => onInspectCard(card)}
-                          className={`group relative rounded-xl overflow-hidden border transition-all duration-300 cursor-pointer flex flex-col justify-between shadow-md ${
+                          className={`group relative rounded-xl p-2 transition-all duration-200 cursor-pointer flex flex-col justify-between text-center select-none ${
                             isOwned
-                              ? 'border-emerald-500/70 shadow-[0_0_10px_rgba(16,185,129,0.25)] hover:border-emerald-400 hover:scale-105'
-                              : 'border-white/15 opacity-75 hover:opacity-100 hover:border-amber-400 hover:scale-105'
+                              ? 'border-2 border-emerald-400/90 bg-gradient-to-b from-emerald-950/60 to-[#0c1612] text-emerald-200 shadow-[0_0_14px_rgba(16,185,129,0.35)] hover:border-emerald-300 hover:scale-[1.03]'
+                              : 'border border-white/10 bg-[#0c0f17] text-gray-400 opacity-60 hover:opacity-100 hover:border-amber-400/60 hover:scale-[1.02]'
                           }`}
-                          title={`${card.name} (${card.costDisplay || card.cost} Sang • P${card.power} • ${isOwned ? 'Possédée' : 'Non possédée'})`}
+                          title={`${card.name} (${card.costDisplay || card.cost} Sang • P${card.power} • ${isOwned ? 'Possédée dans votre profil' : 'Non possédée'})`}
                         >
-                          {/* Card Artwork */}
-                          <div className="relative w-full h-24 overflow-hidden bg-black">
-                            <CardArtwork
-                              artType={card.artType}
-                              clan={card.clan}
-                              imageUrl={card.imageUrl}
-                              className="w-full h-full object-cover"
-                            />
-
-                            {/* Top Badges: Cost & Power */}
-                            <div className="absolute top-1 left-1 right-1 flex items-center justify-between z-10 pointer-events-none">
-                              <div className="w-5 h-5 rounded-full bg-gradient-to-br from-red-600 to-rose-950 border border-red-400 flex items-center justify-center font-bold text-[10px] text-white shadow-blood">
-                                {card.costDisplay || card.cost}
-                              </div>
-                              <div className="w-5 h-5 rounded-lg bg-gradient-to-br from-amber-600 to-amber-950 border border-amber-400 flex items-center justify-center font-bold text-[10px] text-white shadow-gold">
-                                {card.power}
-                              </div>
-                            </div>
+                          {/* Top Badges: Cost & Power */}
+                          <div className="flex items-center justify-between gap-1 mb-1">
+                            <span className="w-5 h-5 rounded-full bg-red-950 border border-red-500/60 flex items-center justify-center font-mono font-bold text-[10px] text-red-300">
+                              {card.costDisplay || card.cost}
+                            </span>
+                            <span className="w-5 h-5 rounded-lg bg-amber-950 border border-amber-500/60 flex items-center justify-center font-mono font-bold text-[10px] text-amber-300">
+                              {card.power}
+                            </span>
                           </div>
 
-                          {/* Card Name Footer */}
-                          <div className="p-1 bg-gradient-to-t from-black via-[#0d0f17] to-[#121520] border-t border-white/10 text-center">
-                            <p className="font-gothic font-bold text-[10px] text-gray-200 truncate group-hover:text-amber-300 transition-colors">
-                              {card.name}
-                            </p>
+                          {/* Card Name */}
+                          <p className={`font-gothic font-bold text-xs truncate leading-snug my-1 ${
+                            isOwned ? 'text-gray-100 group-hover:text-emerald-300' : 'text-gray-300 group-hover:text-amber-300'
+                          }`}>
+                            {card.name}
+                          </p>
+
+                          {/* Status Badge */}
+                          <div className="pt-1 border-t border-white/5">
+                            {isOwned ? (
+                              <span className="inline-flex items-center space-x-0.5 text-[9px] font-mono font-bold text-emerald-400">
+                                <span>✓</span>
+                                <span>{isEn ? "Owned" : "Possédée"}</span>
+                              </span>
+                            ) : (
+                              <span className="text-[9px] font-mono text-gray-500">
+                                {isEn ? "Missing" : "Manquante"}
+                              </span>
+                            )}
                           </div>
                         </div>
                       );

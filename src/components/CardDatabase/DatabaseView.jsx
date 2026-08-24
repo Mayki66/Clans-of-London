@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { BookOpen, Layers, Sparkles, Droplets, Shield, Award } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { BookOpen, Layers, Sparkles, Droplets, Shield, Award, RefreshCw, CheckCircle2, Globe, ExternalLink } from 'lucide-react';
 import FilterBar from './FilterBar';
 import TableView from './TableView';
 import CardFrame from '../Card/CardFrame';
 import { CARDS_DATA } from '../../data/cardsData';
 import { CLANS } from '../../data/clansData';
+import { syncCardsWithParadoxWiki, getLastSyncMetadata } from '../../utils/wikiSync';
 
 export default function DatabaseView({ 
   onInspectCard, 
@@ -29,6 +30,29 @@ export default function DatabaseView({
     sortBy: 'cost-asc'
   });
   const [viewMode, setViewMode] = useState('grid');
+  const [isSyncing, setIsSyncing] = useState(false);
+  const [syncMeta, setSyncMeta] = useState(getLastSyncMetadata());
+  const [syncSuccessMsg, setSyncSuccessMsg] = useState(null);
+
+  useEffect(() => {
+    setSyncMeta(getLastSyncMetadata());
+  }, []);
+
+  const handleWikiSync = async () => {
+    setIsSyncing(true);
+    try {
+      const res = await syncCardsWithParadoxWiki();
+      if (res.success) {
+        setSyncMeta(res.metadata);
+        setSyncSuccessMsg(res.message);
+        setTimeout(() => setSyncSuccessMsg(null), 4000);
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsSyncing(false);
+    }
+  };
 
   const onResetFilters = () => {
     setFilters({
@@ -101,15 +125,19 @@ export default function DatabaseView({
       }
     }
 
+    // Text search
     if (filters.search) {
-      const q = filters.search.toLowerCase();
-      const matchName = card.name.toLowerCase().includes(q);
-      const matchAbility = (card.ability || '').toLowerCase().includes(q) || (card.ability_en || '').toLowerCase().includes(q);
-      const matchFlavor = card.flavorText?.toLowerCase().includes(q);
+      const q = filters.search.toLowerCase().trim();
+      const matchName = card.name?.toLowerCase().includes(q);
+      const matchOriginal = card.originalName?.toLowerCase().includes(q);
+      const matchAbility = card.ability?.toLowerCase().includes(q);
+      const matchAbilityEn = card.ability_en?.toLowerCase().includes(q);
+      const matchClan = card.clan?.toLowerCase().includes(q);
       const matchKeywords = card.keywords?.some(k => k.toLowerCase().includes(q));
-      const matchClan = card.clan.toLowerCase().includes(q);
-      const matchWiki = card.wikiUrl?.toLowerCase().includes(q) || (q === 'kate' && card.name.toLowerCase().includes('katie'));
-      if (!matchName && !matchAbility && !matchFlavor && !matchKeywords && !matchClan && !matchWiki) return false;
+
+      if (!matchName && !matchOriginal && !matchAbility && !matchAbilityEn && !matchClan && !matchKeywords) {
+        return false;
+      }
     }
 
     return true;
@@ -123,9 +151,9 @@ export default function DatabaseView({
       case 'cost-desc':
         return costB - costA || a.name.localeCompare(b.name);
       case 'power-desc':
-        return b.power - a.power || a.name.localeCompare(b.name);
+        return b.power - a.power || costA - costB;
       case 'power-asc':
-        return a.power - b.power || a.name.localeCompare(b.name);
+        return a.power - b.power || costA - costB;
       case 'name-asc':
         return a.name.localeCompare(b.name);
       case 'series-asc':
@@ -144,7 +172,7 @@ export default function DatabaseView({
       {/* Header Info Banner */}
       <div className="glass-panel rounded-2xl p-6 border border-white/10 shadow-2xl relative overflow-hidden">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div className="space-y-1">
+          <div className="space-y-1 max-w-2xl">
             <div className="flex items-center space-x-2">
               <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
               <h1 className="font-gothic font-extrabold text-2xl md:text-3xl text-gray-100">
@@ -153,17 +181,36 @@ export default function DatabaseView({
             </div>
             <p className="text-xs md:text-sm text-gray-400 font-sans">
               {isEn 
-                ? "Official catalog aligned with the Paradox Wiki. Complete with card art, exact abilities and dual Mortal/Vampire tags."
-                : "Catalogue officiel aligné sur le Wiki Paradox. Illustrations officielles, textes de règles littéraux et filtres multi-tags."}
+                ? "Official catalog aligned with Paradox Wiki. Complete with card art, verified abilities and full clan/faction tags."
+                : "Catalogue officiel certifié et aligné sur le Wiki Paradox. Illustrations officielles, textes de règles littéraux et factions vérifiées."}
             </p>
           </div>
 
-          <div className="flex items-center space-x-2">
-            <div className="px-3 py-1.5 rounded-xl bg-[#090b10] border border-white/10 text-xs font-mono text-gray-300">
+          {/* Sync & Stats Actions */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+            <button
+              onClick={handleWikiSync}
+              disabled={isSyncing}
+              className="flex items-center space-x-2 px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-700 via-red-800 to-rose-900 hover:from-amber-600 hover:to-rose-800 text-white text-xs font-gothic font-bold border border-amber-500/60 shadow-blood transition-all transform active:scale-98 disabled:opacity-50"
+              title="Vérifier en direct les nouveautés et ajustements depuis le Wiki Paradox"
+            >
+              <RefreshCw className={`w-3.5 h-3.5 text-amber-300 ${isSyncing ? 'animate-spin' : ''}`} />
+              <span>{isSyncing ? (isEn ? "Syncing Wiki..." : "Vérification Wiki...") : (isEn ? "🔄 Sync Paradox Wiki" : "🔄 Synchroniser Wiki Paradox")}</span>
+            </button>
+
+            <div className="px-3 py-2 rounded-xl bg-[#090b10] border border-white/10 text-xs font-mono text-gray-300">
               <strong className="text-amber-400 font-bold">{filteredCards.length}</strong> / {CARDS_DATA.length} {isEn ? "cards" : "cartes"}
             </div>
           </div>
         </div>
+
+        {/* Sync Success Toast */}
+        {syncSuccessMsg && (
+          <div className="mt-4 p-3 rounded-xl bg-emerald-950/80 border border-emerald-500/60 text-emerald-300 text-xs flex items-center space-x-2 animate-fadeIn">
+            <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+            <span className="font-semibold">{syncSuccessMsg}</span>
+          </div>
+        )}
       </div>
 
       {/* Interactive Filters Panel */}
