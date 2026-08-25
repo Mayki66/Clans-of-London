@@ -171,7 +171,7 @@ export async function syncCloudExport(pseudo, level = 1, rank = "Néophyte") {
 export async function fetchAllCloudTelemetry() {
   const supabase = getSupabaseClient();
   if (!supabase) {
-    return null;
+    return { connected: false, error: "Clé Supabase Anon manquante pour les visiteurs mondiaux." };
   }
 
   try {
@@ -188,14 +188,14 @@ export async function fetchAllCloudTelemetry() {
 
     if (playersError) {
       console.error("Error fetching players from Supabase", playersError);
-      return null;
+      return { connected: false, error: `Erreur Supabase: ${playersError.message} (${playersError.details || 'Vérifiez les règles RLS'})` };
     }
 
     const totalExports = (players || []).reduce((acc, p) => acc + (p.has_exported ? (p.export_count || 1) : 0), 0);
 
     return {
       connected: true,
-      totalVisits: visitsCount || players?.length || 1,
+      totalVisits: (typeof visitsCount === 'number' && visitsCount > 0) ? visitsCount : (players?.length || 1),
       totalProfileExports: totalExports,
       registeredUsers: (players || []).map(p => ({
         id: p.id,
@@ -210,6 +210,6 @@ export async function fetchAllCloudTelemetry() {
     };
   } catch (e) {
     console.error("Error fetching cloud telemetry", e);
-    return null;
+    return { connected: false, error: e.message };
   }
 }

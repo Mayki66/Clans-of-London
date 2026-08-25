@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   ShieldAlert, Users, Download, Activity, Eye, X, CheckCircle2, 
-  Clock, Award, Lock, RefreshCw, Layers, Database, Settings, ExternalLink, Key, Check, Copy
+  Clock, Award, Lock, RefreshCw, Layers, Database, Settings, ExternalLink, Key, Check, Copy, AlertCircle
 } from 'lucide-react';
 import { getTelemetryData } from '../../utils/adminTelemetry';
 import { fetchAllCloudTelemetry, getSupabaseConfig, saveSupabaseConfig, syncCloudVisit, syncCloudUser } from '../../utils/cloudDatabase';
@@ -9,6 +9,7 @@ import { fetchAllCloudTelemetry, getSupabaseConfig, saveSupabaseConfig, syncClou
 export default function GhostAdminModal({ onClose }) {
   const [telemetry, setTelemetry] = useState(getTelemetryData());
   const [cloudConnected, setCloudConnected] = useState(false);
+  const [cloudError, setCloudError] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
   const [showConfig, setShowConfig] = useState(false);
 
@@ -28,9 +29,11 @@ export default function GhostAdminModal({ onClose }) {
         registeredUsers: cloudData.registeredUsers
       }));
       setCloudConnected(true);
+      setCloudError(null);
     } else {
       setTelemetry(getTelemetryData());
       setCloudConnected(false);
+      setCloudError(cloudData?.error || null);
     }
     setRefreshing(false);
   };
@@ -101,28 +104,25 @@ CREATE POLICY "Public insert col_visits" ON col_visits FOR INSERT WITH CHECK (tr
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-2xl animate-fadeIn">
-      {/* Ghost Ambient Red Glow */}
-      <div className="absolute w-[600px] h-[600px] bg-red-800/15 rounded-full blur-[140px] pointer-events-none -z-10" />
-
-      <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl bg-[#0a0c12] border-2 border-red-600/50 shadow-[0_0_80px_rgba(220,38,38,0.35)] p-6 sm:p-8 space-y-6 text-gray-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl animate-fadeIn">
+      <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl bg-[#090b10] border-2 border-red-600/40 p-6 md:p-8 space-y-6 shadow-[0_0_80px_rgba(220,38,38,0.3)] text-gray-200">
         
-        {/* Header Bar */}
-        <div className="flex items-center justify-between border-b border-white/10 pb-4">
+        {/* Header */}
+        <div className="flex items-start justify-between border-b border-white/10 pb-4">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-red-700 via-black to-slate-900 border-2 border-amber-500/80 flex items-center justify-center shadow-blood text-2xl">
-              👁️
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-red-600 to-rose-950 border border-red-400 flex items-center justify-center shadow-blood">
+              <Eye className="w-6 h-6 text-white" />
             </div>
             <div>
-              <div className="flex items-center space-x-2 flex-wrap">
-                <h2 className="font-gothic font-extrabold text-2xl text-gray-100 tracking-wider">
+              <div className="flex items-center space-x-2">
+                <h2 className="font-gothic font-extrabold text-2xl text-gray-100">
                   Espace Fantôme • Administration Privée
                 </h2>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-red-950/80 border border-red-500/60 text-red-300">
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-red-950 border border-red-500/50 text-red-300">
                   MAYKI EXCLUSIVE
                 </span>
                 {cloudConnected ? (
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-950/80 border border-emerald-500/60 text-emerald-300 flex items-center space-x-1">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-950 border border-emerald-500/60 text-emerald-300 flex items-center space-x-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                     <span>Cloud Supabase Connecté</span>
                   </span>
@@ -169,6 +169,29 @@ CREATE POLICY "Public insert col_visits" ON col_visits FOR INSERT WITH CHECK (tr
             </button>
           </div>
         </div>
+
+        {/* Diagnostic Banner if Cloud is not active globally */}
+        {!cloudConnected && (
+          <div className="p-3.5 rounded-2xl bg-amber-950/40 border border-amber-500/40 text-amber-200 text-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 animate-fadeIn">
+            <div className="flex items-center space-x-2.5">
+              <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0" />
+              <div className="space-y-0.5">
+                <span className="font-bold block">
+                  {cloudError ? cloudError : "Le suivi mondial en direct nécessite votre clé Anon Supabase."}
+                </span>
+                <span className="text-[11px] text-gray-400 block font-mono">
+                  Les visiteurs de Discord se connectent sans clés locales. Définissez la clé Anon publique pour activer le suivi mondial automatique.
+                </span>
+              </div>
+            </div>
+            <button
+              onClick={() => setShowConfig(true)}
+              className="px-3.5 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-black font-bold font-gothic text-xs whitespace-nowrap shadow-sm"
+            >
+              ⚙️ Configurer les Clés
+            </button>
+          </div>
+        )}
 
         {/* Cloud Config Accordion */}
         {showConfig && (
