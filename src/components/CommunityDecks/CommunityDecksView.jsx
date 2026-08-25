@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Users, Share2, Search, ArrowRight, Swords, Copy, Check, Plus, 
-  Sparkles, Layers, Shield, Droplets, Heart, Filter, BookOpen, ExternalLink 
+  Sparkles, Layers, Shield, Droplets, Heart, Filter, BookOpen, ExternalLink, RefreshCw 
 } from 'lucide-react';
 import { CARDS_DATA } from '../../data/cardsData';
 import { CLANS } from '../../data/clansData';
-import { getCommunityDecks, publishCommunityDeck } from '../../data/communityDecks';
+import { getLocalCommunityDecks, fetchCloudCommunityDecks, publishCommunityDeck, likeCommunityDeck } from '../../data/communityDecks';
 import CardArtwork from '../Card/CardArtwork';
 import confetti from 'canvas-confetti';
 
@@ -19,15 +19,32 @@ export default function CommunityDecksView({
   lang = 'fr',
   t
 }) {
-  const [communityDecks, setCommunityDecks] = useState(getCommunityDecks());
+  const [communityDecks, setCommunityDecks] = useState(getLocalCommunityDecks());
+  const [loadingCloud, setLoadingCloud] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedClan, setSelectedClan] = useState('ALL');
   const [copiedDeckId, setCopiedDeckId] = useState(null);
   const [showPublishModal, setShowPublishModal] = useState(false);
   const [publishName, setPublishName] = useState(currentDeckName);
-  const [publishAuthor, setPublishAuthor] = useState(userProfile.playerName || 'Mayki');
+  const [publishAuthor, setPublishAuthor] = useState(userProfile?.playerName || 'Mayki');
   const [publishStrategy, setPublishStrategy] = useState('');
   const [likedDecks, setLikedDecks] = useState({});
+
+  const loadDecks = async () => {
+    setLoadingCloud(true);
+    try {
+      const decks = await fetchCloudCommunityDecks();
+      setCommunityDecks(decks);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoadingCloud(false);
+    }
+  };
+
+  useEffect(() => {
+    loadDecks();
+  }, []);
 
   // Filter Decks
   const filteredDecks = communityDecks.filter(deck => {
@@ -50,15 +67,20 @@ export default function CommunityDecksView({
     setTimeout(() => setCopiedDeckId(null), 2000);
   };
 
-  const handleLike = (deckId) => {
+  const handleLike = async (deckId) => {
+    const deck = communityDecks.find(d => d.id === deckId);
+    const currentLikes = (deck?.likes || 1) + (likedDecks[deckId] || 0);
+
     setLikedDecks(prev => ({
       ...prev,
       [deckId]: (prev[deckId] || 0) + 1
     }));
     confetti({ particleCount: 30, spread: 60, origin: { y: 0.8 } });
+
+    await likeCommunityDeck(deckId, currentLikes);
   };
 
-  const handlePublishSubmit = (e) => {
+  const handlePublishSubmit = async (e) => {
     e.preventDefault();
     if (currentDeckCards.length === 0) {
       alert(lang === 'fr' ? 'Votre deck actuel est vide ! Ajoutez des cartes dans le Deck Builder d\'abord.' : 'Your current deck is empty! Add cards in the Deck Builder first.');
@@ -70,18 +92,18 @@ export default function CommunityDecksView({
     currentDeckCards.forEach(c => {
       clanCounts[c.clan] = (clanCounts[c.clan] || 0) + 1;
     });
-    const mainClan = Object.keys(clanCounts).sort((a, b) => clanCounts[b] - clanCounts[a])[0] || 'Duskborn';
+    const mainClan = Object.keys(clanCounts).sort((a, b) => clanCounts[b] - clanCounts[a])[0] || 'Brujah';
 
-    const newDeck = publishCommunityDeck({
+    const newDeck = await publishCommunityDeck({
       name: publishName.trim() || currentDeckName,
-      author: publishAuthor.trim() || userProfile.playerName || 'Mayki',
+      author: publishAuthor.trim() || userProfile?.playerName || 'Mayki',
       clan: mainClan,
       cardIds: currentDeckCards.map(c => c.id),
       strategy: publishStrategy.trim() || "Deck partagé par la communauté Clans of London."
     });
 
     if (newDeck) {
-      setCommunityDecks(getCommunityDecks());
+      await loadDecks();
       setShowPublishModal(false);
       confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
     }
@@ -107,17 +129,30 @@ export default function CommunityDecksView({
             </p>
           </div>
 
-          {/* Publish Deck Button */}
-          <button
-            onClick={() => {
-              setPublishName(currentDeckName);
-              setShowPublishModal(true);
-            }}
-            className="flex items-center space-x-2 px-4 py-3 rounded-xl bg-gradient-to-r from-purple-800 to-indigo-900 hover:from-purple-700 hover:to-indigo-800 text-white font-gothic font-bold text-xs shadow-[0_0_20px_rgba(147,51,234,0.4)] border border-purple-400/40 transition-all flex-shrink-0"
-          >
-            <Share2 className="w-4 h-4" />
-            <span>{t?.community?.publishBtn || "Publier mon Deck Actuel"}</span>
-          </button>
+          <div className="flex items-center space-x-2 flex-shrink-0">
+            {/* Refresh Cloud Decks */}
+            <button
+              onClick={loadDecks}
+              disabled={loadingCloud}
+              className="flex items-center space-x-2 px-3.5 py-3 rounded-xl bg-[#141824] hover:bg-[#1f2538] text-gray-200 hover:text-white font-gothic font-bold text-xs border border-white/15 transition-all shadow-sm disabled:opacity-50"
+              title="Recharger les decks de la communauté"
+            >
+              <RefreshCw className={`w-4 h-4 text-indigo-400 ${loadingCloud ? 'animate-spin' : ''}`} />
+              <span>{loadingCloud ? "Chargement..." : "Rafraîchir"}</span>
+            </button>
+
+            {/* Publish Deck Button */}
+            <button
+              onClick={() => {
+                setPublishName(currentDeckName);
+                setShowPublishModal(true);
+              }}
+              className="flex items-center space-x-2 px-4 py-3 rounded-xl bg-gradient-to-r from-purple-800 to-indigo-900 hover:from-purple-700 hover:to-indigo-800 text-white font-gothic font-bold text-xs shadow-[0_0_20px_rgba(147,51,234,0.4)] border border-purple-400/40 transition-all"
+            >
+              <Share2 className="w-4 h-4" />
+              <span>{t?.community?.publishBtn || "Publier mon Deck Actuel"}</span>
+            </button>
+          </div>
         </div>
       </div>
 
