@@ -12,6 +12,7 @@ export function cleanSupabaseUrl(url) {
 }
 
 const DEFAULT_SUPABASE_URL = 'https://rlsyalcjgointnuyvqwg.supabase.co';
+const DEFAULT_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJsc3lhbGNqZ29pbnRudXl2cXdnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODczMDUzNDAsImV4cCI6MjEwMjg4MTM0MH0.jON1BjPJTuTrJEsSLUJ9JdaSg3k13Razvi8m01LRXYw';
 
 export function getSupabaseConfig() {
   const envUrl = import.meta.env?.VITE_SUPABASE_URL;
@@ -33,7 +34,7 @@ export function getSupabaseConfig() {
     console.error("Error reading Supabase config", e);
   }
 
-  return { url: DEFAULT_SUPABASE_URL, key: '', source: 'none' };
+  return { url: DEFAULT_SUPABASE_URL, key: DEFAULT_SUPABASE_ANON_KEY, source: 'default' };
 }
 
 export function saveSupabaseConfig(url, key) {
