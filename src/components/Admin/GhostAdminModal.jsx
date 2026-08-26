@@ -24,6 +24,7 @@ export default function GhostAdminModal({ onClose }) {
     if (cloudData && cloudData.connected) {
       setTelemetry(prev => ({
         ...prev,
+        uniqueVisitors: cloudData.uniqueVisitors,
         totalVisits: cloudData.totalVisits,
         totalProfileExports: cloudData.totalProfileExports,
         registeredUsers: cloudData.registeredUsers
@@ -75,8 +76,12 @@ CREATE TABLE IF NOT EXISTS col_players (
 CREATE TABLE IF NOT EXISTS col_visits (
   id BIGSERIAL PRIMARY KEY,
   visited_at TIMESTAMPTZ DEFAULT NOW(),
+  visitor_id TEXT,
   user_agent TEXT
 );
+
+-- Si la table col_visits existait déjà sans visitor_id
+ALTER TABLE col_visits ADD COLUMN IF NOT EXISTS visitor_id TEXT;
 
 -- Politiques de sécurité (Lecture & Écriture publiques)
 ALTER TABLE col_players ENABLE ROW LEVEL SECURITY;
@@ -272,18 +277,21 @@ CREATE POLICY "Public insert col_visits" ON col_visits FOR INSERT WITH CHECK (tr
 
         {/* 3 Metric Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {/* Total Visits & Clicks */}
+          {/* Unique Visitors (Personnes Réelles) */}
           <div className="p-5 rounded-2xl bg-[#0f121a] border border-blue-500/30 space-y-2 relative overflow-hidden shadow-lg">
             <div className="flex items-center justify-between text-blue-400">
-              <span className="text-xs font-mono uppercase font-bold">Visites Globales</span>
-              <Activity className="w-4 h-4" />
+              <span className="text-xs font-mono uppercase font-bold">Visiteurs Uniques</span>
+              <Users className="w-4 h-4" />
             </div>
             <div className="text-3xl font-extrabold font-mono text-gray-100">
-              {telemetry.totalVisits || 1}
+              {telemetry.uniqueVisitors || 1}
             </div>
-            <p className="text-[11px] text-gray-400 font-sans">
-              {cloudConnected ? "Comptabilisées en temps réel" : "Comptabilisées sur ce navigateur"}
-            </p>
+            <div className="flex items-center justify-between text-[11px] text-gray-400 font-sans">
+              <span>{cloudConnected ? "Personnes & appareils réels" : "Sur ce navigateur"}</span>
+              <span className="text-[10px] font-mono text-blue-300/80">
+                ({telemetry.totalVisits || 1} sessions)
+              </span>
+            </div>
           </div>
 
           {/* Accounts & JSON Exports */}

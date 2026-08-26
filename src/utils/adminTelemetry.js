@@ -34,6 +34,7 @@ export function getTelemetryData() {
   }
 
   return {
+    uniqueVisitors: 1,
     totalVisits: 1,
     totalInteractions: 0,
     totalProfileExports: 0,
@@ -58,32 +59,50 @@ export function saveTelemetryData(data) {
   }
 }
 
-const SESSION_KEY = 'col_session_id';
+const VISITOR_KEY = 'col_visitor_uuid_v2';
+const SESSION_KEY = 'col_session_id_v2';
 
-function getOrCreateSessionId() {
+function getVisitorInfo() {
   try {
+    let vid = localStorage.getItem(VISITOR_KEY);
+    let isNewVisitor = false;
+    if (!vid) {
+      vid = `vis-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+      localStorage.setItem(VISITOR_KEY, vid);
+      isNewVisitor = true;
+    }
+
     let sid = sessionStorage.getItem(SESSION_KEY);
+    let isNewSession = false;
     if (!sid) {
       sid = `sess-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
       sessionStorage.setItem(SESSION_KEY, sid);
-      return { id: sid, isNew: true };
+      isNewSession = true;
     }
-    return { id: sid, isNew: false };
+
+    return { visitorId: vid, isNewVisitor, sessionId: sid, isNewSession };
   } catch {
-    return { id: `sess-${Date.now()}`, isNew: true };
+    return { visitorId: `vis-${Date.now()}`, isNewVisitor: false, sessionId: `sess-${Date.now()}`, isNewSession: false };
   }
 }
 
 export function trackVisit() {
-  const { isNew } = getOrCreateSessionId();
-  // Ne compter qu'une visite par session navigateur (onglet)
-  if (!isNew) return;
+  const { visitorId, isNewVisitor, isNewSession } = getVisitorInfo();
+  
+  // Si c'est le même onglet/session active, ne pas renvoyer de visite
+  if (!isNewSession && !isNewVisitor) return;
 
   const data = getTelemetryData();
-  data.totalVisits = (data.totalVisits || 0) + 1;
+  if (isNewVisitor) {
+    data.uniqueVisitors = (data.uniqueVisitors || 0) + 1;
+  }
+  if (isNewSession) {
+    data.totalVisits = (data.totalVisits || 0) + 1;
+  }
   saveTelemetryData(data);
+
   try {
-    syncCloudVisit();
+    syncCloudVisit(visitorId, isNewVisitor);
   } catch (e) {
     // silent
   }

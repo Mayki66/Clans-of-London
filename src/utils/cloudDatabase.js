@@ -71,15 +71,19 @@ export function getSupabaseClient() {
  * Cloud Sync Functions
  */
 
-export async function syncCloudVisit() {
+export async function syncCloudVisit(visitorId = 'anon', isNewVisitor = false) {
   const supabase = getSupabaseClient();
   if (!supabase) return;
 
   try {
-    // Insert a visit log entry
+    // Insert a visit log entry with persistent visitor ID
     await supabase
       .from('col_visits')
-      .insert([{ visited_at: new Date().toISOString(), user_agent: navigator.userAgent.slice(0, 80) }]);
+      .insert([{ 
+        visited_at: new Date().toISOString(), 
+        visitor_id: visitorId,
+        user_agent: navigator.userAgent.slice(0, 80) 
+      }]);
   } catch (e) {
     console.warn("Cloud visit sync skipped", e.message);
   }
@@ -138,7 +142,7 @@ export async function syncCloudExport(pseudo, level = 1, rank = "Néophyte") {
 
     const { data: existing } = await supabase
       .from('col_players')
-      .select('id, pseudo, export_count')
+      .select('id, export_count')
       .eq('pseudo', cleanPseudo)
       .maybeSingle();
 
@@ -182,21 +186,40 @@ export async function fetchAllCloudTelemetry() {
       .select('*')
       .order('last_active', { ascending: false });
 
-    // 2. Fetch visit counts
-    const { count: visitsCount, error: visitsError } = await supabase
+    // 2. Fetch visit records with visitor_id
+    const { data: visitsList, error: visitsError } = await supabase
       .from('col_visits')
-      .select('*', { count: 'exact', head: true });
+      .select('id, visitor_id, user_agent');
 
     if (playersError) {
       console.error("Error fetching players from Supabase", playersError);
       return { connected: false, error: `Erreur Supabase: ${playersError.message} (${playersError.details || 'Vérifiez les règles RLS'})` };
     }
 
+    let uniqueVisitorsCount = 1;
+    let totalVisitsCount = 1;
+
+    if (!visitsError && Array.isArray(visitsList)) {
+      totalVisitsCount = visitsList.length;
+      const uniqueIds = new Set();
+      visitsList.forEach(v => {
+        if (v.visitor_id && v.visitor_id !== 'anon' && !v.visitor_id.startsWith('legacy_')) {
+          uniqueIds.add(v.visitor_id);
+        } else if (v.user_agent) {
+          uniqueIds.add(v.user_agent);
+        } else {
+          uniqueIds.add(`v_${v.id}`);
+        }
+      });
+      uniqueVisitorsCount = Math.max(uniqueIds.size, players?.length || 1);
+    }
+
     const totalExports = (players || []).reduce((acc, p) => acc + (p.has_exported ? (p.export_count || 1) : 0), 0);
 
     return {
       connected: true,
-      totalVisits: (typeof visitsCount === 'number' && visitsCount > 0) ? visitsCount : (players?.length || 1),
+      uniqueVisitors: uniqueVisitorsCount,
+      totalVisits: totalVisitsCount,
       totalProfileExports: totalExports,
       registeredUsers: (players || []).map(p => ({
         id: p.id,
