@@ -1,6 +1,12 @@
 /**
  * Community Decks Repository with Supabase Cloud Sync
  * Vampire: The Masquerade – Clans of London
+ *
+ * Règles anti-doublon :
+ *  - La source de vérité est TOUJOURS Supabase (UUID comme identifiant canonique).
+ *  - Lors d'une publication, on attend l'UUID Supabase AVANT de sauvegarder localement.
+ *  - Lors d'un fetch, on ne remonte JAMAIS un deck local qui a déjà un doublon (name+author) dans le cloud.
+ *  - Le cache local est REMPLACÉ intégralement par la liste cloud dédupliquée à chaque fetch.
  */
 import { getSupabaseClient } from '../utils/cloudDatabase';
 
@@ -23,22 +29,48 @@ export function getLocalCommunityDecks() {
 
 export function saveLocalCommunityDecks(decks) {
   try {
-    localStorage.setItem(LOCAL_STORAGE_COMMUNITY_DECKS, JSON.stringify(decks));
+    // Dédupliquer par id avant de sauvegarder
+    const seen = new Set();
+    const unique = decks.filter(d => {
+      if (!d.id || seen.has(d.id)) return false;
+      seen.add(d.id);
+      return true;
+    });
+    localStorage.setItem(LOCAL_STORAGE_COMMUNITY_DECKS, JSON.stringify(unique));
   } catch (e) {
     console.error("Error saving local community decks", e);
   }
 }
 
 /**
- * Récupère tous les decks de la communauté depuis le Cloud Supabase
- * et synchronise avec les decks locaux.
+ * Mappe une ligne Supabase vers l'objet deck utilisé par l'UI.
+ */
+function mapCloudDeck(d) {
+  return {
+    id: d.id,
+    name: d.name,
+    name_en: d.name,
+    author: d.author || "Kindred",
+    clan: d.clan || "Brujah",
+    tier: d.tier || "Communauté",
+    cardIds: Array.isArray(d.card_ids) ? d.card_ids : [],
+    strategy_fr: d.strategy_fr || "Deck partagé par la communauté.",
+    strategy_en: d.strategy_en || "Deck shared by the community.",
+    publishedAt: d.published_at ? new Date(d.published_at).toISOString().split('T')[0] : "Récemment",
+    likes: d.likes || 1
+  };
+}
+
+/**
+ * Récupère tous les decks depuis Supabase et met à jour le cache local.
+ * Le cloud est la source de vérité — le cache local est écrasé.
+ * N'effectue AUCUN auto-upload : seul publishCommunityDeck() publie.
  */
 export async function fetchCloudCommunityDecks() {
-  const localDecks = getLocalCommunityDecks();
   const supabase = getSupabaseClient();
-  
+
   if (!supabase) {
-    return localDecks;
+    return getLocalCommunityDecks();
   }
 
   try {
@@ -48,90 +80,83 @@ export async function fetchCloudCommunityDecks() {
       .order('published_at', { ascending: false });
 
     if (error) {
-      console.warn("Supabase col_community_decks not found or query error, using local fallback", error.message);
-      return localDecks;
+      console.warn("Supabase community decks fetch error, using local cache", error.message);
+      return getLocalCommunityDecks();
     }
 
     if (cloudDecks && Array.isArray(cloudDecks)) {
-      const mappedCloud = cloudDecks.map(d => ({
-        id: d.id,
-        name: d.name,
-        name_en: d.name,
-        author: d.author || "Kindred",
-        clan: d.clan || "Brujah",
-        tier: d.tier || "Communauté",
-        cardIds: Array.isArray(d.card_ids) ? d.card_ids : [],
-        strategy_fr: d.strategy_fr || "Deck partagé par la communauté.",
-        strategy_en: d.strategy_en || "Deck shared by the community.",
-        publishedAt: d.published_at ? new Date(d.published_at).toISOString().split('T')[0] : "Récemment",
-        likes: d.likes || 1
-      }));
-
-      // Merge cloud with any unsynced local decks
-      const cloudIds = new Set(mappedCloud.map(d => d.id));
-      const unsyncedLocal = localDecks.filter(ld => !cloudIds.has(ld.id));
-
-      // Auto-upload unsynced local decks to cloud
-      for (const unsynced of unsyncedLocal) {
-        try {
-          await supabase.from('col_community_decks').insert([{
-            name: unsynced.name,
-            author: unsynced.author,
-            clan: unsynced.clan,
-            tier: 'Communauté',
-            card_ids: unsynced.cardIds,
-            strategy_fr: unsynced.strategy_fr,
-            strategy_en: unsynced.strategy_en,
-            likes: unsynced.likes || 1
-          }]);
-        } catch (syncErr) {
-          console.warn("Error auto-uploading local deck", syncErr);
+      // Dédupliquer côté cloud par (name + author) — garder la plus récente
+      const seenNameAuthor = new Map();
+      for (const d of cloudDecks) {
+        const key = `${(d.name || '').toLowerCase()}|${(d.author || '').toLowerCase()}`;
+        if (!seenNameAuthor.has(key)) {
+          seenNameAuthor.set(key, d);
         }
+        // Les doublons sont ignorés (la liste est triée par published_at DESC, donc on garde la plus récente)
       }
 
-      const merged = [...mappedCloud, ...unsyncedLocal];
-      saveLocalCommunityDecks(merged);
-      return merged;
+      const deduped = Array.from(seenNameAuthor.values()).map(mapCloudDeck);
+
+      // Écraser le cache local avec la vérité cloud dédupliquée
+      saveLocalCommunityDecks(deduped);
+      return deduped;
     }
   } catch (err) {
     console.error("Error fetching cloud community decks", err);
   }
 
-  return localDecks;
+  return getLocalCommunityDecks();
 }
 
 /**
- * Publie un deck dans le Cloud Supabase et le sauvegarde localement
+ * Publie un deck dans Supabase PUIS sauvegarde localement avec le vrai UUID.
+ * Anti-doublon : vérifie d'abord si un deck (même nom + même auteur) existe déjà.
  */
 export async function publishCommunityDeck(deckData) {
-  const localDecks = getLocalCommunityDecks();
-  const newEntry = {
-    id: `comm-user-${Date.now()}`,
-    name: deckData.name,
-    name_en: deckData.name,
-    author: deckData.author || "Kindred",
-    clan: deckData.clan || "Neutre",
-    tier: "Communauté",
-    cardIds: deckData.cardIds,
-    strategy_fr: deckData.strategy || "Deck partagé par la communauté.",
-    strategy_en: deckData.strategy || "Deck shared by the community.",
-    publishedAt: new Date().toISOString().split('T')[0],
-    likes: 1
-  };
-
-  // 1. Save local
-  const updatedLocal = [newEntry, ...localDecks];
-  saveLocalCommunityDecks(updatedLocal);
-
-  // 2. Push to Supabase Cloud
   const supabase = getSupabaseClient();
+
+  const cleanName = (deckData.name || '').trim();
+  const cleanAuthor = (deckData.author || 'Kindred').trim();
+
+  // Vérification anti-doublon : existe-t-il déjà un deck avec ce nom+auteur ?
+  if (supabase) {
+    try {
+      const { data: existing } = await supabase
+        .from('col_community_decks')
+        .select('id, name, author')
+        .ilike('name', cleanName)
+        .ilike('author', cleanAuthor)
+        .limit(1);
+
+      if (existing && existing.length > 0) {
+        console.warn("publishCommunityDeck: deck already exists in cloud, skipping upload", existing[0]);
+        // Retourner l'entrée existante sans créer de doublon
+        const existingEntry = mapCloudDeck({
+          ...existing[0],
+          clan: deckData.clan,
+          card_ids: deckData.cardIds,
+          strategy_fr: deckData.strategy,
+          strategy_en: deckData.strategy,
+          published_at: new Date().toISOString(),
+          likes: 1
+        });
+        return existingEntry;
+      }
+    } catch (e) {
+      console.warn("Error checking for duplicate deck", e);
+    }
+  }
+
+  // Publier dans Supabase (source de vérité) d'abord
+  let newEntry = null;
+
   if (supabase) {
     try {
       const { data, error } = await supabase
         .from('col_community_decks')
         .insert([{
-          name: deckData.name,
-          author: deckData.author || "Kindred",
+          name: cleanName,
+          author: cleanAuthor,
           clan: deckData.clan || "Neutre",
           tier: "Communauté",
           card_ids: deckData.cardIds,
@@ -143,11 +168,35 @@ export async function publishCommunityDeck(deckData) {
         .single();
 
       if (!error && data) {
-        newEntry.id = data.id;
+        newEntry = mapCloudDeck(data);
       }
     } catch (e) {
       console.warn("Error publishing deck to Supabase cloud", e);
     }
+  }
+
+  // Fallback local uniquement si Supabase a échoué (hors ligne)
+  if (!newEntry) {
+    newEntry = {
+      id: `local-${Date.now()}`,
+      name: cleanName,
+      name_en: cleanName,
+      author: cleanAuthor,
+      clan: deckData.clan || "Neutre",
+      tier: "Communauté",
+      cardIds: deckData.cardIds,
+      strategy_fr: deckData.strategy || "Deck partagé par la communauté.",
+      strategy_en: deckData.strategy || "Deck shared by the community.",
+      publishedAt: new Date().toISOString().split('T')[0],
+      likes: 1
+    };
+  }
+
+  // Ajouter au cache local (en tête de liste) après avoir l'ID définitif
+  const localDecks = getLocalCommunityDecks();
+  const alreadyInLocal = localDecks.some(d => d.id === newEntry.id);
+  if (!alreadyInLocal) {
+    saveLocalCommunityDecks([newEntry, ...localDecks]);
   }
 
   return newEntry;
