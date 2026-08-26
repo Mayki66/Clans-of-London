@@ -58,7 +58,27 @@ export function saveTelemetryData(data) {
   }
 }
 
+const SESSION_KEY = 'col_session_id';
+
+function getOrCreateSessionId() {
+  try {
+    let sid = sessionStorage.getItem(SESSION_KEY);
+    if (!sid) {
+      sid = `sess-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+      sessionStorage.setItem(SESSION_KEY, sid);
+      return { id: sid, isNew: true };
+    }
+    return { id: sid, isNew: false };
+  } catch {
+    return { id: `sess-${Date.now()}`, isNew: true };
+  }
+}
+
 export function trackVisit() {
+  const { isNew } = getOrCreateSessionId();
+  // Ne compter qu'une visite par session navigateur (onglet)
+  if (!isNew) return;
+
   const data = getTelemetryData();
   data.totalVisits = (data.totalVisits || 0) + 1;
   saveTelemetryData(data);

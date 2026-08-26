@@ -40,15 +40,15 @@ export default function DatabaseView({
 
   const handleWikiSync = async () => {
     setIsSyncing(true);
+    setSyncSuccessMsg(null);
     try {
       const res = await syncCardsWithParadoxWiki();
-      if (res.success) {
-        setSyncMeta(res.metadata);
-        setSyncSuccessMsg(res.message);
-        setTimeout(() => setSyncSuccessMsg(null), 4000);
-      }
+      setSyncMeta(res.metadata);
+      setSyncSuccessMsg(res.message);
+      setTimeout(() => setSyncSuccessMsg(null), res.hasNewCards ? 8000 : 4000);
     } catch (e) {
-      console.error(e);
+      setSyncSuccessMsg(`⚠️ Erreur inattendue : ${e.message}`);
+      setTimeout(() => setSyncSuccessMsg(null), 5000);
     } finally {
       setIsSyncing(false);
     }
@@ -204,10 +204,16 @@ export default function DatabaseView({
           </div>
         </div>
 
-        {/* Sync Success Toast */}
+        {/* Sync Toast — success / new cards / error */}
         {syncSuccessMsg && (
-          <div className="mt-4 p-3 rounded-xl bg-emerald-950/80 border border-emerald-500/60 text-emerald-300 text-xs flex items-center space-x-2 animate-fadeIn">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+          <div className={`mt-4 p-3 rounded-xl border text-xs flex items-start space-x-2 animate-fadeIn ${
+            syncSuccessMsg.startsWith('🆕')
+              ? 'bg-amber-950/80 border-amber-500/60 text-amber-200'
+              : syncSuccessMsg.startsWith('⚠️')
+              ? 'bg-red-950/70 border-red-500/50 text-red-200'
+              : 'bg-emerald-950/80 border-emerald-500/60 text-emerald-300'
+          }`}>
+            <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" />
             <span className="font-semibold">{syncSuccessMsg}</span>
           </div>
         )}

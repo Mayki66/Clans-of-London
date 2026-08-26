@@ -78,14 +78,11 @@ export default function App() {
 
   // User Profile state (Collection, Arena Points, Match History)
   const [userProfile, setUserProfile] = useState({
-    playerName: 'Mayki',
-    collectionLevel: 14,
-    arenaPoints: 1250,
+    playerName: '',
+    collectionLevel: 1,
+    arenaPoints: 0,
     ownedCardIds: DEFAULT_OWNED_CARD_IDS,
-    matchHistory: [
-      { id: 'm-1', date: 'Aujourd\'hui', result: 'victory', deckName: 'Alchimie Explosive', opponentClan: 'Brujah', pointsChange: '+35' },
-      { id: 'm-2', date: 'Hier', result: 'victory', deckName: 'Hégémonie Élitiste', opponentClan: 'Ventrue', pointsChange: '+35' }
-    ]
+    matchHistory: []
   });
 
   // Load saved data on mount & track visit
@@ -107,15 +104,13 @@ export default function App() {
         const parsedProfile = JSON.parse(profile);
         setUserProfile(parsedProfile);
       } else {
+        // Nouveau joueur : profil neutre, l'onboarding demandera le pseudo
         const initial = {
-          playerName: 'Mayki',
-          collectionLevel: 14,
-          arenaPoints: 1250,
+          playerName: '',
+          collectionLevel: 1,
+          arenaPoints: 0,
           ownedCardIds: DEFAULT_OWNED_CARD_IDS,
-          matchHistory: [
-            { id: 'm-1', date: 'Aujourd\'hui', result: 'victory', deckName: 'Alchimie Explosive', opponentClan: 'Brujah', pointsChange: '+35' },
-            { id: 'm-2', date: 'Hier', result: 'victory', deckName: 'Hégémonie Élitiste', opponentClan: 'Ventrue', pointsChange: '+35' }
-          ]
+          matchHistory: []
         };
         localStorage.setItem(LOCAL_STORAGE_USER_PROFILE, JSON.stringify(initial));
         setUserProfile(initial);

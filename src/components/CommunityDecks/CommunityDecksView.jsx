@@ -68,16 +68,16 @@ export default function CommunityDecksView({
   };
 
   const handleLike = async (deckId) => {
-    const deck = communityDecks.find(d => d.id === deckId);
-    const currentLikes = (deck?.likes || 1) + (likedDecks[deckId] || 0);
-
-    setLikedDecks(prev => ({
-      ...prev,
-      [deckId]: (prev[deckId] || 0) + 1
-    }));
+    // Optimistic UI: incrémenter immédiatement le compteur dans la liste locale
+    setCommunityDecks(prev => prev.map(d =>
+      d.id === deckId ? { ...d, likes: (d.likes || 1) + 1 } : d
+    ));
+    setLikedDecks(prev => ({ ...prev, [deckId]: true }));
     confetti({ particleCount: 30, spread: 60, origin: { y: 0.8 } });
 
-    await likeCommunityDeck(deckId, currentLikes);
+    // Sync cloud en arrière-plan
+    const deck = communityDecks.find(d => d.id === deckId);
+    await likeCommunityDeck(deckId, deck?.likes || 1);
   };
 
   const handlePublishSubmit = async (e) => {

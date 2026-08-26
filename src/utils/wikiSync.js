@@ -1,7 +1,9 @@
 import { CARDS_DATA } from '../data/cardsData';
 
 const LOCAL_STORAGE_WIKI_SYNC = 'col_wiki_sync_metadata_v1';
-const LOCAL_STORAGE_CUSTOM_CARDS = 'col_custom_cards_sync_v1';
+
+// URL de l'Edge Function Vercel (proxy côté serveur)
+const EDGE_SYNC_URL = '/api/wiki-sync';
 
 export function getLastSyncMetadata() {
   try {
@@ -15,6 +17,7 @@ export function getLastSyncMetadata() {
   return {
     lastSyncedAt: '24 août 2026',
     totalCards: CARDS_DATA.length,
+    totalWikiCards: null,
     status: 'up-to-date',
     wikiSource: 'https://vtm.paradoxwikis.com/Clans_of_London'
   };
@@ -29,67 +32,100 @@ export function saveSyncMetadata(metadata) {
 }
 
 /**
- * Synchronise les cartes avec le Wiki Paradox en direct.
- * Vérifie les dernières définitions, met à jour le cache et notifie l'utilisateur.
+ * Synchronise les cartes avec le Wiki Paradox via l'Edge Function Vercel.
+ * L'Edge Function contourne le blocage CORS/Cloudflare en faisant l'appel côté serveur.
  */
 export async function syncCardsWithParadoxWiki() {
   const startTime = Date.now();
-  
-  // 1. Simuler ou tenter la requête vers l'API du Wiki
-  try {
-    // MediaWiki endpoint query
-    const wikiUrl = 'https://vtm.paradoxwikis.com/api.php?action=query&list=categorymembers&cmtitle=Category:Clans_of_London_cards&cmlimit=500&format=json&origin=*';
-    
-    let onlineResult = null;
-    try {
-      const response = await fetch(wikiUrl, { mode: 'cors' });
-      if (response.ok) {
-        onlineResult = await response.json();
-      }
-    } catch (netErr) {
-      // Cloudflare or CORS fallback (normal for MediaWiki without proxy)
-      console.info("Wiki Direct API protected by Cloudflare. Running local integrity checksum verification.", netErr);
-    }
 
-    // Calcul du temps écoulé minimum pour un retour visuel fluide (800ms)
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+
+  try {
+    // Appel à l'Edge Function (proxy côté serveur — pas de CORS)
+    const res = await fetch(EDGE_SYNC_URL, {
+      signal: AbortSignal.timeout(10000),
+    });
+
+    // Délai minimum pour retour visuel fluide
     const elapsed = Date.now() - startTime;
     if (elapsed < 800) {
       await new Promise(r => setTimeout(r, 800 - elapsed));
     }
 
-    const now = new Date();
-    const dateStr = now.toLocaleDateString('fr-FR', { 
-      day: 'numeric', 
-      month: 'long', 
-      year: 'numeric', 
-      hour: '2-digit', 
-      minute: '2-digit' 
-    });
+    if (!res.ok) {
+      throw new Error(`Edge Function error: ${res.status}`);
+    }
+
+    const wikiData = await res.json();
+
+    if (!wikiData.success) {
+      throw new Error(wikiData.error || 'Wiki fetch failed');
+    }
+
+    // Comparer les cartes locales avec les cartes du Wiki
+    const localNames = new Set(CARDS_DATA.map(c => c.name));
+    const wikiNames = new Set(wikiData.cardTitles);
+
+    // Nouvelles cartes dans le Wiki qui ne sont pas en local
+    const potentialNewCards = wikiData.cardTitles.filter(title =>
+      !Array.from(localNames).some(ln => title.toLowerCase().includes(ln.toLowerCase()) || ln.toLowerCase().includes(title.toLowerCase()))
+    );
 
     const syncData = {
       lastSyncedAt: dateStr,
       totalCards: CARDS_DATA.length,
-      status: 'synced',
-      wikiSource: 'https://vtm.paradoxwikis.com/Clans_of_London',
+      totalWikiCards: wikiData.totalWikiCards,
+      status: wikiData.totalWikiCards > CARDS_DATA.length ? 'new-cards-detected' : 'synced',
+      wikiSource: wikiData.wikiSource,
       updatedCount: 0,
-      newCardsCount: 0,
+      newCardsCount: potentialNewCards.length,
+      potentialNewCards: potentialNewCards.slice(0, 10),
       verifiedClans: 10,
       integrityCheck: '100% Validé'
     };
 
     saveSyncMetadata(syncData);
 
+    const hasNew = potentialNewCards.length > 0;
+    const message = hasNew
+      ? `🆕 ${potentialNewCards.length} nouvelle(s) carte(s) potentielle(s) détectée(s) sur le Wiki ! Contactez l'admin pour mise à jour.`
+      : `✅ ${CARDS_DATA.length} cartes vérifiées — Base de données à jour avec le Wiki Paradox (${wikiData.totalWikiCards} entrées Wiki).`;
+
     return {
       success: true,
       metadata: syncData,
-      message: `Synchronisation réussie ! 220 cartes officielles vérifiées et à jour avec le Wiki Paradox.`
+      hasNewCards: hasNew,
+      message
     };
+
   } catch (error) {
     console.error("Wiki Sync Error", error);
+
+    // Fallback local propre avec message d'erreur explicite
+    const fallbackData = {
+      lastSyncedAt: dateStr,
+      totalCards: CARDS_DATA.length,
+      totalWikiCards: null,
+      status: 'offline',
+      wikiSource: 'https://vtm.paradoxwikis.com/Clans_of_London',
+      updatedCount: 0,
+      newCardsCount: 0,
+      integrityCheck: 'Hors ligne'
+    };
+    saveSyncMetadata(fallbackData);
+
     return {
       success: false,
+      metadata: fallbackData,
       error: error.message,
-      message: "Impossible de joindre le Wiki Paradox. Utilisation de la base certifiée locale (220 cartes)."
+      message: `⚠️ Wiki Paradox inaccessible (${error.message}). Base locale de ${CARDS_DATA.length} cartes certifiées utilisée.`
     };
   }
 }
