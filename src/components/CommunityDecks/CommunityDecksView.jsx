@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   Users, Share2, Search, ArrowRight, Swords, Copy, Check, Plus, 
-  Sparkles, Layers, Shield, Droplets, Heart, Filter, BookOpen, ExternalLink, RefreshCw, Link as LinkIcon, Radio 
+  Sparkles, Layers, Shield, Droplets, Heart, Filter, BookOpen, ExternalLink, RefreshCw, Link as LinkIcon, Radio, MessageSquare 
 } from 'lucide-react';
 import { CARDS_DATA } from '../../data/cardsData';
 import { CLANS } from '../../data/clansData';
@@ -14,6 +14,7 @@ import {
   subscribeToCommunityDecks 
 } from '../../data/communityDecks';
 import { getShareableCommunityDeckUrl } from '../../utils/router';
+import DeckCommentsDrawer from './DeckCommentsDrawer';
 import CardArtwork from '../Card/CardArtwork';
 import confetti from 'canvas-confetti';
 
@@ -36,12 +37,17 @@ export default function CommunityDecksView({
   const [selectedClan, setSelectedClan] = useState('ALL');
   const [copiedDeckId, setCopiedDeckId] = useState(null);
   const [copiedLinkDeckId, setCopiedLinkDeckId] = useState(null);
+  const [expandedComments, setExpandedComments] = useState({});
   const [showPublishModal, setShowPublishModal] = useState(false);
   const [publishName, setPublishName] = useState(currentDeckName);
   const [publishAuthor, setPublishAuthor] = useState(userProfile?.playerName || 'Mayki');
   const [publishStrategy, setPublishStrategy] = useState('');
   const [likedDecks, setLikedDecks] = useState({});
   const deckRefs = useRef({});
+
+  const toggleComments = (deckId) => {
+    setExpandedComments((prev) => ({ ...prev, [deckId]: !prev[deckId] }));
+  };
 
   const loadDecks = async () => {
     setLoadingCloud(true);
@@ -451,6 +457,22 @@ export default function CommunityDecksView({
                   <Swords className="w-4 h-4" />
                 </button>
 
+                {/* Comments Toggle Button */}
+                <button
+                  onClick={() => toggleComments(deck.id)}
+                  className={`px-3 py-2.5 rounded-xl border text-xs font-mono transition-all flex items-center space-x-1 ${
+                    expandedComments[deck.id]
+                      ? 'bg-indigo-900 border-indigo-400 text-white shadow-[0_0_15px_rgba(99,102,241,0.4)]'
+                      : 'bg-[#141824] hover:bg-[#1f2538] border-white/15 text-indigo-300 hover:text-white'
+                  }`}
+                  title={lang === 'en' ? 'Discussions & Advice' : 'Discussions & Conseils'}
+                >
+                  <MessageSquare className="w-4 h-4 text-indigo-400" />
+                  <span className="hidden sm:inline text-[11px] font-gothic">
+                    {expandedComments[deck.id] ? (lang === 'en' ? 'Hide' : 'Fermer') : (lang === 'en' ? 'Comments' : 'Avis')}
+                  </span>
+                </button>
+
                 {/* Direct Link Share Button */}
                 <button
                   onClick={() => handleCopyDirectLink(deck.id)}
@@ -473,6 +495,15 @@ export default function CommunityDecksView({
                   {copiedDeckId === deck.id ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
                 </button>
               </div>
+
+              {/* Collapsible Comments Section */}
+              <DeckCommentsDrawer
+                deckId={deck.id}
+                deckName={deck.name}
+                userProfile={userProfile}
+                lang={lang}
+                isOpen={!!expandedComments[deck.id]}
+              />
             </div>
           );
         })}
