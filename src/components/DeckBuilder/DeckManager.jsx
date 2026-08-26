@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Save, Download, Upload, Trash2, FolderOpen, Copy, Check, AlertCircle, Sparkles, Share2, Users } from 'lucide-react';
+import { Save, Download, Upload, Trash2, FolderOpen, Copy, Check, AlertCircle, Sparkles, Share2, Users, Image } from 'lucide-react';
 import { CARDS_DATA } from '../../data/cardsData';
 import PublishCommunityDeckModal from './PublishCommunityDeckModal';
+import ExportDeckImageModal from './ExportDeckImageModal';
 import confetti from 'canvas-confetti';
 
 export default function DeckManager({
@@ -18,6 +19,7 @@ export default function DeckManager({
   const [showSavedModal, setShowSavedModal] = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
   const [showPublishModal, setShowPublishModal] = useState(false);
+  const [showImageExportModal, setShowImageExportModal] = useState(false);
   const [importText, setImportText] = useState('');
   const [copied, setCopied] = useState(false);
 
@@ -151,7 +153,18 @@ export default function DeckManager({
             className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-[#121520] hover:bg-[#1a1f2e] border border-white/15 text-gray-200 text-xs font-semibold transition-all disabled:opacity-50"
           >
             {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4 text-blue-400" />}
-            <span>{copied ? 'Copié !' : 'Exporter'}</span>
+            <span>{copied ? 'Copié !' : 'Texte'}</span>
+          </button>
+
+          {/* Export Visual Image for Discord */}
+          <button
+            onClick={() => setShowImageExportModal(true)}
+            disabled={cardCount === 0}
+            className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-purple-950/80 to-indigo-950/80 hover:from-purple-900 hover:to-indigo-900 border border-purple-500/40 text-purple-200 hover:text-white text-xs font-gothic font-bold transition-all shadow-sm disabled:opacity-50"
+            title="Générer une fiche image HD pour Discord ou les réseaux"
+          >
+            <Image className="w-4 h-4 text-purple-400" />
+            <span>Image Discord</span>
           </button>
 
           {/* Import Modal */}
@@ -307,6 +320,17 @@ export default function DeckManager({
         deckCards={deckCards}
         userProfile={userProfile}
       />
+
+      {/* Export Deck Image Modal */}
+      {showImageExportModal && (
+        <ExportDeckImageModal
+          deckName={deckName}
+          author={userProfile?.playerName || 'Mayki'}
+          deckCards={deckCards}
+          lang="fr"
+          onClose={() => setShowImageExportModal(false)}
+        />
+      )}
     </div>
   );
 }
