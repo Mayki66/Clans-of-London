@@ -1,16 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
-import DeckBuilderView from './components/DeckBuilder/DeckBuilderView';
-import DatabaseView from './components/CardDatabase/DatabaseView';
-import MetaDecksView from './components/MetaDecks/MetaDecksView';
-import CommunityDecksView from './components/CommunityDecks/CommunityDecksView';
-import RulesGuideView from './components/RulesGuide/RulesGuideView';
-import ArenaDuelView from './components/ArenaDuel/ArenaDuelView';
-import ProfileView from './components/Profile/ProfileView';
-import CardModal from './components/Card/CardModal';
-import OnboardingModal from './components/Onboarding/OnboardingModal';
-import AdminLoginModal from './components/Admin/AdminLoginModal';
-import GhostAdminModal from './components/Admin/GhostAdminModal';
 import { CARDS_DATA } from './data/cardsData';
 import { TRANSLATIONS } from './i18n/translations';
 import { Analytics } from '@vercel/analytics/react';
@@ -18,6 +7,35 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 import { trackVisit, trackInteraction, trackProfileExport, trackUserRegistration } from './utils/adminTelemetry';
 import { parseCurrentRoute, navigateTo } from './utils/router';
 import confetti from 'canvas-confetti';
+
+// Lazy-loaded Views and Modals for high-performance Code-Splitting
+const DeckBuilderView = lazy(() => import('./components/DeckBuilder/DeckBuilderView'));
+const DatabaseView = lazy(() => import('./components/CardDatabase/DatabaseView'));
+const MetaDecksView = lazy(() => import('./components/MetaDecks/MetaDecksView'));
+const CommunityDecksView = lazy(() => import('./components/CommunityDecks/CommunityDecksView'));
+const RulesGuideView = lazy(() => import('./components/RulesGuide/RulesGuideView'));
+const ArenaDuelView = lazy(() => import('./components/ArenaDuel/ArenaDuelView'));
+const ProfileView = lazy(() => import('./components/Profile/ProfileView'));
+const CardModal = lazy(() => import('./components/Card/CardModal'));
+const OnboardingModal = lazy(() => import('./components/Onboarding/OnboardingModal'));
+const AdminLoginModal = lazy(() => import('./components/Admin/AdminLoginModal'));
+const GhostAdminModal = lazy(() => import('./components/Admin/GhostAdminModal'));
+
+function ViewLoadingFallback() {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-4 animate-fadeIn">
+      <div className="relative flex items-center justify-center">
+        <div className="w-14 h-14 rounded-full border-2 border-red-600/30 border-t-red-500 animate-spin" />
+        <div className="absolute w-8 h-8 rounded-full bg-red-950/80 border border-red-500/50 flex items-center justify-center shadow-blood">
+          <span className="text-red-400 font-gothic text-xs font-bold animate-pulse">☥</span>
+        </div>
+      </div>
+      <p className="font-gothic text-xs text-red-400 tracking-widest uppercase animate-pulse">
+        Invocation des Arcanes...
+      </p>
+    </div>
+  );
+}
 
 const LOCAL_STORAGE_SAVED_DECKS = 'col_saved_decks_v1';
 const LOCAL_STORAGE_CURRENT_DECK = 'col_current_deck_v1';
@@ -411,109 +429,131 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="flex-1 max-w-[1700px] w-full mx-auto px-3 sm:px-6 lg:px-8 py-6 md:py-8">
-        {activeView === 'deckbuilder' && (
-          <DeckBuilderView
-            deckName={deckName}
-            setDeckName={setDeckName}
-            deckCards={deckCards}
-            onAddCard={handleAddCard}
-            onRemoveCard={handleRemoveCard}
-            onClearDeck={handleClearDeck}
-            onLoadDeck={handleLoadDeck}
-            savedDecks={savedDecks}
-            onSaveDeck={handleSaveDeck}
-            onDeleteSavedDeck={handleDeleteSavedDeck}
-            onInspectCard={handleInspectCard}
-            ownedCardIds={userProfile.ownedCardIds || []}
-            userProfile={userProfile}
-            lang={lang}
-            t={t}
-          />
-        )}
+        <Suspense fallback={<ViewLoadingFallback />}>
+          {activeView === 'deckbuilder' && (
+            <DeckBuilderView
+              deckName={deckName}
+              setDeckName={setDeckName}
+              deckCards={deckCards}
+              onAddCard={handleAddCard}
+              onRemoveCard={handleRemoveCard}
+              onClearDeck={handleClearDeck}
+              onLoadDeck={handleLoadDeck}
+              savedDecks={savedDecks}
+              onSaveDeck={handleSaveDeck}
+              onDeleteSavedDeck={handleDeleteSavedDeck}
+              onInspectCard={handleInspectCard}
+              ownedCardIds={userProfile.ownedCardIds || []}
+              userProfile={userProfile}
+              lang={lang}
+              t={t}
+            />
+          )}
 
-        {activeView === 'database' && (
-          <DatabaseView
-            onInspectCard={handleInspectCard}
-            onAddCard={handleAddCard}
-            onRemoveCard={handleRemoveCard}
-            deckCards={deckCards}
-            ownedCardIds={userProfile.ownedCardIds || []}
-            lang={lang}
-            t={t}
-          />
-        )}
+          {activeView === 'database' && (
+            <DatabaseView
+              onInspectCard={handleInspectCard}
+              onAddCard={handleAddCard}
+              onRemoveCard={handleRemoveCard}
+              deckCards={deckCards}
+              ownedCardIds={userProfile.ownedCardIds || []}
+              lang={lang}
+              t={t}
+            />
+          )}
 
-        {activeView === 'community' && (
-          <CommunityDecksView
-            onLoadDeck={handleLoadDeck}
-            onInspectCard={handleInspectCard}
-            onNavigateToArena={handleNavigateToArenaWithDeck}
-            currentDeckCards={deckCards}
-            currentDeckName={deckName}
-            userProfile={userProfile}
-            targetDeckId={targetDeckId}
-            lang={lang}
-            t={t}
-          />
-        )}
+          {activeView === 'community' && (
+            <CommunityDecksView
+              onLoadDeck={handleLoadDeck}
+              onInspectCard={handleInspectCard}
+              onNavigateToArena={handleNavigateToArenaWithDeck}
+              currentDeckCards={deckCards}
+              currentDeckName={deckName}
+              userProfile={userProfile}
+              targetDeckId={targetDeckId}
+              lang={lang}
+              t={t}
+            />
+          )}
 
-        {activeView === 'metadecks' && (
-          <MetaDecksView
-            onLoadMetaDeck={handleLoadDeck}
-            onInspectCard={handleInspectCard}
-            ownedCardIds={userProfile.ownedCardIds || []}
-            lang={lang}
-            t={t}
-          />
-        )}
+          {activeView === 'metadecks' && (
+            <MetaDecksView
+              onLoadMetaDeck={handleLoadDeck}
+              onInspectCard={handleInspectCard}
+              ownedCardIds={userProfile.ownedCardIds || []}
+              lang={lang}
+              t={t}
+            />
+          )}
 
-        {activeView === 'arena' && (
-          <ArenaDuelView
-            customDeckCardIds={deckCards.map(c => c.id)}
-            onInspectCard={handleInspectCard}
-            userProfile={userProfile}
-            onUpdateProfile={handleUpdateProfile}
-            lang={lang}
-            t={t}
-          />
-        )}
+          {activeView === 'arena' && (
+            <ArenaDuelView
+              customDeckCardIds={deckCards.map(c => c.id)}
+              onInspectCard={handleInspectCard}
+              userProfile={userProfile}
+              onUpdateProfile={handleUpdateProfile}
+              lang={lang}
+              t={t}
+            />
+          )}
 
-        {activeView === 'rules' && (
-          <RulesGuideView
-            onGoToDeckBuilder={() => handleNavigate('deckbuilder')}
-            lang={lang}
-            t={t}
-          />
-        )}
+          {activeView === 'rules' && (
+            <RulesGuideView
+              onGoToDeckBuilder={() => handleNavigate('deckbuilder')}
+              lang={lang}
+              t={t}
+            />
+          )}
 
-        {activeView === 'profile' && (
-          <ProfileView
-            userProfile={userProfile}
-            onUpdateProfile={handleUpdateProfile}
-            onToggleOwnedCard={handleToggleOwnedCard}
-            onUnlockBatch={handleUnlockBatch}
-            deckCards={deckCards}
-            savedDecks={savedDecks}
-            lang={lang}
-            t={t}
-          />
-        )}
+          {activeView === 'profile' && (
+            <ProfileView
+              userProfile={userProfile}
+              onUpdateProfile={handleUpdateProfile}
+              onToggleOwnedCard={handleToggleOwnedCard}
+              onUnlockBatch={handleUnlockBatch}
+              deckCards={deckCards}
+              savedDecks={savedDecks}
+              lang={lang}
+              t={t}
+            />
+          )}
+        </Suspense>
       </main>
 
       {/* Fullscreen Card Inspection Modal */}
-      {activeInspectedCard && (
-        <CardModal
-          card={activeInspectedCard}
-          onClose={() => handleInspectCard(null)}
-          onAdd={handleAddCard}
-          onRemove={handleRemoveCard}
-          countInDeck={deckCards.some(c => c.id === activeInspectedCard.id) ? 1 : 0}
-          onSelectCard={(c) => handleInspectCard(c)}
-          onUpdateCardImage={handleUpdateCardImage}
-          lang={lang}
-          t={t}
-        />
-      )}
+      <Suspense fallback={null}>
+        {activeInspectedCard && (
+          <CardModal
+            card={activeInspectedCard}
+            onClose={() => handleInspectCard(null)}
+            onAdd={handleAddCard}
+            onRemove={handleRemoveCard}
+            countInDeck={deckCards.some(c => c.id === activeInspectedCard.id) ? 1 : 0}
+            onSelectCard={(c) => handleInspectCard(c)}
+            onUpdateCardImage={handleUpdateCardImage}
+            lang={lang}
+            t={t}
+          />
+        )}
+
+        {/* Secret Admin Authentication Modal */}
+        {showAdminLogin && (
+          <AdminLoginModal
+            onClose={() => setShowAdminLogin(false)}
+            onSuccess={() => {
+              setShowAdminLogin(false);
+              setShowAdminDashboard(true);
+            }}
+          />
+        )}
+
+        {/* Ghost Admin Telemetry & Registration Dashboard */}
+        {showAdminDashboard && (
+          <GhostAdminModal
+            onClose={() => setShowAdminDashboard(false)}
+          />
+        )}
+      </Suspense>
 
       {/* Fixed Sticky Footer across entire app */}
       <footer className="fixed bottom-0 left-0 right-0 z-30 border-t border-white/10 bg-[#050608]/95 backdrop-blur-lg py-2 px-4 shadow-[0_-4px_20px_rgba(0,0,0,0.8)] text-xs text-gray-500">
@@ -551,24 +591,6 @@ export default function App() {
           </div>
         </div>
       </footer>
-
-      {/* Secret Admin Authentication Modal */}
-      {showAdminLogin && (
-        <AdminLoginModal
-          onClose={() => setShowAdminLogin(false)}
-          onSuccess={() => {
-            setShowAdminLogin(false);
-            setShowAdminDashboard(true);
-          }}
-        />
-      )}
-
-      {/* Ghost Admin Telemetry & Registration Dashboard */}
-      {showAdminDashboard && (
-        <GhostAdminModal
-          onClose={() => setShowAdminDashboard(false)}
-        />
-      )}
 
       {/* Vercel Web Analytics & Speed Insights Tracking */}
       <Analytics />
