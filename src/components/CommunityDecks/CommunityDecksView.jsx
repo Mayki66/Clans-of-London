@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Users, Share2, Search, ArrowRight, Swords, Copy, Check, Plus, 
-  Sparkles, Layers, Shield, Droplets, Heart, Filter, BookOpen, ExternalLink, RefreshCw 
+  Sparkles, Layers, Shield, Droplets, Heart, Filter, BookOpen, ExternalLink, RefreshCw, Link as LinkIcon 
 } from 'lucide-react';
 import { CARDS_DATA } from '../../data/cardsData';
 import { CLANS } from '../../data/clansData';
 import { getLocalCommunityDecks, fetchCloudCommunityDecks, publishCommunityDeck, likeCommunityDeck } from '../../data/communityDecks';
+import { getShareableCommunityDeckUrl } from '../../utils/router';
 import CardArtwork from '../Card/CardArtwork';
 import confetti from 'canvas-confetti';
 
@@ -16,6 +17,7 @@ export default function CommunityDecksView({
   currentDeckCards = [],
   currentDeckName = "Mon Deck",
   userProfile,
+  targetDeckId = null,
   lang = 'fr',
   t
 }) {
@@ -24,11 +26,13 @@ export default function CommunityDecksView({
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedClan, setSelectedClan] = useState('ALL');
   const [copiedDeckId, setCopiedDeckId] = useState(null);
+  const [copiedLinkDeckId, setCopiedLinkDeckId] = useState(null);
   const [showPublishModal, setShowPublishModal] = useState(false);
   const [publishName, setPublishName] = useState(currentDeckName);
   const [publishAuthor, setPublishAuthor] = useState(userProfile?.playerName || 'Mayki');
   const [publishStrategy, setPublishStrategy] = useState('');
   const [likedDecks, setLikedDecks] = useState({});
+  const deckRefs = useRef({});
 
   const loadDecks = async () => {
     setLoadingCloud(true);
@@ -60,11 +64,30 @@ export default function CommunityDecksView({
     return true;
   });
 
+  // Auto-scroll when targetDeckId is provided
+  useEffect(() => {
+    if (targetDeckId && communityDecks.length > 0) {
+      setTimeout(() => {
+        const el = deckRefs.current[targetDeckId];
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 300);
+    }
+  }, [targetDeckId, communityDecks]);
+
   const handleCopyCode = (deck) => {
     const code = `${deck.name} [Clan: ${deck.clan}] - ${deck.cardIds.join(',')}`;
     navigator.clipboard.writeText(code);
     setCopiedDeckId(deck.id);
     setTimeout(() => setCopiedDeckId(null), 2000);
+  };
+
+  const handleCopyDirectLink = (deckId) => {
+    const url = getShareableCommunityDeckUrl(deckId);
+    navigator.clipboard.writeText(url);
+    setCopiedLinkDeckId(deckId);
+    setTimeout(() => setCopiedLinkDeckId(null), 2000);
   };
 
   const handleLike = async (deckId) => {
@@ -209,10 +232,17 @@ export default function CommunityDecksView({
           const avgCost = cards.length > 0 ? (cards.reduce((sum, c) => sum + (typeof c.cost === 'number' ? c.cost : 2), 0) / cards.length).toFixed(1) : 0;
           const likesCount = (deck.likes || 0) + (likedDecks[deck.id] || 0);
 
+          const isTargeted = targetDeckId === deck.id;
+
           return (
             <div
               key={deck.id}
-              className="glass-panel rounded-2xl border border-white/10 p-5 space-y-4 hover:border-indigo-500/40 transition-all flex flex-col justify-between shadow-xl"
+              ref={el => deckRefs.current[deck.id] = el}
+              className={`glass-panel rounded-2xl p-5 space-y-4 transition-all flex flex-col justify-between shadow-xl ${
+                isTargeted
+                  ? 'border-2 border-indigo-400 ring-4 ring-indigo-500/40 shadow-[0_0_30px_rgba(99,102,241,0.5)] bg-indigo-950/20'
+                  : 'border border-white/10 hover:border-indigo-500/40'
+              }`}
             >
               <div className="space-y-3">
                 {/* Header */}
@@ -228,6 +258,11 @@ export default function CommunityDecksView({
                       <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-indigo-950/60 border border-indigo-500/40 text-indigo-300">
                         {deck.tier}
                       </span>
+                      {isTargeted && (
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-amber-500/30 border border-amber-400 text-amber-300 animate-pulse">
+                          ✨ Partagé
+                        </span>
+                      )}
                     </div>
                     <h3 className="font-gothic font-extrabold text-lg text-gray-100 mt-1">
                       {lang === 'en' && deck.name_en ? deck.name_en : deck.name}
@@ -333,10 +368,24 @@ export default function CommunityDecksView({
                   <Swords className="w-4 h-4" />
                 </button>
 
+                {/* Direct Link Share Button */}
+                <button
+                  onClick={() => handleCopyDirectLink(deck.id)}
+                  className={`px-3 py-2.5 rounded-xl border text-xs font-mono transition-all ${
+                    copiedLinkDeckId === deck.id
+                      ? 'bg-emerald-950/80 border-emerald-500 text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.4)]'
+                      : 'bg-indigo-950/60 hover:bg-indigo-900 border-indigo-500/40 text-indigo-300 hover:text-white'
+                  }`}
+                  title={lang === 'en' ? 'Copy direct share link for this deck' : 'Copier le lien direct vers ce deck'}
+                >
+                  {copiedLinkDeckId === deck.id ? <Check className="w-4 h-4 text-emerald-400" /> : <LinkIcon className="w-4 h-4" />}
+                </button>
+
+                {/* Copy Text Code Button */}
                 <button
                   onClick={() => handleCopyCode(deck)}
                   className="px-3 py-2.5 rounded-xl bg-[#141824] hover:bg-[#1e2538] border border-white/15 text-gray-300 font-mono text-xs transition-all"
-                  title="Copier le code du deck"
+                  title="Copier le code texte du deck"
                 >
                   {copiedDeckId === deck.id ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
                 </button>

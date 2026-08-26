@@ -16,6 +16,7 @@ import { TRANSLATIONS } from './i18n/translations';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { trackVisit, trackInteraction, trackProfileExport, trackUserRegistration } from './utils/adminTelemetry';
+import { parseCurrentRoute, navigateTo } from './utils/router';
 import confetti from 'canvas-confetti';
 
 const LOCAL_STORAGE_SAVED_DECKS = 'col_saved_decks_v1';
@@ -39,7 +40,10 @@ const DEFAULT_OWNED_CARD_IDS = [
 ];
 
 export default function App() {
-  const [activeView, setActiveView] = useState('rules'); // 'rules' (Home) | 'deckbuilder' | 'database' | 'community' | 'metadecks' | 'arena' | 'profile'
+  const initialRoute = parseCurrentRoute();
+  const [activeView, setActiveView] = useState(initialRoute.view || 'rules');
+  const [targetDeckId, setTargetDeckId] = useState(initialRoute.deckId || null);
+
   const [lang, setLang] = useState(() => {
     try {
       return localStorage.getItem(LOCAL_STORAGE_LANG) || 'fr';
@@ -61,7 +65,12 @@ export default function App() {
   const [deckName, setDeckName] = useState('Nouveau Deck Londonien');
   const [deckCards, setDeckCards] = useState([]);
   const [savedDecks, setSavedDecks] = useState([]);
-  const [inspectedCard, setInspectedCard] = useState(null);
+  const [inspectedCard, setInspectedCard] = useState(() => {
+    if (initialRoute.cardId) {
+      return CARDS_DATA.find(c => c.id.toLowerCase() === initialRoute.cardId.toLowerCase()) || null;
+    }
+    return null;
+  });
   const [customImages, setCustomImages] = useState({});
 
   // Translation dictionary
@@ -140,6 +149,49 @@ export default function App() {
       console.error('Error loading saved data from localStorage:', e);
     }
   }, []);
+
+  // Synchronisation avec l'historique du navigateur (Précédent / Suivant et Deep-links)
+  useEffect(() => {
+    const handleLocationChange = () => {
+      const route = parseCurrentRoute();
+      setActiveView(route.view);
+      if (route.cardId) {
+        const foundCard = CARDS_DATA.find(c => c.id.toLowerCase() === route.cardId.toLowerCase());
+        if (foundCard) setInspectedCard(foundCard);
+      } else {
+        setInspectedCard(null);
+      }
+      if (route.deckId) {
+        setTargetDeckId(route.deckId);
+      }
+    };
+
+    window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('col-route-change', handleLocationChange);
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('col-route-change', handleLocationChange);
+    };
+  }, []);
+
+  // Navigation avec mise à jour d'URL sans rechargement
+  const handleNavigate = (view, options = {}) => {
+    setActiveView(view);
+    if (options.deckId !== undefined) {
+      setTargetDeckId(options.deckId);
+    }
+    navigateTo(view, options);
+  };
+
+  // Inspection de carte avec mise à jour du paramètre ?card=...
+  const handleInspectCard = (card) => {
+    setInspectedCard(card);
+    if (card) {
+      navigateTo(activeView, { cardId: card.id, deckId: targetDeckId });
+    } else {
+      navigateTo(activeView, { cardId: null, deckId: targetDeckId });
+    }
+  };
 
   const handleOnboardingComplete = (data) => {
     try {
@@ -223,7 +275,7 @@ export default function App() {
     
     setDeckCards(cards);
     setDeckName(deck.name);
-    setActiveView('deckbuilder');
+    handleNavigate('deckbuilder');
 
     try {
       localStorage.setItem(LOCAL_STORAGE_CURRENT_DECK, JSON.stringify({
@@ -240,7 +292,7 @@ export default function App() {
   // Navigate directly to Arena with a loaded deck
   const handleNavigateToArenaWithDeck = (deck) => {
     handleLoadDeck(deck);
-    setActiveView('arena');
+    handleNavigate('arena');
   };
 
   // Save Deck
@@ -348,7 +400,7 @@ export default function App() {
       {/* Top Navbar */}
       <Navbar
         activeView={activeView}
-        setActiveView={setActiveView}
+        setActiveView={handleNavigate}
         deckCardsCount={deckCards.length}
         ownedCount={ownedCount}
         totalCount={CARDS_DATA.length}
@@ -371,7 +423,7 @@ export default function App() {
             savedDecks={savedDecks}
             onSaveDeck={handleSaveDeck}
             onDeleteSavedDeck={handleDeleteSavedDeck}
-            onInspectCard={setInspectedCard}
+            onInspectCard={handleInspectCard}
             ownedCardIds={userProfile.ownedCardIds || []}
             userProfile={userProfile}
             lang={lang}
@@ -381,7 +433,7 @@ export default function App() {
 
         {activeView === 'database' && (
           <DatabaseView
-            onInspectCard={setInspectedCard}
+            onInspectCard={handleInspectCard}
             onAddCard={handleAddCard}
             onRemoveCard={handleRemoveCard}
             deckCards={deckCards}
@@ -394,11 +446,12 @@ export default function App() {
         {activeView === 'community' && (
           <CommunityDecksView
             onLoadDeck={handleLoadDeck}
-            onInspectCard={setInspectedCard}
+            onInspectCard={handleInspectCard}
             onNavigateToArena={handleNavigateToArenaWithDeck}
             currentDeckCards={deckCards}
             currentDeckName={deckName}
             userProfile={userProfile}
+            targetDeckId={targetDeckId}
             lang={lang}
             t={t}
           />
@@ -407,7 +460,7 @@ export default function App() {
         {activeView === 'metadecks' && (
           <MetaDecksView
             onLoadMetaDeck={handleLoadDeck}
-            onInspectCard={setInspectedCard}
+            onInspectCard={handleInspectCard}
             ownedCardIds={userProfile.ownedCardIds || []}
             lang={lang}
             t={t}
@@ -417,7 +470,7 @@ export default function App() {
         {activeView === 'arena' && (
           <ArenaDuelView
             customDeckCardIds={deckCards.map(c => c.id)}
-            onInspectCard={setInspectedCard}
+            onInspectCard={handleInspectCard}
             lang={lang}
             t={t}
           />
@@ -425,7 +478,7 @@ export default function App() {
 
         {activeView === 'rules' && (
           <RulesGuideView
-            onGoToDeckBuilder={() => setActiveView('deckbuilder')}
+            onGoToDeckBuilder={() => handleNavigate('deckbuilder')}
             lang={lang}
             t={t}
           />
@@ -449,11 +502,11 @@ export default function App() {
       {activeInspectedCard && (
         <CardModal
           card={activeInspectedCard}
-          onClose={() => setInspectedCard(null)}
+          onClose={() => handleInspectCard(null)}
           onAdd={handleAddCard}
           onRemove={handleRemoveCard}
           countInDeck={deckCards.some(c => c.id === activeInspectedCard.id) ? 1 : 0}
-          onSelectCard={(c) => setInspectedCard(c)}
+          onSelectCard={(c) => handleInspectCard(c)}
           onUpdateCardImage={handleUpdateCardImage}
           lang={lang}
           t={t}

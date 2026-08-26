@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { X, Plus, Minus, Droplets, Shield, Sparkles, ExternalLink, Edit3, Image, BookOpen, Check, Layers } from 'lucide-react';
+import { X, Plus, Minus, Droplets, Shield, Sparkles, ExternalLink, Edit3, Image, BookOpen, Check, Layers, Share2 } from 'lucide-react';
 import CardArtwork from './CardArtwork';
 import { CLANS } from '../../data/clansData';
 import { CARDS_DATA } from '../../data/cardsData';
+import { getShareableCardUrl } from '../../utils/router';
 
 export default function CardModal({ 
   card, 
@@ -18,6 +19,7 @@ export default function CardModal({
   const [editingImage, setEditingImage] = useState(false);
   const [customImageUrl, setCustomImageUrl] = useState(card?.imageUrl || '');
   const [imageSaved, setImageSaved] = useState(false);
+  const [copiedShare, setCopiedShare] = useState(false);
 
   if (!card) return null;
 
@@ -194,6 +196,26 @@ export default function CardModal({
                   {lang === 'en' ? `Series ${card.series}` : `Série ${card.series}`}
                 </span>
                 
+                {/* Share Direct Link Button */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    const url = getShareableCardUrl(card.id);
+                    navigator.clipboard.writeText(url);
+                    setCopiedShare(true);
+                    setTimeout(() => setCopiedShare(false), 2000);
+                  }}
+                  className={`inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-[11px] font-mono border transition-all ${
+                    copiedShare
+                      ? 'bg-emerald-950/80 border-emerald-500 text-emerald-300'
+                      : 'bg-indigo-950/60 hover:bg-indigo-900 border-indigo-500/40 text-indigo-300 hover:text-white'
+                  }`}
+                  title={lang === 'en' ? 'Copy direct link to this card' : 'Copier le lien direct vers cette carte'}
+                >
+                  {copiedShare ? <Check className="w-3 h-3 text-emerald-400" /> : <Share2 className="w-3 h-3" />}
+                  <span>{copiedShare ? (lang === 'en' ? 'Link Copied!' : 'Lien Copié !') : (lang === 'en' ? 'Share Card' : 'Partager')}</span>
+                </button>
+
                 {/* Wiki Direct Link */}
                 <a
                   href="https://vtm.paradoxwikis.com/CoL_cardlist"
