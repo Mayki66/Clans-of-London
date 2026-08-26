@@ -1,21 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Crown, Shield, Droplets, Trophy, RotateCcw, Play, ChevronRight, 
-  Sparkles, Swords, ArrowUp, Undo2, HelpCircle, Eye, RefreshCw, Zap, X, Info, Layers, BookOpen, ScrollText
+  Sparkles, Swords, ArrowUp, Undo2, HelpCircle, Eye, RefreshCw, Zap, X, Info, Layers, BookOpen, ScrollText, Users, Medal 
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { CARDS_DATA } from '../../data/cardsData';
 import { META_DECKS } from '../../data/metaDecks';
 import { ARENA_LOCATIONS } from '../../data/arenaLocations';
 import { AI_OPPONENTS, playAITurn } from '../../utils/aiOpponent';
+import { getLocalCommunityDecks, fetchCloudCommunityDecks } from '../../data/communityDecks';
+import { syncCloudArenaMatch } from '../../utils/cloudDatabase';
+import ArenaLeaderboardModal from './ArenaLeaderboardModal';
 
-export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard }) {
+export default function ArenaDuelView({ 
+  customDeckCardIds = [], 
+  onInspectCard,
+  userProfile,
+  onUpdateProfile,
+  lang = 'fr',
+  t
+}) {
   // Setup & Matchmaking state
   const [selectedLocation, setSelectedLocation] = useState(ARENA_LOCATIONS[0]); // Buckingham Palace
   const [selectedAI, setSelectedAI] = useState(AI_OPPONENTS[0]); // Klinklecut
+  const [opponentType, setOpponentType] = useState('ai_boss'); // 'ai_boss' | 'community_deck'
+  const [communityDecks, setCommunityDecks] = useState([]);
+  const [selectedCommunityDeck, setSelectedCommunityDeck] = useState(null);
+  const [showLeaderboardModal, setShowLeaderboardModal] = useState(false);
+
   const [playerDeckId, setPlayerDeckId] = useState('custom');
   const [gamePhase, setGamePhase] = useState('setup'); // 'setup' | 'playing' | 'revealing' | 'scoring' | 'round_transition' | 'game_over'
   const [showLocationModal, setShowLocationModal] = useState(false);
+
+  // Charger les decks communauté disponibles pour le duel
+  useEffect(() => {
+    fetchCloudCommunityDecks().then(decks => {
+      if (decks && decks.length > 0) {
+        setCommunityDecks(decks);
+        setSelectedCommunityDeck(decks[0]);
+      }
+    });
+  }, []);
 
   // Match progression
   const [turn, setTurn] = useState(1);
@@ -220,8 +245,17 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
     const pHand = [...pGuaranteed, ...pRest.slice(0, 4 - pGuaranteed.length)];
     const pDraw = pRest.slice(4 - pGuaranteed.length);
 
-    const aiMeta = META_DECKS.find(d => d.id === selectedAI.metaDeckId) || META_DECKS[2];
-    const aiCards = aiMeta.cardIds.map(id => CARDS_DATA.find(c => c.id === id)).filter(Boolean);
+    let aiCards = [];
+    if (opponentType === 'community_deck' && selectedCommunityDeck) {
+      aiCards = (selectedCommunityDeck.cardIds || []).map(id => CARDS_DATA.find(c => c.id === id)).filter(Boolean);
+    } else {
+      const aiMeta = META_DECKS.find(d => d.id === selectedAI.metaDeckId) || META_DECKS[2];
+      aiCards = aiMeta.cardIds.map(id => CARDS_DATA.find(c => c.id === id)).filter(Boolean);
+    }
+    if (aiCards.length === 0) {
+      aiCards = CARDS_DATA.slice(0, 15);
+    }
+
     const aiGuaranteed = aiCards.filter(c => c.ability_en?.toLowerCase().includes('starts in your opening hand') || c.name === 'Katie Dixon');
     const aiRest = aiCards.filter(c => !aiGuaranteed.some(g => g.id === c.id)).sort(() => Math.random() - 0.5);
     const aiHandInitial = [...aiGuaranteed, ...aiRest.slice(0, 4 - aiGuaranteed.length)];
@@ -471,11 +505,53 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
 
     if (turn >= maxTurns) {
       setGamePhase('game_over');
-      if (updatedPScore > updatedAIScore) {
+      const isVictory = updatedPScore > updatedAIScore;
+      const isDefeat = updatedPScore < updatedAIScore;
+      const result = isVictory ? 'victory' : isDefeat ? 'defeat' : 'draw';
+      const pointsDelta = isVictory ? 35 : isDefeat ? -15 : 10;
+      const currentPoints = userProfile?.arenaPoints !== undefined ? userProfile.arenaPoints : 1250;
+      const newTotalPoints = Math.max(0, currentPoints + pointsDelta);
+
+      if (isVictory) {
         confetti({ particleCount: 150, spread: 90, origin: { y: 0.5 } });
       }
+
+      const opponentDisplayName = opponentType === 'community_deck' && selectedCommunityDeck
+        ? selectedCommunityDeck.name
+        : selectedAI.name;
+
+      const opponentClan = opponentType === 'community_deck' && selectedCommunityDeck
+        ? selectedCommunityDeck.clan
+        : selectedAI.clan;
+
+      const newMatchLog = {
+        id: `m-${Date.now()}`,
+        date: lang === 'fr' ? "Aujourd'hui" : "Today",
+        result,
+        deckName: fullPlayerDeck[0]?.name ? `${fullPlayerDeck[0]?.clan} Deck` : "Deck Personnalisé",
+        opponentClan,
+        pointsChange: pointsDelta >= 0 ? `+${pointsDelta}` : `${pointsDelta}`
+      };
+
+      if (onUpdateProfile) {
+        onUpdateProfile({
+          ...userProfile,
+          arenaPoints: newTotalPoints,
+          matchHistory: [newMatchLog, ...(userProfile?.matchHistory || []).slice(0, 19)]
+        });
+      }
+
+      syncCloudArenaMatch({
+        pseudo: userProfile?.playerName || 'Mayki',
+        result,
+        pointsChange: pointsDelta,
+        newTotalPoints,
+        level: userProfile?.collectionLevel || 1,
+        rank: userProfile?.rank || "Néophyte"
+      });
+
       setHistoryLogs(prev => [
-        `🏆 FIN DU MATCH : Score Final -> MAYKI : ${updatedPScore} Pts | ${selectedAI.name} : ${updatedAIScore} Pts`,
+        `🏆 FIN DU MATCH : Score Final -> ${userProfile?.playerName || 'Kindred'} : ${updatedPScore} Pts | ${opponentDisplayName} : ${updatedAIScore} Pts (${pointsDelta >= 0 ? `+${pointsDelta}` : pointsDelta} Pts d'Arène)`,
         ...combatLogs,
         ...prev
       ]);
@@ -532,11 +608,24 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
   if (gamePhase === 'setup') {
     return (
       <div className="max-w-4xl mx-auto space-y-6">
-        <div className="glass-panel-blood rounded-2xl p-6 md:p-8 border border-red-500/30 shadow-2xl text-center space-y-3">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-500/50 text-red-300 text-xs font-semibold uppercase tracking-wider">
-            <Swords className="w-3.5 h-3.5" />
-            <span>Arène Officielle & Simulateur Duel IA</span>
+        <div className="glass-panel-blood rounded-2xl p-6 md:p-8 border border-red-500/30 shadow-2xl text-center space-y-3 relative">
+          <div className="flex items-center justify-between flex-wrap gap-2">
+            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-500/50 text-red-300 text-xs font-semibold uppercase tracking-wider">
+              <Swords className="w-3.5 h-3.5" />
+              <span>Arène Officielle & Simulateur Duel IA</span>
+            </div>
+
+            {/* Leaderboard Trigger Button */}
+            <button
+              type="button"
+              onClick={() => setShowLeaderboardModal(true)}
+              className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 hover:to-yellow-500 text-black font-gothic font-bold text-xs shadow-gold transition-all ml-auto"
+            >
+              <Trophy className="w-3.5 h-3.5" />
+              <span>🏆 Classement de Londres</span>
+            </button>
           </div>
+
           <h1 className="font-gothic font-extrabold text-3xl md:text-4xl text-gray-100">
             Arène de Combat de Londres
           </h1>
@@ -573,33 +662,89 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
             </div>
           </div>
 
-          {/* AI Opponent Choice */}
+          {/* AI / Community Opponent Choice */}
           <div className="glass-panel rounded-2xl p-5 border border-white/10 space-y-3 flex flex-col justify-between">
             <div>
-              <div className="flex items-center space-x-2 text-purple-400 font-gothic font-bold text-sm mb-3">
-                <Sparkles className="w-4 h-4" />
-                <span>2. Adversaire IA</span>
+              <div className="flex items-center justify-between text-purple-400 font-gothic font-bold text-sm mb-3">
+                <div className="flex items-center space-x-2">
+                  <Sparkles className="w-4 h-4" />
+                  <span>2. Adversaire IA</span>
+                </div>
               </div>
-              <div className="space-y-2">
-                {AI_OPPONENTS.map(ai => (
-                  <div
-                    key={ai.id}
-                    onClick={() => setSelectedAI(ai)}
-                    className={`p-3 rounded-xl border transition-all cursor-pointer flex items-center space-x-3 ${
-                      selectedAI.id === ai.id
-                        ? 'bg-purple-950/60 border-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.3)] text-white'
-                        : 'bg-[#0c0f16] border-white/10 text-gray-400 hover:text-gray-200'
-                    }`}
-                  >
-                    <img src={ai.avatarUrl} alt={ai.name} className="w-10 h-10 rounded-full border border-white/20 object-cover" />
-                    <div>
-                      <div className="font-gothic font-bold text-xs text-gray-100">{ai.name}</div>
-                      <div className="text-[10px] font-mono text-purple-300">Clan {ai.clan}</div>
-                      <div className="text-[9px] text-gray-400 line-clamp-1">{ai.title}</div>
+
+              {/* Mode Toggle: Boss IA vs Decks Communauté */}
+              <div className="flex rounded-xl bg-black/50 p-1 border border-white/10 mb-3">
+                <button
+                  type="button"
+                  onClick={() => setOpponentType('ai_boss')}
+                  className={`flex-1 py-1.5 rounded-lg text-xs font-gothic transition-all ${
+                    opponentType === 'ai_boss'
+                      ? 'bg-purple-900 text-white font-bold shadow-sm'
+                      : 'text-gray-400 hover:text-gray-200'
+                  }`}
+                >
+                  🤖 Boss IA
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setOpponentType('community_deck')}
+                  className={`flex-1 py-1.5 rounded-lg text-xs font-gothic transition-all ${
+                    opponentType === 'community_deck'
+                      ? 'bg-indigo-900 text-white font-bold shadow-sm'
+                      : 'text-gray-400 hover:text-gray-200'
+                  }`}
+                >
+                  👥 Commu ({communityDecks.length})
+                </button>
+              </div>
+
+              {opponentType === 'ai_boss' && (
+                <div className="space-y-2 max-h-64 overflow-y-auto pr-1">
+                  {AI_OPPONENTS.map(ai => (
+                    <div
+                      key={ai.id}
+                      onClick={() => setSelectedAI(ai)}
+                      className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-center space-x-3 ${
+                        selectedAI.id === ai.id
+                          ? 'bg-purple-950/60 border-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.3)] text-white'
+                          : 'bg-[#0c0f16] border-white/10 text-gray-400 hover:text-gray-200'
+                      }`}
+                    >
+                      <img src={ai.avatarUrl} alt={ai.name} className="w-9 h-9 rounded-full border border-white/20 object-cover" />
+                      <div className="min-w-0">
+                        <div className="font-gothic font-bold text-xs text-gray-100 truncate">{ai.name}</div>
+                        <div className="text-[10px] font-mono text-purple-300">Clan {ai.clan}</div>
+                        <div className="text-[9px] text-gray-400 truncate">{ai.title}</div>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
+
+              {opponentType === 'community_deck' && (
+                <div className="space-y-2 max-h-64 overflow-y-auto pr-1">
+                  {communityDecks.length === 0 && (
+                    <div className="p-4 text-center text-xs text-gray-400 font-mono">
+                      Aucun deck communautaire chargé.
+                    </div>
+                  )}
+                  {communityDecks.map(deck => (
+                    <div
+                      key={deck.id}
+                      onClick={() => setSelectedCommunityDeck(deck)}
+                      className={`p-2.5 rounded-xl border transition-all cursor-pointer ${
+                        selectedCommunityDeck?.id === deck.id
+                          ? 'bg-indigo-950/70 border-indigo-400 shadow-[0_0_15px_rgba(99,102,241,0.3)] text-white'
+                          : 'bg-[#0c0f16] border-white/10 text-gray-400 hover:text-gray-200'
+                      }`}
+                    >
+                      <div className="font-gothic font-bold text-xs text-indigo-300 truncate">{deck.name}</div>
+                      <div className="text-[10px] font-mono text-amber-400">Par {deck.author} • {deck.clan}</div>
+                      <div className="text-[9px] font-sans text-gray-400 line-clamp-1 mt-0.5">{deck.strategy_fr}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
@@ -1313,6 +1458,15 @@ export default function ArenaDuelView({ customDeckCardIds = [], onInspectCard })
         </div>
 
       </div>
+
+      {/* Leaderboard Modal */}
+      {showLeaderboardModal && (
+        <ArenaLeaderboardModal
+          onClose={() => setShowLeaderboardModal(false)}
+          currentUserPseudo={userProfile?.playerName}
+          lang={lang}
+        />
+      )}
     </div>
   );
 }

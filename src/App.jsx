@@ -471,6 +471,8 @@ export default function App() {
           <ArenaDuelView
             customDeckCardIds={deckCards.map(c => c.id)}
             onInspectCard={handleInspectCard}
+            userProfile={userProfile}
+            onUpdateProfile={handleUpdateProfile}
             lang={lang}
             t={t}
           />

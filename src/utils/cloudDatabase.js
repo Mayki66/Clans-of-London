@@ -214,3 +214,106 @@ export async function fetchAllCloudTelemetry() {
     return { connected: false, error: e.message };
   }
 }
+
+/**
+ * Synchronise les résultats d'un duel d'arène (victoires, défaites, points) dans col_players
+ */
+export async function syncCloudArenaMatch({ pseudo, result, pointsChange, newTotalPoints, level = 1, rank = "Néophyte" }) {
+  if (!pseudo || pseudo.trim() === '') return;
+  const supabase = getSupabaseClient();
+  if (!supabase) return;
+
+  try {
+    const cleanPseudo = pseudo.trim();
+    const now = new Date().toISOString();
+
+    const { data: existing } = await supabase
+      .from('col_players')
+      .select('id, pseudo, arena_points, level, rank, last_active')
+      .eq('pseudo', cleanPseudo)
+      .maybeSingle();
+
+    if (existing) {
+      await supabase
+        .from('col_players')
+        .update({
+          arena_points: newTotalPoints,
+          level: Math.max(existing.level || 1, level),
+          rank: rank || existing.rank || "Néophyte",
+          last_active: now
+        })
+        .eq('id', existing.id);
+    } else {
+      await supabase
+        .from('col_players')
+        .insert([{
+          pseudo: cleanPseudo,
+          arena_points: newTotalPoints,
+          level,
+          rank,
+          registered_at: now,
+          last_active: now,
+          has_exported: false,
+          export_count: 0
+        }]);
+    }
+  } catch (e) {
+    console.warn("syncCloudArenaMatch error", e.message);
+  }
+}
+
+/**
+ * Récupère le classement public (Leaderboard) des joueurs de Londres
+ */
+export async function fetchCloudLeaderboard() {
+  const supabase = getSupabaseClient();
+  
+  // Classement par défaut / fallback si hors-ligne
+  const defaultLeaderboard = [
+    { rank: 1, pseudo: "Mayki", arenaPoints: 1250, level: 14, vampireRank: "Ancilla de Soho", clan: "Brujah" },
+    { rank: 2, pseudo: "Julian Lys", arenaPoints: 980, level: 11, vampireRank: "Nouveau-Né de Whitechapel", clan: "Toreador" },
+    { rank: 3, pseudo: "Lady Elizabeth", arenaPoints: 850, level: 9, vampireRank: "Nouveau-Né de la City", clan: "Ventrue" },
+    { rank: 4, pseudo: "Klinklecut", arenaPoints: 720, level: 8, vampireRank: "Nouveau-Né de Westminster", clan: "Toreador" },
+    { rank: 5, pseudo: "The Huntress", arenaPoints: 610, level: 6, vampireRank: "Nouveau-Né de Hampstead", clan: "Gangrel" }
+  ];
+
+  if (!supabase) {
+    return defaultLeaderboard;
+  }
+
+  try {
+    const { data: players, error } = await supabase
+      .from('col_players')
+      .select('id, pseudo, arena_points, level, rank, last_active')
+      .order('arena_points', { ascending: false, nullsFirst: false })
+      .limit(50);
+
+    if (error || !players || players.length === 0) {
+      return defaultLeaderboard;
+    }
+
+    return players.map((p, index) => {
+      const points = p.arena_points !== undefined && p.arena_points !== null ? p.arena_points : 100;
+      let vampireTitle = "Néophyte";
+      if (points >= 2000) vampireTitle = "Prince de Londres 👑";
+      else if (points >= 1500) vampireTitle = "Primogène ⚜️";
+      else if (points >= 1000) vampireTitle = "Ancilla 🗡️";
+      else if (points >= 500) vampireTitle = "Nouveau-Né 🛡️";
+      else vampireTitle = "Néophyte 🩸";
+
+      return {
+        id: p.id,
+        rank: index + 1,
+        pseudo: p.pseudo || "Kindred Anonyme",
+        arenaPoints: points,
+        level: p.level || 1,
+        vampireRank: p.rank || vampireTitle,
+        lastActive: p.last_active ? new Date(p.last_active).toLocaleDateString('fr-FR') : "Récemment"
+      };
+    });
+  } catch (err) {
+    console.error("fetchCloudLeaderboard error", err);
+    return defaultLeaderboard;
+  }
+}
+
