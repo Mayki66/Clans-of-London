@@ -1,11 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   Users, Share2, Search, ArrowRight, Swords, Copy, Check, Plus, 
-  Sparkles, Layers, Shield, Droplets, Heart, Filter, BookOpen, ExternalLink, RefreshCw, Link as LinkIcon 
+  Sparkles, Layers, Shield, Droplets, Heart, Filter, BookOpen, ExternalLink, RefreshCw, Link as LinkIcon, Radio 
 } from 'lucide-react';
 import { CARDS_DATA } from '../../data/cardsData';
 import { CLANS } from '../../data/clansData';
-import { getLocalCommunityDecks, fetchCloudCommunityDecks, publishCommunityDeck, likeCommunityDeck } from '../../data/communityDecks';
+import { 
+  getLocalCommunityDecks, 
+  saveLocalCommunityDecks, 
+  fetchCloudCommunityDecks, 
+  publishCommunityDeck, 
+  likeCommunityDeck,
+  subscribeToCommunityDecks 
+} from '../../data/communityDecks';
 import { getShareableCommunityDeckUrl } from '../../utils/router';
 import CardArtwork from '../Card/CardArtwork';
 import confetti from 'canvas-confetti';
@@ -23,6 +30,8 @@ export default function CommunityDecksView({
 }) {
   const [communityDecks, setCommunityDecks] = useState(getLocalCommunityDecks());
   const [loadingCloud, setLoadingCloud] = useState(false);
+  const [realtimeStatus, setRealtimeStatus] = useState('connecting');
+  const [liveNotification, setLiveNotification] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedClan, setSelectedClan] = useState('ALL');
   const [copiedDeckId, setCopiedDeckId] = useState(null);
@@ -46,9 +55,52 @@ export default function CommunityDecksView({
     }
   };
 
+  // Chargement initial + Écoute WebSocket Realtime
   useEffect(() => {
     loadDecks();
-  }, []);
+
+    const unsubscribe = subscribeToCommunityDecks(
+      ({ type, deck, deckId }) => {
+        if (type === 'INSERT' && deck) {
+          setCommunityDecks(prev => {
+            if (prev.some(d => d.id === deck.id)) return prev;
+            const filtered = prev.filter(d => 
+              !(d.name.toLowerCase() === deck.name.toLowerCase() && d.author.toLowerCase() === deck.author.toLowerCase())
+            );
+            const updated = [deck, ...filtered];
+            saveLocalCommunityDecks(updated);
+            return updated;
+          });
+
+          setLiveNotification(
+            lang === 'en'
+              ? `🆕 Live update: "${deck.name}" by ${deck.author} was just shared!`
+              : `🆕 En direct : "${deck.name}" par ${deck.author} vient d'être publié !`
+          );
+          setTimeout(() => setLiveNotification(null), 6000);
+        } else if (type === 'UPDATE' && deck) {
+          setCommunityDecks(prev => {
+            const updated = prev.map(d => d.id === deck.id ? { ...d, ...deck } : d);
+            saveLocalCommunityDecks(updated);
+            return updated;
+          });
+        } else if (type === 'DELETE' && deckId) {
+          setCommunityDecks(prev => {
+            const updated = prev.filter(d => d.id !== deckId);
+            saveLocalCommunityDecks(updated);
+            return updated;
+          });
+        }
+      },
+      (status) => {
+        setRealtimeStatus(status);
+      }
+    );
+
+    return () => {
+      unsubscribe();
+    };
+  }, [lang]);
 
   // Filter Decks
   const filteredDecks = communityDecks.filter(deck => {
@@ -143,6 +195,19 @@ export default function CommunityDecksView({
             <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-mono font-semibold">
               <Users className="w-3.5 h-3.5 text-indigo-400" />
               <span>{t?.community?.badge || "Partage & Stratégie Publics"}</span>
+              <span className="text-gray-600">•</span>
+              <span className="flex items-center space-x-1.5" title={realtimeStatus === 'connected' ? 'Connexion WebSocket active' : 'Connexion en cours...'}>
+                <span className={`w-2 h-2 rounded-full ${
+                  realtimeStatus === 'connected' 
+                    ? 'bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]' 
+                    : realtimeStatus === 'error'
+                    ? 'bg-red-400'
+                    : 'bg-amber-400 animate-pulse'
+                }`} />
+                <span className="text-[10px] font-mono text-emerald-300">
+                  {realtimeStatus === 'connected' ? (lang === 'en' ? 'Live' : 'En Direct') : (lang === 'en' ? 'Connecting...' : 'Connexion...')}
+                </span>
+              </span>
             </div>
             <h1 className="font-gothic font-extrabold text-3xl md:text-4xl text-gray-100 text-shadow-sm">
               {t?.community?.title || "Decks de la Communauté"}
@@ -178,6 +243,24 @@ export default function CommunityDecksView({
           </div>
         </div>
       </div>
+
+      {/* Live Realtime Notification Banner */}
+      {liveNotification && (
+        <div className="p-4 rounded-2xl bg-gradient-to-r from-indigo-950 via-purple-950 to-[#0e111a] border-2 border-indigo-400 text-indigo-100 text-xs flex items-center justify-between shadow-[0_0_30px_rgba(99,102,241,0.5)] animate-fadeIn">
+          <div className="flex items-center space-x-2.5">
+            <div className="w-7 h-7 rounded-xl bg-indigo-600/30 border border-indigo-400/50 flex items-center justify-center">
+              <Sparkles className="w-4 h-4 text-amber-300 animate-spin" />
+            </div>
+            <span className="font-gothic font-bold text-sm text-white tracking-wide">{liveNotification}</span>
+          </div>
+          <button 
+            onClick={() => setLiveNotification(null)} 
+            className="p-1.5 rounded-lg hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
+          >
+            ✕
+          </button>
+        </div>
+      )}
 
       {/* Filter & Search Bar */}
       <div className="glass-panel rounded-2xl p-4 border border-white/10 space-y-3">

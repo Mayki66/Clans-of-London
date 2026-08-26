@@ -218,3 +218,56 @@ export async function likeCommunityDeck(deckId, currentLikes = 1) {
     }
   }
 }
+
+/**
+ * Écoute en temps réel les changements sur la table col_community_decks via WebSocket.
+ * @param {Function} onChange Callback appelé lors d'un événement Realtime { type: 'INSERT'|'UPDATE'|'DELETE', deck?, deckId? }
+ * @param {Function} onStatus Callback optionnel pour connaître le statut de connexion WebSocket
+ * @returns {Function} Fonction de nettoyage (cleanup) pour désabonner le canal
+ */
+export function subscribeToCommunityDecks(onChange, onStatus) {
+  const supabase = getSupabaseClient();
+  if (!supabase) {
+    if (onStatus) onStatus('disconnected');
+    return () => {};
+  }
+
+  const channelName = `col-decks-realtime-${Date.now()}`;
+  const channel = supabase
+    .channel(channelName)
+    .on(
+      'postgres_changes',
+      { event: '*', schema: 'public', table: 'col_community_decks' },
+      (payload) => {
+        const { eventType, new: newRow, old: oldRow } = payload;
+        if (eventType === 'INSERT' && newRow) {
+          const mapped = mapCloudDeck(newRow);
+          onChange({ type: 'INSERT', deck: mapped });
+        } else if (eventType === 'UPDATE' && newRow) {
+          const mapped = mapCloudDeck(newRow);
+          onChange({ type: 'UPDATE', deck: mapped });
+        } else if (eventType === 'DELETE' && oldRow) {
+          onChange({ type: 'DELETE', deckId: oldRow.id });
+        }
+      }
+    )
+    .subscribe((status) => {
+      if (onStatus) {
+        if (status === 'SUBSCRIBED') {
+          onStatus('connected');
+        } else if (status === 'TIMED_OUT' || status === 'CHANNEL_ERROR') {
+          onStatus('error');
+        } else if (status === 'CLOSED') {
+          onStatus('disconnected');
+        }
+      }
+    });
+
+  return () => {
+    try {
+      supabase.removeChannel(channel);
+    } catch (e) {
+      console.warn("Error unsubscribing Realtime channel", e);
+    }
+  };
+}
