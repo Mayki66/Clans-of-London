@@ -8,7 +8,7 @@ export const CARDS_DATA = [
     "cost": 1,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Élitiste",
+    "archetype": "N/A",
     "keywords": [
       "Élitiste",
       "Ventrue",
@@ -26,7 +26,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-001.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Luis_Castano"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Luis_Castano",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-002",
@@ -37,7 +38,7 @@ export const CARDS_DATA = [
     "cost": 1,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Occultation",
+    "archetype": "N/A",
     "keywords": [
       "Occultation",
       "Nosferatu",
@@ -55,7 +56,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-002.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Shifa"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Shifa",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-003",
@@ -66,7 +68,7 @@ export const CARDS_DATA = [
     "cost": 1,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Séduction",
+    "archetype": "N/A",
     "keywords": [
       "Séduction",
       "Toreador",
@@ -84,7 +86,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-003.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Abir"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Abir",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-004",
@@ -95,7 +98,7 @@ export const CARDS_DATA = [
     "cost": 1,
     "power": 0,
     "type": "Vampire",
-    "archetype": "Séduction",
+    "archetype": "N/A",
     "keywords": [
       "Séduction",
       "Toreador",
@@ -113,7 +116,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-004.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Bakunawa"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Bakunawa",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-005",
@@ -124,7 +128,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Élitiste",
+    "archetype": "N/A",
     "keywords": [
       "Élitiste",
       "Ventrue",
@@ -142,7 +146,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-005.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Helen_Lloyd"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Helen_Lloyd",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-006",
@@ -153,7 +158,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Séduction",
+    "archetype": "N/A",
     "keywords": [
       "Séduction",
       "Toreador",
@@ -171,7 +176,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-006.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Violet_Green"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Violet_Green",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-007",
@@ -182,7 +188,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Séduction",
+    "archetype": "N/A",
     "keywords": [
       "Séduction",
       "Toreador",
@@ -200,7 +206,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-007.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Aster_Banda"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Aster_Banda",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-008",
@@ -211,7 +218,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Élitiste",
+    "archetype": "N/A",
     "keywords": [
       "Élitiste",
       "Ventrue",
@@ -229,7 +236,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-008.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Jurgen_Mayer"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Jurgen_Mayer",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-009",
@@ -238,9 +246,9 @@ export const CARDS_DATA = [
     "clan": "Toreador",
     "series": 0,
     "cost": 2,
-    "power": 2,
+    "power": 1,
     "type": "Vampire",
-    "archetype": "Séduction",
+    "archetype": "N/A",
     "keywords": [
       "Séduction",
       "Toreador",
@@ -258,7 +266,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-009.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Penelope_Dane"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Penelope_Dane",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-010",
@@ -269,7 +278,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 0,
     "type": "Vampire",
-    "archetype": "Violent",
+    "archetype": "N/A",
     "keywords": [
       "Violent",
       "Brujah",
@@ -287,7 +296,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-010.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Ember"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Ember",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-011",
@@ -298,7 +308,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Séduction",
+    "archetype": "Élitiste",
     "keywords": [
       "Séduction",
       "Toreador",
@@ -316,7 +326,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-011.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Francisco_the_Bold"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Francisco_the_Bold",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-012",
@@ -327,7 +338,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Séduction",
+    "archetype": "Élitiste",
     "keywords": [
       "Séduction",
       "Toreador",
@@ -345,7 +356,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-012.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sapphire"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sapphire",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-013",
@@ -356,7 +368,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Séduction",
+    "archetype": "Violent",
     "keywords": [
       "Séduction",
       "Toreador",
@@ -374,7 +386,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-013.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Szofia"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Szofia",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-014",
@@ -385,7 +398,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Sorcellerie du Sang",
+    "archetype": "N/A",
     "keywords": [
       "Sorcellerie du Sang",
       "Tremere",
@@ -403,7 +416,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-014.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Lavanya_Sekh"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Lavanya_Sekh",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-015",
@@ -431,7 +445,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-015.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Dante"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Dante",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-016",
@@ -459,7 +474,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-016.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Razor"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Razor",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-017",
@@ -470,7 +486,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Violent",
+    "archetype": "N/A",
     "keywords": [
       "Violent",
       "Brujah",
@@ -488,7 +504,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-017.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Niall_Flynn"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Niall_Flynn",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-018",
@@ -499,7 +516,7 @@ export const CARDS_DATA = [
     "cost": 4,
     "power": 6,
     "type": "Vampire",
-    "archetype": "Séduction",
+    "archetype": "Élitiste",
     "keywords": [
       "Séduction",
       "Toreador",
@@ -517,7 +534,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-018.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Aurora_Torres"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Aurora_Torres",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-019",
@@ -528,14 +546,14 @@ export const CARDS_DATA = [
     "cost": 4,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Séduction",
+    "archetype": "N/A",
     "keywords": [
       "Séduction",
       "Toreador",
       "Neutre"
     ],
     "ability": "À la Révélation : Confère +1 Puissance à toutes les cartes dans votre main.",
-    "ability_en": "On Reveal: Give +1 Power to all cards in your hand.",
+    "ability_en": "On Reveal: Gain +1 Power to all cards in your hand.",
     "flavorText": "\"Blaze - Carte officielle Vampire: The Masquerade – Clans of London (Série 0).\"",
     "rarity": "Rare",
     "notes": "",
@@ -546,7 +564,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-019.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Blaze"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Blaze",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-020",
@@ -575,7 +594,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-020.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Mx_Korpal"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Mx_Korpal",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-021",
@@ -586,7 +606,7 @@ export const CARDS_DATA = [
     "cost": 5,
     "power": 8,
     "type": "Vampire",
-    "archetype": "Élitiste",
+    "archetype": "Violent",
     "keywords": [
       "Élitiste",
       "Ventrue",
@@ -604,7 +624,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-021.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Harry_Tyler"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Harry_Tyler",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-022",
@@ -633,7 +654,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-022.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Stephen_Fane"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Stephen_Fane",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-023",
@@ -644,7 +666,7 @@ export const CARDS_DATA = [
     "cost": 5,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Séduction",
+    "archetype": "Élitiste",
     "keywords": [
       "Séduction",
       "Toreador",
@@ -662,7 +684,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-023.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Brittany_Webb"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Brittany_Webb",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-024",
@@ -673,7 +696,7 @@ export const CARDS_DATA = [
     "cost": 6,
     "power": 12,
     "type": "Vampire",
-    "archetype": "Séduction",
+    "archetype": "Élitiste",
     "keywords": [
       "Séduction",
       "Toreador",
@@ -691,7 +714,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-024.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Hope_Ekaette"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Hope_Ekaette",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-025",
@@ -720,7 +744,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-025.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Robert_Cavendish"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Robert_Cavendish",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-026",
@@ -731,7 +756,7 @@ export const CARDS_DATA = [
     "cost": 8,
     "power": 7,
     "type": "Vampire",
-    "archetype": "Séduction",
+    "archetype": "Élitiste",
     "keywords": [
       "Séduction",
       "Toreador",
@@ -749,7 +774,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-026.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Annabella_Wright"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Annabella_Wright",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-027",
@@ -778,7 +804,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-027.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Mrs_Fitzgerald"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Mrs_Fitzgerald",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-028",
@@ -789,7 +816,7 @@ export const CARDS_DATA = [
     "cost": 1,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Toreador"
@@ -806,7 +833,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-028.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Kate_Dixon"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Kate_Dixon",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-029",
@@ -817,7 +845,7 @@ export const CARDS_DATA = [
     "cost": 1,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Violent",
+    "archetype": "N/A",
     "keywords": [
       "Violent",
       "Brujah",
@@ -835,7 +863,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-029.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Amy_West"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Amy_West",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-030",
@@ -863,7 +892,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-030.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Grace_Ward"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Grace_Ward",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-031",
@@ -874,7 +904,7 @@ export const CARDS_DATA = [
     "cost": 1,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Brujah"
@@ -891,7 +921,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-031.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Simon_Lee"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Simon_Lee",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-032",
@@ -902,7 +933,7 @@ export const CARDS_DATA = [
     "cost": 1,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Élitiste",
+    "archetype": "N/A",
     "keywords": [
       "Élitiste",
       "Ventrue",
@@ -920,7 +951,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-032.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Abigail_Smith"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Abigail_Smith",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-033",
@@ -930,8 +962,8 @@ export const CARDS_DATA = [
     "series": 1,
     "cost": 2,
     "power": 2,
-    "type": "Cadavre / Goule",
-    "archetype": "Meurtre",
+    "type": "Vampire",
+    "archetype": "N/A",
     "keywords": [
       "Meurtre",
       "Hecata",
@@ -949,7 +981,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-033.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Morag_Stewart"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Morag_Stewart",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-034",
@@ -977,7 +1010,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-034.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Grendel_Ward"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Grendel_Ward",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-035",
@@ -988,7 +1022,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Violent",
+    "archetype": "N/A",
     "keywords": [
       "Violent",
       "Brujah",
@@ -1006,7 +1040,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-035.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Lan_Chen"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Lan_Chen",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-036",
@@ -1017,7 +1052,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Brujah"
@@ -1034,7 +1069,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-036.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Zara_Bradley"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Zara_Bradley",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-037",
@@ -1045,7 +1081,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Gangrel"
@@ -1062,7 +1098,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-037.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sanjay_Ali"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sanjay_Ali",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-038",
@@ -1091,7 +1128,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-038.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Cynthia_Hargreaves"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Cynthia_Hargreaves",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-039",
@@ -1102,7 +1140,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Ventrue"
@@ -1119,7 +1157,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-039.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Jeremiah_Saha"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Jeremiah_Saha",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-040",
@@ -1130,7 +1169,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Séduction",
+    "archetype": "N/A",
     "keywords": [
       "Séduction",
       "Toreador",
@@ -1148,7 +1187,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-040.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Amelie"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Amelie",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-041",
@@ -1159,7 +1199,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Séduction",
+    "archetype": "N/A",
     "keywords": [
       "Séduction",
       "Toreador",
@@ -1177,7 +1217,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-041.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Tristan_Stag"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Tristan_Stag",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-042",
@@ -1205,7 +1246,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-042.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Nick_Locke"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Nick_Locke",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-043",
@@ -1234,7 +1276,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-043.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Adrian_Yu"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Adrian_Yu",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-044",
@@ -1245,7 +1288,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 4,
     "type": "Vampire",
-    "archetype": "Violent",
+    "archetype": "N/A",
     "keywords": [
       "Violent",
       "Brujah",
@@ -1263,7 +1306,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-044.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sheriff_Fletcher"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sheriff_Fletcher",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-045",
@@ -1274,7 +1318,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Meurtre",
+    "archetype": "N/A",
     "keywords": [
       "Meurtre",
       "Hecata",
@@ -1292,7 +1336,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-045.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Mr_Stewart"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Mr_Stewart",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-046",
@@ -1320,7 +1365,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-046.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sid_Scabies"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sid_Scabies",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-047",
@@ -1348,7 +1394,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-047.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Robbys_Crew"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Robbys_Crew",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-048",
@@ -1359,7 +1406,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Bête",
+    "archetype": "N/A",
     "keywords": [
       "Bête",
       "Gangrel",
@@ -1377,7 +1424,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-048.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Ravi_Patel"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Ravi_Patel",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-049",
@@ -1406,7 +1454,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-049.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Mr_Moore"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Mr_Moore",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-050",
@@ -1417,7 +1466,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 6,
     "type": "Vampire",
-    "archetype": "Séduction",
+    "archetype": "N/A",
     "keywords": [
       "Séduction",
       "Toreador",
@@ -1435,7 +1484,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-050.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Roland_Heffe"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Roland_Heffe",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-051",
@@ -1446,7 +1496,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Élitiste",
+    "archetype": "N/A",
     "keywords": [
       "Élitiste",
       "Ventrue",
@@ -1464,7 +1514,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-051.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Lawrence"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Lawrence",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-052",
@@ -1475,7 +1526,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 5,
     "type": "Vampire",
-    "archetype": "Séduction",
+    "archetype": "N/A",
     "keywords": [
       "Séduction",
       "Toreador",
@@ -1493,7 +1544,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-052.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Julian_L_Hector"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Julian_L_Hector",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-053",
@@ -1522,18 +1574,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-053.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Horatio_Drake"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Horatio_Drake",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-054",
     "name": "Tim Holdsworth",
     "originalName": "Tim Holdsworth",
-    "clan": "Tremere",
+    "clan": "Mortel",
     "series": 1,
     "cost": 4,
     "power": 0,
     "type": "Mortel",
-    "archetype": "Sorcellerie du Sang",
+    "archetype": "N/A",
     "keywords": [
       "Sorcellerie du Sang",
       "Tremere",
@@ -1551,7 +1604,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-054.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Tim_Holdsworth"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Tim_Holdsworth",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-055",
@@ -1579,7 +1633,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-055.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Jari"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Jari",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-056",
@@ -1590,7 +1645,7 @@ export const CARDS_DATA = [
     "cost": 4,
     "power": 6,
     "type": "Vampire",
-    "archetype": "Bête",
+    "archetype": "Beast, Violent",
     "keywords": [
       "Bête",
       "Gangrel",
@@ -1608,7 +1663,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-056.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Cathy_Carmine"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Cathy_Carmine",
+    "archetype_en": "Beast, Violent"
   },
   {
     "id": "col-057",
@@ -1616,10 +1672,10 @@ export const CARDS_DATA = [
     "originalName": "Ophelia",
     "clan": "Hecata",
     "series": 1,
-    "cost": 4,
+    "cost": 3,
     "power": 5,
     "type": "Vampire",
-    "archetype": "Meurtre",
+    "archetype": "Violent",
     "keywords": [
       "Meurtre",
       "Hecata",
@@ -1637,7 +1693,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-057.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Ophelia"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Ophelia",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-058",
@@ -1648,7 +1705,7 @@ export const CARDS_DATA = [
     "cost": 4,
     "power": 7,
     "type": "Vampire",
-    "archetype": "Séduction",
+    "archetype": "N/A",
     "keywords": [
       "Séduction",
       "Toreador",
@@ -1666,7 +1723,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-058.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Eliza_Iyer"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Eliza_Iyer",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-059",
@@ -1695,7 +1753,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-059.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Herald_of_the_Hunt&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Herald_of_the_Hunt&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Beast"
   },
   {
     "id": "col-060",
@@ -1706,7 +1765,7 @@ export const CARDS_DATA = [
     "cost": 4,
     "power": 5,
     "type": "Vampire",
-    "archetype": "Bête",
+    "archetype": "N/A",
     "keywords": [
       "Bête",
       "Gangrel",
@@ -1724,7 +1783,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-060.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Branwen_White&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Branwen_White&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-061",
@@ -1734,7 +1794,7 @@ export const CARDS_DATA = [
     "series": 1,
     "cost": 4,
     "power": 1,
-    "type": "Serviteur / Familier",
+    "type": "Vampire",
     "archetype": "Bête",
     "keywords": [
       "Bête",
@@ -1753,7 +1813,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-061.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Bloodcallers_Pack"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Bloodcallers_Pack",
+    "archetype_en": "Beast"
   },
   {
     "id": "col-062",
@@ -1781,7 +1842,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-062.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lukasz_Baran&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lukasz_Baran&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-063",
@@ -1792,7 +1854,7 @@ export const CARDS_DATA = [
     "cost": 5,
     "power": 5,
     "type": "Vampire",
-    "archetype": "Bête",
+    "archetype": "Violent",
     "keywords": [
       "Bête",
       "Gangrel",
@@ -1810,7 +1872,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-063.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Ms_Harriot"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Ms_Harriot",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-064",
@@ -1839,7 +1902,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-064.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Aurelius"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Aurelius",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-065",
@@ -1867,7 +1931,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-065.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Nafula_Juma"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Nafula_Juma",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-066",
@@ -1878,7 +1943,7 @@ export const CARDS_DATA = [
     "cost": 6,
     "power": 11,
     "type": "Vampire",
-    "archetype": "Séduction",
+    "archetype": "N/A",
     "keywords": [
       "Séduction",
       "Toreador",
@@ -1896,7 +1961,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-066.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Damon"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Damon",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-067",
@@ -1907,7 +1973,7 @@ export const CARDS_DATA = [
     "cost": 6,
     "power": 4,
     "type": "Vampire",
-    "archetype": "Sorcellerie du Sang",
+    "archetype": "Sorcier",
     "keywords": [
       "Sorcellerie du Sang",
       "Tremere",
@@ -1925,7 +1991,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-067.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Aylin"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Aylin",
+    "archetype_en": "Sorcerer"
   },
   {
     "id": "col-068",
@@ -1953,7 +2020,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-068.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Leo_Stein&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Leo_Stein&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-069",
@@ -1982,7 +2050,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-069.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Lord_Colville"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Lord_Colville",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-070",
@@ -2010,7 +2079,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-070.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Marissa_the_Butcher"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Marissa_the_Butcher",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-071",
@@ -2021,7 +2091,7 @@ export const CARDS_DATA = [
     "cost": 7,
     "power": 9,
     "type": "Vampire",
-    "archetype": "Bête",
+    "archetype": "N/A",
     "keywords": [
       "Bête",
       "Gangrel",
@@ -2039,7 +2109,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-071.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:The_Bloodcaller"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:The_Bloodcaller",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-072",
@@ -2068,7 +2139,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-072.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sir_Kingston"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sir_Kingston",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-073",
@@ -2079,7 +2151,7 @@ export const CARDS_DATA = [
     "cost": 1,
     "power": 2,
     "type": "Mortel",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre"
     ],
@@ -2095,7 +2167,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-073.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Theo_Conti"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Theo_Conti",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-074",
@@ -2106,7 +2179,7 @@ export const CARDS_DATA = [
     "cost": 1,
     "power": 0,
     "type": "Mortel",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre"
     ],
@@ -2122,7 +2195,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-074.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Breakfast"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Breakfast",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-075",
@@ -2133,13 +2207,13 @@ export const CARDS_DATA = [
     "cost": 1,
     "power": 0,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Hecata"
     ],
     "ability": "À la Mort : Confère +2 Puissance à toutes vos cartes connectées.",
-    "ability_en": "On Death: Give +2 Power to your connected cards.",
+    "ability_en": "When Murdered: Give +2 Power to your connected cards.",
     "flavorText": "\"Carlo Galli - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Commune",
     "notes": "",
@@ -2150,7 +2224,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-075.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Carlo_Galli&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Carlo_Galli&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-076",
@@ -2161,7 +2236,7 @@ export const CARDS_DATA = [
     "cost": 1,
     "power": 0,
     "type": "Goule",
-    "archetype": "Sorcellerie du Sang",
+    "archetype": "Acolyte",
     "keywords": [
       "Sorcellerie du Sang",
       "Acolyte"
@@ -2178,7 +2253,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-076.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Gillian_Sardar&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Gillian_Sardar&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Acolyte"
   },
   {
     "id": "col-077",
@@ -2188,8 +2264,8 @@ export const CARDS_DATA = [
     "series": 2,
     "cost": 1,
     "power": 0,
-    "type": "Serviteur / Familier",
-    "archetype": "Neutre",
+    "type": "Vampire",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Gangrel"
@@ -2206,7 +2282,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-077.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Rat_Collector&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Rat_Collector&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-078",
@@ -2217,7 +2294,7 @@ export const CARDS_DATA = [
     "cost": 1,
     "power": 0,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Hecata"
@@ -2234,7 +2311,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-078.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Wendy_Hill&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Wendy_Hill&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-079",
@@ -2245,7 +2323,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Hecata"
@@ -2262,7 +2340,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-079.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sheloa"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sheloa",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-080",
@@ -2273,7 +2352,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Hecata"
@@ -2290,7 +2369,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-080.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sadako_Asano"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sadako_Asano",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-081",
@@ -2301,7 +2381,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Hecata"
@@ -2318,7 +2398,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-081.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Toru_Asano"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Toru_Asano",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-082",
@@ -2329,7 +2410,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 3,
     "type": "Mortel",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre"
     ],
@@ -2345,7 +2426,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-082.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Marco&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Marco&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-083",
@@ -2356,7 +2438,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 6,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Hecata"
@@ -2373,7 +2455,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-083.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Maria_Puttanesca"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Maria_Puttanesca",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-084",
@@ -2384,13 +2467,13 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 5,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Hecata"
     ],
     "ability": "Lorsqu'une carte est Assassinée : Ajoute un Homme de Main (Violent) à votre main.",
-    "ability_en": "When a card is Murdered: Add a Mobster (Violent) to your hand.",
+    "ability_en": "When a Card is Murdered: Add a Mobster (Violent) to your hand.",
     "flavorText": "\"Caesar Cornello - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Rare",
     "notes": "Creates Token: Mobster",
@@ -2401,7 +2484,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-084.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Caesar_Cornello"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Caesar_Cornello",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-085",
@@ -2430,7 +2514,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-085.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:James_the_Bloodhound&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:James_the_Bloodhound&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Beast"
   },
   {
     "id": "col-086",
@@ -2459,7 +2544,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-086.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Mr_Kauffman&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Mr_Kauffman&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-087",
@@ -2470,7 +2556,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 5,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Gangrel"
@@ -2487,18 +2573,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-087.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Haji_Wahyuni&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Haji_Wahyuni&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-088",
     "name": "\"Brixton\"",
-    "originalName": "\"Brixton\"",
+    "originalName": "Brixton",
     "clan": "Toreador",
     "series": 2,
     "cost": 3,
     "power": 5,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Toreador"
@@ -2515,7 +2602,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-088.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Brixton"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Brixton",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-089",
@@ -2526,7 +2614,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 0,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Toreador"
@@ -2543,7 +2631,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-089.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sylvia"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sylvia",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-090",
@@ -2554,7 +2643,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 0,
     "type": "Goule",
-    "archetype": "Sorcellerie du Sang",
+    "archetype": "Acolyte",
     "keywords": [
       "Sorcellerie du Sang",
       "Acolyte"
@@ -2571,7 +2660,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-090.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Abraham&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Abraham&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Acolyte"
   },
   {
     "id": "col-091",
@@ -2582,7 +2672,7 @@ export const CARDS_DATA = [
     "cost": 4,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Brujah"
@@ -2599,7 +2689,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-091.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Travis_Laurent&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Travis_Laurent&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-092",
@@ -2609,8 +2700,8 @@ export const CARDS_DATA = [
     "series": 2,
     "cost": 4,
     "power": 7,
-    "type": "Serviteur / Familier",
-    "archetype": "Neutre",
+    "type": "Vampire",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Gangrel"
@@ -2627,7 +2718,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-092.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Madison_Wolfe&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Madison_Wolfe&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-093",
@@ -2638,7 +2730,7 @@ export const CARDS_DATA = [
     "cost": 4,
     "power": 9,
     "type": "Spectre",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre"
     ],
@@ -2654,7 +2746,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-093.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Asano_Wraiths&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Asano_Wraiths&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-094",
@@ -2665,7 +2758,7 @@ export const CARDS_DATA = [
     "cost": 5,
     "power": 8,
     "type": "Vampire",
-    "archetype": "Murder",
+    "archetype": "Violent",
     "keywords": [
       "Murder",
       "Hecata"
@@ -2682,7 +2775,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-094.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Yomi&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Yomi&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-095",
@@ -2693,7 +2787,7 @@ export const CARDS_DATA = [
     "cost": 5,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Sorcellerie du Sang",
+    "archetype": "Sorcier",
     "keywords": [
       "Sorcellerie du Sang",
       "Tremere",
@@ -2711,7 +2805,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-095.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Runa&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Runa&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Sorcerer"
   },
   {
     "id": "col-096",
@@ -2722,7 +2817,7 @@ export const CARDS_DATA = [
     "cost": 6,
     "power": 4,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Brujah"
@@ -2739,7 +2834,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-096.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Kieran_Gulley&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Kieran_Gulley&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-097",
@@ -2768,7 +2864,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-097.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Ivy_du_Pont&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Ivy_du_Pont&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-098",
@@ -2779,7 +2876,7 @@ export const CARDS_DATA = [
     "cost": 7,
     "power": 5,
     "type": "Vampire",
-    "archetype": "Sorcellerie du Sang",
+    "archetype": "Sorcier",
     "keywords": [
       "Sorcellerie du Sang",
       "Tremere",
@@ -2797,7 +2894,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-098.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Madame_Tessier&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Madame_Tessier&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Sorcerer"
   },
   {
     "id": "col-099",
@@ -2808,7 +2906,7 @@ export const CARDS_DATA = [
     "cost": 1,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Gangrel"
@@ -2825,7 +2923,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-099.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Dr_Ellis&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Dr_Ellis&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-100",
@@ -2836,7 +2935,7 @@ export const CARDS_DATA = [
     "cost": 1,
     "power": 0,
     "type": "Mortel",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre"
     ],
@@ -2852,7 +2951,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-100.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Benny_Cox"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Benny_Cox",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-101",
@@ -2863,7 +2963,7 @@ export const CARDS_DATA = [
     "cost": 1,
     "power": 0,
     "type": "Mortel",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre"
     ],
@@ -2879,7 +2979,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-101.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Karl_Craven&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Karl_Craven&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-102",
@@ -2890,7 +2991,7 @@ export const CARDS_DATA = [
     "cost": 1,
     "power": 2,
     "type": "Mortel",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre"
     ],
@@ -2906,18 +3007,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-102.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Doomed_Debtor&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Doomed_Debtor&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-103",
     "name": "Fiona Millar",
     "originalName": "Fiona Millar",
-    "clan": "Malkavian",
+    "clan": "Malkavien",
     "series": 3,
     "cost": 1,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Malkavian"
@@ -2934,7 +3036,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-103.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Fiona_Millar&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Fiona_Millar&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-104",
@@ -2963,7 +3066,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-104.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:ROUS&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:ROUS&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Beast"
   },
   {
     "id": "col-105",
@@ -2992,18 +3096,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-105.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Vincent_Monroe&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Vincent_Monroe&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-106",
     "name": "Rosaline Armitage",
     "originalName": "Rosaline Armitage",
-    "clan": "Malkavian",
+    "clan": "Malkavien",
     "series": 3,
     "cost": 2,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Malkavian"
@@ -3020,7 +3125,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-106.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Rosaline_Armitage&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Rosaline_Armitage&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-107",
@@ -3030,7 +3136,7 @@ export const CARDS_DATA = [
     "series": 3,
     "cost": 2,
     "power": 2,
-    "type": "Serviteur / Familier",
+    "type": "Vampire",
     "archetype": "Bête",
     "keywords": [
       "Bête",
@@ -3049,7 +3155,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-107.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Rat-Eater&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Rat-Eater&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Beast"
   },
   {
     "id": "col-108",
@@ -3060,7 +3167,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Brujah"
@@ -3077,7 +3184,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-108.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Shauna_Bench&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Shauna_Bench&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-109",
@@ -3088,7 +3196,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Toreador"
@@ -3105,7 +3213,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-109.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Isabel_Segura"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Isabel_Segura",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-110",
@@ -3116,7 +3225,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 0,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Hecata"
@@ -3133,24 +3242,25 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-110.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Luca_the_Grim&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Luca_the_Grim&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-111",
     "name": "Jacob \"Toolbox\"",
-    "originalName": "Jacob \"Toolbox\"",
+    "originalName": "Jacob \"Toolbox",
     "clan": "Tremere",
     "series": 3,
     "cost": 3,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Tremere"
     ],
     "ability": "À la Révélation : Ajoute Matome « Defib » et Zandile « Landmine » à votre main.",
-    "ability_en": "On Reveal: Add Matome 'Defib' and Zandile 'Landmine' to your hand.",
+    "ability_en": "On Reveal: Add Matome \"Defib\" and Zandile \"Landmine\" to your hand.",
     "flavorText": "\"Jacob \"Toolbox\" - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
     "notes": "Added during \"The Heist\" Season on Feb. 12th, 2026.\nCreates Tokens: Matome \"Defib\", Zandile \"Landmine\"",
@@ -3161,7 +3271,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-111.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Jacob_Toolbox&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Jacob_Toolbox&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-112",
@@ -3172,7 +3283,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 1,
     "type": "Mortel",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre"
     ],
@@ -3188,7 +3299,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-112.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Mark_Hooke&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Mark_Hooke&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-113",
@@ -3199,7 +3311,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Brujah"
@@ -3216,18 +3328,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-113.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Robby_Jackson&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Robby_Jackson&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-114",
     "name": "Jacqueline",
     "originalName": "Jacqueline",
-    "clan": "Malkavian",
+    "clan": "Malkavien",
     "series": 3,
     "cost": 2,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Malkavian"
@@ -3244,18 +3357,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-114.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Jacqueline&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Jacqueline&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-115",
     "name": "Natalya Volkova",
     "originalName": "Natalya Volkova",
-    "clan": "Mortel",
+    "clan": "Duskborn",
     "series": 3,
     "cost": 2,
     "power": 3,
-    "type": "Mortel",
-    "archetype": "Neutre",
+    "type": "Vampire",
+    "archetype": "Vampire, Mortel",
     "keywords": [
       "Neutre",
       "Vampire, Mortal"
@@ -3272,18 +3386,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-115.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Natalya_Volkova&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Natalya_Volkova&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Vampire, Mortal"
   },
   {
     "id": "col-116",
     "name": "Jax Cook",
     "originalName": "Jax Cook",
-    "clan": "Mortel",
+    "clan": "Duskborn",
     "series": 3,
     "cost": 2,
     "power": 2,
-    "type": "Mortel",
-    "archetype": "Neutre",
+    "type": "Vampire",
+    "archetype": "Vampire, Mortel",
     "keywords": [
       "Neutre",
       "Vampire, Mortal"
@@ -3300,7 +3415,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-116.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Jax_Cook&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Jax_Cook&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Vampire, Mortal"
   },
   {
     "id": "col-117",
@@ -3329,18 +3445,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-117.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Huang_Jin&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Huang_Jin&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-118",
     "name": "Missy Mythos",
     "originalName": "Missy Mythos",
-    "clan": "Malkavian",
+    "clan": "Malkavien",
     "series": 3,
     "cost": 3,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Delusion",
+    "archetype": "Élitiste",
     "keywords": [
       "Delusion",
       "Malkavian"
@@ -3357,24 +3474,25 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-118.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Missy_Mythos&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Missy_Mythos&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-119",
     "name": "\"Salvo\" Calvo",
-    "originalName": "\"Salvo\" Calvo",
-    "clan": "Malkavian",
+    "originalName": "Salvo\" Calvo",
+    "clan": "Malkavien",
     "series": 3,
     "cost": 3,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Delusion",
+    "archetype": "Violent",
     "keywords": [
       "Delusion",
       "Malkavian"
     ],
     "ability": "À la Révélation : Vole 1 Puissance à chaque carte de coût impair dans votre main, puis défaussez-les.",
-    "ability_en": "On Reveal: Steal 1 Power from all odd cost cards in your hand, then discard them.",
+    "ability_en": "On Reveal: Steal 1 Power from all odd cost cards in your hand, then Discard them.",
     "flavorText": "\"\"Salvo\" Calvo - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
     "notes": "Added during the \"A Party to Remember\" Season on May 7th, 2026.",
@@ -3385,7 +3503,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-119.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Salvo_Calvo&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Salvo_Calvo&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-120",
@@ -3396,7 +3515,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 4,
     "type": "Vampire",
-    "archetype": "Sorcellerie du Sang",
+    "archetype": "Sorcier",
     "keywords": [
       "Sorcellerie du Sang",
       "Tremere",
@@ -3414,7 +3533,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-120.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Maeve&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Maeve&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Sorcerer"
   },
   {
     "id": "col-121",
@@ -3425,7 +3545,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 4,
     "type": "Vampire",
-    "archetype": "Sorcellerie du Sang",
+    "archetype": "Sorcier",
     "keywords": [
       "Sorcellerie du Sang",
       "Tremere",
@@ -3443,7 +3563,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-121.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Murat_Kazan&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Murat_Kazan&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Sorcerer"
   },
   {
     "id": "col-122",
@@ -3454,7 +3575,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 5,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Brujah"
@@ -3471,7 +3592,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-122.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Eduardo_Santana&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Eduardo_Santana&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-123",
@@ -3499,7 +3621,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-123.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lt_Chamkaur_Gupta&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lt_Chamkaur_Gupta&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-124",
@@ -3510,7 +3633,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 4,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Toreador"
@@ -3527,7 +3650,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-124.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Angelo"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Angelo",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-125",
@@ -3538,7 +3662,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Gangrel"
@@ -3555,7 +3679,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-125.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Oberon&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Oberon&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-126",
@@ -3566,7 +3691,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Ventrue"
@@ -3583,7 +3708,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-126.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Miss_Hidaka&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Miss_Hidaka&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-127",
@@ -3594,7 +3720,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Ventrue"
@@ -3611,7 +3737,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-127.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Ron_Queen&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Ron_Queen&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-128",
@@ -3640,7 +3767,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-128.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Errol_Fontaine&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Errol_Fontaine&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-129",
@@ -3669,7 +3797,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-129.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Paulos_Hunter&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Paulos_Hunter&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Beast"
   },
   {
     "id": "col-130",
@@ -3680,7 +3809,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 5,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Hecata"
@@ -3697,7 +3826,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-130.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Bruno&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Bruno&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-131",
@@ -3708,7 +3838,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Tremere"
@@ -3725,7 +3855,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-131.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Acton_Blackburn&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Acton_Blackburn&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-132",
@@ -3754,7 +3885,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-132.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Maximilian&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Maximilian&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-133",
@@ -3765,7 +3897,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 4,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Brujah"
@@ -3782,7 +3914,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-133.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Randy_Brash&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Randy_Brash&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-134",
@@ -3793,7 +3926,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 5,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Nosferatu"
@@ -3810,7 +3943,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-134.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Whisper&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Whisper&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-135",
@@ -3821,7 +3955,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Toreador"
@@ -3838,7 +3972,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-135.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Jeanne_Blanc&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Jeanne_Blanc&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-136",
@@ -3849,7 +3984,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Toreador"
@@ -3866,7 +4001,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-136.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Vena_Danube&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Vena_Danube&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-137",
@@ -3893,7 +4029,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-137.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Half-Pint&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Half-Pint&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-138",
@@ -3904,7 +4041,7 @@ export const CARDS_DATA = [
     "cost": 4,
     "power": 4,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Toreador"
@@ -3921,7 +4058,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-138.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Mercedes&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Mercedes&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-139",
@@ -3949,18 +4087,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-139.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Ragnar&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Ragnar&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-140",
     "name": "Dan Washington",
     "originalName": "Dan Washington",
-    "clan": "Malkavian",
+    "clan": "Malkavien",
     "series": 3,
     "cost": 4,
     "power": 7,
     "type": "Vampire",
-    "archetype": "Delusion",
+    "archetype": "Élitiste",
     "keywords": [
       "Delusion",
       "Malkavian"
@@ -3977,7 +4116,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-140.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Dan_Washington&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Dan_Washington&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-141",
@@ -4005,7 +4145,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-141.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Filipe_the_Bloody&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Filipe_the_Bloody&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-142",
@@ -4016,7 +4157,7 @@ export const CARDS_DATA = [
     "cost": 4,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Hecata"
@@ -4033,7 +4174,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-142.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Elizabeth_Dunsirn&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Elizabeth_Dunsirn&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-143",
@@ -4044,7 +4186,7 @@ export const CARDS_DATA = [
     "cost": 4,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Gangrel"
@@ -4061,7 +4203,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-143.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Mother_Everly&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Mother_Everly&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-144",
@@ -4072,7 +4215,7 @@ export const CARDS_DATA = [
     "cost": 4,
     "power": 7,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Toreador"
@@ -4089,7 +4232,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-144.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sister_Lilim"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sister_Lilim",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-145",
@@ -4100,7 +4244,7 @@ export const CARDS_DATA = [
     "cost": 4,
     "power": 5,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Ventrue"
@@ -4117,7 +4261,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-145.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Auctioneer&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Auctioneer&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-146",
@@ -4127,8 +4272,8 @@ export const CARDS_DATA = [
     "series": 3,
     "cost": 4,
     "power": 6,
-    "type": "Serviteur / Familier",
-    "archetype": "Neutre",
+    "type": "Vampire",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Gangrel"
@@ -4145,7 +4290,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-146.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Annabellas_Pet&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Annabellas_Pet&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-147",
@@ -4156,7 +4302,7 @@ export const CARDS_DATA = [
     "cost": 4,
     "power": 5,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Toreador"
@@ -4173,7 +4319,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-147.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Rana_Hayek"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Rana_Hayek",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-148",
@@ -4184,7 +4331,7 @@ export const CARDS_DATA = [
     "cost": 4,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Sorcellerie du Sang",
+    "archetype": "Acolyte",
     "keywords": [
       "Sorcellerie du Sang",
       "Tremere",
@@ -4202,7 +4349,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-148.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Esme&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Esme&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Acolyte"
   },
   {
     "id": "col-149",
@@ -4213,7 +4361,7 @@ export const CARDS_DATA = [
     "cost": 4,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Toreador"
@@ -4230,7 +4378,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-149.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Aurum"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Aurum",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-150",
@@ -4241,7 +4390,7 @@ export const CARDS_DATA = [
     "cost": 4,
     "power": 4,
     "type": "Vampire",
-    "archetype": "Sorcellerie du Sang",
+    "archetype": "Sorcier",
     "keywords": [
       "Sorcellerie du Sang",
       "Tremere",
@@ -4259,7 +4408,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-150.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Marquis_Leroux&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Marquis_Leroux&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Sorcerer"
   },
   {
     "id": "col-151",
@@ -4270,7 +4420,7 @@ export const CARDS_DATA = [
     "cost": 4,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Nosferatu"
@@ -4287,7 +4437,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-151.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lorenzo_Perello&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lorenzo_Perello&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-152",
@@ -4316,7 +4467,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-152.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Archibald_Rothwell&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Archibald_Rothwell&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-153",
@@ -4327,7 +4479,7 @@ export const CARDS_DATA = [
     "cost": 5,
     "power": 8,
     "type": "Vampire",
-    "archetype": "Séduction",
+    "archetype": "Élitiste",
     "keywords": [
       "Séduction",
       "Toreador",
@@ -4345,7 +4497,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-153.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Florence"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Florence",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-154",
@@ -4356,7 +4509,7 @@ export const CARDS_DATA = [
     "cost": 5,
     "power": 6,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Tremere"
@@ -4373,7 +4526,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-154.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Shoshana&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Shoshana&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-155",
@@ -4401,7 +4555,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-155.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Athena&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Athena&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-156",
@@ -4412,7 +4567,7 @@ export const CARDS_DATA = [
     "cost": 6,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Sorcellerie du Sang",
+    "archetype": "Sorcier",
     "keywords": [
       "Sorcellerie du Sang",
       "Tremere",
@@ -4430,7 +4585,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-156.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Morgana&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Morgana&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Sorcerer"
   },
   {
     "id": "col-157",
@@ -4459,7 +4615,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-157.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Joseph&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Joseph&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-158",
@@ -4470,7 +4627,7 @@ export const CARDS_DATA = [
     "cost": 6,
     "power": 7,
     "type": "Vampire",
-    "archetype": "Sorcellerie du Sang",
+    "archetype": "Sorcier",
     "keywords": [
       "Sorcellerie du Sang",
       "Tremere",
@@ -4488,7 +4645,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-158.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Cecile_St-Fleur&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Cecile_St-Fleur&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Sorcerer"
   },
   {
     "id": "col-159",
@@ -4517,7 +4675,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-159.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Nelson_Macamo&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Nelson_Macamo&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-160",
@@ -4528,7 +4687,7 @@ export const CARDS_DATA = [
     "cost": 7,
     "power": 8,
     "type": "Vampire",
-    "archetype": "Démence",
+    "archetype": "Élitiste",
     "keywords": [
       "Démence",
       "Malkavian",
@@ -4538,7 +4697,7 @@ export const CARDS_DATA = [
     "ability_en": "On Reveal: Steal 2 Power from each connected card.",
     "flavorText": "\"Benedict - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Légendaire",
-    "notes": "Added during \"Theatre of Lies\" Season on June 11th, 2026.",
+    "notes": "Card unique to the Tutorial.",
     "synergies": [
       "Luis Castaño",
       "Katie Dixon",
@@ -4546,7 +4705,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-160.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Benedict&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Benedict&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-161",
@@ -4575,7 +4735,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-161.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Manfred&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Manfred&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Beast"
   },
   {
     "id": "col-162",
@@ -4586,7 +4747,7 @@ export const CARDS_DATA = [
     "cost": 1,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Gangrel"
@@ -4603,7 +4764,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-162.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Minnie_Chadwick&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Minnie_Chadwick&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-163",
@@ -4614,7 +4776,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Tremere"
@@ -4631,7 +4793,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-163.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Jackie_Pincher&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Jackie_Pincher&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-164",
@@ -4642,7 +4805,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Sorcellerie du Sang",
+    "archetype": "Acolyte",
     "keywords": [
       "Sorcellerie du Sang",
       "Tremere",
@@ -4660,18 +4823,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-164.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Juniper_Fey&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Juniper_Fey&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Acolyte"
   },
   {
     "id": "col-165",
     "name": "Bruce Sparks",
     "originalName": "Bruce Sparks",
-    "clan": "Malkavian",
+    "clan": "Malkavien",
     "series": 4,
     "cost": 2,
     "power": 0,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Malkavian"
@@ -4688,7 +4852,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-165.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Bruce_Sparks&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Bruce_Sparks&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-166",
@@ -4699,7 +4864,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Tremere"
@@ -4716,7 +4881,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-166.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Celine_Musat&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Celine_Musat&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-167",
@@ -4727,7 +4893,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Nosferatu"
@@ -4744,7 +4910,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-167.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Harald_Basilier&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Harald_Basilier&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-168",
@@ -4755,7 +4922,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Hecata"
@@ -4772,7 +4939,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-168.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Olavi_Tappava_Puttanesca&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Olavi_Tappava_Puttanesca&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-169",
@@ -4783,13 +4951,13 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 0,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Tremere"
     ],
     "ability": "Lorsque vous terrassez une carte ennemie : Transformez-la en Livre Relié de Peau et ajoutez-la à votre main (une fois par tour).",
-    "ability_en": "When you Defeat an enemy card: Turn it into a Skin-Bound Book and add it to your hand (once per turn).",
+    "ability_en": "When you Defeat an enemy card: Turn it into a Skin-Bound Book and add it to your hand. (Once per turn.)",
     "flavorText": "\"Ethan - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Commune",
     "notes": "Create Token: Skin-Bound Book; Added during \"Secrets of the City\" Season on May 28th, 2026.",
@@ -4800,7 +4968,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-169.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Ethan&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Ethan&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-170",
@@ -4811,7 +4980,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Nosferatu"
@@ -4828,7 +4997,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-170.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Eugene_Kister&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Eugene_Kister&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-171",
@@ -4839,7 +5009,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 0,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Gangrel"
@@ -4856,18 +5026,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-171.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Clive_Crawford&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Clive_Crawford&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-172",
     "name": "Agent 'S'",
-    "originalName": "Agent 'S'",
+    "originalName": "Agent 'S",
     "clan": "Hecata",
     "series": 4,
     "cost": 3,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Murder",
+    "archetype": "Violent",
     "keywords": [
       "Murder",
       "Hecata"
@@ -4884,7 +5055,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-172.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Agent_S&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Agent_S&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-173",
@@ -4895,7 +5067,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Charm",
+    "archetype": "Élitiste",
     "keywords": [
       "Charm",
       "Toreador"
@@ -4912,18 +5084,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-173.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Yves_Dubois&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Yves_Dubois&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-174",
     "name": "Molly Cybin",
     "originalName": "Molly Cybin",
-    "clan": "Malkavian",
+    "clan": "Malkavien",
     "series": 4,
     "cost": 3,
     "power": 5,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Malkavian"
@@ -4940,7 +5113,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-174.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Molly_Cybin&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Molly_Cybin&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-175",
@@ -4951,7 +5125,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Toreador"
@@ -4968,27 +5142,28 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-175.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Wayne_Stahl"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Wayne_Stahl",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-176",
     "name": "Lili Valentine",
     "originalName": "Lili Valentine",
-    "clan": "Toreador",
+    "clan": "Mortel",
     "series": 4,
-    "cost": 3,
-    "power": 10,
+    "cost": 1,
+    "power": 0,
     "type": "Mortel",
-    "archetype": "Charm",
+    "archetype": "Mortel",
     "keywords": [
       "Charm",
       "Toreador"
     ],
-    "ability": "Tant qu'en jeu : Your cartes connectées cannot give support.",
-    "ability_en": "While in Play: Your connected cards cannot give support.",
+    "ability": "Avant de perdre un Conflit : Confère 10 Points de Victoire au joueur.",
+    "ability_en": "Before this loses a Conflict: Score the player 10 Points.",
     "flavorText": "\"Lili Valentine - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Rare",
-    "notes": "Featured Season Pass card for the \"New Year's Elysium\" Season, added Jan. 8th, 2026; Moved from Series 5 to 4 on July 23, 2026.",
+    "notes": "Part of \"The Slaughter at Hyde Park\" Event. Event results determined clan that embraced her.",
     "synergies": [
       "Luis Castaño",
       "Katie Dixon",
@@ -4996,7 +5171,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-176.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Lili_Valentine"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Lili_Valentine",
+    "archetype_en": "Mortal"
   },
   {
     "id": "col-177",
@@ -5025,7 +5201,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-177.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Felicity_Drake&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Felicity_Drake&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-178",
@@ -5036,7 +5213,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "Goule, Acolyte",
     "keywords": [
       "Neutre",
       "Tremere",
@@ -5054,18 +5231,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-178.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Antoni_Mazur&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Antoni_Mazur&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Ghoul, Acolyte"
   },
   {
     "id": "col-179",
     "name": "Agent '<3'",
-    "originalName": "Agent '<3'",
+    "originalName": "Agent '<3",
     "clan": "Toreador",
     "series": 4,
     "cost": 3,
     "power": 4,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Toreador"
@@ -5082,18 +5260,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-179.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Agent_Heart&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Agent_Heart&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-180",
     "name": "Kelsey Griffin",
     "originalName": "Kelsey Griffin",
-    "clan": "Mortel",
+    "clan": "Duskborn",
     "series": 4,
     "cost": 3,
     "power": 5,
-    "type": "Mortel",
-    "archetype": "Neutre",
+    "type": "Vampire",
+    "archetype": "Vampire, Mortel",
     "keywords": [
       "Neutre",
       "Vampire, Mortal"
@@ -5110,7 +5289,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-180.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Kelsey_Griffin&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Kelsey_Griffin&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Vampire, Mortal"
   },
   {
     "id": "col-181",
@@ -5118,19 +5298,19 @@ export const CARDS_DATA = [
     "originalName": "Zara's Troupe",
     "clan": "Brujah",
     "series": 4,
-    "cost": 3,
-    "power": 3,
+    "cost": 2,
+    "power": 0,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Brujah"
     ],
-    "ability": "After you reveal your next carte, if it's a Cavalier, give it +4 Puissance.",
-    "ability_en": "After you reveal your next card, if it's a Knight, give it +4 Power.",
+    "ability": "Fin de Manche : Se déplace vers une carte ennemie connectée.",
+    "ability_en": "End of Round: Move to an enemy connected card.",
     "flavorText": "\"Zara's Troupe - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Rare",
-    "notes": "Added during \"The Most Dangerous Game\" Season on July 23, 2026, via Daily Login Rewards.",
+    "notes": "Part of the \"Theatre of Lies\" Chronicle Event. *Power adaptive to difficulty level of match.",
     "synergies": [
       "Luis Castaño",
       "Katie Dixon",
@@ -5138,7 +5318,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-181.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Zaras_Troupe&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Zaras_Troupe&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-182",
@@ -5167,7 +5348,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-182.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Victor_Chang&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Victor_Chang&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-183",
@@ -5178,7 +5360,7 @@ export const CARDS_DATA = [
     "cost": 4,
     "power": 4,
     "type": "Vampire",
-    "archetype": "Sorcellerie du Sang",
+    "archetype": "Sorcier",
     "keywords": [
       "Sorcellerie du Sang",
       "Tremere",
@@ -5196,7 +5378,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-183.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Fitzwilliam_Hardy&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Fitzwilliam_Hardy&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Sorcerer"
   },
   {
     "id": "col-184",
@@ -5207,7 +5390,7 @@ export const CARDS_DATA = [
     "cost": 4,
     "power": 5,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Toreador"
@@ -5224,18 +5407,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-184.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Valora&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Valora&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-185",
     "name": "Lazer J. Christ",
     "originalName": "Lazer J. Christ",
-    "clan": "Malkavian",
+    "clan": "Malkavien",
     "series": 4,
     "cost": 4,
     "power": 7,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Malkavian"
@@ -5252,7 +5436,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-185.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lazer_J_Christ&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lazer_J_Christ&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-186",
@@ -5280,18 +5465,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-186.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Michael&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Michael&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-187",
     "name": "Agent 'V'",
-    "originalName": "Agent 'V'",
+    "originalName": "Agent 'V",
     "clan": "Hecata",
     "series": 4,
     "cost": 5,
     "power": 6,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Hecata"
@@ -5308,7 +5494,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-187.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Agent_V&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Agent_V&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-188",
@@ -5319,7 +5506,7 @@ export const CARDS_DATA = [
     "cost": 5,
     "power": 7,
     "type": "Vampire",
-    "archetype": "Charm",
+    "archetype": "Élitiste",
     "keywords": [
       "Charm",
       "Toreador"
@@ -5336,18 +5523,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-188.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Luciano_DiCamillo"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Luciano_DiCamillo",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-189",
     "name": "Gonzo Thompson",
     "originalName": "Gonzo Thompson",
-    "clan": "Malkavian",
+    "clan": "Malkavien",
     "series": 4,
     "cost": 5,
     "power": 7,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Malkavian"
@@ -5364,7 +5552,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-189.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Gonzo_Thompson&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Gonzo_Thompson&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-190",
@@ -5375,7 +5564,7 @@ export const CARDS_DATA = [
     "cost": 9,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Sorcellerie du Sang",
+    "archetype": "Sorcier",
     "keywords": [
       "Sorcellerie du Sang",
       "Tremere",
@@ -5393,7 +5582,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-190.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Father_Azriel&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Father_Azriel&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Sorcerer"
   },
   {
     "id": "col-191",
@@ -5421,7 +5611,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-191.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Forterra_Face&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Forterra_Face&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-192",
@@ -5434,7 +5625,7 @@ export const CARDS_DATA = [
     "costDisplay": "X",
     "power": 2,
     "type": "Vampire",
-    "archetype": "Alchimie",
+    "archetype": "Vampire, Mortel",
     "keywords": [
       "Duskborn",
       "Vampire",
@@ -5446,7 +5637,7 @@ export const CARDS_DATA = [
     "ability_en": "X is equal to your current Blood. On Reveal: Use X random Ingredient abilities. (The effect is increased by cost reductions)",
     "flavorText": "\"Cormac Flynn - Chef de l'Alsatia (Légendaire Duskborn - Saison Rise of the Duskborn).\"",
     "rarity": "Légendaire",
-    "notes": "Carte Passe de Saison 'Rise of the Duskborn'. Capacités Ingrédient : Bleach (Eau de Javel), Caffeine Powder (Poudre de Caféine), Blood Bag (Poche de Sang).",
+    "notes": "Featured Season Pass card for the \"Rise of the Duskborn\" Season, added August 6th, 2026.",
     "synergies": [
       "Natalya Volkova",
       "Jax Cook",
@@ -5454,18 +5645,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-192.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Cormac_Flynn&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Cormac_Flynn&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Vampire, Mortal"
   },
   {
     "id": "col-193",
     "name": "Scarlett Redline",
     "originalName": "Scarlett Redline",
-    "clan": "Malkavian",
+    "clan": "Malkavien",
     "series": 5,
     "cost": 2,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Malkavian"
@@ -5482,7 +5674,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-193.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Scarlett_Redline&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Scarlett_Redline&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-194",
@@ -5493,7 +5686,7 @@ export const CARDS_DATA = [
     "cost": 2,
     "power": 1,
     "type": "Vampire",
-    "archetype": "Murder",
+    "archetype": "Élitiste",
     "keywords": [
       "Murder",
       "Hecata"
@@ -5510,18 +5703,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-194.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lynne_Dunsirn&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lynne_Dunsirn&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-195",
     "name": "Caspen Vodrak",
     "originalName": "Caspen Vodrak",
-    "clan": "Malkavian",
+    "clan": "Malkavien",
     "series": 5,
     "cost": 3,
     "power": 2,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Malkavian"
@@ -5538,7 +5732,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-195.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Caspen_Vodrak&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Caspen_Vodrak&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-196",
@@ -5549,7 +5744,7 @@ export const CARDS_DATA = [
     "cost": 3,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Toreador"
@@ -5566,7 +5761,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-196.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Vampire_Queen"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Vampire_Queen",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-197",
@@ -5594,18 +5790,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-197.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Marcus_Kiley&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Marcus_Kiley&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Violent"
   },
   {
     "id": "col-198",
     "name": "The Actor",
     "originalName": "The Actor",
-    "clan": "Malkavian",
+    "clan": "Malkavien",
     "series": 5,
     "cost": 4,
     "power": 0,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Malkavian"
@@ -5622,7 +5819,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-198.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:The_Actor&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:The_Actor&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-199",
@@ -5651,7 +5849,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-199.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Muhsin_Abbas&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Muhsin_Abbas&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-200",
@@ -5679,7 +5878,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-200.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Arturo_de_Vitry&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Arturo_de_Vitry&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-201",
@@ -5689,7 +5889,7 @@ export const CARDS_DATA = [
     "series": 5,
     "cost": 4,
     "power": 7,
-    "type": "Serviteur / Familier",
+    "type": "Vampire",
     "archetype": "Bête",
     "keywords": [
       "Bête",
@@ -5708,7 +5908,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-201.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Queen_Rat&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Queen_Rat&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Beast"
   },
   {
     "id": "col-202",
@@ -5719,7 +5920,7 @@ export const CARDS_DATA = [
     "cost": 4,
     "power": 5,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Brujah"
@@ -5736,18 +5937,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-202.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Torben_Briar&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Torben_Briar&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-203",
     "name": "Lucy Baptiste",
     "originalName": "Lucy Baptiste",
-    "clan": "Malkavian",
+    "clan": "Malkavien",
     "series": 5,
     "cost": 5,
     "power": 6,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Malkavian"
@@ -5764,7 +5966,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-203.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lucy_Baptiste&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lucy_Baptiste&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-204",
@@ -5775,7 +5978,7 @@ export const CARDS_DATA = [
     "cost": 7,
     "power": 5,
     "type": "Vampire",
-    "archetype": "Sorcellerie du Sang",
+    "archetype": "Sorcier",
     "keywords": [
       "Sorcellerie du Sang",
       "Tremere",
@@ -5793,7 +5996,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-204.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Boyar_Musat&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Boyar_Musat&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Sorcerer"
   },
   {
     "id": "col-205",
@@ -5804,7 +6008,7 @@ export const CARDS_DATA = [
     "cost": 6,
     "power": 11,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Gangrel"
@@ -5821,7 +6025,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-205.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Paulo_Marques&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Paulo_Marques&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-206",
@@ -5850,7 +6055,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-206.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lady_Gloria&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lady_Gloria&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-207",
@@ -5879,7 +6085,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-207.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Octavia_Mullcroft&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Octavia_Mullcroft&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-208",
@@ -5890,7 +6097,7 @@ export const CARDS_DATA = [
     "cost": 6,
     "power": 7,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Toreador"
@@ -5907,7 +6114,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-208.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Nektarios_Makris"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Nektarios_Makris",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-209",
@@ -5918,7 +6126,7 @@ export const CARDS_DATA = [
     "cost": 6,
     "power": 10,
     "type": "Vampire",
-    "archetype": "Occultation",
+    "archetype": "Élitiste",
     "keywords": [
       "Occultation",
       "Nosferatu"
@@ -5935,7 +6143,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-209.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Richard_de_Worde&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Richard_de_Worde&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-210",
@@ -5946,7 +6155,7 @@ export const CARDS_DATA = [
     "cost": 6,
     "power": 4,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Gangrel"
@@ -5963,18 +6172,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-210.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Wilhelm_Hamm&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Wilhelm_Hamm&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-211",
     "name": "Kenneth Glass",
     "originalName": "Kenneth Glass",
-    "clan": "Malkavian",
+    "clan": "Malkavien",
     "series": 5,
     "cost": 7,
     "power": 11,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Malkavian"
@@ -5991,7 +6201,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-211.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Kenneth_Glass&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Kenneth_Glass&amp;action=edit&amp;redlink=1",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-212",
@@ -6002,13 +6213,13 @@ export const CARDS_DATA = [
     "cost": 7,
     "power": 12,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "N/A",
     "keywords": [
       "Neutre",
       "Toreador"
     ],
     "ability": "Après avoir remporté un Conflit : Marque 3 Points de Victoire pour chaque carte Séduite dans votre main, deck ou en jeu.",
-    "ability_en": "After this wins a Conflict: Score 3 Victory Points for each Seduced card in your hand, deck, or in play.",
+    "ability_en": "After this wins a Conflict: Score 3 Points for each Seduced card in your hand, deck or in play.",
     "flavorText": "\"Ivory Lux - Carte officielle Vampire: The Masquerade – Clans of London (Série 5).\"",
     "rarity": "Légendaire",
     "notes": "",
@@ -6019,7 +6230,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-212.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Ivory_Lux"
+    "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Ivory_Lux",
+    "archetype_en": "N/A"
   },
   {
     "id": "col-213",
@@ -6030,7 +6242,7 @@ export const CARDS_DATA = [
     "cost": 7,
     "power": 10,
     "type": "Vampire",
-    "archetype": "Neutre",
+    "archetype": "Violent, Élitiste",
     "keywords": [
       "Neutre",
       "Nosferatu",
@@ -6048,7 +6260,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-213.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Monika_Kovac&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Monika_Kovac&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Violent, Elitist"
   },
   {
     "id": "col-214",
@@ -6059,7 +6272,7 @@ export const CARDS_DATA = [
     "cost": 7,
     "power": 3,
     "type": "Vampire",
-    "archetype": "Murder",
+    "archetype": "Élitiste",
     "keywords": [
       "Murder",
       "Hecata"
@@ -6076,7 +6289,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-214.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Ian_Dunsirn&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Ian_Dunsirn&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-215",
@@ -6087,7 +6301,7 @@ export const CARDS_DATA = [
     "cost": 7,
     "power": 0,
     "type": "Vampire",
-    "archetype": "Séduction",
+    "archetype": "Séduit",
     "keywords": [
       "Séduction",
       "Toreador",
@@ -6105,7 +6319,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-215.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Thaddeus_the_Thespian&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Thaddeus_the_Thespian&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Seduced"
   },
   {
     "id": "col-216",
@@ -6134,18 +6349,19 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-216.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Charles_Crane&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Charles_Crane&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-217",
     "name": "Justicar Parr",
     "originalName": "Justicar Parr",
-    "clan": "Malkavian",
+    "clan": "Malkavien",
     "series": 5,
     "cost": 8,
     "power": 10,
     "type": "Vampire",
-    "archetype": "Delusion",
+    "archetype": "Élitiste",
     "keywords": [
       "Delusion",
       "Malkavian"
@@ -6162,7 +6378,8 @@ export const CARDS_DATA = [
     ],
     "artType": "vampire",
     "imageUrl": "/cards/col-217.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Justicar_Parr&amp;action=edit&amp;redlink=1"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Justicar_Parr&amp;action=edit&amp;redlink=1",
+    "archetype_en": "Elitist"
   },
   {
     "id": "col-ing-01",

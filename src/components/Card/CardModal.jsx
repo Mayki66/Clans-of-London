@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Plus, Minus, Droplets, Shield, Sparkles, ExternalLink, Edit3, Image, BookOpen, Check, Layers, Share2 } from 'lucide-react';
+import { X, Plus, Minus, BookOpen, Check, Layers, Share2, Sparkles, Edit3, ExternalLink } from 'lucide-react';
 import CardArtwork from './CardArtwork';
 import { CLANS } from '../../data/clansData';
 import { CARDS_DATA } from '../../data/cardsData';
@@ -13,20 +13,26 @@ export default function CardModal({
   countInDeck = 0, 
   onSelectCard,
   onUpdateCardImage,
-  lang = 'fr'
+  lang = 'fr',
+  t
 }) {
   const [isFoil, setIsFoil] = useState(false);
   const [editingImage, setEditingImage] = useState(false);
   const [customImageUrl, setCustomImageUrl] = useState(card?.imageUrl || '');
   const [imageSaved, setImageSaved] = useState(false);
   const [copiedShare, setCopiedShare] = useState(false);
+  const [showOriginalText, setShowOriginalText] = useState(false);
 
   if (!card) return null;
 
   const clanInfo = CLANS[card.clan] || CLANS.Mortal;
   const isFrench = lang === 'fr';
-  const displayedAbility = (!isFrench && card.ability_en) ? card.ability_en : card.ability;
-  const displayedType = (!isFrench && card.type === 'Objet') ? 'Object' : card.type;
+  const displayedAbility = (!isFrench && card.ability_en) ? card.ability_en : (card.ability || card.ability_en);
+  const displayedType = t?.cardAttributes?.types?.[card.type] || card.type;
+  const displayedArchetype = t?.cardAttributes?.archetypes?.[card.archetype] || t?.cardAttributes?.archetypes?.[card.archetype_en] || card.archetype;
+  const displayedClan = (card.clan === 'Malkavien' && !isFrench) ? 'Malkavian' : card.clan;
+  const displayedRarity = t?.cardAttributes?.rarities?.[card.rarity] || card.rarity;
+  const officialWikiUrl = card.wikiUrl || `https://vtm.paradoxwikis.com/CoL_Card:${(card.originalName || card.name).replace(/\s+/g, '_')}`;
 
   // Find synergy card objects
   const synergyCards = (card.synergies || []).map(synName => 
@@ -70,8 +76,8 @@ export default function CardModal({
                 <div className="w-8 h-8 rounded-full bg-gradient-to-br from-red-500 to-rose-950 border-2 border-red-400 flex items-center justify-center font-bold text-sm text-white shadow-blood">
                   {card.costDisplay || card.cost}
                 </div>
-                <span className="font-semibold text-xs text-gray-200" style={{ color: clanInfo.themeColor }}>
-                  {card.clan}
+                <span className="font-semibold text-xs text-gray-200 font-gothic" style={{ color: clanInfo.themeColor }}>
+                  {displayedClan}
                 </span>
               </div>
 
@@ -117,7 +123,7 @@ export default function CardModal({
             {/* In-Card Footer */}
             <div className="px-3 py-1.5 bg-[#090b10] border-t border-white/10 flex items-center justify-between text-[10px] text-gray-400 font-mono">
               <span className="capitalize">{displayedType}</span>
-              <span>{card.rarity}</span>
+              <span>{displayedRarity}</span>
             </div>
           </div>
 
@@ -223,17 +229,27 @@ export default function CardModal({
                   className="px-2.5 py-1 rounded-lg font-gothic font-bold bg-[#141824] border"
                   style={{ color: clanInfo.themeColor, borderColor: `${clanInfo.themeColor}50` }}
                 >
-                  {card.clan}
+                  {displayedClan}
                 </span>
                 <span className="px-2.5 py-1 rounded-lg bg-slate-900 border border-white/10 text-gray-300 font-mono capitalize">
                   {displayedType}
                 </span>
                 <span className="px-2.5 py-1 rounded-lg bg-slate-900 border border-white/10 text-gray-300 font-mono">
-                  {card.archetype}
+                  {displayedArchetype}
                 </span>
                 <span className="px-2.5 py-1 rounded-lg bg-slate-900 border border-amber-500/40 text-amber-300 font-mono font-bold">
-                  {card.rarity}
+                  {displayedRarity}
                 </span>
+                <a
+                  href={officialWikiUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 rounded-lg bg-amber-950/60 hover:bg-amber-900 border border-amber-500/50 text-amber-300 font-mono text-[11px] flex items-center space-x-1 transition-all"
+                  title="Consulter la fiche officielle sur le Wiki Paradox"
+                >
+                  <span>Wiki Paradox</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
               </div>
             </div>
 
@@ -262,20 +278,35 @@ export default function CardModal({
                   {isFrench ? 'Archétype' : 'Archetype'}
                 </span>
                 <span className="text-sm font-bold font-mono text-gray-200 truncate block">
-                  {card.archetype}
+                  {displayedArchetype}
                 </span>
               </div>
             </div>
 
             {/* Detailed Ability Description */}
-            <div className="p-4 rounded-xl bg-[#0a0d14] border border-white/10 space-y-2">
-              <div className="flex items-center space-x-1.5 text-xs font-gothic font-bold text-amber-400 uppercase tracking-wider">
-                <BookOpen className="w-3.5 h-3.5" />
-                <span>{isFrench ? 'Capacité Active & Règles' : 'Active Ability & Rules'}</span>
+            <div className="p-4 rounded-xl bg-[#0a0d14] border border-white/10 space-y-2.5">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-1.5 text-xs font-gothic font-bold text-amber-400 uppercase tracking-wider">
+                  <BookOpen className="w-3.5 h-3.5" />
+                  <span>{isFrench ? 'Capacité Active & Règles' : 'Active Ability & Rules'}</span>
+                </div>
+                {card.ability_en && card.ability && (
+                  <button
+                    onClick={() => setShowOriginalText(!showOriginalText)}
+                    className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 border border-white/10 text-gray-400 hover:text-amber-300 transition-colors"
+                  >
+                    {showOriginalText ? (isFrench ? 'Voir Traduction FR' : 'View Translation') : (isFrench ? 'Voir Original EN (Wiki)' : 'View Original EN')}
+                  </button>
+                )}
               </div>
               <p className="text-sm text-gray-200 leading-relaxed font-sans">
-                {displayedAbility}
+                {showOriginalText ? card.ability_en : displayedAbility}
               </p>
+              {card.flavorText && (
+                <p className="italic text-xs text-gray-400 font-gothic border-t border-white/10 pt-2">
+                  {card.flavorText}
+                </p>
+              )}
             </div>
 
             {/* Keywords */}

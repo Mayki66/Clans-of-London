@@ -63,8 +63,11 @@ export default function CardFrame({
   };
 
   const isFrench = lang === 'fr';
-  const displayedAbility = (!isFrench && card.ability_en) ? card.ability_en : card.ability;
-  const displayedType = (!isFrench && card.type === 'Objet') ? 'Object' : card.type;
+  const displayedAbility = (!isFrench && card.ability_en) ? card.ability_en : (card.ability || card.ability_en);
+  const displayedType = t?.cardAttributes?.types?.[card.type] || card.type;
+  const displayedArchetype = t?.cardAttributes?.archetypes?.[card.archetype] || t?.cardAttributes?.archetypes?.[card.archetype_en] || card.archetype;
+  const displayedClan = (card.clan === 'Malkavien' && !isFrench) ? 'Malkavian' : card.clan;
+  const displayedRarity = t?.cardAttributes?.rarities?.[card.rarity] || card.rarity;
 
   if (compact) {
     return (
@@ -85,7 +88,7 @@ export default function CardFrame({
             </h4>
             <div className="flex items-center space-x-1.5 text-xs text-gray-400">
               <span style={{ color: clanInfo.themeColor }} className="font-medium">
-                {card.clan}
+                {displayedClan}
               </span>
               <span>•</span>
               <span className="text-gray-400">{displayedType}</span>
@@ -200,12 +203,12 @@ export default function CardFrame({
               className="text-[11px] font-bold flex-shrink-0 font-gothic"
               style={{ color: clanInfo.themeColor }}
             >
-              {card.clan}
+              {displayedClan}
             </span>
           </div>
 
           <div className="text-[10px] text-gray-400 font-mono mb-1.5">
-            {displayedType} • {card.archetype}
+            {displayedType} • {displayedArchetype}
           </div>
 
           {/* Rules Ability Box */}

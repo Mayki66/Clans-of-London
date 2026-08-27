@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, Layers, Sparkles, Droplets, Shield, Award, RefreshCw, CheckCircle2, Globe, ExternalLink } from 'lucide-react';
+import { BookOpen, Layers, Sparkles, Droplets, Shield, Award, RefreshCw, CheckCircle2, Globe, ExternalLink, ChevronDown, ChevronUp, ShieldCheck } from 'lucide-react';
 import FilterBar from './FilterBar';
 import TableView from './TableView';
 import CardFrame from '../Card/CardFrame';
@@ -31,6 +31,7 @@ export default function DatabaseView({
   const [isSyncing, setIsSyncing] = useState(false);
   const [syncMeta, setSyncMeta] = useState(getLastSyncMetadata());
   const [syncSuccessMsg, setSyncSuccessMsg] = useState(null);
+  const [showSyncDetails, setShowSyncDetails] = useState(false);
 
   useEffect(() => {
     setSyncMeta(getLastSyncMetadata());
@@ -43,7 +44,8 @@ export default function DatabaseView({
       const res = await syncCardsWithParadoxWiki();
       setSyncMeta(res.metadata);
       setSyncSuccessMsg(res.message);
-      setTimeout(() => setSyncSuccessMsg(null), res.hasNewCards ? 8000 : 4000);
+      setShowSyncDetails(true);
+      setTimeout(() => setSyncSuccessMsg(null), 8000);
     } catch (e) {
       setSyncSuccessMsg(`⚠️ Erreur inattendue : ${e.message}`);
       setTimeout(() => setSyncSuccessMsg(null), 5000);
@@ -202,15 +204,62 @@ export default function DatabaseView({
 
         {/* Sync Toast — success / new cards / error */}
         {syncSuccessMsg && (
-          <div className={`mt-4 p-3 rounded-xl border text-xs flex items-start space-x-2 animate-fadeIn ${
+          <div className={`mt-4 p-3 rounded-xl border text-xs flex items-start justify-between animate-fadeIn ${
             syncSuccessMsg.startsWith('🆕')
               ? 'bg-amber-950/80 border-amber-500/60 text-amber-200'
               : syncSuccessMsg.startsWith('⚠️')
               ? 'bg-red-950/70 border-red-500/50 text-red-200'
               : 'bg-emerald-950/80 border-emerald-500/60 text-emerald-300'
           }`}>
-            <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" />
-            <span className="font-semibold">{syncSuccessMsg}</span>
+            <div className="flex items-start space-x-2">
+              <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" />
+              <span className="font-semibold">{syncSuccessMsg}</span>
+            </div>
+            <button 
+              onClick={() => setShowSyncDetails(!showSyncDetails)}
+              className="text-[11px] font-mono underline hover:text-white flex items-center space-x-1 flex-shrink-0 ml-2"
+            >
+              <span>{showSyncDetails ? (lang === 'fr' ? 'Masquer' : 'Hide') : (lang === 'fr' ? '8 Paramètres' : '8 Parameters')}</span>
+              {showSyncDetails ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+            </button>
+          </div>
+        )}
+
+        {/* 8-Point Canonical Paradox Parameters Grid */}
+        {showSyncDetails && syncMeta?.verifiedParameters && (
+          <div className="mt-4 p-4 rounded-xl bg-[#090b12] border border-amber-500/30 space-y-3 animate-fadeIn">
+            <div className="flex items-center justify-between border-b border-white/10 pb-2">
+              <div className="flex items-center space-x-2">
+                <ShieldCheck className="w-4 h-4 text-amber-400" />
+                <h3 className="font-gothic font-bold text-sm text-gray-100">
+                  {t?.cardAttributes?.syncVerification?.title || "Vérification Officielle Wiki Paradox"}
+                </h3>
+              </div>
+              <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 font-bold">
+                {t?.cardAttributes?.syncVerification?.allVerified || "100% Conforme au Canon Paradox"}
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 pt-1">
+              {syncMeta.verifiedParameters.map((param) => (
+                <div key={param.id} className="p-2.5 rounded-lg bg-[#0e111a] border border-white/5 flex items-start space-x-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0" />
+                  <div className="min-w-0">
+                    <span className="font-gothic font-bold text-xs text-amber-300 block truncate">
+                      {param.label}
+                    </span>
+                    <span className="text-[10px] text-gray-400 font-mono leading-tight block">
+                      {param.detail}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 text-[11px] font-mono text-gray-400 pt-2 border-t border-white/5">
+              <span>Source : <a href="https://vtm.paradoxwikis.com/CoL_cardlist" target="_blank" rel="noopener noreferrer" className="text-amber-400 underline hover:text-amber-300">vtm.paradoxwikis.com/CoL_cardlist</a></span>
+              <span>Dernière synchro : {syncMeta.lastSyncedAt || "27 août 2026"}</span>
+            </div>
           </div>
         )}
       </div>

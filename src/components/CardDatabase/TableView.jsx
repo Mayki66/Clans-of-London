@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Droplets, Plus, Minus, Eye, Sparkles } from 'lucide-react';
+import { Shield, Plus, Minus } from 'lucide-react';
 import { CLANS } from '../../data/clansData';
 
 export default function TableView({ cards, onInspectCard, onAddCard, onRemoveCard, deckCards = [], lang = 'fr', t }) {
@@ -21,18 +21,7 @@ export default function TableView({ cards, onInspectCard, onAddCard, onRemoveCar
   };
 
   const getHeader = (key, fallback) => {
-    switch (key) {
-      case 'blood': return isFrench ? 'Sang' : 'Blood';
-      case 'name': return isFrench ? 'Nom de la Carte' : 'Card Name';
-      case 'clan': return 'Clan';
-      case 'power': return isFrench ? 'Puiss.' : 'Power';
-      case 'series': return isFrench ? 'Série' : 'Series';
-      case 'type': return 'Type';
-      case 'archetype': return isFrench ? 'Archétype' : 'Archetype';
-      case 'ability': return isFrench ? 'Capacité / Effet' : 'Ability / Rules Text';
-      case 'deck': return 'Deck';
-      default: return fallback;
-    }
+    return t?.cardAttributes?.tableHeaders?.[key] || fallback;
   };
 
   return (
@@ -56,8 +45,11 @@ export default function TableView({ cards, onInspectCard, onAddCard, onRemoveCar
             {cards.map((card) => {
               const clanInfo = CLANS[card.clan] || CLANS.Mortal;
               const count = deckCards.filter(c => c.id === card.id).length;
-              const displayedAbility = (lang !== 'fr' && card.ability_en) ? card.ability_en : card.ability;
-              const displayedType = (lang !== 'fr' && card.type === 'Objet') ? 'Object' : card.type;
+              const displayedAbility = (!isFrench && card.ability_en) ? card.ability_en : (card.ability || card.ability_en);
+              const displayedType = t?.cardAttributes?.types?.[card.type] || card.type;
+              const displayedArchetype = t?.cardAttributes?.archetypes?.[card.archetype] || t?.cardAttributes?.archetypes?.[card.archetype_en] || card.archetype;
+              const displayedClan = (card.clan === 'Malkavien' && !isFrench) ? 'Malkavian' : card.clan;
+              const displayedRarity = t?.cardAttributes?.rarities?.[card.rarity] || card.rarity;
 
               return (
                 <tr 
@@ -68,7 +60,7 @@ export default function TableView({ cards, onInspectCard, onAddCard, onRemoveCar
                   {/* Blood Cost */}
                   <td className="px-3.5 py-3 text-center">
                     <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-900/80 border border-red-500/50 font-bold font-mono text-white text-xs shadow-blood">
-                      {card.cost}
+                      {card.costDisplay || card.cost}
                     </span>
                   </td>
 
@@ -79,7 +71,7 @@ export default function TableView({ cards, onInspectCard, onAddCard, onRemoveCar
                         {card.name}
                       </span>
                       <span className={`px-1.5 py-0.2 rounded text-[9px] font-bold border ${getRarityBadge(card.rarity)}`}>
-                        {card.rarity[0]}
+                        {displayedRarity ? displayedRarity[0] : card.rarity[0]}
                       </span>
                     </div>
                   </td>
@@ -87,16 +79,16 @@ export default function TableView({ cards, onInspectCard, onAddCard, onRemoveCar
                   {/* Clan */}
                   <td className="px-3 py-3">
                     <span 
-                      className="font-medium text-xs"
+                      className="font-medium text-xs font-gothic"
                       style={{ color: clanInfo.themeColor }}
                     >
-                      {card.clan}
+                      {displayedClan}
                     </span>
                   </td>
 
                   {/* Power */}
                   <td className="px-3 py-3 text-center font-bold font-mono text-amber-400">
-                    <span className="inline-flex items-center space-x-0.5">
+                    <span className="inline-flex items-center space-x-0.5 justify-center">
                       <Shield className="w-3 h-3 text-amber-500" />
                       <span>{card.power}</span>
                     </span>
@@ -108,14 +100,14 @@ export default function TableView({ cards, onInspectCard, onAddCard, onRemoveCar
                   </td>
 
                   {/* Type */}
-                  <td className="px-3 py-3 text-gray-400">
+                  <td className="px-3 py-3 text-gray-400 capitalize">
                     {displayedType}
                   </td>
 
                   {/* Archetype */}
                   <td className="px-3 py-3">
                     <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-900 border border-white/10 text-gray-300">
-                      {card.archetype}
+                      {displayedArchetype}
                     </span>
                   </td>
 
@@ -131,7 +123,7 @@ export default function TableView({ cards, onInspectCard, onAddCard, onRemoveCar
                         <button
                           onClick={() => onRemoveCard?.(card.id)}
                           className="p-1 rounded bg-red-950/80 hover:bg-red-800 border border-red-500/40 text-red-300 hover:text-white"
-                          title="Retirer du deck"
+                          title={isFrench ? "Retirer du deck" : "Remove from deck"}
                         >
                           <Minus className="w-3 h-3" />
                         </button>
@@ -149,7 +141,7 @@ export default function TableView({ cards, onInspectCard, onAddCard, onRemoveCar
                             ? 'bg-gray-800/40 border-gray-700/40 text-gray-600 cursor-not-allowed'
                             : 'bg-emerald-950/80 hover:bg-emerald-800 border-emerald-500/40 text-emerald-300 hover:text-white'
                         }`}
-                        title="Ajouter au deck"
+                        title={count >= 1 ? (isFrench ? "Limite de 1 copie" : "1 copy limit") : (isFrench ? "Ajouter au deck" : "Add to deck")}
                       >
                         <Plus className="w-3 h-3" />
                       </button>
