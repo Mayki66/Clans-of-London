@@ -4,7 +4,8 @@ import {
   Sparkles, Swords, ArrowUp, Undo2, HelpCircle, Eye, RefreshCw, Zap, X, Info, Layers, BookOpen, ScrollText, Users, Medal 
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { CARDS_DATA } from '../../data/cardsData';
+import { CARDS_DATA, getCardAbility } from '../../data/cardsData';
+import { computeBoardPowers, triggerOnRevealAbilities, resolveConflictModifiers, normalizeArchetype, matchesCardName } from '../../utils/duelEngine';
 import { META_DECKS } from '../../data/metaDecks';
 import { ARENA_LOCATIONS } from '../../data/arenaLocations';
 import { AI_OPPONENTS, playAITurn } from '../../utils/aiOpponent';
@@ -93,54 +94,9 @@ export default function ArenaDuelView({
     player_pawn_2: { key: 'player_pawn_2', name: 'Pion Sud Est', row: 'player_pawn', col: 2, card: null, power: 0, faceDown: false },
   });
 
-  // Dynamic Passive Powers (Cynthia +1 to Prince, Mr Moore +2 to Prince, Abigail Smith +2 in front, etc.)
-  const computeBoardPowers = (currentBoard) => {
-    let updated = { ...currentBoard };
-
-    let playerPrinceBonus = 0;
-    let aiPrinceBonus = 0;
-
-    ['player_pawn_0', 'player_pawn_1', 'player_pawn_2', 'player_rook_0', 'player_rook_1', 'player_rook_2'].forEach(k => {
-      const c = updated[k]?.card;
-      if (!c) return;
-      if (c.name === 'Cynthia Hargreaves') playerPrinceBonus += 1;
-      if (c.name === 'Mr Moore') playerPrinceBonus += 2;
-      if (c.name === 'Jürgen Mayer' && updated.prince.playerCard?.archetype === 'Élitiste') playerPrinceBonus += 2;
-    });
-
-    ['ai_pawn_0', 'ai_pawn_1', 'ai_pawn_2', 'ai_rook_0', 'ai_rook_1', 'ai_rook_2'].forEach(k => {
-      const c = updated[k]?.card;
-      if (!c) return;
-      if (c.name === 'Cynthia Hargreaves') aiPrinceBonus += 1;
-      if (c.name === 'Mr Moore') aiPrinceBonus += 2;
-      if (c.name === 'Jürgen Mayer' && updated.prince.aiCard?.archetype === 'Élitiste') aiPrinceBonus += 2;
-    });
-
-    if (updated.prince.playerCard) {
-      updated.prince = {
-        ...updated.prince,
-        playerPower: (updated.prince.playerCard.power || 0) + playerPrinceBonus
-      };
-    }
-    if (updated.prince.aiCard) {
-      updated.prince = {
-        ...updated.prince,
-        aiPower: (updated.prince.aiCard.power || 0) + aiPrinceBonus
-      };
-    }
-
-    [0, 1, 2].forEach(col => {
-      const pawnCard = updated[`player_pawn_${col}`]?.card;
-      const rookSpace = updated[`player_rook_${col}`];
-      if (pawnCard?.name === 'Abigail Smith' && rookSpace?.card?.archetype === 'Élitiste') {
-        updated[`player_rook_${col}`] = {
-          ...rookSpace,
-          power: (rookSpace.card.power || 0) + 2
-        };
-      }
-    });
-
-    return updated;
+  // Compute Board Powers using the centralized duelEngine
+  const updateBoardPowers = (currentBoard) => {
+    return computeBoardPowers(currentBoard);
   };
 
   // Support Chains Calculation (including diagonal links to Prince)
@@ -152,8 +108,8 @@ export default function ArenaDuelView({
       let pawnPower = board[`player_pawn_${col}`]?.power || 0;
       let rookPower = board[`player_rook_${col}`]?.power || 0;
 
-      if (pawn && (pawn.ability_en?.includes('Cannot give support') || pawn.ability?.includes('Ne peut pas donner de soutien'))) pawnPower = 0;
-      if (rook && (rook.ability_en?.includes('Cannot give support') || rook.ability?.includes('Ne peut pas donner de soutien'))) rookPower = 0;
+      if (pawn && (matchesCardName(pawn, 'Horatio Drake', 'Lord Colville') || pawn.ability_en?.includes('Cannot give support') || pawn.ability?.includes('Ne peut pas donner de soutien'))) pawnPower = 0;
+      if (rook && (matchesCardName(rook, 'Horatio Drake', 'Lord Colville') || rook.ability_en?.includes('Cannot give support') || rook.ability?.includes('Ne peut pas donner de soutien'))) rookPower = 0;
 
       return {
         col,
@@ -170,8 +126,8 @@ export default function ArenaDuelView({
       let pawnPower = board[`ai_pawn_${col}`]?.power || 0;
       let rookPower = board[`ai_rook_${col}`]?.power || 0;
 
-      if (pawn && (pawn.ability_en?.includes('Cannot give support') || pawn.ability?.includes('Ne peut pas donner de soutien'))) pawnPower = 0;
-      if (rook && (rook.ability_en?.includes('Cannot give support') || rook.ability?.includes('Ne peut pas donner de soutien'))) rookPower = 0;
+      if (pawn && (matchesCardName(pawn, 'Horatio Drake', 'Lord Colville') || pawn.ability_en?.includes('Cannot give support') || pawn.ability?.includes('Ne peut pas donner de soutien'))) pawnPower = 0;
+      if (rook && (matchesCardName(rook, 'Horatio Drake', 'Lord Colville') || rook.ability_en?.includes('Cannot give support') || rook.ability?.includes('Ne peut pas donner de soutien'))) rookPower = 0;
 
       return {
         col,
@@ -196,11 +152,11 @@ export default function ArenaDuelView({
     if (!card) return false;
 
     // Special bypass: Shifa can be played anywhere
-    if (card.name === 'Shifa' || card.ability_en?.toLowerCase().includes('can be played anywhere')) {
+    if (matchesCardName(card, 'Shifa') || card.ability_en?.toLowerCase().includes('can be played anywhere')) {
       return true;
     }
     // Special bypass: Brixton can only be Knight and requires no support
-    if (card.name === 'Brixton' || card.originalName === 'Brixton') {
+    if (matchesCardName(card, 'Brixton')) {
       return spaceKey === 'knight_left' || spaceKey === 'knight_right';
     }
 
@@ -422,7 +378,12 @@ export default function ArenaDuelView({
       tempBoard[k].faceDownAI = false;
     });
 
-    tempBoard = computeBoardPowers(tempBoard);
+    // Trigger On Reveal card abilities
+    const combatLogs = [...aiResult.logs];
+    const { updatedBoard: revealedBoard, logs: revealLogs } = triggerOnRevealAbilities(cardsToReveal, tempBoard);
+    tempBoard = revealedBoard;
+    combatLogs.push(...revealLogs);
+
     setBoard(tempBoard);
 
     setGamePhase('scoring');
@@ -430,14 +391,15 @@ export default function ArenaDuelView({
 
     let roundPlayerPts = 0;
     let roundAIPts = 0;
-    const combatLogs = [...aiResult.logs];
 
     const { playerChain: pCh, aiChain: aCh } = calculateEffectivePower();
 
-    // Knight West
+    // Knight West Conflict Modifiers & Resolution
     const kw = tempBoard.knight_left;
-    const pKW = (kw.playerCard ? kw.playerPower : 0) + pCh[0].totalSupportToFront;
-    const aKW = (kw.aiCard ? kw.aiPower : 0) + aCh[0].totalSupportToFront;
+    const { playerBonus: pKWBonus, aiBonus: aKWBonus, combatNotes: kwNotes } = resolveConflictModifiers(kw.playerCard, kw.aiCard, 'knight_left');
+    const pKW = Math.max(0, (kw.playerCard ? kw.playerPower : 0) + pCh[0].totalSupportToFront + pKWBonus);
+    const aKW = Math.max(0, (kw.aiCard ? kw.aiPower : 0) + aCh[0].totalSupportToFront + aKWBonus);
+    combatLogs.push(...kwNotes);
     let kwMedal = 0;
 
     if (pKW > aKW && pKW > 0) {
@@ -449,10 +411,12 @@ export default function ArenaDuelView({
       combatLogs.push(`⚔️ Cavalier Ouest : ${selectedAI.name} l'emporte (${aKW} vs ${pKW}) -> +2 Pts IA.`);
     }
 
-    // Knight East
+    // Knight East Conflict Modifiers & Resolution
     const ke = tempBoard.knight_right;
-    const pKE = (ke.playerCard ? ke.playerPower : 0) + pCh[2].totalSupportToFront;
-    const aKE = (ke.aiCard ? ke.aiPower : 0) + aCh[2].totalSupportToFront;
+    const { playerBonus: pKEBonus, aiBonus: aKEBonus, combatNotes: keNotes } = resolveConflictModifiers(ke.playerCard, ke.aiCard, 'knight_right');
+    const pKE = Math.max(0, (ke.playerCard ? ke.playerPower : 0) + pCh[2].totalSupportToFront + pKEBonus);
+    const aKE = Math.max(0, (ke.aiCard ? ke.aiPower : 0) + aCh[2].totalSupportToFront + aKEBonus);
+    combatLogs.push(...keNotes);
     let keMedal = 0;
 
     if (pKE > aKE && pKE > 0) {
@@ -466,8 +430,10 @@ export default function ArenaDuelView({
 
     // Prince Throne (Support from Col 0, 1, 2)
     const pr = tempBoard.prince;
-    const pPr = (pr.playerCard ? pr.playerPower : 0) + pCh[1].totalSupportToFront;
-    const aPr = (pr.aiCard ? pr.aiPower : 0) + aCh[1].totalSupportToFront;
+    const { playerBonus: pPrBonus, aiBonus: aPrBonus, combatNotes: prNotes } = resolveConflictModifiers(pr.playerCard, pr.aiCard, 'prince');
+    const pPr = Math.max(0, (pr.playerCard ? pr.playerPower : 0) + pCh[1].totalSupportToFront + pPrBonus);
+    const aPr = Math.max(0, (pr.aiCard ? pr.aiPower : 0) + aCh[1].totalSupportToFront + aPrBonus);
+    combatLogs.push(...prNotes);
 
     const totalPlayerAllies = ['player_pawn_0', 'player_pawn_1', 'player_pawn_2', 'player_rook_0', 'player_rook_1', 'player_rook_2']
       .filter(k => tempBoard[k]?.card).length + (kw.playerCard ? 1 : 0) + (ke.playerCard ? 1 : 0) + (pr.playerCard ? 1 : 0);
@@ -483,6 +449,36 @@ export default function ArenaDuelView({
     } else if (aPr > pPr && aPr > 0) {
       roundAIPts += totalAIAllies;
       combatLogs.push(`👑 Trône du Prince : ${selectedAI.name} règne ! (${aPr} vs ${pPr}) -> +${totalAIAllies} Pts IA.`);
+    }
+
+    // End of Round: Tristan Stag (+6 Points if Prince)
+    if (matchesCardName(tempBoard.prince.playerCard, 'Tristan Stag')) {
+      roundPlayerPts += 6;
+      combatLogs.push(`👑 [Tristan Stag] Fin de Manche : Trône du Prince sécurisé -> +6 Points bonus !`);
+    }
+    if (matchesCardName(tempBoard.prince.aiCard, 'Tristan Stag')) {
+      roundAIPts += 6;
+      combatLogs.push(`👑 [Tristan Stag IA] Fin de Manche : Trône du Prince sécurisé -> +6 Points bonus IA !`);
+    }
+
+    // End of Round: Francisco the Bold (moves to vacant Prince)
+    if (!tempBoard.prince.playerCard) {
+      const fSpace = Object.keys(tempBoard).find(k => k.startsWith('player') && matchesCardName(tempBoard[k]?.card, 'Francisco the Bold', 'Francisco'));
+      if (fSpace && tempBoard[fSpace]?.card) {
+        const fCard = tempBoard[fSpace].card;
+        tempBoard[fSpace] = { ...tempBoard[fSpace], card: null, power: 0 };
+        tempBoard.prince = { ...tempBoard.prince, playerCard: fCard, playerPower: fCard.power };
+        combatLogs.push(`👑 [${fCard.name}] Fin de Manche : S'assoit sur le Trône du Prince vacant !`);
+      }
+    }
+    if (!tempBoard.prince.aiCard) {
+      const fSpaceAI = Object.keys(tempBoard).find(k => k.startsWith('ai') && matchesCardName(tempBoard[k]?.card, 'Francisco the Bold', 'Francisco'));
+      if (fSpaceAI && tempBoard[fSpaceAI]?.card) {
+        const fCardAI = tempBoard[fSpaceAI].card;
+        tempBoard[fSpaceAI] = { ...tempBoard[fSpaceAI], card: null, power: 0 };
+        tempBoard.prince = { ...tempBoard.prince, aiCard: fCardAI, aiPower: fCardAI.power };
+        combatLogs.push(`👑 [${fCardAI.name} IA] Fin de Manche : S'assoit sur le Trône du Prince vacant !`);
+      }
     }
 
     setScoringMedals({ knight_left: kwMedal, prince: prMedal, knight_right: keMedal });
@@ -870,7 +866,7 @@ export default function ArenaDuelView({
             </div>
 
             <p className="text-[11px] text-gray-300 font-gothic px-2 line-clamp-3">
-              {revealingCard.ability}
+              {getCardAbility(revealingCard, lang)}
             </p>
           </div>
         </div>

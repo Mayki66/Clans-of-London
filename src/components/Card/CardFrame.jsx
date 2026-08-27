@@ -2,6 +2,7 @@ import React from 'react';
 import { Plus, Minus, Eye, Sparkles, Shield, Droplets, Flame, Crown, Skull, PawPrint, Eye as EyeIcon, Ghost, Heart, Moon } from 'lucide-react';
 import CardArtwork from './CardArtwork';
 import { CLANS } from '../../data/clansData';
+import { getCardAbility } from '../../data/cardsData';
 
 // Map clan icon names to Lucide components
 const CLAN_ICONS = {
@@ -63,7 +64,7 @@ export default function CardFrame({
   };
 
   const isFrench = lang === 'fr';
-  const displayedAbility = (!isFrench && card.ability_en) ? card.ability_en : (card.ability || card.ability_en);
+  const displayedAbility = getCardAbility(card, lang);
   const displayedType = t?.cardAttributes?.types?.[card.type] || card.type;
   const displayedArchetype = t?.cardAttributes?.archetypes?.[card.archetype] || t?.cardAttributes?.archetypes?.[card.archetype_en] || card.archetype;
   const displayedClan = (card.clan === 'Malkavien' && !isFrench) ? 'Malkavian' : card.clan;

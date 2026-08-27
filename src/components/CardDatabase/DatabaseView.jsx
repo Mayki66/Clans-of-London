@@ -125,17 +125,23 @@ export default function DatabaseView({
       }
     }
 
-    // Text search
+    // Text search (supports all 6 languages)
     if (filters.search) {
       const q = filters.search.toLowerCase().trim();
       const matchName = card.name?.toLowerCase().includes(q);
       const matchOriginal = card.originalName?.toLowerCase().includes(q);
-      const matchAbility = card.ability?.toLowerCase().includes(q);
-      const matchAbilityEn = card.ability_en?.toLowerCase().includes(q);
+      const matchAbility = (
+        card.ability?.toLowerCase().includes(q) ||
+        card.ability_en?.toLowerCase().includes(q) ||
+        card.ability_it?.toLowerCase().includes(q) ||
+        card.ability_de?.toLowerCase().includes(q) ||
+        card.ability_es?.toLowerCase().includes(q) ||
+        card.ability_pt?.toLowerCase().includes(q)
+      );
       const matchClan = card.clan?.toLowerCase().includes(q);
       const matchKeywords = card.keywords?.some(k => k.toLowerCase().includes(q));
 
-      if (!matchName && !matchOriginal && !matchAbility && !matchAbilityEn && !matchClan && !matchKeywords) {
+      if (!matchName && !matchOriginal && !matchAbility && !matchClan && !matchKeywords) {
         return false;
       }
     }

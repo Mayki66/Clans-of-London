@@ -1,5 +1,6 @@
 import { META_DECKS } from '../data/metaDecks';
 import { CARDS_DATA } from '../data/cardsData';
+import { matchesCardName } from './duelEngine';
 
 export const AI_OPPONENTS = [
   {
@@ -62,12 +63,12 @@ export function isAIPlacementValid(spaceKey, card, board) {
   if (!card) return false;
 
   // 1. Shifa bypass
-  if (card.name === 'Shifa' || card.ability_en?.toLowerCase().includes('can be played anywhere')) {
+  if (matchesCardName(card, 'Shifa') || card.ability_en?.toLowerCase().includes('can be played anywhere')) {
     return true;
   }
 
   // 2. Brixton bypass
-  if (card.name === 'Brixton' || card.originalName === 'Brixton') {
+  if (matchesCardName(card, 'Brixton')) {
     return spaceKey === 'knight_left' || spaceKey === 'knight_right';
   }
 

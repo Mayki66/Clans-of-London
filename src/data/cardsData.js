@@ -15,7 +15,7 @@ export const CARDS_DATA = [
       "Neutre"
     ],
     "ability": "Aucune capacité spéciale.",
-    "ability_en": "",
+    "ability_en": "No special ability.",
     "flavorText": "\"Luis Castaño - Carte officielle Vampire: The Masquerade – Clans of London (Série 0).\"",
     "rarity": "Commune",
     "notes": "",
@@ -27,7 +27,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-001.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Luis_Castano",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Aucune capacité spéciale.",
+    "ability_it": "Nessuna abilità speciale.",
+    "ability_de": "Keine Spezialfähigkeit.",
+    "ability_es": "Sin habilidad especial.",
+    "ability_pt": "Nenhuma habilidade especial."
   },
   {
     "id": "col-002",
@@ -44,7 +49,7 @@ export const CARDS_DATA = [
       "Nosferatu",
       "Neutre"
     ],
-    "ability": "Peut être jouée sur n'importe quel espace du plateau (ignore les restrictions de placement).",
+    "ability": "Peut être jouée sur n'importe quel espace du plateau (ignore les restrictions).",
     "ability_en": "Can be played anywhere.",
     "flavorText": "\"Shifa - Carte officielle Vampire: The Masquerade – Clans of London (Série 0).\"",
     "rarity": "Commune",
@@ -57,7 +62,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-002.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Shifa",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Peut être jouée sur n'importe quel espace du plateau (ignore les restrictions).",
+    "ability_it": "Può essere giocata su qualsiasi casella del tabellone.",
+    "ability_de": "Kann auf jedem beliebigen Feld gespielt werden.",
+    "ability_es": "Puede jugarse en cualquier casilla del tablero.",
+    "ability_pt": "Pode ser jogada em qualquer espaço do tabuleiro."
   },
   {
     "id": "col-003",
@@ -87,7 +97,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-003.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Abir",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "After you reveal your next carte give it +1 Puissance.",
+    "ability_it": "After you reveal your next carta give it +1 Potere.",
+    "ability_de": "After you reveal your next Karte give it +1 Macht.",
+    "ability_es": "After you reveal your next carta give it +1 de Poder.",
+    "ability_pt": "After you reveal your next carta give it +1 de Poder."
   },
   {
     "id": "col-004",
@@ -104,7 +119,7 @@ export const CARDS_DATA = [
       "Toreador",
       "Neutre"
     ],
-    "ability": "À l'Attaque : inflige -4 Puissance à la carte ennemie.",
+    "ability": "À l'Attaque : Inflige -4 Puissance à la carte ennemie.",
     "ability_en": "On Attack: Inflict -4 Power on the enemy card.",
     "flavorText": "\"Bakunawa - Carte officielle Vampire: The Masquerade – Clans of London (Série 0).\"",
     "rarity": "Commune",
@@ -117,7 +132,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-004.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Bakunawa",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À l'Attaque : Inflige -4 Puissance à la carte ennemie.",
+    "ability_it": "All'Attacco: Infligge -4 Potere alla carta nemica.",
+    "ability_de": "Beim Angriff: Fügt der gegnerischen Karte -4 Macht zu.",
+    "ability_es": "Al Atacar: Inflige -4 de Poder a la carta enemiga.",
+    "ability_pt": "Ao Atacar: Inflige -4 de Poder à carta inimiga."
   },
   {
     "id": "col-005",
@@ -135,7 +155,7 @@ export const CARDS_DATA = [
       "Neutre"
     ],
     "ability": "Aucune capacité spéciale.",
-    "ability_en": "",
+    "ability_en": "No special ability.",
     "flavorText": "\"Helen Lloyd - Carte officielle Vampire: The Masquerade – Clans of London (Série 0).\"",
     "rarity": "Commune",
     "notes": "",
@@ -147,7 +167,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-005.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Helen_Lloyd",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Aucune capacité spéciale.",
+    "ability_it": "Nessuna abilità speciale.",
+    "ability_de": "Keine Spezialfähigkeit.",
+    "ability_es": "Sin habilidad especial.",
+    "ability_pt": "Nenhuma habilidade especial."
   },
   {
     "id": "col-006",
@@ -165,7 +190,7 @@ export const CARDS_DATA = [
       "Neutre"
     ],
     "ability": "Aucune capacité spéciale.",
-    "ability_en": "",
+    "ability_en": "No special ability.",
     "flavorText": "\"Violet Green - Carte officielle Vampire: The Masquerade – Clans of London (Série 0).\"",
     "rarity": "Commune",
     "notes": "",
@@ -177,7 +202,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-006.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Violet_Green",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Aucune capacité spéciale.",
+    "ability_it": "Nessuna abilità speciale.",
+    "ability_de": "Keine Spezialfähigkeit.",
+    "ability_es": "Sin habilidad especial.",
+    "ability_pt": "Nenhuma habilidade especial."
   },
   {
     "id": "col-007",
@@ -194,7 +224,7 @@ export const CARDS_DATA = [
       "Toreador",
       "Neutre"
     ],
-    "ability": "Tant qu'en jeu : Your cartes connectées have +2 Puissance.",
+    "ability": "Tant qu'en jeu : Vos cartes connectées ont +2 Puissance.",
     "ability_en": "While in Play: Your connected cards have +2 Power.",
     "flavorText": "\"Aster Banda - Carte officielle Vampire: The Masquerade – Clans of London (Série 0).\"",
     "rarity": "Commune",
@@ -207,7 +237,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-007.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Aster_Banda",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Tant qu'en jeu : Vos cartes connectées ont +2 Puissance.",
+    "ability_it": "Mentre è in Gioco: Le tue carte collegate hanno +2 Potere.",
+    "ability_de": "Solange im Spiel: Deine verbundenen Karten haben +2 Macht.",
+    "ability_es": "Mientras esté en Juego: Tus cartas conectadas tienen +2 de Poder.",
+    "ability_pt": "Enquanto em Jogo: Suas cartas conectadas têm +2 de Poder."
   },
   {
     "id": "col-008",
@@ -224,7 +259,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Neutre"
     ],
-    "ability": "Tant qu'en jeu : If your Prince is Élitiste, it has +2 Puissance.",
+    "ability": "Tant qu'en jeu : Si votre Prince est Élitiste, il a +2 Puissance.",
     "ability_en": "While in Play: If your Prince is Elitist, it has +2 Power.",
     "flavorText": "\"Jürgen Mayer - Carte officielle Vampire: The Masquerade – Clans of London (Série 0).\"",
     "rarity": "Commune",
@@ -237,7 +272,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-008.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Jurgen_Mayer",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Tant qu'en jeu : Si votre Prince est Élitiste, il a +2 Puissance.",
+    "ability_it": "Mentre è in Gioco: Se il tuo Principe è Elitario, ha +2 Potere.",
+    "ability_de": "Solange im Spiel: Wenn dein Prinz Elitär ist, hat er +2 Macht.",
+    "ability_es": "Mientras esté en Juego: Si tu Príncipe es Elitista, tiene +2 de Poder.",
+    "ability_pt": "Enquanto em Jogo: Se o seu Príncipe for Elitista, ele tem +2 de Poder."
   },
   {
     "id": "col-009",
@@ -267,7 +307,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-009.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Penelope_Dane",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Create a Goule Actor in a espace connecté. (if it's vide)",
+    "ability_it": "Alla Rivelazione: Create a Ghoul Actor in a spazio collegato. (if it's empty)",
+    "ability_de": "Beim Aufdecken: Create a Ghoul Actor in a verbundenes Feld. (if it's empty)",
+    "ability_es": "Al Revelar: Create a Ghoul Actor in a espacio conectado. (if it's empty)",
+    "ability_pt": "Ao Revelar: Create a Ghoul Actor in a espaço conectado. (if it's empty)"
   },
   {
     "id": "col-010",
@@ -297,7 +342,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-010.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Ember",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Create a Goule in an espace Cavalier vide.",
+    "ability_it": "Alla Rivelazione: Create a Ghoul in an empty Cavaliere space.",
+    "ability_de": "Beim Aufdecken: Create a Ghoul in an empty Ritter space.",
+    "ability_es": "Al Revelar: Create a Ghoul in an empty Caballero space.",
+    "ability_pt": "Ao Revelar: Create a Ghoul in an empty Cavaleiro space."
   },
   {
     "id": "col-011",
@@ -314,7 +364,7 @@ export const CARDS_DATA = [
       "Toreador",
       "Elitist"
     ],
-    "ability": "Fin de Manche : S'il n'y a pas de Prince, move to the espace du Prince.",
+    "ability": "Fin de Manche : S'il n'y a pas de Prince, déplacez-vous sur l'espace du Prince.",
     "ability_en": "End of Round: If there is no Prince, move to the Prince space.",
     "flavorText": "\"Francisco the Bold - Carte officielle Vampire: The Masquerade – Clans of London (Série 0).\"",
     "rarity": "Commune",
@@ -327,7 +377,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-011.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Francisco_the_Bold",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "Fin de Manche : S'il n'y a pas de Prince, déplacez-vous sur l'espace du Prince.",
+    "ability_it": "Fine del Turno: Se non c'è nessun Principe, spostati nello spazio del Principe.",
+    "ability_de": "Rundenende: Wenn es keinen Prinzen gibt, bewege dich auf das Prinz-Feld.",
+    "ability_es": "Fin de Ronda: Si no hay Príncipe, muévete al espacio del Príncipe.",
+    "ability_pt": "Fim da Rodada: Se não houver Príncipe, mova-se para o espaço do Príncipe."
   },
   {
     "id": "col-012",
@@ -357,7 +412,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-012.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sapphire",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "À la Révélation : Gagne +1 Puissance pour chaque Pion en jeu.",
+    "ability_it": "Alla Rivelazione: Ottieni +1 Potere per ogni Pedone in gioco.",
+    "ability_de": "Beim Aufdecken: Erhalte +1 Macht für jeden Bauern im Spiel.",
+    "ability_es": "Al Revelar: Gana +1 de Poder por cada Peón en juego.",
+    "ability_pt": "Ao Revelar: Ganhe +1 de Poder para cada Peão em jogo."
   },
   {
     "id": "col-013",
@@ -387,7 +447,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-013.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Szofia",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "Peut attaquer n'importe quel espace ennemi sur le plateau.",
+    "ability_it": "Può attaccare qualsiasi casella nemica sul tabellone.",
+    "ability_de": "Kann jedes gegnerische Feld auf dem Spielbrett angreifen.",
+    "ability_es": "Puede atacar cualquier casilla enemiga en el tablero.",
+    "ability_pt": "Pode atacar qualquer espaço inimigo no tabuleiro."
   },
   {
     "id": "col-014",
@@ -404,7 +469,7 @@ export const CARDS_DATA = [
       "Tremere",
       "Neutre"
     ],
-    "ability": "À la Révélation : If this is a Tour, Gagne +2 Puissance.",
+    "ability": "À la Révélation : Si c'est une Tour, gagne +2 Puissance.",
     "ability_en": "On Reveal: If this is a Rook, gain +2 Power.",
     "flavorText": "\"Lavanya Sekh - Carte officielle Vampire: The Masquerade – Clans of London (Série 0).\"",
     "rarity": "Rare",
@@ -417,7 +482,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-014.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Lavanya_Sekh",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Si c'est une Tour, gagne +2 Puissance.",
+    "ability_it": "Alla Rivelazione: Se questa è una Torre, ottieni +2 Potere.",
+    "ability_de": "Beim Aufdecken: Wenn dies ein Turm ist, erhalte +2 Macht.",
+    "ability_es": "Al Revelar: Si esta es una Torre, gana +2 de Poder.",
+    "ability_pt": "Ao Revelar: Se esta for uma Torre, ganhe +2 de Poder."
   },
   {
     "id": "col-015",
@@ -433,7 +503,7 @@ export const CARDS_DATA = [
       "Violent",
       "Brujah"
     ],
-    "ability": "Pendant l'Attaque : Cette carte a +3 Puissance.",
+    "ability": "En Attaquant : A +3 Puissance.",
     "ability_en": "While Attacking: This has +3 Power.",
     "flavorText": "\"Dante - Carte officielle Vampire: The Masquerade – Clans of London (Série 0).\"",
     "rarity": "Rare",
@@ -446,7 +516,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-015.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Dante",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "En Attaquant : A +3 Puissance.",
+    "ability_it": "Durante l'Attacco: Ha +3 Potere.",
+    "ability_de": "Beim Angreifen: Hat +3 Macht.",
+    "ability_es": "Al Atacar: Tiene +3 de Poder.",
+    "ability_pt": "Ao Atacar: Tem +3 de Poder."
   },
   {
     "id": "col-016",
@@ -462,7 +537,7 @@ export const CARDS_DATA = [
       "Violent",
       "Brujah"
     ],
-    "ability": "À la Révélation : Si cette carte est sur le côté adverse du plateau, elle gagne +4 Puissance.",
+    "ability": "À la Révélation : If this is on the opponent's side, gagne +4 Puissance.",
     "ability_en": "On Reveal: If this is on the opponent's side, gain +4 Power.",
     "flavorText": "\"Razor - Carte officielle Vampire: The Masquerade – Clans of London (Série 0).\"",
     "rarity": "Rare",
@@ -475,7 +550,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-016.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Razor",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "À la Révélation : If this is on the opponent's side, gagne +4 Puissance.",
+    "ability_it": "Alla Rivelazione: If this is on the opponent's side, ottieni +4 Potere.",
+    "ability_de": "Beim Aufdecken: If this is on the opponent's side, erhalte +4 Macht.",
+    "ability_es": "Al Revelar: If this is on the opponent's side, gana +4 de Poder.",
+    "ability_pt": "Ao Revelar: If this is on the opponent's side, ganhe +4 de Poder."
   },
   {
     "id": "col-017",
@@ -505,7 +585,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-017.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Niall_Flynn",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When one of your Violent cartes attacks: Give it +2 Puissance.",
+    "ability_it": "When one of your Violent cartas attacks: Give it +2 Potere.",
+    "ability_de": "When one of your Violent Kartes attacks: Give it +2 Macht.",
+    "ability_es": "When one of your Violent cartas attacks: Give it +2 de Poder.",
+    "ability_pt": "When one of your Violent cartas attacks: Give it +2 de Poder."
   },
   {
     "id": "col-018",
@@ -522,7 +607,7 @@ export const CARDS_DATA = [
       "Toreador",
       "Elitist"
     ],
-    "ability": "À la Révélation : If this is Prince, Vole 1 Puissance à un ennemi aléatoire carte.",
+    "ability": "À la Révélation : If this is Prince, Steal 1 Puissance from a random carte ennemie.",
     "ability_en": "On Reveal: If this is Prince, Steal 1 Power from a random enemy card.",
     "flavorText": "\"Aurora Torres - Carte officielle Vampire: The Masquerade – Clans of London (Série 0).\"",
     "rarity": "Rare",
@@ -535,7 +620,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-018.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Aurora_Torres",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "À la Révélation : If this is Prince, Steal 1 Puissance from a random carte ennemie.",
+    "ability_it": "Alla Rivelazione: If this is Principe, Steal 1 Potere from a random carta nemica.",
+    "ability_de": "Beim Aufdecken: If this is Prinz, Steal 1 Macht from a random gegnerische Karte.",
+    "ability_es": "Al Revelar: If this is Príncipe, Steal 1 de Poder from a random carta enemiga.",
+    "ability_pt": "Ao Revelar: If this is Príncipe, Steal 1 de Poder from a random carta inimiga."
   },
   {
     "id": "col-019",
@@ -552,7 +642,7 @@ export const CARDS_DATA = [
       "Toreador",
       "Neutre"
     ],
-    "ability": "À la Révélation : Confère +1 Puissance à toutes les cartes dans votre main.",
+    "ability": "À la Révélation : Gagne +1 Puissance to all cartes in your hand.",
     "ability_en": "On Reveal: Gain +1 Power to all cards in your hand.",
     "flavorText": "\"Blaze - Carte officielle Vampire: The Masquerade – Clans of London (Série 0).\"",
     "rarity": "Rare",
@@ -565,7 +655,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-019.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Blaze",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Gagne +1 Puissance to all cartes in your hand.",
+    "ability_it": "Alla Rivelazione: Ottieni +1 Potere to all cartas in your hand.",
+    "ability_de": "Beim Aufdecken: Erhalte +1 Macht to all Kartes in your hand.",
+    "ability_es": "Al Revelar: Gana +1 de Poder to all cartas in your hand.",
+    "ability_pt": "Ao Revelar: Ganhe +1 de Poder to all cartas in your hand."
   },
   {
     "id": "col-020",
@@ -595,7 +690,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-020.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Mx_Korpal",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "À la Révélation : Vole 3 Puissance à un ennemi aléatoire Tour.",
+    "ability_it": "Alla Rivelazione: Steal 3 Potere from a random nemico Torre.",
+    "ability_de": "Beim Aufdecken: Steal 3 Macht from a random Gegner Turm.",
+    "ability_es": "Al Revelar: Steal 3 de Poder from a random enemigo Torre.",
+    "ability_pt": "Ao Revelar: Steal 3 de Poder from a random inimigo Torre."
   },
   {
     "id": "col-021",
@@ -612,7 +712,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Violent"
     ],
-    "ability": "Tant qu'en jeu : If Cavalier, Confère +2 Puissance to your Prince.",
+    "ability": "Tant qu'en jeu : If Cavalier, Confère +2 Puissance to votre Prince.",
     "ability_en": "While in play: If Knight, give +2 Power to your Prince.",
     "flavorText": "\"Harry Tyler - Carte officielle Vampire: The Masquerade – Clans of London (Série 0).\"",
     "rarity": "Épique",
@@ -625,7 +725,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-021.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Harry_Tyler",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "Tant qu'en jeu : If Cavalier, Confère +2 Puissance to votre Prince.",
+    "ability_it": "While in gioco: If Cavaliere, dai +2 Potere to your Principe.",
+    "ability_de": "While im Spiel: If Ritter, gib +2 Macht to your Prinz.",
+    "ability_es": "While en juego: If Caballero, otorga +2 de Poder to your Príncipe.",
+    "ability_pt": "While em jogo: If Cavaleiro, conceda +2 de Poder to your Príncipe."
   },
   {
     "id": "col-022",
@@ -655,7 +760,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-022.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Stephen_Fane",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "À la Révélation : If this is a Cavalier or Prince, Gagne +3 Puissance.",
+    "ability_it": "Alla Rivelazione: If this is a Cavaliere or Principe, ottieni +3 Potere.",
+    "ability_de": "Beim Aufdecken: If this is a Ritter or Prinz, erhalte +3 Macht.",
+    "ability_es": "Al Revelar: If this is a Caballero or Príncipe, gana +3 de Poder.",
+    "ability_pt": "Ao Revelar: If this is a Cavaleiro or Príncipe, ganhe +3 de Poder."
   },
   {
     "id": "col-023",
@@ -685,7 +795,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-023.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Brittany_Webb",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "À l'Attaque : Vole 5 Puissance à la carte ennemie.",
+    "ability_it": "All'Attacco: Ruba 5 Potere alla carta nemica.",
+    "ability_de": "Beim Angriff: Stiehlt der gegnerischen Karte 5 Macht.",
+    "ability_es": "Al Atacar: Roba 5 de Poder a la carta enemiga.",
+    "ability_pt": "Ao Atacar: Rouba 5 de Poder da carta inimiga."
   },
   {
     "id": "col-024",
@@ -703,7 +818,7 @@ export const CARDS_DATA = [
       "Elitist"
     ],
     "ability": "Aucune capacité spéciale.",
-    "ability_en": "",
+    "ability_en": "No special ability.",
     "flavorText": "\"Hope Ekaette - Carte officielle Vampire: The Masquerade – Clans of London (Série 0).\"",
     "rarity": "Épique",
     "notes": "",
@@ -715,7 +830,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-024.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Hope_Ekaette",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "Aucune capacité spéciale.",
+    "ability_it": "Nessuna abilità speciale.",
+    "ability_de": "Keine Spezialfähigkeit.",
+    "ability_es": "Sin habilidad especial.",
+    "ability_pt": "Nenhuma habilidade especial."
   },
   {
     "id": "col-025",
@@ -732,7 +852,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Elitist"
     ],
-    "ability": "À la Révélation : If this is Prince, Gagne +4 Puissance.",
+    "ability": "À la Révélation : Si c'est le Prince, Gagne +4 Puissance.",
     "ability_en": "On Reveal: If this is Prince, gain +4 Power.",
     "flavorText": "\"Robert Cavendish - Carte officielle Vampire: The Masquerade – Clans of London (Série 0).\"",
     "rarity": "Légendaire",
@@ -745,7 +865,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-025.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Robert_Cavendish",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "À la Révélation : Si c'est le Prince, Gagne +4 Puissance.",
+    "ability_it": "Alla Rivelazione: If this is Principe, ottieni +4 Potere.",
+    "ability_de": "Beim Aufdecken: If this is Prinz, erhalte +4 Macht.",
+    "ability_es": "Al Revelar: If this is Príncipe, gana +4 de Poder.",
+    "ability_pt": "Ao Revelar: If this is Príncipe, ganhe +4 de Poder."
   },
   {
     "id": "col-026",
@@ -762,7 +887,7 @@ export const CARDS_DATA = [
       "Toreador",
       "Elitist"
     ],
-    "ability": "À la Révélation : Vole 1 Puissance à each carte.",
+    "ability": "À la Révélation : Steal 1 Puissance from each carte.",
     "ability_en": "On Reveal: Steal 1 Power from each card.",
     "flavorText": "\"Annabella Wright - Carte officielle Vampire: The Masquerade – Clans of London (Série 0).\"",
     "rarity": "Légendaire",
@@ -775,7 +900,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-026.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Annabella_Wright",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "À la Révélation : Steal 1 Puissance from each carte.",
+    "ability_it": "Alla Rivelazione: Steal 1 Potere from each carta.",
+    "ability_de": "Beim Aufdecken: Steal 1 Macht from each Karte.",
+    "ability_es": "Al Revelar: Steal 1 de Poder from each carta.",
+    "ability_pt": "Ao Revelar: Steal 1 de Poder from each carta."
   },
   {
     "id": "col-027",
@@ -793,7 +923,7 @@ export const CARDS_DATA = [
       "Elitist"
     ],
     "ability": "Aucune capacité spéciale.",
-    "ability_en": "",
+    "ability_en": "No special ability.",
     "flavorText": "\"Mrs Fitzgerald - Carte officielle Vampire: The Masquerade – Clans of London (Série 0).\"",
     "rarity": "Légendaire",
     "notes": "",
@@ -805,7 +935,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-027.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Mrs_Fitzgerald",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "Aucune capacité spéciale.",
+    "ability_it": "Nessuna abilità speciale.",
+    "ability_de": "Keine Spezialfähigkeit.",
+    "ability_es": "Sin habilidad especial.",
+    "ability_pt": "Nenhuma habilidade especial."
   },
   {
     "id": "col-028",
@@ -821,7 +956,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Toreador"
     ],
-    "ability": "Au Début de Partie : Démarre dans votre main de départ.",
+    "ability": "Commence dans votre main de départ.",
     "ability_en": "Starts in your opening hand.",
     "flavorText": "\"Katie Dixon - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Commune",
@@ -834,7 +969,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-028.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Kate_Dixon",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Commence dans votre main de départ.",
+    "ability_it": "Inizia nella tua mano iniziale.",
+    "ability_de": "Beginnt auf deiner Starthand.",
+    "ability_es": "Comienza en tu mano inicial.",
+    "ability_pt": "Começa na sua mão inicial."
   },
   {
     "id": "col-029",
@@ -864,7 +1004,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-029.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Amy_West",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : inflige -2 Puissance à chaque Tour ennemie.",
+    "ability_it": "Alla Rivelazione: Infligge -2 Potere on each nemico Torre.",
+    "ability_de": "Beim Aufdecken: Füge -2 Macht on each Gegner Turm.",
+    "ability_es": "Al Revelar: Inflige -2 de Poder on each enemigo Torre.",
+    "ability_pt": "Ao Revelar: Inflige -2 de Poder on each inimigo Torre."
   },
   {
     "id": "col-030",
@@ -893,7 +1038,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-030.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Grace_Ward",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "Fin de Manche : Perd 1 Puissance.",
+    "ability_it": "Fine del Turno: Suffer -1 Potere.",
+    "ability_de": "Rundenende: Suffer -1 Macht.",
+    "ability_es": "Fin de Ronda: Suffer -1 de Poder.",
+    "ability_pt": "Fim da Rodada: Suffer -1 de Poder."
   },
   {
     "id": "col-031",
@@ -922,7 +1072,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-031.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Simon_Lee",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "After you reveal your next carte, move it forwards once.",
+    "ability_it": "After you reveal your next carta, move it forwards once.",
+    "ability_de": "After you reveal your next Karte, move it forwards once.",
+    "ability_es": "After you reveal your next carta, move it forwards once.",
+    "ability_pt": "After you reveal your next carta, move it forwards once."
   },
   {
     "id": "col-032",
@@ -939,7 +1094,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Neutre"
     ],
-    "ability": "Tant qu'en jeu : Your Élitiste cartes directly in front of this have +2 Puissance.",
+    "ability": "Tant qu'en jeu : Your Elitist cartes directly in front of this ont +2 Puissance.",
     "ability_en": "While in Play: Your Elitist cards directly in front of this have +2 Power.",
     "flavorText": "\"Abigail Smith - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Commune",
@@ -952,7 +1107,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-032.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Abigail_Smith",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Tant qu'en jeu : Your Elitist cartes directly in front of this ont +2 Puissance.",
+    "ability_it": "Mentre è in Gioco: Your Elitist cartas directly in front of this hanno +2 Potere.",
+    "ability_de": "Solange im Spiel: Your Elitist Kartes directly in front of this haben +2 Macht.",
+    "ability_es": "Mientras esté en Juego: Your Elitist cartas directly in front of this tienen +2 de Poder.",
+    "ability_pt": "Enquanto em Jogo: Your Elitist cartas directly in front of this têm +2 de Poder."
   },
   {
     "id": "col-033",
@@ -982,7 +1142,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-033.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Morag_Stewart",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When this would lose a Conflit: Elle est Assassinée. À la Mort : Retourne dans votre main.",
+    "ability_it": "When this would lose a Conflict: It is murdered. When Murdered: Resassemble into your hand.",
+    "ability_de": "When this would lose a Conflict: It is murdered. When Murdered: Resassemble into your hand.",
+    "ability_es": "When this would lose a Conflict: It is murdered. When Murdered: Resassemble into your hand.",
+    "ability_pt": "When this would lose a Conflict: It is murdered. When Murdered: Resassemble into your hand."
   },
   {
     "id": "col-034",
@@ -1011,7 +1176,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-034.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Grendel_Ward",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "Fin de Manche : Se déplace d'une case vers l'avant.",
+    "ability_it": "Fine del Turno: Move forward.",
+    "ability_de": "Rundenende: Move forward.",
+    "ability_es": "Fin de Ronda: Move forward.",
+    "ability_pt": "Fim da Rodada: Move forward."
   },
   {
     "id": "col-035",
@@ -1041,7 +1211,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-035.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Lan_Chen",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Si nous sommes au tour 4 ou avant, ajoute un Punk Chétif à votre main.",
+    "ability_it": "Alla Rivelazione: If it's on or before round 4, add a Scrawny Punk to your hand.",
+    "ability_de": "Beim Aufdecken: If it's on or before round 4, add a Scrawny Punk to your hand.",
+    "ability_es": "Al Revelar: If it's on or before round 4, add a Scrawny Punk to your hand.",
+    "ability_pt": "Ao Revelar: If it's on or before round 4, add a Scrawny Punk to your hand."
   },
   {
     "id": "col-036",
@@ -1070,7 +1245,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-036.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Zara_Bradley",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : If this is a Cavalier, inflige -5 Puissance à le Prince ennemi.",
+    "ability_it": "Alla Rivelazione: If this is a Cavaliere, infligge -5 Potere on the nemico Principe.",
+    "ability_de": "Beim Aufdecken: If this is a Ritter, füge -5 Macht on the Gegner Prinz.",
+    "ability_es": "Al Revelar: If this is a Caballero, inflige -5 de Poder on the enemigo Príncipe.",
+    "ability_pt": "Ao Revelar: If this is a Cavaleiro, inflige -5 de Poder on the inimigo Príncipe."
   },
   {
     "id": "col-037",
@@ -1099,7 +1279,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-037.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sanjay_Ali",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Ajoute 2 Rats (Bêtes) à votre main.",
+    "ability_it": "Alla Rivelazione: Add 2 Rats (Beasts) to your hand.",
+    "ability_de": "Beim Aufdecken: Add 2 Rats (Beasts) to your hand.",
+    "ability_es": "Al Revelar: Add 2 Rats (Beasts) to your hand.",
+    "ability_pt": "Ao Revelar: Add 2 Rats (Beasts) to your hand."
   },
   {
     "id": "col-038",
@@ -1116,7 +1301,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Elitist"
     ],
-    "ability": "Tant qu'en jeu : Your Prince has +1 Puissance.",
+    "ability": "Tant qu'en jeu : Votre Prince a +1 Puissance.",
     "ability_en": "While in Play: Your Prince has +1 Power.",
     "flavorText": "\"Cynthia Hargreaves - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Commune",
@@ -1129,7 +1314,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-038.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Cynthia_Hargreaves",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "Tant qu'en jeu : Votre Prince a +1 Puissance.",
+    "ability_it": "Mentre è in Gioco: Il tuo Principe ha +1 Potere.",
+    "ability_de": "Solange im Spiel: Dein Prinz hat +1 Macht.",
+    "ability_es": "Mientras esté en Juego: Tu Príncipe tiene +1 de Poder.",
+    "ability_pt": "Enquanto em Jogo: Seu Príncipe tem +1 de Poder."
   },
   {
     "id": "col-039",
@@ -1145,7 +1335,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Ventrue"
     ],
-    "ability": "When this loses Puissance définitivement: Confère +1 Puissance to all your Élitiste cartes.",
+    "ability": "When this loses Puissance permanently: Donne +1 Puissance to all your Elitist cartes.",
     "ability_en": "When this loses Power permanently: Give +1 Power to all your Elitist cards.",
     "flavorText": "\"Jeremiah Saha - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Commune",
@@ -1158,7 +1348,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-039.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Jeremiah_Saha",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When this loses Puissance permanently: Donne +1 Puissance to all your Elitist cartes.",
+    "ability_it": "When this loses Potere permanently: Dai +1 Potere to all your Elitist cartas.",
+    "ability_de": "When this loses Macht permanently: Gib +1 Macht to all your Elitist Kartes.",
+    "ability_es": "When this loses de Poder permanently: Otorga +1 de Poder to all your Elitist cartas.",
+    "ability_pt": "When this loses de Poder permanently: Conceda +1 de Poder to all your Elitist cartas."
   },
   {
     "id": "col-040",
@@ -1175,7 +1370,7 @@ export const CARDS_DATA = [
       "Toreador",
       "Neutre"
     ],
-    "ability": "Tant qu'en jeu : Your Séduit cartes in main coûtent 1 de moins. (minimum 1)",
+    "ability": "Tant qu'en jeu : Your Seduced cartes in hand cost 1 less. (minimum of 1)",
     "ability_en": "While in Play: Your Seduced cards in hand cost 1 less. (minimum of 1)",
     "flavorText": "\"Amelie - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Commune",
@@ -1188,7 +1383,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-040.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Amelie",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Tant qu'en jeu : Your Seduced cartes in hand cost 1 less. (minimum of 1)",
+    "ability_it": "Mentre è in Gioco: Your Seduced cartas in hand cost 1 less. (minimum of 1)",
+    "ability_de": "Solange im Spiel: Your Seduced Kartes in hand cost 1 less. (minimum of 1)",
+    "ability_es": "Mientras esté en Juego: Your Seduced cartas in hand cost 1 less. (minimum of 1)",
+    "ability_pt": "Enquanto em Jogo: Your Seduced cartas in hand cost 1 less. (minimum of 1)"
   },
   {
     "id": "col-041",
@@ -1205,7 +1405,7 @@ export const CARDS_DATA = [
       "Toreador",
       "Neutre"
     ],
-    "ability": "Fin de Manche : If this is Prince, Marque 6 Points de Victoire.",
+    "ability": "Fin de Manche : Si c'est le Prince, marquez 6 Points.",
     "ability_en": "End of Round: If this is Prince, score 6 Points.",
     "flavorText": "\"Tristan Stag - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Rare",
@@ -1218,7 +1418,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-041.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Tristan_Stag",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Fin de Manche : Si c'est le Prince, marquez 6 Points.",
+    "ability_it": "Fine del Turno: Se questo è il Principe, ottieni 6 Punti.",
+    "ability_de": "Rundenende: Wenn dies der Prinz ist, erhalte 6 Punkte.",
+    "ability_es": "Fin de Ronda: Si este es el Príncipe, suma 6 Puntos.",
+    "ability_pt": "Fim da Rodada: Se este for o Príncipe, marque 6 Pontos."
   },
   {
     "id": "col-042",
@@ -1234,7 +1439,7 @@ export const CARDS_DATA = [
       "Violent",
       "Brujah"
     ],
-    "ability": "À l'Attaque : If la carte ennemie a été jouée ce tour, Gagne +4 Puissance.",
+    "ability": "À l'Attaque : If the carte ennemie was played this turn, gagne +4 Puissance.",
     "ability_en": "On Attack: If the enemy card was played this turn, gain +4 Power.",
     "flavorText": "\"Nick Locke - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Rare",
@@ -1247,7 +1452,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-042.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Nick_Locke",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "À l'Attaque : If the carte ennemie was played this turn, gagne +4 Puissance.",
+    "ability_it": "All'Attacco: If the carta nemica was played this turn, ottieni +4 Potere.",
+    "ability_de": "Beim Angriff: If the gegnerische Karte was played this turn, erhalte +4 Macht.",
+    "ability_es": "Al Atacar: If the carta enemiga was played this turn, gana +4 de Poder.",
+    "ability_pt": "Ao Atacar: If the carta inimiga was played this turn, ganhe +4 de Poder."
   },
   {
     "id": "col-043",
@@ -1277,7 +1487,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-043.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Adrian_Yu",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "Fin de Manche : inflige -1 Puissance à each of your Pions.",
+    "ability_it": "Fine del Turno: Infligge -1 Potere on each of your Pedones.",
+    "ability_de": "Rundenende: Füge -1 Macht on each of your Bauers.",
+    "ability_es": "Fin de Ronda: Inflige -1 de Poder on each of your Peóns.",
+    "ability_pt": "Fim da Rodada: Inflige -1 de Poder on each of your Peãos."
   },
   {
     "id": "col-044",
@@ -1294,7 +1509,7 @@ export const CARDS_DATA = [
       "Brujah",
       "Neutre"
     ],
-    "ability": "After one of your Violent cartes wins any Conflit: Marque 2 Points supplémentaires.",
+    "ability": "After one of your Violent cartes wins any Conflict: Score 2 extra Points.",
     "ability_en": "After one of your Violent cards wins any Conflict: Score 2 extra Points.",
     "flavorText": "\"Sheriff Fletcher - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Rare",
@@ -1307,7 +1522,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-044.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sheriff_Fletcher",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "After one of your Violent cartes wins any Conflict: Score 2 extra Points.",
+    "ability_it": "After one of your Violent cartas wins any Conflict: Score 2 extra Punti.",
+    "ability_de": "After one of your Violent Kartes wins any Conflict: Score 2 extra Punkte.",
+    "ability_es": "After one of your Violent cartas wins any Conflict: Score 2 extra Puntos.",
+    "ability_pt": "After one of your Violent cartas wins any Conflict: Score 2 extra Pontos."
   },
   {
     "id": "col-045",
@@ -1337,7 +1557,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-045.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Mr_Stewart",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Fin de Manche : Create a Mindless Corpse in an espace vide.",
+    "ability_it": "Fine del Turno: Create a Mindless Corpse in an spazio vuoto.",
+    "ability_de": "Rundenende: Create a Mindless Corpse in an leeres Feld.",
+    "ability_es": "Fin de Ronda: Create a Mindless Corpse in an espacio vacío.",
+    "ability_pt": "Fim da Rodada: Create a Mindless Corpse in an espaço vazio."
   },
   {
     "id": "col-046",
@@ -1366,7 +1591,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-046.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sid_Scabies",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "Après avoir remporté un Conflit : Ajoute un Punk Chétif à votre main.",
+    "ability_it": "After this wins a Conflict: Add a Scrawny Punk to your hand.",
+    "ability_de": "After this wins a Conflict: Add a Scrawny Punk to your hand.",
+    "ability_es": "After this wins a Conflict: Add a Scrawny Punk to your hand.",
+    "ability_pt": "After this wins a Conflict: Add a Scrawny Punk to your hand."
   },
   {
     "id": "col-047",
@@ -1395,7 +1625,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-047.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Robbys_Crew",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "À l'Attaque : Ajoute un autre Gang de Robby à votre main.",
+    "ability_it": "All'Attacco: Add another Robby's Crew to your hand.",
+    "ability_de": "Beim Angriff: Add another Robby's Crew to your hand.",
+    "ability_es": "Al Atacar: Add another Robby's Crew to your hand.",
+    "ability_pt": "Ao Atacar: Add another Robby's Crew to your hand."
   },
   {
     "id": "col-048",
@@ -1412,7 +1647,7 @@ export const CARDS_DATA = [
       "Gangrel",
       "Neutre"
     ],
-    "ability": "Tant qu'en jeu : All of your Bêtes have +2 Puissance.",
+    "ability": "Tant qu'en jeu : All of your Bêtes ont +2 Puissance.",
     "ability_en": "While in Play: All of your Beasts have +2 Power.",
     "flavorText": "\"Ravi Patel - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Rare",
@@ -1425,7 +1660,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-048.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Ravi_Patel",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Tant qu'en jeu : All of your Bêtes ont +2 Puissance.",
+    "ability_it": "Mentre è in Gioco: All of your Beasts hanno +2 Potere.",
+    "ability_de": "Solange im Spiel: All of your Beasts haben +2 Macht.",
+    "ability_es": "Mientras esté en Juego: All of your Beasts tienen +2 de Poder.",
+    "ability_pt": "Enquanto em Jogo: All of your Beasts têm +2 de Poder."
   },
   {
     "id": "col-049",
@@ -1442,7 +1682,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Elitist"
     ],
-    "ability": "Fin de Manche : Vole 1 Puissance à a non-Élitiste carte.",
+    "ability": "Fin de Manche : Steal 1 Puissance from a non-Elitist carte.",
     "ability_en": "End of Round: Steal 1 Power from a non-Elitist card.",
     "flavorText": "\"Mr Moore - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Rare",
@@ -1455,7 +1695,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-049.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Mr_Moore",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "Fin de Manche : Steal 1 Puissance from a non-Elitist carte.",
+    "ability_it": "Fine del Turno: Steal 1 Potere from a non-Elitist carta.",
+    "ability_de": "Rundenende: Steal 1 Macht from a non-Elitist Karte.",
+    "ability_es": "Fin de Ronda: Steal 1 de Poder from a non-Elitist carta.",
+    "ability_pt": "Fim da Rodada: Steal 1 de Poder from a non-Elitist carta."
   },
   {
     "id": "col-050",
@@ -1472,7 +1717,7 @@ export const CARDS_DATA = [
       "Toreador",
       "Neutre"
     ],
-    "ability": "Tant qu'en jeu : Your Séduit cartes have +2 Puissance.",
+    "ability": "Tant qu'en jeu : Your Seduced cartes ont +2 Puissance.",
     "ability_en": "While in Play: Your Seduced cards have +2 Power.",
     "flavorText": "\"Roland Heffé - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Rare",
@@ -1485,7 +1730,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-050.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Roland_Heffe",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Tant qu'en jeu : Your Seduced cartes ont +2 Puissance.",
+    "ability_it": "Mentre è in Gioco: Your Seduced cartas hanno +2 Potere.",
+    "ability_de": "Solange im Spiel: Your Seduced Kartes haben +2 Macht.",
+    "ability_es": "Mientras esté en Juego: Your Seduced cartas tienen +2 de Poder.",
+    "ability_pt": "Enquanto em Jogo: Your Seduced cartas têm +2 de Poder."
   },
   {
     "id": "col-051",
@@ -1502,7 +1752,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Neutre"
     ],
-    "ability": "À la Révélation : Return your highest cost defeated carte to main, your defeated cartes coûtent 2 de moins.",
+    "ability": "À la Révélation : Return your highest cost defeated carte to hand, your defeated cartes cost 2 less.",
     "ability_en": "On Reveal: Return your highest cost defeated card to hand, your defeated cards cost 2 less.",
     "flavorText": "\"Lawrence - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Commune",
@@ -1515,7 +1765,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-051.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Lawrence",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Return your highest cost defeated carte to hand, your defeated cartes cost 2 less.",
+    "ability_it": "Alla Rivelazione: Return your highest cost defeated carta to hand, your defeated cartas cost 2 less.",
+    "ability_de": "Beim Aufdecken: Return your highest cost defeated Karte to hand, your defeated Kartes cost 2 less.",
+    "ability_es": "Al Revelar: Return your highest cost defeated carta to hand, your defeated cartas cost 2 less.",
+    "ability_pt": "Ao Revelar: Return your highest cost defeated carta to hand, your defeated cartas cost 2 less."
   },
   {
     "id": "col-052",
@@ -1532,7 +1787,7 @@ export const CARDS_DATA = [
       "Toreador",
       "Neutre"
     ],
-    "ability": "À la Révélation : Seduce 2 defeated ennemi cartes.",
+    "ability": "À la Révélation : Seduce 2 defeated carte ennemies.",
     "ability_en": "On Reveal: Seduce 2 defeated enemy cards.",
     "flavorText": "\"Julian L. Hector - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Rare",
@@ -1545,7 +1800,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-052.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Julian_L_Hector",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Seduce 2 defeated carte ennemies.",
+    "ability_it": "Alla Rivelazione: Seduce 2 defeated carta nemicas.",
+    "ability_de": "Beim Aufdecken: Seduce 2 defeated gegnerische Kartes.",
+    "ability_es": "Al Revelar: Seduce 2 defeated carta enemigas.",
+    "ability_pt": "Ao Revelar: Seduce 2 defeated carta inimigas."
   },
   {
     "id": "col-053",
@@ -1562,7 +1822,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Elitist"
     ],
-    "ability": "Cannot give support.",
+    "ability": "Ne peut pas donner de soutien.",
     "ability_en": "Cannot give support.",
     "flavorText": "\"Horatio Drake - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Rare",
@@ -1575,7 +1835,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-053.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Horatio_Drake",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "Ne peut pas donner de soutien.",
+    "ability_it": "Non può fornire supporto.",
+    "ability_de": "Kann keine Unterstützung gewähren.",
+    "ability_es": "No puede dar apoyo.",
+    "ability_pt": "Não pode fornecer apoio."
   },
   {
     "id": "col-054",
@@ -1592,7 +1857,7 @@ export const CARDS_DATA = [
       "Tremere",
       "Neutre"
     ],
-    "ability": "À l'Attaque : Explode, Murder both cartes in the Conflit.",
+    "ability": "À l'Attaque : Explode, Murder both cartes in the Conflict.",
     "ability_en": "On Attack: Explode, Murder both cards in the Conflict.",
     "flavorText": "\"Tim Holdsworth - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Rare",
@@ -1605,7 +1870,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-054.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Tim_Holdsworth",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À l'Attaque : Explode, Murder both cartes in the Conflict.",
+    "ability_it": "All'Attacco: Explode, Murder both cartas in the Conflict.",
+    "ability_de": "Beim Angriff: Explode, Murder both Kartes in the Conflict.",
+    "ability_es": "Al Atacar: Explode, Murder both cartas in the Conflict.",
+    "ability_pt": "Ao Atacar: Explode, Murder both cartas in the Conflict."
   },
   {
     "id": "col-055",
@@ -1621,7 +1891,7 @@ export const CARDS_DATA = [
       "Violent",
       "Brujah"
     ],
-    "ability": "À la Révélation : Move to an ennemi carte connectée.",
+    "ability": "À la Révélation : Move to an ennemi connected carte.",
     "ability_en": "On Reveal: Move to an enemy connected card.",
     "flavorText": "\"Jari - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Rare",
@@ -1634,7 +1904,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-055.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Jari",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "À la Révélation : Move to an ennemi connected carte.",
+    "ability_it": "Alla Rivelazione: Move to an nemico connected carta.",
+    "ability_de": "Beim Aufdecken: Move to an Gegner connected Karte.",
+    "ability_es": "Al Revelar: Move to an enemigo connected carta.",
+    "ability_pt": "Ao Revelar: Move to an inimigo connected carta."
   },
   {
     "id": "col-056",
@@ -1664,7 +1939,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-056.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Cathy_Carmine",
-    "archetype_en": "Beast, Violent"
+    "archetype_en": "Beast, Violent",
+    "ability_fr": "After this wins a Conflit: Gagne +4 Puissance.",
+    "ability_it": "After this wins a Conflict: Ottieni +4 Potere.",
+    "ability_de": "After this wins a Conflict: Erhalte +4 Macht.",
+    "ability_es": "After this wins a Conflict: Gana +4 de Poder.",
+    "ability_pt": "After this wins a Conflict: Ganhe +4 de Poder."
   },
   {
     "id": "col-057",
@@ -1681,7 +1961,7 @@ export const CARDS_DATA = [
       "Hecata",
       "Violent"
     ],
-    "ability": "When this would win a Conflit: Steal all Puissance from la carte ennemie, then Murder it.",
+    "ability": "When this would win a Conflict: Steal all Puissance from the carte ennemie, then Murder it.",
     "ability_en": "When this would win a Conflict: Steal all Power from the enemy card, then Murder it.",
     "flavorText": "\"Ophelia - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Rare",
@@ -1694,7 +1974,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-057.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Ophelia",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "When this would win a Conflict: Steal all Puissance from the carte ennemie, then Murder it.",
+    "ability_it": "When this would win a Conflict: Steal all Potere from the carta nemica, then Murder it.",
+    "ability_de": "When this would win a Conflict: Steal all Macht from the gegnerische Karte, then Murder it.",
+    "ability_es": "When this would win a Conflict: Steal all de Poder from the carta enemiga, then Murder it.",
+    "ability_pt": "When this would win a Conflict: Steal all de Poder from the carta inimiga, then Murder it."
   },
   {
     "id": "col-058",
@@ -1711,7 +1996,7 @@ export const CARDS_DATA = [
       "Toreador",
       "Neutre"
     ],
-    "ability": "Lorsque cette carte gagne un Conflit : Séduit la carte ennemie et l'ajoute à votre main.",
+    "ability": "When this would win a Conflict: Seduce the carte ennemie into your hand.",
     "ability_en": "When this would win a Conflict: Seduce the enemy card into your hand.",
     "flavorText": "\"Eliza Iyer - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Rare",
@@ -1724,7 +2009,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-058.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Eliza_Iyer",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When this would win a Conflict: Seduce the carte ennemie into your hand.",
+    "ability_it": "When this would win a Conflict: Seduce the carta nemica into your hand.",
+    "ability_de": "When this would win a Conflict: Seduce the gegnerische Karte into your hand.",
+    "ability_es": "When this would win a Conflict: Seduce the carta enemiga into your hand.",
+    "ability_pt": "When this would win a Conflict: Seduce the carta inimiga into your hand."
   },
   {
     "id": "col-059",
@@ -1741,7 +2031,7 @@ export const CARDS_DATA = [
       "Gangrel",
       "Beast"
     ],
-    "ability": "When this defeats an ennemi Pion: Summon the Huntsman (Bête) in the espace du Prince. (This can replace your Prince)",
+    "ability": "When this defeats an ennemi Pion: Summon the Huntsman (Bête) in the espace du Prince. (This can replace votre Prince)",
     "ability_en": "When this defeats an enemy Pawn: Summon the Huntsman (Beast) in the Prince space. (This can replace your Prince)",
     "flavorText": "\"Herald of the Hunt - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Rare",
@@ -1754,7 +2044,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-059.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Herald_of_the_Hunt&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Beast"
+    "archetype_en": "Beast",
+    "ability_fr": "When this defeats an ennemi Pion: Summon the Huntsman (Bête) in the espace du Prince. (This can replace votre Prince)",
+    "ability_it": "When this defeats an nemico Pedone: Summon the Huntsman (Beast) in the Principe space. (This can replace your Principe)",
+    "ability_de": "When this defeats an Gegner Bauer: Summon the Huntsman (Beast) in the Prinz space. (This can replace your Prinz)",
+    "ability_es": "When this defeats an enemigo Peón: Summon the Huntsman (Beast) in the Príncipe space. (This can replace your Príncipe)",
+    "ability_pt": "When this defeats an inimigo Peão: Summon the Huntsman (Beast) in the Príncipe space. (This can replace your Príncipe)"
   },
   {
     "id": "col-060",
@@ -1784,7 +2079,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-060.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Branwen_White&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Ajoute deux Monstruosités Gangrel (Bêtes) à votre main.",
+    "ability_it": "Alla Rivelazione: Add two Gangrel Monstrosities (Beasts) to your hand.",
+    "ability_de": "Beim Aufdecken: Add two Gangrel Monstrosities (Beasts) to your hand.",
+    "ability_es": "Al Revelar: Add two Gangrel Monstrosities (Beasts) to your hand.",
+    "ability_pt": "Ao Revelar: Add two Gangrel Monstrosities (Beasts) to your hand."
   },
   {
     "id": "col-061",
@@ -1801,7 +2101,7 @@ export const CARDS_DATA = [
       "Gangrel",
       "Beast"
     ],
-    "ability": "Tant qu'en jeu : This has +1 Puissance pour chaque of your other cartes en jeu.",
+    "ability": "Tant qu'en jeu : This a +1 Puissance pour chaque of your other cartes en jeu.",
     "ability_en": "While in Play: This has +1 Power for each of your other cards in play.",
     "flavorText": "\"Bloodcaller's Pack - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Rare",
@@ -1814,7 +2114,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-061.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Bloodcallers_Pack",
-    "archetype_en": "Beast"
+    "archetype_en": "Beast",
+    "ability_fr": "Tant qu'en jeu : This a +1 Puissance pour chaque of your other cartes en jeu.",
+    "ability_it": "Mentre è in Gioco: This ha +1 Potere per ogni of your other cartas in gioco.",
+    "ability_de": "Solange im Spiel: This hat +1 Macht für jeden of your other Kartes im Spiel.",
+    "ability_es": "Mientras esté en Juego: This tiene +1 de Poder por cada of your other cartas en juego.",
+    "ability_pt": "Enquanto em Jogo: This tem +1 de Poder para cada of your other cartas em jogo."
   },
   {
     "id": "col-062",
@@ -1830,7 +2135,7 @@ export const CARDS_DATA = [
       "Violent",
       "Brujah"
     ],
-    "ability": "After this wins a Conflit: Confère +3 Puissance to your cartes behind this.",
+    "ability": "After this wins a Conflict: Donne +3 Puissance to your cartes behind this.",
     "ability_en": "After this wins a Conflict: Give +3 Power to your cards behind this.",
     "flavorText": "\"Łukasz Baran - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Épique",
@@ -1843,7 +2148,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-062.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lukasz_Baran&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "After this wins a Conflict: Donne +3 Puissance to your cartes behind this.",
+    "ability_it": "After this wins a Conflict: Dai +3 Potere to your cartas behind this.",
+    "ability_de": "After this wins a Conflict: Gib +3 Macht to your Kartes behind this.",
+    "ability_es": "After this wins a Conflict: Otorga +3 de Poder to your cartas behind this.",
+    "ability_pt": "After this wins a Conflict: Conceda +3 de Poder to your cartas behind this."
   },
   {
     "id": "col-063",
@@ -1873,7 +2183,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-063.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Ms_Harriot",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "À la Révélation : Create a Street Dog (Bête) on an ennemi Pion.",
+    "ability_it": "Alla Rivelazione: Create a Street Dog (Beast) on an nemico Pedone.",
+    "ability_de": "Beim Aufdecken: Create a Street Dog (Beast) on an Gegner Bauer.",
+    "ability_es": "Al Revelar: Create a Street Dog (Beast) on an enemigo Peón.",
+    "ability_pt": "Ao Revelar: Create a Street Dog (Beast) on an inimigo Peão."
   },
   {
     "id": "col-064",
@@ -1903,7 +2218,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-064.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Aurelius",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "When this would lose a Conflit: Demote this instead. (more backwards into an espace vide)",
+    "ability_it": "When this would lose a Conflict: Demote this instead. (more backwards into an spazio vuoto)",
+    "ability_de": "When this would lose a Conflict: Demote this instead. (more backwards into an leeres Feld)",
+    "ability_es": "When this would lose a Conflict: Demote this instead. (more backwards into an espacio vacío)",
+    "ability_pt": "When this would lose a Conflict: Demote this instead. (more backwards into an espaço vazio)"
   },
   {
     "id": "col-065",
@@ -1919,7 +2239,7 @@ export const CARDS_DATA = [
       "Violent",
       "Brujah"
     ],
-    "ability": "À l'Attaque : Gagne +10 Puissance. On Defend: Suffer -10 Puissance.",
+    "ability": "À l'Attaque : Gagne +10 Puissance. On Defend: Subit -10 Puissance.",
     "ability_en": "On Attack: Gain +10 Power. On Defend: Suffer -10 Power.",
     "flavorText": "\"Nafula Juma - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Épique",
@@ -1932,7 +2252,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-065.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Nafula_Juma",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "À l'Attaque : Gagne +10 Puissance. On Defend: Subit -10 Puissance.",
+    "ability_it": "All'Attacco: Ottieni +10 Potere. On Defend: Suffer -10 Potere.",
+    "ability_de": "Beim Angriff: Erhalte +10 Macht. On Defend: Suffer -10 Macht.",
+    "ability_es": "Al Atacar: Gana +10 de Poder. On Defend: Suffer -10 de Poder.",
+    "ability_pt": "Ao Atacar: Ganhe +10 de Poder. On Defend: Suffer -10 de Poder."
   },
   {
     "id": "col-066",
@@ -1949,7 +2274,7 @@ export const CARDS_DATA = [
       "Toreador",
       "Neutre"
     ],
-    "ability": "Lorsque cette carte gagne un Conflit : Séduit la carte ennemie et l'ajoute à votre main.",
+    "ability": "When this would win a Conflict: Seduce the carte ennemie into your hand.",
     "ability_en": "When this would win a Conflict: Seduce the enemy card into your hand.",
     "flavorText": "\"Damon - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Épique",
@@ -1962,7 +2287,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-066.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Damon",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When this would win a Conflict: Seduce the carte ennemie into your hand.",
+    "ability_it": "When this would win a Conflict: Seduce the carta nemica into your hand.",
+    "ability_de": "When this would win a Conflict: Seduce the gegnerische Karte into your hand.",
+    "ability_es": "When this would win a Conflict: Seduce the carta enemiga into your hand.",
+    "ability_pt": "When this would win a Conflict: Seduce the carta inimiga into your hand."
   },
   {
     "id": "col-067",
@@ -1979,7 +2309,7 @@ export const CARDS_DATA = [
       "Tremere",
       "Sorcerer"
     ],
-    "ability": "À l'Attaque : If you are losing the game, Murder la carte ennemie.",
+    "ability": "À l'Attaque : If you are losing the game, Murder the carte ennemie.",
     "ability_en": "On Attack: If you are losing the game, Murder the enemy card.",
     "flavorText": "\"Aylin - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Épique",
@@ -1992,7 +2322,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-067.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Aylin",
-    "archetype_en": "Sorcerer"
+    "archetype_en": "Sorcerer",
+    "ability_fr": "À l'Attaque : If you are losing the game, Murder the carte ennemie.",
+    "ability_it": "All'Attacco: If you are losing the game, Murder the carta nemica.",
+    "ability_de": "Beim Angriff: If you are losing the game, Murder the gegnerische Karte.",
+    "ability_es": "Al Atacar: If you are losing the game, Murder the carta enemiga.",
+    "ability_pt": "Ao Atacar: If you are losing the game, Murder the carta inimiga."
   },
   {
     "id": "col-068",
@@ -2008,7 +2343,7 @@ export const CARDS_DATA = [
       "Violent",
       "Brujah"
     ],
-    "ability": "Before this wins a Conflit: Score Points equal to la carte ennemie's Puissance.",
+    "ability": "Before this wins a Conflict: Score Points equal to the carte ennemie's Puissance.",
     "ability_en": "Before this wins a Conflict: Score Points equal to the enemy card's Power.",
     "flavorText": "\"Leo Stein - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Épique",
@@ -2021,7 +2356,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-068.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Leo_Stein&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "Before this wins a Conflict: Score Points equal to the carte ennemie's Puissance.",
+    "ability_it": "Before this wins a Conflict: Score Punti equal to the carta nemica's Potere.",
+    "ability_de": "Before this wins a Conflict: Score Punkte equal to the gegnerische Karte's Macht.",
+    "ability_es": "Before this wins a Conflict: Score Puntos equal to the carta enemiga's de Poder.",
+    "ability_pt": "Before this wins a Conflict: Score Pontos equal to the carta inimiga's de Poder."
   },
   {
     "id": "col-069",
@@ -2038,7 +2378,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Elitist"
     ],
-    "ability": "Cannot give Support. Cannot lose Puissance.",
+    "ability": "Ne peut pas donner de soutien. Ne peut pas perdre de Puissance.",
     "ability_en": "Cannot give Support. Cannot lose Power.",
     "flavorText": "\"Lord Colville - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Légendaire",
@@ -2051,7 +2391,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-069.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Lord_Colville",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "Ne peut pas donner de soutien. Ne peut pas perdre de Puissance.",
+    "ability_it": "Non può fornire supporto. Non può perdere Potere.",
+    "ability_de": "Kann keine Unterstützung gewähren. Kann keine Macht verlieren.",
+    "ability_es": "No puede dar apoyo. No puede perder Poder.",
+    "ability_pt": "Não pode fornecer apoio. Não pode perder Poder."
   },
   {
     "id": "col-070",
@@ -2067,7 +2412,7 @@ export const CARDS_DATA = [
       "Violent",
       "Brujah"
     ],
-    "ability": "After this wins a Conflit: Move to an ennemi carte connectée.",
+    "ability": "After this wins a Conflict: Move to an ennemi connected carte.",
     "ability_en": "After this wins a Conflict: Move to an enemy connected card.",
     "flavorText": "\"Marissa the Butcher - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Légendaire",
@@ -2080,7 +2425,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-070.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Marissa_the_Butcher",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "After this wins a Conflict: Move to an ennemi connected carte.",
+    "ability_it": "After this wins a Conflict: Move to an nemico connected carta.",
+    "ability_de": "After this wins a Conflict: Move to an Gegner connected Karte.",
+    "ability_es": "After this wins a Conflict: Move to an enemigo connected carta.",
+    "ability_pt": "After this wins a Conflict: Move to an inimigo connected carta."
   },
   {
     "id": "col-071",
@@ -2110,7 +2460,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-071.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:The_Bloodcaller",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Gagne +2 Puissance pour chaque of your Bêtes en jeu.",
+    "ability_it": "Alla Rivelazione: Ottieni +2 Potere per ogni of your Beasts in gioco.",
+    "ability_de": "Beim Aufdecken: Erhalte +2 Macht für jeden of your Beasts im Spiel.",
+    "ability_es": "Al Revelar: Gana +2 de Poder por cada of your Beasts en juego.",
+    "ability_pt": "Ao Revelar: Ganhe +2 de Poder para cada of your Beasts em jogo."
   },
   {
     "id": "col-072",
@@ -2127,7 +2482,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Elitist"
     ],
-    "ability": "Cannot be murdered. Fin de Manche : If Prince, score 1 Point pour chaque of your other Élitiste cartes.",
+    "ability": "Cannot be murdered. Fin de Manche : If Prince, score 1 Point pour chaque of your other Elitist cartes.",
     "ability_en": "Cannot be murdered. End of Round: If Prince, score 1 Point for each of your other Elitist cards.",
     "flavorText": "\"Sir Kingston - Carte officielle Vampire: The Masquerade – Clans of London (Série 1).\"",
     "rarity": "Légendaire",
@@ -2140,7 +2495,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-072.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sir_Kingston",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "Cannot be murdered. Fin de Manche : If Prince, score 1 Point pour chaque of your other Elitist cartes.",
+    "ability_it": "Cannot be murdered. Fine del Turno: If Principe, score 1 Point per ogni of your other Elitist cartas.",
+    "ability_de": "Cannot be murdered. Rundenende: If Prinz, score 1 Point für jeden of your other Elitist Kartes.",
+    "ability_es": "Cannot be murdered. Fin de Ronda: If Príncipe, score 1 Point por cada of your other Elitist cartas.",
+    "ability_pt": "Cannot be murdered. Fim da Rodada: If Príncipe, score 1 Point para cada of your other Elitist cartas."
   },
   {
     "id": "col-073",
@@ -2155,7 +2515,7 @@ export const CARDS_DATA = [
     "keywords": [
       "Neutre"
     ],
-    "ability": "After you reveal your next carte, donate all this carte's Puissance to it.",
+    "ability": "After you reveal your next carte, donate all this carte's puissance to it.",
     "ability_en": "After you reveal your next card, donate all this card's power to it.",
     "flavorText": "\"Theo Conti - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Commune",
@@ -2168,7 +2528,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-073.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Theo_Conti",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "After you reveal your next carte, donate all this carte's puissance to it.",
+    "ability_it": "After you reveal your next carta, donate all this carta's potere to it.",
+    "ability_de": "After you reveal your next Karte, donate all this Karte's Macht to it.",
+    "ability_es": "After you reveal your next carta, donate all this carta's de poder to it.",
+    "ability_pt": "After you reveal your next carta, donate all this carta's de poder to it."
   },
   {
     "id": "col-074",
@@ -2196,7 +2561,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-074.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Breakfast",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Mort : Create a Mindless Corpse here.",
+    "ability_it": "When Murdered: Create a Mindless Corpse here.",
+    "ability_de": "When Murdered: Create a Mindless Corpse here.",
+    "ability_es": "When Murdered: Create a Mindless Corpse here.",
+    "ability_pt": "When Murdered: Create a Mindless Corpse here."
   },
   {
     "id": "col-075",
@@ -2212,7 +2582,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Hecata"
     ],
-    "ability": "À la Mort : Confère +2 Puissance à toutes vos cartes connectées.",
+    "ability": "When Murdered: Donne +2 Puissance to your connected cartes.",
     "ability_en": "When Murdered: Give +2 Power to your connected cards.",
     "flavorText": "\"Carlo Galli - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Commune",
@@ -2225,7 +2595,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-075.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Carlo_Galli&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When Murdered: Donne +2 Puissance to your connected cartes.",
+    "ability_it": "When Murdered: Dai +2 Potere to your connected cartas.",
+    "ability_de": "When Murdered: Gib +2 Macht to your connected Kartes.",
+    "ability_es": "When Murdered: Otorga +2 de Poder to your connected cartas.",
+    "ability_pt": "When Murdered: Conceda +2 de Poder to your connected cartas."
   },
   {
     "id": "col-076",
@@ -2254,7 +2629,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-076.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Gillian_Sardar&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Acolyte"
+    "archetype_en": "Acolyte",
+    "ability_fr": "À la Révélation : Ajoute un Acolyte Mortel à votre main.",
+    "ability_it": "Alla Rivelazione: Add a Mortal Acolyte to your hand.",
+    "ability_de": "Beim Aufdecken: Add a Mortal Acolyte to your hand.",
+    "ability_es": "Al Revelar: Add a Mortal Acolyte to your hand.",
+    "ability_pt": "Ao Revelar: Add a Mortal Acolyte to your hand."
   },
   {
     "id": "col-077",
@@ -2283,7 +2663,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-077.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Rat_Collector&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Start of game: Transform into a Rat (Bête) and add a Rat (Bête) to your deck.",
+    "ability_it": "Start of game: Transform into a Rat (Beast) and add a Rat (Beast) to your deck.",
+    "ability_de": "Start of game: Transform into a Rat (Beast) and add a Rat (Beast) to your deck.",
+    "ability_es": "Start of game: Transform into a Rat (Beast) and add a Rat (Beast) to your deck.",
+    "ability_pt": "Start of game: Transform into a Rat (Beast) and add a Rat (Beast) to your deck."
   },
   {
     "id": "col-078",
@@ -2312,7 +2697,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-078.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Wendy_Hill&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When another carte is Murdered: Gagne +2 Puissance.",
+    "ability_it": "When another carta is Murdered: Ottieni +2 Potere.",
+    "ability_de": "When another Karte is Murdered: Erhalte +2 Macht.",
+    "ability_es": "When another carta is Murdered: Gana +2 de Poder.",
+    "ability_pt": "When another carta is Murdered: Ganhe +2 de Poder."
   },
   {
     "id": "col-079",
@@ -2328,7 +2718,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Hecata"
     ],
-    "ability": "Next time another carte is Murdered: Create a Mindless Corpse in an vide or ennemi espace du Prince.",
+    "ability": "Next time another carte is Murdered: Create a Mindless Corpse in an empty or ennemi Prince space.",
     "ability_en": "Next time another card is Murdered: Create a Mindless Corpse in an empty or enemy Prince space.",
     "flavorText": "\"Sheloa - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Commune",
@@ -2341,7 +2731,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-079.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sheloa",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Next time another carte is Murdered: Create a Mindless Corpse in an empty or ennemi Prince space.",
+    "ability_it": "Next time another carta is Murdered: Create a Mindless Corpse in an empty or nemico Principe space.",
+    "ability_de": "Next time another Karte is Murdered: Create a Mindless Corpse in an empty or Gegner Prinz space.",
+    "ability_es": "Next time another carta is Murdered: Create a Mindless Corpse in an empty or enemigo Príncipe space.",
+    "ability_pt": "Next time another carta is Murdered: Create a Mindless Corpse in an empty or inimigo Príncipe space."
   },
   {
     "id": "col-080",
@@ -2370,7 +2765,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-080.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sadako_Asano",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When another carte is Murdered: Score 1 Point.",
+    "ability_it": "When another carta is Murdered: Score 1 Point.",
+    "ability_de": "When another Karte is Murdered: Score 1 Point.",
+    "ability_es": "When another carta is Murdered: Score 1 Point.",
+    "ability_pt": "When another carta is Murdered: Score 1 Point."
   },
   {
     "id": "col-081",
@@ -2386,7 +2786,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Hecata"
     ],
-    "ability": "When one of your cartes loses a Conflit: Murder it.",
+    "ability": "When one of your cartes loses a conflict: Murder it.",
     "ability_en": "When one of your cards loses a conflict: Murder it.",
     "flavorText": "\"Toru Asano - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Commune",
@@ -2399,7 +2799,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-081.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Toru_Asano",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When one of your cartes loses a conflict: Murder it.",
+    "ability_it": "When one of your cartas loses a conflict: Murder it.",
+    "ability_de": "When one of your Kartes loses a conflict: Murder it.",
+    "ability_es": "When one of your cartas loses a conflict: Murder it.",
+    "ability_pt": "When one of your cartas loses a conflict: Murder it."
   },
   {
     "id": "col-082",
@@ -2427,7 +2832,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-082.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Marco&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Mort : Confère +2 Puissance to all your Pions.",
+    "ability_it": "When Murdered: Dai +2 Potere to all your Pedones.",
+    "ability_de": "When Murdered: Gib +2 Macht to all your Bauers.",
+    "ability_es": "When Murdered: Otorga +2 de Poder to all your Peóns.",
+    "ability_pt": "When Murdered: Conceda +2 de Poder to all your Peãos."
   },
   {
     "id": "col-083",
@@ -2443,7 +2853,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Hecata"
     ],
-    "ability": "À la Révélation : Assassine une de vos cartes connectées.",
+    "ability": "À la Révélation : Murder one of your connected cartes.",
     "ability_en": "On Reveal: Murder one of your connected cards.",
     "flavorText": "\"Maria Puttanesca - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Rare",
@@ -2456,7 +2866,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-083.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Maria_Puttanesca",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Murder one of your connected cartes.",
+    "ability_it": "Alla Rivelazione: Murder one of your connected cartas.",
+    "ability_de": "Beim Aufdecken: Murder one of your connected Kartes.",
+    "ability_es": "Al Revelar: Murder one of your connected cartas.",
+    "ability_pt": "Ao Revelar: Murder one of your connected cartas."
   },
   {
     "id": "col-084",
@@ -2472,7 +2887,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Hecata"
     ],
-    "ability": "Lorsqu'une carte est Assassinée : Ajoute un Homme de Main (Violent) à votre main.",
+    "ability": "When a Card is Murdered: Add a Mobster (Violent) to your hand.",
     "ability_en": "When a Card is Murdered: Add a Mobster (Violent) to your hand.",
     "flavorText": "\"Caesar Cornello - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Rare",
@@ -2485,7 +2900,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-084.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Caesar_Cornello",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When a Card is Murdered: Add a Mobster (Violent) to your hand.",
+    "ability_it": "When a Card is Murdered: Add a Mobster (Violent) to your hand.",
+    "ability_de": "When a Card is Murdered: Add a Mobster (Violent) to your hand.",
+    "ability_es": "When a Card is Murdered: Add a Mobster (Violent) to your hand.",
+    "ability_pt": "When a Card is Murdered: Add a Mobster (Violent) to your hand."
   },
   {
     "id": "col-085",
@@ -2502,7 +2922,7 @@ export const CARDS_DATA = [
       "Gangrel",
       "Beast"
     ],
-    "ability": "Move to the next ennemi carte that reveals (after On Reveal abilities.) Pendant l'Attaque : This has +5 Puissance.",
+    "ability": "Move to the next carte ennemie that reveals (after On Reveal abilities.) En Attaquant : This a +5 Puissance.",
     "ability_en": "Move to the next enemy card that reveals (after On Reveal abilities.) While Attacking: This has +5 Power.",
     "flavorText": "\"James the Bloodhound - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Rare",
@@ -2515,7 +2935,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-085.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:James_the_Bloodhound&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Beast"
+    "archetype_en": "Beast",
+    "ability_fr": "Move to the next carte ennemie that reveals (after On Reveal abilities.) En Attaquant : This a +5 Puissance.",
+    "ability_it": "Move to the next carta nemica that reveals (after On Reveal abilities.) Durante l'Attacco: This ha +5 Potere.",
+    "ability_de": "Move to the next gegnerische Karte that reveals (after On Reveal abilities.) Beim Angreifen: This hat +5 Macht.",
+    "ability_es": "Move to the next carta enemiga that reveals (after On Reveal abilities.) Al Atacar: This tiene +5 de Poder.",
+    "ability_pt": "Move to the next carta inimiga that reveals (after On Reveal abilities.) Ao Atacar: This tem +5 de Poder."
   },
   {
     "id": "col-086",
@@ -2532,7 +2957,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Elitist"
     ],
-    "ability": "Your cartes connectées cannot lose Puissance.",
+    "ability": "Your connected cartes cannot lose Puissance.",
     "ability_en": "Your connected cards cannot lose Power.",
     "flavorText": "\"Mr. Kaufmann - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Rare",
@@ -2545,7 +2970,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-086.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Mr_Kauffman&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "Your connected cartes cannot lose Puissance.",
+    "ability_it": "Your connected cartas cannot lose Potere.",
+    "ability_de": "Your connected Kartes cannot lose Macht.",
+    "ability_es": "Your connected cartas cannot lose de Poder.",
+    "ability_pt": "Your connected cartas cannot lose de Poder."
   },
   {
     "id": "col-087",
@@ -2561,7 +2991,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Gangrel"
     ],
-    "ability": "Tant qu'en jeu : Your Bêtes in main coûtent 1 de moins. (minimum 1)",
+    "ability": "While in Play: Your Beasts in hand cost 1 less. (minimum of 1)",
     "ability_en": "While in Play: Your Beasts in hand cost 1 less. (minimum of 1)",
     "flavorText": "\"Haji Wahyuni - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Rare",
@@ -2574,7 +3004,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-087.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Haji_Wahyuni&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "While in Play: Your Beasts in hand cost 1 less. (minimum of 1)",
+    "ability_it": "Mentre è in Gioco: Your Beasts in hand cost 1 less. (minimum of 1)",
+    "ability_de": "Solange im Spiel: Your Beasts in hand cost 1 less. (minimum of 1)",
+    "ability_es": "Mientras esté en Juego: Your Beasts in hand cost 1 less. (minimum of 1)",
+    "ability_pt": "Enquanto em Jogo: Your Beasts in hand cost 1 less. (minimum of 1)"
   },
   {
     "id": "col-088",
@@ -2603,7 +3038,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-088.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Brixton",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Can only be Cavalier, and requires no Support to play.",
+    "ability_it": "Can only be Cavaliere, and requires no Support to play.",
+    "ability_de": "Can only be Ritter, and requires no Support to play.",
+    "ability_es": "Can only be Caballero, and requires no Support to play.",
+    "ability_pt": "Can only be Cavaleiro, and requires no Support to play."
   },
   {
     "id": "col-089",
@@ -2632,7 +3072,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-089.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sylvia",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Fin de Manche : If this didn't Conflit or give Support in Conflit, Gagne +3 Puissance.",
+    "ability_it": "Fine del Turno: If this didn't Conflict or give Support in Conflict, ottieni +3 Potere.",
+    "ability_de": "Rundenende: If this didn't Conflict or give Support in Conflict, erhalte +3 Macht.",
+    "ability_es": "Fin de Ronda: If this didn't Conflict or give Support in Conflict, gana +3 de Poder.",
+    "ability_pt": "Fim da Rodada: If this didn't Conflict or give Support in Conflict, ganhe +3 de Poder."
   },
   {
     "id": "col-090",
@@ -2661,7 +3106,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-090.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Abraham&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Acolyte"
+    "archetype_en": "Acolyte",
+    "ability_fr": "Fin de Manche : Ajoute un Acolyte Mortel à votre main.",
+    "ability_it": "Fine del Turno: Add a Mortal Acolyte to your hand.",
+    "ability_de": "Rundenende: Add a Mortal Acolyte to your hand.",
+    "ability_es": "Fin de Ronda: Add a Mortal Acolyte to your hand.",
+    "ability_pt": "Fim da Rodada: Add a Mortal Acolyte to your hand."
   },
   {
     "id": "col-091",
@@ -2677,7 +3127,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Brujah"
     ],
-    "ability": "À l'Attaque : If la carte ennemie a été jouée ce tour, Demote it! (move backwards into an espace vide)",
+    "ability": "À l'Attaque : If the carte ennemie was played this turn, Demote it! (move backwards into an espace vide)",
     "ability_en": "On Attack: If the enemy card was played this turn, Demote it! (move backwards into an empty space)",
     "flavorText": "\"Travis Laurent - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Rare",
@@ -2690,7 +3140,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-091.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Travis_Laurent&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À l'Attaque : If the carte ennemie was played this turn, Demote it! (move backwards into an espace vide)",
+    "ability_it": "All'Attacco: If the carta nemica was played this turn, Demote it! (move backwards into an spazio vuoto)",
+    "ability_de": "Beim Angriff: If the gegnerische Karte was played this turn, Demote it! (move backwards into an leeres Feld)",
+    "ability_es": "Al Atacar: If the carta enemiga was played this turn, Demote it! (move backwards into an espacio vacío)",
+    "ability_pt": "Ao Atacar: If the carta inimiga was played this turn, Demote it! (move backwards into an espaço vazio)"
   },
   {
     "id": "col-092",
@@ -2719,7 +3174,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-092.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Madison_Wolfe&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À l'Attaque : Ajoute un Loup (Bête) à votre main.",
+    "ability_it": "All'Attacco: Add a Wolf (Beast) to your hand.",
+    "ability_de": "Beim Angriff: Add a Wolf (Beast) to your hand.",
+    "ability_es": "Al Atacar: Add a Wolf (Beast) to your hand.",
+    "ability_pt": "Ao Atacar: Add a Wolf (Beast) to your hand."
   },
   {
     "id": "col-093",
@@ -2734,7 +3194,7 @@ export const CARDS_DATA = [
     "keywords": [
       "Neutre"
     ],
-    "ability": "When this would win a Conflit: Murder la carte ennemie and return this to main with -1 Sang cost.",
+    "ability": "When this would win a Conflict: Murder the carte ennemie and return this to hand with -1 Sang cost.",
     "ability_en": "When this would win a Conflict: Murder the enemy card and return this to hand with -1 Blood cost.",
     "flavorText": "\"Asano Wraiths - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Rare",
@@ -2747,7 +3207,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-093.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Asano_Wraiths&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When this would win a Conflict: Murder the carte ennemie and return this to hand with -1 Sang cost.",
+    "ability_it": "When this would win a Conflict: Murder the carta nemica and return this to hand with -1 Sangue cost.",
+    "ability_de": "When this would win a Conflict: Murder the gegnerische Karte and return this to hand with -1 Blut cost.",
+    "ability_es": "When this would win a Conflict: Murder the carta enemiga and return this to hand with -1 Sangre cost.",
+    "ability_pt": "When this would win a Conflict: Murder the carta inimiga and return this to hand with -1 Sangue cost."
   },
   {
     "id": "col-094",
@@ -2763,7 +3228,7 @@ export const CARDS_DATA = [
       "Murder",
       "Hecata"
     ],
-    "ability": "When one of your cartes is Murdered: Move to an ennemi carte with less Puissance than this.",
+    "ability": "When one of your cartes is Murdered: Move to an carte ennemie with less Puissance than this.",
     "ability_en": "When one of your cards is Murdered: Move to an enemy card with less Power than this.",
     "flavorText": "\"Yomi - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Épique",
@@ -2776,7 +3241,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-094.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Yomi&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "When one of your cartes is Murdered: Move to an carte ennemie with less Puissance than this.",
+    "ability_it": "When one of your cartas is Murdered: Move to an carta nemica with less Potere than this.",
+    "ability_de": "When one of your Kartes is Murdered: Move to an gegnerische Karte with less Macht than this.",
+    "ability_es": "When one of your cartas is Murdered: Move to an carta enemiga with less de Poder than this.",
+    "ability_pt": "When one of your cartas is Murdered: Move to an carta inimiga with less de Poder than this."
   },
   {
     "id": "col-095",
@@ -2806,7 +3276,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-095.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Runa&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Sorcerer"
+    "archetype_en": "Sorcerer",
+    "ability_fr": "À la Révélation : Gagne +2 Puissance pour chaque of your Acolytes en jeu.",
+    "ability_it": "Alla Rivelazione: Ottieni +2 Potere per ogni of your Acolytes in gioco.",
+    "ability_de": "Beim Aufdecken: Erhalte +2 Macht für jeden of your Acolytes im Spiel.",
+    "ability_es": "Al Revelar: Gana +2 de Poder por cada of your Acolytes en juego.",
+    "ability_pt": "Ao Revelar: Ganhe +2 de Poder para cada of your Acolytes em jogo."
   },
   {
     "id": "col-096",
@@ -2822,7 +3297,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Brujah"
     ],
-    "ability": "Fin de Manche : Pull a connecté(e) ennemi carte onto this.",
+    "ability": "Fin de Manche : Pull a connected carte ennemie onto this.",
     "ability_en": "End of Round: Pull a connected enemy card onto this.",
     "flavorText": "\"Kieran Gulley - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Épique",
@@ -2835,7 +3310,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-096.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Kieran_Gulley&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Fin de Manche : Pull a connected carte ennemie onto this.",
+    "ability_it": "Fine del Turno: Pull a connected carta nemica onto this.",
+    "ability_de": "Rundenende: Pull a connected gegnerische Karte onto this.",
+    "ability_es": "Fin de Ronda: Pull a connected carta enemiga onto this.",
+    "ability_pt": "Fim da Rodada: Pull a connected carta inimiga onto this."
   },
   {
     "id": "col-097",
@@ -2852,7 +3332,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Elitist"
     ],
-    "ability": "À la Révélation : inflige -10 Puissance à your Prince.",
+    "ability": "À la Révélation : inflige -10 Puissance à votre Prince.",
     "ability_en": "On Reveal: Inflict -10 Power on your Prince.",
     "flavorText": "\"Ivy du Pont - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
     "rarity": "Épique",
@@ -2865,7 +3345,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-097.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Ivy_du_Pont&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "À la Révélation : inflige -10 Puissance à votre Prince.",
+    "ability_it": "Alla Rivelazione: Infligge -10 Potere on your Principe.",
+    "ability_de": "Beim Aufdecken: Füge -10 Macht on your Prinz.",
+    "ability_es": "Al Revelar: Inflige -10 de Poder on your Príncipe.",
+    "ability_pt": "Ao Revelar: Inflige -10 de Poder on your Príncipe."
   },
   {
     "id": "col-098",
@@ -2895,7 +3380,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-098.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Madame_Tessier&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Sorcerer"
+    "archetype_en": "Sorcerer",
+    "ability_fr": "À la Révélation : Marque 4 Points de Victoire pour chaque of your Acolytes en jeu.",
+    "ability_it": "Alla Rivelazione: Score 4 Punti per ogni of your Acolytes in gioco.",
+    "ability_de": "Beim Aufdecken: Score 4 Punkte für jeden of your Acolytes im Spiel.",
+    "ability_es": "Al Revelar: Score 4 Puntos por cada of your Acolytes en juego.",
+    "ability_pt": "Ao Revelar: Score 4 Pontos para cada of your Acolytes em jogo."
   },
   {
     "id": "col-099",
@@ -2911,7 +3401,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Gangrel"
     ],
-    "ability": "Transform the next carte you reveal into a Gangrel Monstrosity (Bête) (after On Reveal abilities).",
+    "ability": "Transform the next carte you reveal into a Gangrel Monstrosity (Beast) (after On Reveal abilities).",
     "ability_en": "Transform the next card you reveal into a Gangrel Monstrosity (Beast) (after On Reveal abilities).",
     "flavorText": "\"Dr. Ellis - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Commune",
@@ -2924,7 +3414,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-099.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Dr_Ellis&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Transform the next carte you reveal into a Gangrel Monstrosity (Beast) (after On Reveal abilities).",
+    "ability_it": "Transform the next carta you reveal into a Gangrel Monstrosity (Beast) (after On Reveal abilities).",
+    "ability_de": "Transform the next Karte you reveal into a Gangrel Monstrosity (Beast) (after On Reveal abilities).",
+    "ability_es": "Transform the next carta you reveal into a Gangrel Monstrosity (Beast) (after On Reveal abilities).",
+    "ability_pt": "Transform the next carta you reveal into a Gangrel Monstrosity (Beast) (after On Reveal abilities)."
   },
   {
     "id": "col-100",
@@ -2939,7 +3434,7 @@ export const CARDS_DATA = [
     "keywords": [
       "Neutre"
     ],
-    "ability": "The next Séduit carte you play costs 1 less and Gagne +2 Puissance.",
+    "ability": "The next Seduced carte you play costs 1 less and gains +2 Puissance.",
     "ability_en": "The next Seduced card you play costs 1 less and gains +2 Power.",
     "flavorText": "\"Benny Cox - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Commune",
@@ -2952,7 +3447,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-100.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Benny_Cox",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "The next Seduced carte you play costs 1 less and gains +2 Puissance.",
+    "ability_it": "The next Seduced carta you play costs 1 less and gains +2 Potere.",
+    "ability_de": "The next Seduced Karte you play costs 1 less and gains +2 Macht.",
+    "ability_es": "The next Seduced carta you play costs 1 less and gains +2 de Poder.",
+    "ability_pt": "The next Seduced carta you play costs 1 less and gains +2 de Poder."
   },
   {
     "id": "col-101",
@@ -2980,7 +3480,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-101.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Karl_Craven&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "If this would Conflit: Move to an vide espace connecté.",
+    "ability_it": "If this would Conflict: Move to an empty spazio collegato.",
+    "ability_de": "If this would Conflict: Move to an empty verbundenes Feld.",
+    "ability_es": "If this would Conflict: Move to an empty espacio conectado.",
+    "ability_pt": "If this would Conflict: Move to an empty espaço conectado."
   },
   {
     "id": "col-102",
@@ -3008,7 +3513,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-102.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Doomed_Debtor&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Fin de Manche : Murder self.",
+    "ability_it": "Fine del Turno: Murder self.",
+    "ability_de": "Rundenende: Murder self.",
+    "ability_es": "Fin de Ronda: Murder self.",
+    "ability_pt": "Fim da Rodada: Murder self."
   },
   {
     "id": "col-103",
@@ -3037,7 +3547,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-103.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Fiona_Millar&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Dicsard the top carte of your deck.",
+    "ability_it": "Alla Rivelazione: Dicsard the top carta of your deck.",
+    "ability_de": "Beim Aufdecken: Dicsard the top Karte of your deck.",
+    "ability_es": "Al Revelar: Dicsard the top carta of your deck.",
+    "ability_pt": "Ao Revelar: Dicsard the top carta of your deck."
   },
   {
     "id": "col-104",
@@ -3055,7 +3570,7 @@ export const CARDS_DATA = [
       "Beast"
     ],
     "ability": "Aucune capacité spéciale.",
-    "ability_en": "",
+    "ability_en": "No special ability.",
     "flavorText": "\"R.O.U.S. - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Commune",
     "notes": "Added during \"The Most Dangerous Game\" Season on July 16th, 2026.",
@@ -3067,7 +3582,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-104.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:ROUS&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Beast"
+    "archetype_en": "Beast",
+    "ability_fr": "Aucune capacité spéciale.",
+    "ability_it": "Nessuna abilità speciale.",
+    "ability_de": "Keine Spezialfähigkeit.",
+    "ability_es": "Sin habilidad especial.",
+    "ability_pt": "Nenhuma habilidade especial."
   },
   {
     "id": "col-105",
@@ -3097,7 +3617,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-105.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Vincent_Monroe&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "À la Révélation : Ajoute le Chef-d'œuvre de Vincent à votre main.",
+    "ability_it": "Alla Rivelazione: Add Vincent's Masterpiece to your hand.",
+    "ability_de": "Beim Aufdecken: Add Vincent's Masterpiece to your hand.",
+    "ability_es": "Al Revelar: Add Vincent's Masterpiece to your hand.",
+    "ability_pt": "Ao Revelar: Add Vincent's Masterpiece to your hand."
   },
   {
     "id": "col-106",
@@ -3113,7 +3638,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Malkavian"
     ],
-    "ability": "À la Révélation : Défausse la carte la plus à droite de votre main pour gagner +2 Puissance.",
+    "ability": "À la Révélation : Discarte the rightmost carte in your hand to gagne +2 Puissance.",
     "ability_en": "On Reveal: Discard the rightmost card in your hand to gain +2 Power.",
     "flavorText": "\"Rosaline Armitage - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Commune",
@@ -3126,7 +3651,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-106.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Rosaline_Armitage&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Discarte the rightmost carte in your hand to gagne +2 Puissance.",
+    "ability_it": "Alla Rivelazione: Discarta the rightmost carta in your hand to ottieni +2 Potere.",
+    "ability_de": "Beim Aufdecken: DisKarte the rightmost Karte in your hand to erhalte +2 Macht.",
+    "ability_es": "Al Revelar: Discarta the rightmost carta in your hand to gana +2 de Poder.",
+    "ability_pt": "Ao Revelar: Discarta the rightmost carta in your hand to ganhe +2 de Poder."
   },
   {
     "id": "col-107",
@@ -3143,7 +3673,7 @@ export const CARDS_DATA = [
       "Nosferatu",
       "Beast"
     ],
-    "ability": "À la Révélation : défausse your lowest cost carte and create a Rat in up to 2 vide spaces.",
+    "ability": "À la Révélation : Discarte your lowest cost carte and create a Rat in up to 2 espace vides.",
     "ability_en": "On Reveal: Discard your lowest cost card and create a Rat in up to 2 empty spaces.",
     "flavorText": "\"Rat-Eater - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Commune",
@@ -3156,7 +3686,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-107.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Rat-Eater&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Beast"
+    "archetype_en": "Beast",
+    "ability_fr": "À la Révélation : Discarte your lowest cost carte and create a Rat in up to 2 espace vides.",
+    "ability_it": "Alla Rivelazione: Discarta your lowest cost carta and create a Rat in up to 2 spazio vuotos.",
+    "ability_de": "Beim Aufdecken: DisKarte your lowest cost Karte and create a Rat in up to 2 leeres Felds.",
+    "ability_es": "Al Revelar: Discarta your lowest cost carta and create a Rat in up to 2 espacio vacíos.",
+    "ability_pt": "Ao Revelar: Discarta your lowest cost carta and create a Rat in up to 2 espaço vazios."
   },
   {
     "id": "col-108",
@@ -3172,7 +3707,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Brujah"
     ],
-    "ability": "Tant qu'en jeu : Your Cavaliers have +2 Puissance.",
+    "ability": "While in play: Your Knights ont +2 Puissance.",
     "ability_en": "While in play: Your Knights have +2 Power.",
     "flavorText": "\"Shauna Bench - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Commune",
@@ -3185,7 +3720,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-108.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Shauna_Bench&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "While in play: Your Knights ont +2 Puissance.",
+    "ability_it": "While in gioco: Your Cavalieres hanno +2 Potere.",
+    "ability_de": "While im Spiel: Your Ritters haben +2 Macht.",
+    "ability_es": "While en juego: Your Caballeros tienen +2 de Poder.",
+    "ability_pt": "While em jogo: Your Cavaleiros têm +2 de Poder."
   },
   {
     "id": "col-109",
@@ -3201,7 +3741,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Toreador"
     ],
-    "ability": "When an ennemi carte loses Puissance: Vole 1 Puissance à it (Once per round)",
+    "ability": "When an carte ennemie loses Puissance: Steal 1 Puissance from it (Once per round)",
     "ability_en": "When an enemy card loses Power: Steal 1 Power from it (Once per round)",
     "flavorText": "\"Isabel Segura - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Commune",
@@ -3214,7 +3754,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-109.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Isabel_Segura",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When an carte ennemie loses Puissance: Steal 1 Puissance from it (Once per round)",
+    "ability_it": "When an carta nemica loses Potere: Steal 1 Potere from it (Once per round)",
+    "ability_de": "When an gegnerische Karte loses Macht: Steal 1 Macht from it (Once per round)",
+    "ability_es": "When an carta enemiga loses de Poder: Steal 1 de Poder from it (Once per round)",
+    "ability_pt": "When an carta inimiga loses de Poder: Steal 1 de Poder from it (Once per round)"
   },
   {
     "id": "col-110",
@@ -3243,7 +3788,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-110.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Luca_the_Grim&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Mort : Murder an ennemi Pion.",
+    "ability_it": "When Murdered: Murder an nemico Pedone.",
+    "ability_de": "When Murdered: Murder an Gegner Bauer.",
+    "ability_es": "When Murdered: Murder an enemigo Peón.",
+    "ability_pt": "When Murdered: Murder an inimigo Peão."
   },
   {
     "id": "col-111",
@@ -3272,7 +3822,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-111.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Jacob_Toolbox&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Ajoute Matome « Defib » et Zandile « Landmine » à votre main.",
+    "ability_it": "Alla Rivelazione: Add Matome \"Defib\" and Zandile \"Landmine\" to your hand.",
+    "ability_de": "Beim Aufdecken: Add Matome \"Defib\" and Zandile \"Landmine\" to your hand.",
+    "ability_es": "Al Revelar: Add Matome \"Defib\" and Zandile \"Landmine\" to your hand.",
+    "ability_pt": "Ao Revelar: Add Matome \"Defib\" and Zandile \"Landmine\" to your hand."
   },
   {
     "id": "col-112",
@@ -3300,7 +3855,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-112.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Mark_Hooke&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Create a Mortel Acolyte in one of your vide Pion spaces.",
+    "ability_it": "Alla Rivelazione: Create a Mortal Acolyte in one of your empty Pedone spaces.",
+    "ability_de": "Beim Aufdecken: Create a Mortal Acolyte in one of your empty Bauer spaces.",
+    "ability_es": "Al Revelar: Create a Mortal Acolyte in one of your empty Peón spaces.",
+    "ability_pt": "Ao Revelar: Create a Mortal Acolyte in one of your empty Peão spaces."
   },
   {
     "id": "col-113",
@@ -3316,7 +3876,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Brujah"
     ],
-    "ability": "À la Révélation : Confère +2 Puissance to all Violent cartes you played ce tour. (Including unrevealed ones)",
+    "ability": "À la Révélation : Donne +2 Puissance to all Violent cartes you played this turn. (Including unrevealed ones)",
     "ability_en": "On Reveal: Give +2 Power to all Violent cards you played this turn. (Including unrevealed ones)",
     "flavorText": "\"Robby Jackson - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Commune",
@@ -3329,7 +3889,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-113.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Robby_Jackson&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Donne +2 Puissance to all Violent cartes you played this turn. (Including unrevealed ones)",
+    "ability_it": "Alla Rivelazione: Dai +2 Potere to all Violent cartas you played this turn. (Including unrevealed ones)",
+    "ability_de": "Beim Aufdecken: Gib +2 Macht to all Violent Kartes you played this turn. (Including unrevealed ones)",
+    "ability_es": "Al Revelar: Otorga +2 de Poder to all Violent cartas you played this turn. (Including unrevealed ones)",
+    "ability_pt": "Ao Revelar: Conceda +2 de Poder to all Violent cartas you played this turn. (Including unrevealed ones)"
   },
   {
     "id": "col-114",
@@ -3345,7 +3910,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Malkavian"
     ],
-    "ability": "Fin de Manche : inflige -2 Puissance à a random carte.",
+    "ability": "Fin de Manche : Inflige -2 Puissance on a random carte.",
     "ability_en": "End of Round: Inflict -2 Power on a random card.",
     "flavorText": "\"Jacqueline - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Commune",
@@ -3358,7 +3923,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-114.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Jacqueline&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Fin de Manche : Inflige -2 Puissance on a random carte.",
+    "ability_it": "Fine del Turno: Infligge -2 Potere on a random carta.",
+    "ability_de": "Rundenende: Füge -2 Macht on a random Karte.",
+    "ability_es": "Fin de Ronda: Inflige -2 de Poder on a random carta.",
+    "ability_pt": "Fim da Rodada: Inflige -2 de Poder on a random carta."
   },
   {
     "id": "col-115",
@@ -3387,7 +3957,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-115.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Natalya_Volkova&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Vampire, Mortal"
+    "archetype_en": "Vampire, Mortal",
+    "ability_fr": "When you reveal a Mortel: Add a random Ingredient to main.",
+    "ability_it": "When you reveal a Mortal: Add a random Ingredient to hand.",
+    "ability_de": "When you reveal a Mortal: Add a random Ingredient to hand.",
+    "ability_es": "When you reveal a Mortal: Add a random Ingredient to hand.",
+    "ability_pt": "When you reveal a Mortal: Add a random Ingredient to hand."
   },
   {
     "id": "col-116",
@@ -3416,7 +3991,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-116.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Jax_Cook&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Vampire, Mortal"
+    "archetype_en": "Vampire, Mortal",
+    "ability_fr": "When you trigger an Ingredient ability: Marque 2 Points de Victoire.",
+    "ability_it": "When you trigger an Ingredient ability: Score 2 Punti.",
+    "ability_de": "When you trigger an Ingredient ability: Score 2 Punkte.",
+    "ability_es": "When you trigger an Ingredient ability: Score 2 Puntos.",
+    "ability_pt": "When you trigger an Ingredient ability: Score 2 Pontos."
   },
   {
     "id": "col-117",
@@ -3446,7 +4026,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-117.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Huang_Jin&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "À la Révélation : Create a Goule in one of your vide Pion spaces.",
+    "ability_it": "Alla Rivelazione: Create a Ghoul in one of your empty Pedone spaces.",
+    "ability_de": "Beim Aufdecken: Create a Ghoul in one of your empty Bauer spaces.",
+    "ability_es": "Al Revelar: Create a Ghoul in one of your empty Peón spaces.",
+    "ability_pt": "Ao Revelar: Create a Ghoul in one of your empty Peão spaces."
   },
   {
     "id": "col-118",
@@ -3475,7 +4060,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-118.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Missy_Mythos&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "À la Défausse : Add 2 Illusion copies that cost 1 to main.",
+    "ability_it": "When Discartaed: Add 2 Illusion copies that cost 1 to hand.",
+    "ability_de": "When DisKarteed: Add 2 Illusion copies that cost 1 to hand.",
+    "ability_es": "When Discartaed: Add 2 Illusion copies that cost 1 to hand.",
+    "ability_pt": "When Discartaed: Add 2 Illusion copies that cost 1 to hand."
   },
   {
     "id": "col-119",
@@ -3491,7 +4081,7 @@ export const CARDS_DATA = [
       "Delusion",
       "Malkavian"
     ],
-    "ability": "À la Révélation : Vole 1 Puissance à chaque carte de coût impair dans votre main, puis défaussez-les.",
+    "ability": "À la Révélation : Steal 1 Puissance from all odd cost cartes in your hand, then Discarte them.",
     "ability_en": "On Reveal: Steal 1 Power from all odd cost cards in your hand, then Discard them.",
     "flavorText": "\"\"Salvo\" Calvo - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -3504,7 +4094,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-119.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Salvo_Calvo&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "À la Révélation : Steal 1 Puissance from all odd cost cartes in your hand, then Discarte them.",
+    "ability_it": "Alla Rivelazione: Steal 1 Potere from all odd cost cartas in your hand, then Discarta them.",
+    "ability_de": "Beim Aufdecken: Steal 1 Macht from all odd cost Kartes in your hand, then DisKarte them.",
+    "ability_es": "Al Revelar: Steal 1 de Poder from all odd cost cartas in your hand, then Discarta them.",
+    "ability_pt": "Ao Revelar: Steal 1 de Poder from all odd cost cartas in your hand, then Discarta them."
   },
   {
     "id": "col-120",
@@ -3521,7 +4116,7 @@ export const CARDS_DATA = [
       "Tremere",
       "Sorcerer"
     ],
-    "ability": "Tant qu'en jeu : cartes connectées cannot be Murdered.",
+    "ability": "Tant qu'en jeu : Connected cartes cannot be Murdered.",
     "ability_en": "While in Play: Connected cards cannot be Murdered.",
     "flavorText": "\"Maeve - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -3534,7 +4129,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-120.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Maeve&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Sorcerer"
+    "archetype_en": "Sorcerer",
+    "ability_fr": "Tant qu'en jeu : Connected cartes cannot be Murdered.",
+    "ability_it": "Mentre è in Gioco: Connected cartas cannot be Murdered.",
+    "ability_de": "Solange im Spiel: Connected Kartes cannot be Murdered.",
+    "ability_es": "Mientras esté en Juego: Connected cartas cannot be Murdered.",
+    "ability_pt": "Enquanto em Jogo: Connected cartas cannot be Murdered."
   },
   {
     "id": "col-121",
@@ -3564,7 +4164,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-121.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Murat_Kazan&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Sorcerer"
+    "archetype_en": "Sorcerer",
+    "ability_fr": "When an Acolyte is murdered: Marque 2 Points de Victoire.",
+    "ability_it": "When an Acolyte is murdered: Score 2 Punti.",
+    "ability_de": "When an Acolyte is murdered: Score 2 Punkte.",
+    "ability_es": "When an Acolyte is murdered: Score 2 Puntos.",
+    "ability_pt": "When an Acolyte is murdered: Score 2 Pontos."
   },
   {
     "id": "col-122",
@@ -3593,7 +4198,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-122.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Eduardo_Santana&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Your Cavaliers Marque 2 Points supplémentaires ce tour.",
+    "ability_it": "Alla Rivelazione: Your Cavalieres score 2 extra Punti this turn.",
+    "ability_de": "Beim Aufdecken: Your Ritters score 2 extra Punkte this turn.",
+    "ability_es": "Al Revelar: Your Caballeros score 2 extra Puntos this turn.",
+    "ability_pt": "Ao Revelar: Your Cavaleiros score 2 extra Pontos this turn."
   },
   {
     "id": "col-123",
@@ -3609,7 +4219,7 @@ export const CARDS_DATA = [
       "Violent",
       "Brujah"
     ],
-    "ability": "À la Révélation : Donate 2 Puissance to the highest Puissance ennemi carte.",
+    "ability": "À la Révélation : Donate 2 Puissance to the highest Puissance carte ennemie.",
     "ability_en": "On Reveal: Donate 2 Power to the highest Power enemy card.",
     "flavorText": "\"Lt. Chamkaur Gupta - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -3622,7 +4232,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-123.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lt_Chamkaur_Gupta&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "À la Révélation : Donate 2 Puissance to the highest Puissance carte ennemie.",
+    "ability_it": "Alla Rivelazione: Donate 2 Potere to the highest Potere carta nemica.",
+    "ability_de": "Beim Aufdecken: Donate 2 Macht to the highest Macht gegnerische Karte.",
+    "ability_es": "Al Revelar: Donate 2 de Poder to the highest de Poder carta enemiga.",
+    "ability_pt": "Ao Revelar: Donate 2 de Poder to the highest de Poder carta inimiga."
   },
   {
     "id": "col-124",
@@ -3651,7 +4266,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-124.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Angelo",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Seduce and draw a 1 or 2 cost carte from the opponent's deck.",
+    "ability_it": "Alla Rivelazione: Seduce and draw a 1 or 2 cost carta from the opponent's deck.",
+    "ability_de": "Beim Aufdecken: Seduce and draw a 1 or 2 cost Karte from the opponent's deck.",
+    "ability_es": "Al Revelar: Seduce and draw a 1 or 2 cost carta from the opponent's deck.",
+    "ability_pt": "Ao Revelar: Seduce and draw a 1 or 2 cost carta from the opponent's deck."
   },
   {
     "id": "col-125",
@@ -3680,7 +4300,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-125.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Oberon&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Lorsque l'une de vos Bêtes attaque : Ajoute un Chien Errant (Bête) à votre main.",
+    "ability_it": "When any of your Beasts attack: Add a Street Dog (Beast) to your hand.",
+    "ability_de": "When any of your Beasts attack: Add a Street Dog (Beast) to your hand.",
+    "ability_es": "When any of your Beasts attack: Add a Street Dog (Beast) to your hand.",
+    "ability_pt": "When any of your Beasts attack: Add a Street Dog (Beast) to your hand."
   },
   {
     "id": "col-126",
@@ -3696,7 +4321,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Ventrue"
     ],
-    "ability": "Lorsqu'une carte gagne ou perd de la Puissance définitivement : Confère +1 Puissance à une carte dans votre main.",
+    "ability": "When any carte gains or loses Puissance permanently: Donne +1 Puissance to a carte in your hand.",
     "ability_en": "When any card gains or loses Power permanently: Give +1 Power to a card in your hand.",
     "flavorText": "\"Miss Hidaka - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -3709,7 +4334,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-126.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Miss_Hidaka&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When any carte gains or loses Puissance permanently: Donne +1 Puissance to a carte in your hand.",
+    "ability_it": "When any carta gains or loses Potere permanently: Dai +1 Potere to a carta in your hand.",
+    "ability_de": "When any Karte gains or loses Macht permanently: Gib +1 Macht to a Karte in your hand.",
+    "ability_es": "When any carta gains or loses de Poder permanently: Otorga +1 de Poder to a carta in your hand.",
+    "ability_pt": "When any carta gains or loses de Poder permanently: Conceda +1 de Poder to a carta in your hand."
   },
   {
     "id": "col-127",
@@ -3738,7 +4368,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-127.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Ron_Queen&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Tant qu'en jeu : The Prince cannot give or receive Support in Conflit.",
+    "ability_it": "While in gioco: The Principe cannot give or receive Support in Conflict.",
+    "ability_de": "While im Spiel: The Prinz cannot give or receive Support in Conflict.",
+    "ability_es": "While en juego: The Príncipe cannot give or receive Support in Conflict.",
+    "ability_pt": "While em jogo: The Príncipe cannot give or receive Support in Conflict."
   },
   {
     "id": "col-128",
@@ -3755,7 +4390,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Elitist"
     ],
-    "ability": "À la Révélation : inflige -1 Puissance à all cartes in your opponent's main.",
+    "ability": "À la Révélation : Inflige -1 Puissance on all cartes in your opponent's hand.",
     "ability_en": "On Reveal: Inflict -1 Power on all cards in your opponent's hand.",
     "flavorText": "\"Errol Fontaine - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -3768,7 +4403,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-128.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Errol_Fontaine&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "À la Révélation : Inflige -1 Puissance on all cartes in your opponent's hand.",
+    "ability_it": "Alla Rivelazione: Infligge -1 Potere on all cartas in your opponent's hand.",
+    "ability_de": "Beim Aufdecken: Füge -1 Macht on all Kartes in your opponent's hand.",
+    "ability_es": "Al Revelar: Inflige -1 de Poder on all cartas in your opponent's hand.",
+    "ability_pt": "Ao Revelar: Inflige -1 de Poder on all cartas in your opponent's hand."
   },
   {
     "id": "col-129",
@@ -3785,7 +4425,7 @@ export const CARDS_DATA = [
       "Gangrel",
       "Beast"
     ],
-    "ability": "cartes connectées cannot gain Puissance (They lose Puissance gained from While en jeu abilities)",
+    "ability": "Connected cartes cannot gain Puissance (They lose puissance gained from While in Play abilities)",
     "ability_en": "Connected cards cannot gain Power (They lose power gained from While in Play abilities)",
     "flavorText": "\"Paulo's Hunter - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -3798,7 +4438,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-129.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Paulos_Hunter&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Beast"
+    "archetype_en": "Beast",
+    "ability_fr": "Connected cartes cannot gain Puissance (They lose puissance gained from While in Play abilities)",
+    "ability_it": "Connected cartas cannot gain Potere (They lose potere gained from While in Play abilities)",
+    "ability_de": "Connected Kartes cannot gain Macht (They lose Macht gained from While in Play abilities)",
+    "ability_es": "Connected cartas cannot gain de Poder (They lose de poder gained from While in Play abilities)",
+    "ability_pt": "Connected cartas cannot gain de Poder (They lose de poder gained from While in Play abilities)"
   },
   {
     "id": "col-130",
@@ -3827,7 +4472,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-130.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Bruno&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Fin de Manche : Murder a carte with 0 Puissance.",
+    "ability_it": "Fine del Turno: Murder a carta with 0 Potere.",
+    "ability_de": "Rundenende: Murder a Karte with 0 Macht.",
+    "ability_es": "Fin de Ronda: Murder a carta with 0 de Poder.",
+    "ability_pt": "Fim da Rodada: Murder a carta with 0 de Poder."
   },
   {
     "id": "col-131",
@@ -3843,7 +4493,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Tremere"
     ],
-    "ability": "On Defend: Score Points equal to la carte ennemie's Puissance.",
+    "ability": "On Defend: Score Points equal to the carte ennemie's Puissance.",
     "ability_en": "On Defend: Score Points equal to the enemy card's Power.",
     "flavorText": "\"Acton Blackburn - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -3856,7 +4506,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-131.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Acton_Blackburn&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "On Defend: Score Points equal to the carte ennemie's Puissance.",
+    "ability_it": "On Defend: Score Punti equal to the carta nemica's Potere.",
+    "ability_de": "On Defend: Score Punkte equal to the gegnerische Karte's Macht.",
+    "ability_es": "On Defend: Score Puntos equal to the carta enemiga's de Poder.",
+    "ability_pt": "On Defend: Score Pontos equal to the carta inimiga's de Poder."
   },
   {
     "id": "col-132",
@@ -3873,7 +4528,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Elitist"
     ],
-    "ability": "À la Révélation : Return one of your defeated Élitiste cartes to main.",
+    "ability": "À la Révélation : Return one of your defeated Elitist cartes to hand.",
     "ability_en": "On Reveal: Return one of your defeated Elitist cards to hand.",
     "flavorText": "\"Maximilian - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -3886,7 +4541,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-132.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Maximilian&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "À la Révélation : Return one of your defeated Elitist cartes to hand.",
+    "ability_it": "Alla Rivelazione: Return one of your defeated Elitist cartas to hand.",
+    "ability_de": "Beim Aufdecken: Return one of your defeated Elitist Kartes to hand.",
+    "ability_es": "Al Revelar: Return one of your defeated Elitist cartas to hand.",
+    "ability_pt": "Ao Revelar: Return one of your defeated Elitist cartas to hand."
   },
   {
     "id": "col-133",
@@ -3902,7 +4562,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Brujah"
     ],
-    "ability": "À la Révélation : Confère +2 Puissance à 2 cartes Violentes dans votre main.",
+    "ability": "À la Révélation : Donne +2 Puissance to 2 Violent cartes in your hand.",
     "ability_en": "On Reveal: Give +2 Power to 2 Violent cards in your hand.",
     "flavorText": "\"Randy Brash - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -3915,7 +4575,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-133.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Randy_Brash&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Donne +2 Puissance to 2 Violent cartes in your hand.",
+    "ability_it": "Alla Rivelazione: Dai +2 Potere to 2 Violent cartas in your hand.",
+    "ability_de": "Beim Aufdecken: Gib +2 Macht to 2 Violent Kartes in your hand.",
+    "ability_es": "Al Revelar: Otorga +2 de Poder to 2 Violent cartas in your hand.",
+    "ability_pt": "Ao Revelar: Conceda +2 de Poder to 2 Violent cartas in your hand."
   },
   {
     "id": "col-134",
@@ -3944,7 +4609,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-134.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Whisper&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Move to an vide espace connecté.",
+    "ability_it": "Alla Rivelazione: Move to an empty spazio collegato.",
+    "ability_de": "Beim Aufdecken: Move to an empty verbundenes Feld.",
+    "ability_es": "Al Revelar: Move to an empty espacio conectado.",
+    "ability_pt": "Ao Revelar: Move to an empty espaço conectado."
   },
   {
     "id": "col-135",
@@ -3960,7 +4630,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Toreador"
     ],
-    "ability": "Fin de Manche : Donate all of this carte's Puissance to your lowest Puissance carte in main.",
+    "ability": "Fin de Manche : Donate all of this carte's Puissance to your lowest Puissance carte in hand.",
     "ability_en": "End of Round: Donate all of this card's Power to your lowest Power card in hand.",
     "flavorText": "\"Jeanne Blanc - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -3973,7 +4643,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-135.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Jeanne_Blanc&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Fin de Manche : Donate all of this carte's Puissance to your lowest Puissance carte in hand.",
+    "ability_it": "Fine del Turno: Donate all of this carta's Potere to your lowest Potere carta in hand.",
+    "ability_de": "Rundenende: Donate all of this Karte's Macht to your lowest Macht Karte in hand.",
+    "ability_es": "Fin de Ronda: Donate all of this carta's de Poder to your lowest de Poder carta in hand.",
+    "ability_pt": "Fim da Rodada: Donate all of this carta's de Poder to your lowest de Poder carta in hand."
   },
   {
     "id": "col-136",
@@ -3989,7 +4664,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Toreador"
     ],
-    "ability": "Fin de Manche : Seduce a connecté(e) ennemi carte with less Puissance than this.",
+    "ability": "Fin de Manche : Seduce a connected carte ennemie with less Puissance than this.",
     "ability_en": "End of Round: Seduce a connected enemy card with less Power than this.",
     "flavorText": "\"Vena Danube - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -4002,7 +4677,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-136.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Vena_Danube&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Fin de Manche : Seduce a connected carte ennemie with less Puissance than this.",
+    "ability_it": "Fine del Turno: Seduce a connected carta nemica with less Potere than this.",
+    "ability_de": "Rundenende: Seduce a connected gegnerische Karte with less Macht than this.",
+    "ability_es": "Fin de Ronda: Seduce a connected carta enemiga with less de Poder than this.",
+    "ability_pt": "Fim da Rodada: Seduce a connected carta inimiga with less de Poder than this."
   },
   {
     "id": "col-137",
@@ -4017,7 +4697,7 @@ export const CARDS_DATA = [
     "keywords": [
       "Violent"
     ],
-    "ability": "À la Révélation : Create a Scrawny Punk on a connecté(e) ennemi carte.",
+    "ability": "À la Révélation : Create a Scrawny Punk on a connected carte ennemie.",
     "ability_en": "On Reveal: Create a Scrawny Punk on a connected enemy card.",
     "flavorText": "\"Half-Pint - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -4030,7 +4710,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-137.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Half-Pint&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "À la Révélation : Create a Scrawny Punk on a connected carte ennemie.",
+    "ability_it": "Alla Rivelazione: Create a Scrawny Punk on a connected carta nemica.",
+    "ability_de": "Beim Aufdecken: Create a Scrawny Punk on a connected gegnerische Karte.",
+    "ability_es": "Al Revelar: Create a Scrawny Punk on a connected carta enemiga.",
+    "ability_pt": "Ao Revelar: Create a Scrawny Punk on a connected carta inimiga."
   },
   {
     "id": "col-138",
@@ -4059,7 +4744,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-138.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Mercedes&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When this gains Puissance définitivement: Gagne +2 Puissance more. (wherever this is)",
+    "ability_it": "When this gains Potere permanently: Ottieni +2 Potere more. (wherever this is)",
+    "ability_de": "When this gains Macht permanently: Erhalte +2 Macht more. (wherever this is)",
+    "ability_es": "When this gains de Poder permanently: Gana +2 de Poder more. (wherever this is)",
+    "ability_pt": "When this gains de Poder permanently: Ganhe +2 de Poder more. (wherever this is)"
   },
   {
     "id": "col-139",
@@ -4088,7 +4778,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-139.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Ragnar&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "À l'Attaque : Double this carte's Puissance.",
+    "ability_it": "All'Attacco: Double this carta's Potere.",
+    "ability_de": "Beim Angriff: Double this Karte's Macht.",
+    "ability_es": "Al Atacar: Double this carta's de Poder.",
+    "ability_pt": "Ao Atacar: Double this carta's de Poder."
   },
   {
     "id": "col-140",
@@ -4104,7 +4799,7 @@ export const CARDS_DATA = [
       "Delusion",
       "Malkavian"
     ],
-    "ability": "À la Révélation : If Prince, défausse your rightmost carte in main. If Cavalier, défausse the leftmost.",
+    "ability": "À la Révélation : If Prince, Discarte your rightmost carte in hand. If Cavalier, Discarte the leftmost.",
     "ability_en": "On Reveal: If Prince, Discard your rightmost card in hand. If Knight, Discard the leftmost.",
     "flavorText": "\"Dan Washington - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -4117,7 +4812,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-140.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Dan_Washington&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "À la Révélation : If Prince, Discarte your rightmost carte in hand. If Cavalier, Discarte the leftmost.",
+    "ability_it": "Alla Rivelazione: If Principe, Discarta your rightmost carta in hand. If Cavaliere, Discarta the leftmost.",
+    "ability_de": "Beim Aufdecken: If Prinz, DisKarte your rightmost Karte in hand. If Ritter, DisKarte the leftmost.",
+    "ability_es": "Al Revelar: If Príncipe, Discarta your rightmost carta in hand. If Caballero, Discarta the leftmost.",
+    "ability_pt": "Ao Revelar: If Príncipe, Discarta your rightmost carta in hand. If Cavaleiro, Discarta the leftmost."
   },
   {
     "id": "col-141",
@@ -4146,7 +4846,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-141.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Filipe_the_Bloody&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "À l'Attaque : Gagne +3 Puissance. This doesn't score Points when Prince or Cavalier.",
+    "ability_it": "All'Attacco: Ottieni +3 Potere. This doesn't score Punti when Principe or Cavaliere.",
+    "ability_de": "Beim Angriff: Erhalte +3 Macht. This doesn't score Punkte when Prinz or Ritter.",
+    "ability_es": "Al Atacar: Gana +3 de Poder. This doesn't score Puntos when Príncipe or Caballero.",
+    "ability_pt": "Ao Atacar: Ganhe +3 de Poder. This doesn't score Pontos when Príncipe or Cavaleiro."
   },
   {
     "id": "col-142",
@@ -4162,7 +4867,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Hecata"
     ],
-    "ability": "When another carte is Murdered: Marque 3 Points de Victoire.",
+    "ability": "When another carte is Murdered: Score 3 Points.",
     "ability_en": "When another card is Murdered: Score 3 Points.",
     "flavorText": "\"Elizabeth Dunsirn - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -4175,7 +4880,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-142.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Elizabeth_Dunsirn&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When another carte is Murdered: Score 3 Points.",
+    "ability_it": "When another carta is Murdered: Score 3 Punti.",
+    "ability_de": "When another Karte is Murdered: Score 3 Punkte.",
+    "ability_es": "When another carta is Murdered: Score 3 Puntos.",
+    "ability_pt": "When another carta is Murdered: Score 3 Pontos."
   },
   {
     "id": "col-143",
@@ -4204,7 +4914,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-143.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Mother_Everly&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Create a Rat (Bête) in each vide espace connecté.",
+    "ability_it": "Alla Rivelazione: Create a Rat (Beast) in each empty spazio collegato.",
+    "ability_de": "Beim Aufdecken: Create a Rat (Beast) in each empty verbundenes Feld.",
+    "ability_es": "Al Revelar: Create a Rat (Beast) in each empty espacio conectado.",
+    "ability_pt": "Ao Revelar: Create a Rat (Beast) in each empty espaço conectado."
   },
   {
     "id": "col-144",
@@ -4220,7 +4935,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Toreador"
     ],
-    "ability": "When this defeats any Tour: Seduce and piochez 1 carte from the opponent's deck.",
+    "ability": "When this defeats any Tour: Seduce and draw a carte from the opponent's deck.",
     "ability_en": "When this defeats any Rook: Seduce and draw a card from the opponent's deck.",
     "flavorText": "\"Sister Lilim - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -4233,7 +4948,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-144.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sister_Lilim",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When this defeats any Tour: Seduce and draw a carte from the opponent's deck.",
+    "ability_it": "When this defeats any Torre: Seduce and draw a carta from the opponent's deck.",
+    "ability_de": "When this defeats any Turm: Seduce and draw a Karte from the opponent's deck.",
+    "ability_es": "When this defeats any Torre: Seduce and draw a carta from the opponent's deck.",
+    "ability_pt": "When this defeats any Torre: Seduce and draw a carta from the opponent's deck."
   },
   {
     "id": "col-145",
@@ -4262,7 +4982,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-145.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Auctioneer&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Murder the next 3 or less cost carte each player reveals. (Before any other ability applies)",
+    "ability_it": "Murder the next 3 or less cost carta each player reveals. (Before any other ability applies)",
+    "ability_de": "Murder the next 3 or less cost Karte each player reveals. (Before any other ability applies)",
+    "ability_es": "Murder the next 3 or less cost carta each player reveals. (Before any other ability applies)",
+    "ability_pt": "Murder the next 3 or less cost carta each player reveals. (Before any other ability applies)"
   },
   {
     "id": "col-146",
@@ -4278,7 +5003,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Gangrel"
     ],
-    "ability": "When any carte loses Puissance définitivement: Confère +1 Puissance to your Prince.",
+    "ability": "When any carte loses puissance permanently: Donne +1 Puissance to your Prince.",
     "ability_en": "When any card loses power permanently: Give +1 Power to your Prince.",
     "flavorText": "\"Annabella's Pet - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -4291,7 +5016,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-146.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Annabellas_Pet&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When any carte loses puissance permanently: Donne +1 Puissance to your Prince.",
+    "ability_it": "When any carta loses potere permanently: Dai +1 Potere to your Principe.",
+    "ability_de": "When any Karte loses Macht permanently: Gib +1 Macht to your Prinz.",
+    "ability_es": "When any carta loses de poder permanently: Otorga +1 de Poder to your Príncipe.",
+    "ability_pt": "When any carta loses de poder permanently: Conceda +1 de Poder to your Príncipe."
   },
   {
     "id": "col-147",
@@ -4307,7 +5037,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Toreador"
     ],
-    "ability": "Fin de Manche : Seduce a defeated ennemi carte.",
+    "ability": "Fin de Manche : Seduce a defeated carte ennemie.",
     "ability_en": "End of Round: Seduce a defeated enemy card.",
     "flavorText": "\"Rana Hayek - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -4320,7 +5050,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-147.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Rana_Hayek",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Fin de Manche : Seduce a defeated carte ennemie.",
+    "ability_it": "Fine del Turno: Seduce a defeated carta nemica.",
+    "ability_de": "Rundenende: Seduce a defeated gegnerische Karte.",
+    "ability_es": "Fin de Ronda: Seduce a defeated carta enemiga.",
+    "ability_pt": "Fim da Rodada: Seduce a defeated carta inimiga."
   },
   {
     "id": "col-148",
@@ -4350,7 +5085,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-148.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Esme&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Acolyte"
+    "archetype_en": "Acolyte",
+    "ability_fr": "À la Révélation : Create a Mortel Acolyte in up to 2 vide spaces.",
+    "ability_it": "Alla Rivelazione: Create a Mortal Acolyte in up to 2 spazio vuotos.",
+    "ability_de": "Beim Aufdecken: Create a Mortal Acolyte in up to 2 leeres Felds.",
+    "ability_es": "Al Revelar: Create a Mortal Acolyte in up to 2 espacio vacíos.",
+    "ability_pt": "Ao Revelar: Create a Mortal Acolyte in up to 2 espaço vazios."
   },
   {
     "id": "col-149",
@@ -4379,7 +5119,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-149.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Aurum",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Fin de Manche : Score Points equal to this carte's Puissance.",
+    "ability_it": "Fine del Turno: Score Punti equal to this carta's Potere.",
+    "ability_de": "Rundenende: Score Punkte equal to this Karte's Macht.",
+    "ability_es": "Fin de Ronda: Score Puntos equal to this carta's de Poder.",
+    "ability_pt": "Fim da Rodada: Score Pontos equal to this carta's de Poder."
   },
   {
     "id": "col-150",
@@ -4396,7 +5141,7 @@ export const CARDS_DATA = [
       "Tremere",
       "Sorcerer"
     ],
-    "ability": "The next carte you play costs 2 less. (minimum 1)",
+    "ability": "The next carte you play costs 2 less. (minimum of 1)",
     "ability_en": "The next card you play costs 2 less. (minimum of 1)",
     "flavorText": "\"Marquis Leroux - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Épique",
@@ -4409,7 +5154,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-150.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Marquis_Leroux&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Sorcerer"
+    "archetype_en": "Sorcerer",
+    "ability_fr": "The next carte you play costs 2 less. (minimum of 1)",
+    "ability_it": "The next carta you play costs 2 less. (minimum of 1)",
+    "ability_de": "The next Karte you play costs 2 less. (minimum of 1)",
+    "ability_es": "The next carta you play costs 2 less. (minimum of 1)",
+    "ability_pt": "The next carta you play costs 2 less. (minimum of 1)"
   },
   {
     "id": "col-151",
@@ -4425,7 +5175,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Nosferatu"
     ],
-    "ability": "À la Révélation : Vole 5 Puissance à a connecté(e) ennemi carte.",
+    "ability": "À la Révélation : Steal 5 Puissance from a connected carte ennemie.",
     "ability_en": "On Reveal: Steal 5 Power from a connected enemy card.",
     "flavorText": "\"Lorenzo Perello - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -4438,7 +5188,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-151.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lorenzo_Perello&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Steal 5 Puissance from a connected carte ennemie.",
+    "ability_it": "Alla Rivelazione: Steal 5 Potere from a connected carta nemica.",
+    "ability_de": "Beim Aufdecken: Steal 5 Macht from a connected gegnerische Karte.",
+    "ability_es": "Al Revelar: Steal 5 de Poder from a connected carta enemiga.",
+    "ability_pt": "Ao Revelar: Steal 5 de Poder from a connected carta inimiga."
   },
   {
     "id": "col-152",
@@ -4455,7 +5210,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Elitist"
     ],
-    "ability": "Tant qu'en jeu : This has +2 Puissance pour chaque ennemi carte.",
+    "ability": "Tant qu'en jeu : This a +2 Puissance pour chaque carte ennemie.",
     "ability_en": "While in Play: This has +2 Power for each enemy card.",
     "flavorText": "\"Archibald Rothwell - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Rare",
@@ -4468,7 +5223,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-152.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Archibald_Rothwell&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "Tant qu'en jeu : This a +2 Puissance pour chaque carte ennemie.",
+    "ability_it": "Mentre è in Gioco: This ha +2 Potere per ogni carta nemica.",
+    "ability_de": "Solange im Spiel: This hat +2 Macht für jeden gegnerische Karte.",
+    "ability_es": "Mientras esté en Juego: This tiene +2 de Poder por cada carta enemiga.",
+    "ability_pt": "Enquanto em Jogo: This tem +2 de Poder para cada carta inimiga."
   },
   {
     "id": "col-153",
@@ -4485,7 +5245,7 @@ export const CARDS_DATA = [
       "Toreador",
       "Elitist"
     ],
-    "ability": "Fin de Manche : If this is Prince, Marque 4 Points de Victoire.",
+    "ability": "Fin de Manche : Si c'est le Prince, Marque 4 Points de Victoire.",
     "ability_en": "End of Round: If this is Prince, score 4 Points.",
     "flavorText": "\"Florence - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Épique",
@@ -4498,7 +5258,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-153.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Florence",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "Fin de Manche : Si c'est le Prince, Marque 4 Points de Victoire.",
+    "ability_it": "Fine del Turno: If this is Principe, score 4 Punti.",
+    "ability_de": "Rundenende: If this is Prinz, score 4 Punkte.",
+    "ability_es": "Fin de Ronda: If this is Príncipe, score 4 Puntos.",
+    "ability_pt": "Fim da Rodada: If this is Príncipe, score 4 Pontos."
   },
   {
     "id": "col-154",
@@ -4514,7 +5279,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Tremere"
     ],
-    "ability": "À la Révélation : Murder all your connecté(e) Acolytes. After one of your cartes is murdered: Create a Mortel Acolyte in a random espace vide. (up to 3 times per game)",
+    "ability": "À la Révélation : Murder all your connected Acolytes. After one of your cartes is murdered: Create a Mortal Acolyte in a random espace vide. (up to 3 times per game)",
     "ability_en": "On Reveal: Murder all your connected Acolytes. After one of your cards is murdered: Create a Mortal Acolyte in a random empty space. (up to 3 times per game)",
     "flavorText": "\"Shoshana - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Épique",
@@ -4527,7 +5292,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-154.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Shoshana&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Murder all your connected Acolytes. After one of your cartes is murdered: Create a Mortal Acolyte in a random espace vide. (up to 3 times per game)",
+    "ability_it": "Alla Rivelazione: Murder all your connected Acolytes. After one of your cartas is murdered: Create a Mortal Acolyte in a random spazio vuoto. (up to 3 times per game)",
+    "ability_de": "Beim Aufdecken: Murder all your connected Acolytes. After one of your Kartes is murdered: Create a Mortal Acolyte in a random leeres Feld. (up to 3 times per game)",
+    "ability_es": "Al Revelar: Murder all your connected Acolytes. After one of your cartas is murdered: Create a Mortal Acolyte in a random espacio vacío. (up to 3 times per game)",
+    "ability_pt": "Ao Revelar: Murder all your connected Acolytes. After one of your cartas is murdered: Create a Mortal Acolyte in a random espaço vazio. (up to 3 times per game)"
   },
   {
     "id": "col-155",
@@ -4543,7 +5313,7 @@ export const CARDS_DATA = [
       "Violent",
       "Brujah"
     ],
-    "ability": "When this would win a Conflit: Murder la carte ennemie.",
+    "ability": "When this would win a Conflict: Murder the carte ennemie.",
     "ability_en": "When this would win a Conflict: Murder the enemy card.",
     "flavorText": "\"Athena - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Épique",
@@ -4556,7 +5326,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-155.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Athena&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "When this would win a Conflict: Murder the carte ennemie.",
+    "ability_it": "When this would win a Conflict: Murder the carta nemica.",
+    "ability_de": "When this would win a Conflict: Murder the gegnerische Karte.",
+    "ability_es": "When this would win a Conflict: Murder the carta enemiga.",
+    "ability_pt": "When this would win a Conflict: Murder the carta inimiga."
   },
   {
     "id": "col-156",
@@ -4586,7 +5361,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-156.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Morgana&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Sorcerer"
+    "archetype_en": "Sorcerer",
+    "ability_fr": "À la Révélation : Create a Mortel Acolyte in up to 3 vide spaces.",
+    "ability_it": "Alla Rivelazione: Create a Mortal Acolyte in up to 3 spazio vuotos.",
+    "ability_de": "Beim Aufdecken: Create a Mortal Acolyte in up to 3 leeres Felds.",
+    "ability_es": "Al Revelar: Create a Mortal Acolyte in up to 3 espacio vacíos.",
+    "ability_pt": "Ao Revelar: Create a Mortal Acolyte in up to 3 espaço vazios."
   },
   {
     "id": "col-157",
@@ -4603,7 +5383,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Elitist"
     ],
-    "ability": "Tant qu'en jeu : Double the Puissance of all cartes with 10 or more Puissance. (after all other effects)",
+    "ability": "While en jeu: Double the Puissance of all cartes with 10 or more Puissance. (after all other effects)",
     "ability_en": "While in play: Double the Power of all cards with 10 or more Power. (after all other effects)",
     "flavorText": "\"Joseph - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Épique",
@@ -4616,7 +5396,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-157.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Joseph&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "While en jeu: Double the Puissance of all cartes with 10 or more Puissance. (after all other effects)",
+    "ability_it": "While in gioco: Double the Potere of all cartas with 10 or more Potere. (after all other effects)",
+    "ability_de": "While im Spiel: Double the Macht of all Kartes with 10 or more Macht. (after all other effects)",
+    "ability_es": "While en juego: Double the de Poder of all cartas with 10 or more de Poder. (after all other effects)",
+    "ability_pt": "While em jogo: Double the de Poder of all cartas with 10 or more de Poder. (after all other effects)"
   },
   {
     "id": "col-158",
@@ -4633,7 +5418,7 @@ export const CARDS_DATA = [
       "Tremere",
       "Sorcerer"
     ],
-    "ability": "À la Révélation : pour chaque carte in your défausse pile, inflige -1 Puissance à the highest Puissance ennemi carte.",
+    "ability": "À la Révélation : For each carte in your Discarte pile, inflige -1 Puissance on the highest Puissance carte ennemie.",
     "ability_en": "On Reveal: For each card in your Discard pile, inflict -1 Power on the highest Power enemy card.",
     "flavorText": "\"Cécile St-Fleur - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Épique",
@@ -4646,7 +5431,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-158.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Cecile_St-Fleur&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Sorcerer"
+    "archetype_en": "Sorcerer",
+    "ability_fr": "À la Révélation : For each carte in your Discarte pile, inflige -1 Puissance on the highest Puissance carte ennemie.",
+    "ability_it": "Alla Rivelazione: For each carta in your Discarta pile, infligge -1 Potere on the highest Potere carta nemica.",
+    "ability_de": "Beim Aufdecken: For each Karte in your DisKarte pile, füge -1 Macht on the highest Macht gegnerische Karte.",
+    "ability_es": "Al Revelar: For each carta in your Discarta pile, inflige -1 de Poder on the highest de Poder carta enemiga.",
+    "ability_pt": "Ao Revelar: For each carta in your Discarta pile, inflige -1 de Poder on the highest de Poder carta inimiga."
   },
   {
     "id": "col-159",
@@ -4676,7 +5466,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-159.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Nelson_Macamo&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "À la Révélation : Suffer -2 Puissance pour chaque of your other cartes en jeu.",
+    "ability_it": "Alla Rivelazione: Suffer -2 Potere per ogni of your other cartas in gioco.",
+    "ability_de": "Beim Aufdecken: Suffer -2 Macht für jeden of your other Kartes im Spiel.",
+    "ability_es": "Al Revelar: Suffer -2 de Poder por cada of your other cartas en juego.",
+    "ability_pt": "Ao Revelar: Suffer -2 de Poder para cada of your other cartas em jogo."
   },
   {
     "id": "col-160",
@@ -4693,7 +5488,7 @@ export const CARDS_DATA = [
       "Malkavian",
       "Elitist"
     ],
-    "ability": "À la Révélation : Vole 2 Puissance à each carte connectée.",
+    "ability": "À la Révélation : Steal 2 Puissance from each connected carte.",
     "ability_en": "On Reveal: Steal 2 Power from each connected card.",
     "flavorText": "\"Benedict - Carte officielle Vampire: The Masquerade – Clans of London (Série 3).\"",
     "rarity": "Légendaire",
@@ -4706,7 +5501,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-160.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Benedict&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "À la Révélation : Steal 2 Puissance from each connected carte.",
+    "ability_it": "Alla Rivelazione: Steal 2 Potere from each connected carta.",
+    "ability_de": "Beim Aufdecken: Steal 2 Macht from each connected Karte.",
+    "ability_es": "Al Revelar: Steal 2 de Poder from each connected carta.",
+    "ability_pt": "Ao Revelar: Steal 2 de Poder from each connected carta."
   },
   {
     "id": "col-161",
@@ -4736,7 +5536,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-161.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Manfred&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Beast"
+    "archetype_en": "Beast",
+    "ability_fr": "This costs 1 less pour chaque of your Bêtes en jeu. (minimum 1)",
+    "ability_it": "This costs 1 less per ogni of your Beasts in gioco. (minimum of 1)",
+    "ability_de": "This costs 1 less für jeden of your Beasts im Spiel. (minimum of 1)",
+    "ability_es": "This costs 1 less por cada of your Beasts en juego. (minimum of 1)",
+    "ability_pt": "This costs 1 less para cada of your Beasts em jogo. (minimum of 1)"
   },
   {
     "id": "col-162",
@@ -4765,7 +5570,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-162.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Minnie_Chadwick&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Shuffle a Rat (Bête) into each player's deck.",
+    "ability_it": "Alla Rivelazione: Shuffle a Rat (Beast) into each player's deck.",
+    "ability_de": "Beim Aufdecken: Shuffle a Rat (Beast) into each player's deck.",
+    "ability_es": "Al Revelar: Shuffle a Rat (Beast) into each player's deck.",
+    "ability_pt": "Ao Revelar: Shuffle a Rat (Beast) into each player's deck."
   },
   {
     "id": "col-163",
@@ -4781,7 +5591,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Tremere"
     ],
-    "ability": "When one of your cartes is defeated or discarded: inflige -1 Puissance à un ennemi aléatoire carte.",
+    "ability": "When one of your cartes is defeated or discarteed: Inflige -1 Puissance on a random carte ennemie.",
     "ability_en": "When one of your cards is defeated or discarded: Inflict -1 Power on a random enemy card.",
     "flavorText": "\"Jackie Pincher - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Commune",
@@ -4794,7 +5604,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-163.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Jackie_Pincher&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When one of your cartes is defeated or discarteed: Inflige -1 Puissance on a random carte ennemie.",
+    "ability_it": "When one of your cartas is defeated or discartaed: Infligge -1 Potere on a random carta nemica.",
+    "ability_de": "When one of your Kartes is defeated or disKarteed: Füge -1 Macht on a random gegnerische Karte.",
+    "ability_es": "When one of your cartas is defeated or discartaed: Inflige -1 de Poder on a random carta enemiga.",
+    "ability_pt": "When one of your cartas is defeated or discartaed: Inflige -1 de Poder on a random carta inimiga."
   },
   {
     "id": "col-164",
@@ -4811,7 +5626,7 @@ export const CARDS_DATA = [
       "Tremere",
       "Acolyte"
     ],
-    "ability": "À la Révélation : défausse a random carte to piochez 1 carte.",
+    "ability": "À la Révélation : Discarte a random carte to draw a carte.",
     "ability_en": "On Reveal: Discard a random card to draw a card.",
     "flavorText": "\"Juniper Fey - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Commune",
@@ -4824,7 +5639,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-164.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Juniper_Fey&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Acolyte"
+    "archetype_en": "Acolyte",
+    "ability_fr": "À la Révélation : Discarte a random carte to draw a carte.",
+    "ability_it": "Alla Rivelazione: Discarta a random carta to draw a carta.",
+    "ability_de": "Beim Aufdecken: DisKarte a random Karte to draw a Karte.",
+    "ability_es": "Al Revelar: Discarta a random carta to draw a carta.",
+    "ability_pt": "Ao Revelar: Discarta a random carta to draw a carta."
   },
   {
     "id": "col-165",
@@ -4840,7 +5660,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Malkavian"
     ],
-    "ability": "When an ennemi carte loses Puissance: Confère +1 Puissance to your lowest Puissance carte.",
+    "ability": "When an carte ennemie loses Puissance: Donne +1 Puissance to your lowest Puissance carte.",
     "ability_en": "When an enemy card loses Power: Give +1 Power to your lowest Power card.",
     "flavorText": "\"Bruce Sparks - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Commune",
@@ -4853,7 +5673,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-165.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Bruce_Sparks&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When an carte ennemie loses Puissance: Donne +1 Puissance to your lowest Puissance carte.",
+    "ability_it": "When an carta nemica loses Potere: Dai +1 Potere to your lowest Potere carta.",
+    "ability_de": "When an gegnerische Karte loses Macht: Gib +1 Macht to your lowest Macht Karte.",
+    "ability_es": "When an carta enemiga loses de Poder: Otorga +1 de Poder to your lowest de Poder carta.",
+    "ability_pt": "When an carta inimiga loses de Poder: Conceda +1 de Poder to your lowest de Poder carta."
   },
   {
     "id": "col-166",
@@ -4882,7 +5707,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-166.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Celine_Musat&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Curse an ennemi Pion, next turn it cannot give Support.",
+    "ability_it": "Alla Rivelazione: Curse an nemico Pedone, next turn it cannot give Support.",
+    "ability_de": "Beim Aufdecken: Curse an Gegner Bauer, next turn it cannot give Support.",
+    "ability_es": "Al Revelar: Curse an enemigo Peón, next turn it cannot give Support.",
+    "ability_pt": "Ao Revelar: Curse an inimigo Peão, next turn it cannot give Support."
   },
   {
     "id": "col-167",
@@ -4898,7 +5728,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Nosferatu"
     ],
-    "ability": "Tant qu'en jeu : Your cartes without Support have +1 Puissance.",
+    "ability": "While en jeu: Your cartes without Support ont +1 Puissance.",
     "ability_en": "While in play: Your cards without Support have +1 Power.",
     "flavorText": "\"Harald Basilier - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Commune",
@@ -4911,7 +5741,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-167.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Harald_Basilier&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "While en jeu: Your cartes without Support ont +1 Puissance.",
+    "ability_it": "While in gioco: Your cartas without Support hanno +1 Potere.",
+    "ability_de": "While im Spiel: Your Kartes without Support haben +1 Macht.",
+    "ability_es": "While en juego: Your cartas without Support tienen +1 de Poder.",
+    "ability_pt": "While em jogo: Your cartas without Support têm +1 de Poder."
   },
   {
     "id": "col-168",
@@ -4927,7 +5762,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Hecata"
     ],
-    "ability": "When one of your Violent cartes would win a Conflit: Murder la carte ennemie.",
+    "ability": "When one of your Violent cartes would win a Conflict: Murder the carte ennemie.",
     "ability_en": "When one of your Violent cards would win a Conflict: Murder the enemy card.",
     "flavorText": "\"Olavi 'Tappava' Puttanesca - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Commune",
@@ -4940,7 +5775,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-168.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Olavi_Tappava_Puttanesca&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When one of your Violent cartes would win a Conflict: Murder the carte ennemie.",
+    "ability_it": "When one of your Violent cartas would win a Conflict: Murder the carta nemica.",
+    "ability_de": "When one of your Violent Kartes would win a Conflict: Murder the gegnerische Karte.",
+    "ability_es": "When one of your Violent cartas would win a Conflict: Murder the carta enemiga.",
+    "ability_pt": "When one of your Violent cartas would win a Conflict: Murder the carta inimiga."
   },
   {
     "id": "col-169",
@@ -4956,7 +5796,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Tremere"
     ],
-    "ability": "Lorsque vous terrassez une carte ennemie : Transformez-la en Livre Relié de Peau et ajoutez-la à votre main (une fois par tour).",
+    "ability": "When you Defeat an carte ennemie: Turn it into a Skin-Bound Book and add it to your hand. (Once per turn.)",
     "ability_en": "When you Defeat an enemy card: Turn it into a Skin-Bound Book and add it to your hand. (Once per turn.)",
     "flavorText": "\"Ethan - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Commune",
@@ -4969,7 +5809,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-169.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Ethan&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When you Defeat an carte ennemie: Turn it into a Skin-Bound Book and add it to your hand. (Once per turn.)",
+    "ability_it": "When you Defeat an carta nemica: Turn it into a Skin-Bound Book and add it to your hand. (Once per turn.)",
+    "ability_de": "When you Defeat an gegnerische Karte: Turn it into a Skin-Bound Book and add it to your hand. (Once per turn.)",
+    "ability_es": "When you Defeat an carta enemiga: Turn it into a Skin-Bound Book and add it to your hand. (Once per turn.)",
+    "ability_pt": "When you Defeat an carta inimiga: Turn it into a Skin-Bound Book and add it to your hand. (Once per turn.)"
   },
   {
     "id": "col-170",
@@ -4985,7 +5830,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Nosferatu"
     ],
-    "ability": "Tant qu'en jeu : Your Prince and Cavaliers without Support Marque 2 Points supplémentaires.",
+    "ability": "While in play: Your Prince and Knights without Support score 2 extra Points.",
     "ability_en": "While in play: Your Prince and Knights without Support score 2 extra Points.",
     "flavorText": "\"Eugene Kister - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Commune",
@@ -4998,7 +5843,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-170.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Eugene_Kister&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "While in play: Your Prince and Knights without Support score 2 extra Points.",
+    "ability_it": "While in gioco: Your Principe and Cavalieres without Support score 2 extra Punti.",
+    "ability_de": "While im Spiel: Your Prinz and Ritters without Support score 2 extra Punkte.",
+    "ability_es": "While en juego: Your Príncipe and Caballeros without Support score 2 extra Puntos.",
+    "ability_pt": "While em jogo: Your Príncipe and Cavaleiros without Support score 2 extra Pontos."
   },
   {
     "id": "col-171",
@@ -5027,7 +5877,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-171.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Clive_Crawford&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Ajoute un Rat, un Pigeon et un Loup à votre main.",
+    "ability_it": "Alla Rivelazione: Add a Rat, Pigeon, Wolf to your hand.",
+    "ability_de": "Beim Aufdecken: Add a Rat, Pigeon, Wolf to your hand.",
+    "ability_es": "Al Revelar: Add a Rat, Pigeon, Wolf to your hand.",
+    "ability_pt": "Ao Revelar: Add a Rat, Pigeon, Wolf to your hand."
   },
   {
     "id": "col-172",
@@ -5056,7 +5911,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-172.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Agent_S&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "Fin de Manche : Murder the lowest Puissance carte.",
+    "ability_it": "Fine del Turno: Murder the lowest Potere carta.",
+    "ability_de": "Rundenende: Murder the lowest Macht Karte.",
+    "ability_es": "Fin de Ronda: Murder the lowest de Poder carta.",
+    "ability_pt": "Fim da Rodada: Murder the lowest de Poder carta."
   },
   {
     "id": "col-173",
@@ -5085,7 +5945,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-173.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Yves_Dubois&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "Tant qu'en jeu : This carte has doubled Puissance.",
+    "ability_it": "Mentre è in Gioco: This carta has doubled Potere.",
+    "ability_de": "Solange im Spiel: This Karte has doubled Macht.",
+    "ability_es": "Mientras esté en Juego: This carta has doubled de Poder.",
+    "ability_pt": "Enquanto em Jogo: This carta has doubled de Poder."
   },
   {
     "id": "col-174",
@@ -5114,7 +5979,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-174.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Molly_Cybin&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Before game: Shuffle Molly's 4 delusions into your deck. À la Révélation : Draw one of the delusions.",
+    "ability_it": "Before game: Shuffle Molly's 4 delusions into your deck. Alla Rivelazione: Draw one of the delusions.",
+    "ability_de": "Before game: Shuffle Molly's 4 delusions into your deck. Beim Aufdecken: Draw one of the delusions.",
+    "ability_es": "Before game: Shuffle Molly's 4 delusions into your deck. Al Revelar: Draw one of the delusions.",
+    "ability_pt": "Before game: Shuffle Molly's 4 delusions into your deck. Ao Revelar: Draw one of the delusions."
   },
   {
     "id": "col-175",
@@ -5130,7 +6000,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Toreador"
     ],
-    "ability": "Fin de Manche : Confère +2 Puissance à toutes vos cartes connectées.",
+    "ability": "Fin de Manche : Donne +2 Puissance to all your connected cartes.",
     "ability_en": "End of Round: Give +2 Power to all your connected cards.",
     "flavorText": "\"Wayne Stahl - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Rare",
@@ -5143,7 +6013,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-175.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Wayne_Stahl",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Fin de Manche : Donne +2 Puissance to all your connected cartes.",
+    "ability_it": "Fine del Turno: Dai +2 Potere to all your connected cartas.",
+    "ability_de": "Rundenende: Gib +2 Macht to all your connected Kartes.",
+    "ability_es": "Fin de Ronda: Otorga +2 de Poder to all your connected cartas.",
+    "ability_pt": "Fim da Rodada: Conceda +2 de Poder to all your connected cartas."
   },
   {
     "id": "col-176",
@@ -5172,7 +6047,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-176.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Lili_Valentine",
-    "archetype_en": "Mortal"
+    "archetype_en": "Mortal",
+    "ability_fr": "Avant de perdre un Conflit : Confère 10 Points de Victoire au joueur.",
+    "ability_it": "Before this loses a Conflict: Score the player 10 Punti.",
+    "ability_de": "Before this loses a Conflict: Score the player 10 Punkte.",
+    "ability_es": "Before this loses a Conflict: Score the player 10 Puntos.",
+    "ability_pt": "Before this loses a Conflict: Score the player 10 Pontos."
   },
   {
     "id": "col-177",
@@ -5189,7 +6069,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Elitist"
     ],
-    "ability": "When any ennemi Violent carte attacks Vole 1 Puissance à it.",
+    "ability": "When any ennemi Violent carte attacks Steal 1 Puissance from it.",
     "ability_en": "When any enemy Violent card attacks Steal 1 Power from it.",
     "flavorText": "\"Felicity Drake - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Rare",
@@ -5202,7 +6082,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-177.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Felicity_Drake&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "When any ennemi Violent carte attacks Steal 1 Puissance from it.",
+    "ability_it": "When any nemico Violent carta attacks Steal 1 Potere from it.",
+    "ability_de": "When any Gegner Violent Karte attacks Steal 1 Macht from it.",
+    "ability_es": "When any enemigo Violent carta attacks Steal 1 de Poder from it.",
+    "ability_pt": "When any inimigo Violent carta attacks Steal 1 de Poder from it."
   },
   {
     "id": "col-178",
@@ -5219,7 +6104,7 @@ export const CARDS_DATA = [
       "Tremere",
       "Ghoul, Acolyte"
     ],
-    "ability": "Fin de Manche : If this has 0 Puissance Murder it to create a Mortel Acolyte in each espace vide. Otherwise Suffer -1 Puissance.",
+    "ability": "Fin de Manche : If this has 0 Puissance Murder it to create a Mortel Acolyte in each espace vide. Otherwise Subit -1 Puissance.",
     "ability_en": "End of Round: If this has 0 Power Murder it to create a Mortal Acolyte in each empty space. Otherwise Suffer -1 Power.",
     "flavorText": "\"Antoni Mazur - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Rare",
@@ -5232,7 +6117,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-178.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Antoni_Mazur&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Ghoul, Acolyte"
+    "archetype_en": "Ghoul, Acolyte",
+    "ability_fr": "Fin de Manche : If this has 0 Puissance Murder it to create a Mortel Acolyte in each espace vide. Otherwise Subit -1 Puissance.",
+    "ability_it": "Fine del Turno: If this has 0 Potere Murder it to create a Mortal Acolyte in each spazio vuoto. Otherwise Suffer -1 Potere.",
+    "ability_de": "Rundenende: If this has 0 Macht Murder it to create a Mortal Acolyte in each leeres Feld. Otherwise Suffer -1 Macht.",
+    "ability_es": "Fin de Ronda: If this has 0 de Poder Murder it to create a Mortal Acolyte in each espacio vacío. Otherwise Suffer -1 de Poder.",
+    "ability_pt": "Fim da Rodada: If this has 0 de Poder Murder it to create a Mortal Acolyte in each espaço vazio. Otherwise Suffer -1 de Poder."
   },
   {
     "id": "col-179",
@@ -5248,7 +6138,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Toreador"
     ],
-    "ability": "À la Révélation : Ajoute une copie Séduite de la carte du dessus du deck adverse à votre main.",
+    "ability": "À la Révélation : Add a Seduced copy of the top carte of your opponent's deck to your hand.",
     "ability_en": "On Reveal: Add a Seduced copy of the top card of your opponent's deck to your hand.",
     "flavorText": "\"Agent '<3' - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Rare",
@@ -5261,7 +6151,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-179.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Agent_Heart&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Add a Seduced copy of the top carte of your opponent's deck to your hand.",
+    "ability_it": "Alla Rivelazione: Add a Seduced copy of the top carta of your opponent's deck to your hand.",
+    "ability_de": "Beim Aufdecken: Add a Seduced copy of the top Karte of your opponent's deck to your hand.",
+    "ability_es": "Al Revelar: Add a Seduced copy of the top carta of your opponent's deck to your hand.",
+    "ability_pt": "Ao Revelar: Add a Seduced copy of the top carta of your opponent's deck to your hand."
   },
   {
     "id": "col-180",
@@ -5290,7 +6185,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-180.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Kelsey_Griffin&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Vampire, Mortal"
+    "archetype_en": "Vampire, Mortal",
+    "ability_fr": "Fin de Manche : If Cavalier, add 2 random Ingredients to main.",
+    "ability_it": "Fine del Turno: If Cavaliere, add 2 random Ingredients to hand.",
+    "ability_de": "Rundenende: If Ritter, add 2 random Ingredients to hand.",
+    "ability_es": "Fin de Ronda: If Caballero, add 2 random Ingredients to hand.",
+    "ability_pt": "Fim da Rodada: If Cavaleiro, add 2 random Ingredients to hand."
   },
   {
     "id": "col-181",
@@ -5306,7 +6206,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Brujah"
     ],
-    "ability": "Fin de Manche : Se déplace vers une carte ennemie connectée.",
+    "ability": "Fin de Manche : Move to an ennemi connected carte.",
     "ability_en": "End of Round: Move to an enemy connected card.",
     "flavorText": "\"Zara's Troupe - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Rare",
@@ -5319,7 +6219,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-181.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Zaras_Troupe&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Fin de Manche : Move to an ennemi connected carte.",
+    "ability_it": "Fine del Turno: Move to an nemico connected carta.",
+    "ability_de": "Rundenende: Move to an Gegner connected Karte.",
+    "ability_es": "Fin de Ronda: Move to an enemigo connected carta.",
+    "ability_pt": "Fim da Rodada: Move to an inimigo connected carta."
   },
   {
     "id": "col-182",
@@ -5336,7 +6241,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Elitist"
     ],
-    "ability": "inflige -5 Puissance à the next carte each player reveals.",
+    "ability": "Inflige -5 Puissance on the next carte each player reveals.",
     "ability_en": "Inflict -5 Power on the next card each player reveals.",
     "flavorText": "\"Victor Chang - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Rare",
@@ -5349,7 +6254,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-182.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Victor_Chang&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "Inflige -5 Puissance on the next carte each player reveals.",
+    "ability_it": "Infligge -5 Potere on the next carta each player reveals.",
+    "ability_de": "Füge -5 Macht on the next Karte each player reveals.",
+    "ability_es": "Inflige -5 de Poder on the next carta each player reveals.",
+    "ability_pt": "Inflige -5 de Poder on the next carta each player reveals."
   },
   {
     "id": "col-183",
@@ -5366,7 +6276,7 @@ export const CARDS_DATA = [
       "Tremere",
       "Sorcerer"
     ],
-    "ability": "À la Révélation : Return 4 defeated cartes with 3 or less Sang to main. Gagne +1 Puissance per carte returned.",
+    "ability": "À la Révélation : Return 4 defeated cartes with 3 or less sang to hand. Gagne +1 Puissance per carte returned.",
     "ability_en": "On Reveal: Return 4 defeated cards with 3 or less blood to hand. Gain +1 Power per card returned.",
     "flavorText": "\"Fitzwilliam Hardy - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Rare",
@@ -5379,7 +6289,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-183.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Fitzwilliam_Hardy&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Sorcerer"
+    "archetype_en": "Sorcerer",
+    "ability_fr": "À la Révélation : Return 4 defeated cartes with 3 or less sang to hand. Gagne +1 Puissance per carte returned.",
+    "ability_it": "Alla Rivelazione: Return 4 defeated cartas with 3 or less sangue to hand. Ottieni +1 Potere per carta returned.",
+    "ability_de": "Beim Aufdecken: Return 4 defeated Kartes with 3 or less Blut to hand. Erhalte +1 Macht per Karte returned.",
+    "ability_es": "Al Revelar: Return 4 defeated cartas with 3 or less sangre to hand. Gana +1 de Poder per carta returned.",
+    "ability_pt": "Ao Revelar: Return 4 defeated cartas with 3 or less sangue to hand. Ganhe +1 de Poder per carta returned."
   },
   {
     "id": "col-184",
@@ -5395,7 +6310,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Toreador"
     ],
-    "ability": "À la Révélation : Create a Séduit copy of the lowest cost carte in your opponent's main in an espace vide or ennemi Cavalier space.",
+    "ability": "À la Révélation : Create a Seduced copy of the lowest cost carte in your opponent's hand in an espace vide or ennemi Cavalier space.",
     "ability_en": "On Reveal: Create a Seduced copy of the lowest cost card in your opponent's hand in an empty space or enemy Knight space.",
     "flavorText": "\"Valora - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Rare",
@@ -5408,7 +6323,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-184.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Valora&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Create a Seduced copy of the lowest cost carte in your opponent's hand in an espace vide or ennemi Cavalier space.",
+    "ability_it": "Alla Rivelazione: Create a Seduced copy of the lowest cost carta in your opponent's hand in an spazio vuoto or nemico Cavaliere space.",
+    "ability_de": "Beim Aufdecken: Create a Seduced copy of the lowest cost Karte in your opponent's hand in an leeres Feld or Gegner Ritter space.",
+    "ability_es": "Al Revelar: Create a Seduced copy of the lowest cost carta in your opponent's hand in an espacio vacío or enemigo Caballero space.",
+    "ability_pt": "Ao Revelar: Create a Seduced copy of the lowest cost carta in your opponent's hand in an espaço vazio or inimigo Cavaleiro space."
   },
   {
     "id": "col-185",
@@ -5437,7 +6357,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-185.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lazer_J_Christ&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Tant qu'en jeu : You draw from your défausse pile instead.",
+    "ability_it": "While in gioco: You draw from your Discarta pile instead.",
+    "ability_de": "While im Spiel: You draw from your DisKarte pile instead.",
+    "ability_es": "While en juego: You draw from your Discarta pile instead.",
+    "ability_pt": "While em jogo: You draw from your Discarta pile instead."
   },
   {
     "id": "col-186",
@@ -5466,7 +6391,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-186.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Michael&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "In Conflicts with this, neither carte receives Support.",
+    "ability_it": "In Conflicts with this, neither carta receives Support.",
+    "ability_de": "In Conflicts with this, neither Karte receives Support.",
+    "ability_es": "In Conflicts with this, neither carta receives Support.",
+    "ability_pt": "In Conflicts with this, neither carta receives Support."
   },
   {
     "id": "col-187",
@@ -5495,7 +6425,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-187.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Agent_V&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Murder the next carte each player reveals. (Before any other ability applies)",
+    "ability_it": "Murder the next carta each player reveals. (Before any other ability applies)",
+    "ability_de": "Murder the next Karte each player reveals. (Before any other ability applies)",
+    "ability_es": "Murder the next carta each player reveals. (Before any other ability applies)",
+    "ability_pt": "Murder the next carta each player reveals. (Before any other ability applies)"
   },
   {
     "id": "col-188",
@@ -5524,7 +6459,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-188.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Luciano_DiCamillo",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "À la Défausse : Marque 3 Points de Victoire and return this to main.",
+    "ability_it": "When Discartaed: Score 3 Punti and return this to hand.",
+    "ability_de": "When DisKarteed: Score 3 Punkte and return this to hand.",
+    "ability_es": "When Discartaed: Score 3 Puntos and return this to hand.",
+    "ability_pt": "When Discartaed: Score 3 Pontos and return this to hand."
   },
   {
     "id": "col-189",
@@ -5540,7 +6480,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Malkavian"
     ],
-    "ability": "À la Défausse : piochez 2 cartes.",
+    "ability": "When Discarteed: Draw 2 Cards.",
     "ability_en": "When Discarded: Draw 2 Cards.",
     "flavorText": "\"Gonzo Thompson - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Épique",
@@ -5553,7 +6493,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-189.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Gonzo_Thompson&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When Discarteed: Draw 2 Cards.",
+    "ability_it": "When Discartaed: Draw 2 Cards.",
+    "ability_de": "When DisKarteed: Draw 2 Cards.",
+    "ability_es": "When Discartaed: Draw 2 Cards.",
+    "ability_pt": "When Discartaed: Draw 2 Cards."
   },
   {
     "id": "col-190",
@@ -5570,7 +6515,7 @@ export const CARDS_DATA = [
       "Tremere",
       "Sorcerer"
     ],
-    "ability": "Tant qu'en jeu : This has +5 Puissance pour chaque of your connecté(e) Acolytes.",
+    "ability": "Tant qu'en jeu : This a +5 Puissance pour chaque of your connecté(e) Acolytes.",
     "ability_en": "While in play: This has +5 Power for each of your connected Acolytes.",
     "flavorText": "\"Father Azriel - Carte officielle Vampire: The Masquerade – Clans of London (Série 4).\"",
     "rarity": "Légendaire",
@@ -5583,7 +6528,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-190.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Father_Azriel&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Sorcerer"
+    "archetype_en": "Sorcerer",
+    "ability_fr": "Tant qu'en jeu : This a +5 Puissance pour chaque of your connecté(e) Acolytes.",
+    "ability_it": "While in gioco: This ha +5 Potere per ogni of your connected Acolytes.",
+    "ability_de": "While im Spiel: This hat +5 Macht für jeden of your connected Acolytes.",
+    "ability_es": "While en juego: This tiene +5 de Poder por cada of your connected Acolytes.",
+    "ability_pt": "While em jogo: This tem +5 de Poder para cada of your connected Acolytes."
   },
   {
     "id": "col-191",
@@ -5612,7 +6562,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-191.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Forterra_Face&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "Tant qu'en jeu : This cannot provide Support in Conflit.",
+    "ability_it": "Mentre è in Gioco: This cannot provide Support in Conflict.",
+    "ability_de": "Solange im Spiel: This cannot provide Support in Conflict.",
+    "ability_es": "Mientras esté en Juego: This cannot provide Support in Conflict.",
+    "ability_pt": "Enquanto em Jogo: This cannot provide Support in Conflict."
   },
   {
     "id": "col-192",
@@ -5646,7 +6601,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-192.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Cormac_Flynn&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Vampire, Mortal"
+    "archetype_en": "Vampire, Mortal",
+    "ability_fr": "X est égal à votre Sang actuel. À la révélation : Utilisez X(🩸) capacités Ingrédient aléatoires. (L'effet est augmenté par les réductions de coût)",
+    "ability_it": "X is equal to your current Sangue. Alla Rivelazione: Use X random Ingredient abilities. (The effect is increased by cost reductions)",
+    "ability_de": "X is equal to your current Blut. Beim Aufdecken: Use X random Ingredient abilities. (The effect is increased by cost reductions)",
+    "ability_es": "X is equal to your current Sangre. Al Revelar: Use X random Ingredient abilities. (The effect is increased by cost reductions)",
+    "ability_pt": "X is equal to your current Sangue. Ao Revelar: Use X random Ingredient abilities. (The effect is increased by cost reductions)"
   },
   {
     "id": "col-193",
@@ -5662,7 +6622,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Malkavian"
     ],
-    "ability": "When you défausse a carte: Gagne +1 Puissance and move to an vide or ennemi espace connecté.",
+    "ability": "When you Discarte a carte: Gagne +1 Puissance and move to an empty or ennemi espace connecté.",
     "ability_en": "When you Discard a card: Gain +1 Power and move to an empty or enemy connected space.",
     "flavorText": "\"Scarlett Redline - Carte officielle Vampire: The Masquerade – Clans of London (Série 5).\"",
     "rarity": "Commune",
@@ -5675,7 +6635,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-193.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Scarlett_Redline&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When you Discarte a carte: Gagne +1 Puissance and move to an empty or ennemi espace connecté.",
+    "ability_it": "When you Discarta a carta: Ottieni +1 Potere and move to an empty or nemico spazio collegato.",
+    "ability_de": "When you DisKarte a Karte: Erhalte +1 Macht and move to an empty or Gegner verbundenes Feld.",
+    "ability_es": "When you Discarta a carta: Gana +1 de Poder and move to an empty or enemigo espacio conectado.",
+    "ability_pt": "When you Discarta a carta: Ganhe +1 de Poder and move to an empty or inimigo espaço conectado."
   },
   {
     "id": "col-194",
@@ -5691,7 +6656,7 @@ export const CARDS_DATA = [
       "Murder",
       "Hecata"
     ],
-    "ability": "Lorsqu'une carte est Assassinée : Ajoute un Cadavre Sans Esprit à votre main.",
+    "ability": "When a carte is Murdered: Add a Mindless Corpse to your hand.",
     "ability_en": "When a card is Murdered: Add a Mindless Corpse to your hand.",
     "flavorText": "\"Lynne Dunsirn - Carte officielle Vampire: The Masquerade – Clans of London (Série 5).\"",
     "rarity": "Commune",
@@ -5704,7 +6669,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-194.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lynne_Dunsirn&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "When a carte is Murdered: Add a Mindless Corpse to your hand.",
+    "ability_it": "When a carta is Murdered: Add a Mindless Corpse to your hand.",
+    "ability_de": "When a Karte is Murdered: Add a Mindless Corpse to your hand.",
+    "ability_es": "When a carta is Murdered: Add a Mindless Corpse to your hand.",
+    "ability_pt": "When a carta is Murdered: Add a Mindless Corpse to your hand."
   },
   {
     "id": "col-195",
@@ -5733,7 +6703,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-195.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Caspen_Vodrak&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Tant qu'en jeu : When a carte would lose Puissance, it loses 1 more.",
+    "ability_it": "Mentre è in Gioco: When a carta would lose Potere, it loses 1 more.",
+    "ability_de": "Solange im Spiel: When a Karte would lose Macht, it loses 1 more.",
+    "ability_es": "Mientras esté en Juego: When a carta would lose de Poder, it loses 1 more.",
+    "ability_pt": "Enquanto em Jogo: When a carta would lose de Poder, it loses 1 more."
   },
   {
     "id": "col-196",
@@ -5749,7 +6724,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Toreador"
     ],
-    "ability": "À la Révélation : Seduce a carte with less Puissance than this from the opponent's main.",
+    "ability": "À la Révélation : Seduce a carte with less Puissance than this from the opponent's hand.",
     "ability_en": "On Reveal: Seduce a card with less Power than this from the opponent's hand.",
     "flavorText": "\"V4mpire xX_queen_Xx - Carte officielle Vampire: The Masquerade – Clans of London (Série 5).\"",
     "rarity": "Rare",
@@ -5762,7 +6737,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-196.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Vampire_Queen",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Seduce a carte with less Puissance than this from the opponent's hand.",
+    "ability_it": "Alla Rivelazione: Seduce a carta with less Potere than this from the opponent's hand.",
+    "ability_de": "Beim Aufdecken: Seduce a Karte with less Macht than this from the opponent's hand.",
+    "ability_es": "Al Revelar: Seduce a carta with less de Poder than this from the opponent's hand.",
+    "ability_pt": "Ao Revelar: Seduce a carta with less de Poder than this from the opponent's hand."
   },
   {
     "id": "col-197",
@@ -5791,7 +6771,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-197.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Marcus_Kiley&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Violent"
+    "archetype_en": "Violent",
+    "ability_fr": "Tant qu'en jeu : Cavaliers score double Points. (This affects both players)",
+    "ability_it": "Mentre è in Gioco: Cavalieres score double punti. (This affects both players)",
+    "ability_de": "Solange im Spiel: Ritters score double Punkte. (This affects both players)",
+    "ability_es": "Mientras esté en Juego: Caballeros score double puntos. (This affects both players)",
+    "ability_pt": "Enquanto em Jogo: Cavaleiros score double pontos. (This affects both players)"
   },
   {
     "id": "col-198",
@@ -5807,7 +6792,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Malkavian"
     ],
-    "ability": "Next time you défausse a carte: Transform into a copy of it.",
+    "ability": "Next time you Discarte a carte: Transform into a copy of it.",
     "ability_en": "Next time you Discard a card: Transform into a copy of it.",
     "flavorText": "\"The Actor - Carte officielle Vampire: The Masquerade – Clans of London (Série 5).\"",
     "rarity": "Rare",
@@ -5820,7 +6805,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-198.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:The_Actor&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Next time you Discarte a carte: Transform into a copy of it.",
+    "ability_it": "Next time you Discarta a carta: Transform into a copy of it.",
+    "ability_de": "Next time you DisKarte a Karte: Transform into a copy of it.",
+    "ability_es": "Next time you Discarta a carta: Transform into a copy of it.",
+    "ability_pt": "Next time you Discarta a carta: Transform into a copy of it."
   },
   {
     "id": "col-199",
@@ -5837,7 +6827,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Elitist"
     ],
-    "ability": "Tant qu'en jeu : Your cartes in main which cost 5 or more coûtent 1 de moins.",
+    "ability": "Tant qu'en jeu : Your cartes in hand which cost 5 or more cost 1 less.",
     "ability_en": "While in Play: Your cards in hand which cost 5 or more cost 1 less.",
     "flavorText": "\"Muhsin Abbas - Carte officielle Vampire: The Masquerade – Clans of London (Série 5).\"",
     "rarity": "Rare",
@@ -5850,7 +6840,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-199.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Muhsin_Abbas&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "Tant qu'en jeu : Your cartes in hand which cost 5 or more cost 1 less.",
+    "ability_it": "Mentre è in Gioco: Your cartas in hand which cost 5 or more cost 1 less.",
+    "ability_de": "Solange im Spiel: Your Kartes in hand which cost 5 or more cost 1 less.",
+    "ability_es": "Mientras esté en Juego: Your cartas in hand which cost 5 or more cost 1 less.",
+    "ability_pt": "Enquanto em Jogo: Your cartas in hand which cost 5 or more cost 1 less."
   },
   {
     "id": "col-200",
@@ -5866,7 +6861,7 @@ export const CARDS_DATA = [
       "Élitiste",
       "Ventrue"
     ],
-    "ability": "Tant qu'en jeu : If your Prince is Élitiste, it has +4 Puissance but cannot give Support.",
+    "ability": "Tant qu'en jeu : Si votre Prince est Élitiste, it a +4 Puissance but cannot give Support.",
     "ability_en": "While in Play: If your Prince is Elitist, it has +4 Power but cannot give Support.",
     "flavorText": "\"Arturo de Vitry - Carte officielle Vampire: The Masquerade – Clans of London (Série 5).\"",
     "rarity": "Rare",
@@ -5879,7 +6874,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-200.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Arturo_de_Vitry&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "Tant qu'en jeu : Si votre Prince est Élitiste, it a +4 Puissance but cannot give Support.",
+    "ability_it": "Mentre è in Gioco: If your Principe is Elitist, it ha +4 Potere but cannot give Support.",
+    "ability_de": "Solange im Spiel: If your Prinz is Elitist, it hat +4 Macht but cannot give Support.",
+    "ability_es": "Mientras esté en Juego: If your Príncipe is Elitist, it tiene +4 de Poder but cannot give Support.",
+    "ability_pt": "Enquanto em Jogo: If your Príncipe is Elitist, it tem +4 de Poder but cannot give Support."
   },
   {
     "id": "col-201",
@@ -5909,7 +6909,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-201.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Queen_Rat&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Beast"
+    "archetype_en": "Beast",
+    "ability_fr": "À la Révélation : Create a Rat in an espace vide. Before this loses a Conflit: Scurry away, next round re-form from one of your Rats. (if possible)",
+    "ability_it": "Alla Rivelazione: Create a Rat in an Empty Space. Before this loses a Conflict: Scurry away, next round re-form from one of your Rats. (if possible)",
+    "ability_de": "Beim Aufdecken: Create a Rat in an Empty Space. Before this loses a Conflict: Scurry away, next round re-form from one of your Rats. (if possible)",
+    "ability_es": "Al Revelar: Create a Rat in an Empty Space. Before this loses a Conflict: Scurry away, next round re-form from one of your Rats. (if possible)",
+    "ability_pt": "Ao Revelar: Create a Rat in an Empty Space. Before this loses a Conflict: Scurry away, next round re-form from one of your Rats. (if possible)"
   },
   {
     "id": "col-202",
@@ -5925,7 +6930,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Brujah"
     ],
-    "ability": "Next time one of your Violent cartes win a Conflit in a Cavalier space: Marque 6 Points supplémentaires.",
+    "ability": "Next time one of your Violent cartes win a Conflict in a Cavalier space: Score 6 extra Points.",
     "ability_en": "Next time one of your Violent cards win a Conflict in a Knight space: Score 6 extra Points.",
     "flavorText": "\"Torben Briar - Carte officielle Vampire: The Masquerade – Clans of London (Série 5).\"",
     "rarity": "Rare",
@@ -5938,7 +6943,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-202.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Torben_Briar&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "Next time one of your Violent cartes win a Conflict in a Cavalier space: Score 6 extra Points.",
+    "ability_it": "Next time one of your Violent cartas win a Conflict in a Cavaliere space: Score 6 extra Punti.",
+    "ability_de": "Next time one of your Violent Kartes win a Conflict in a Ritter space: Score 6 extra Punkte.",
+    "ability_es": "Next time one of your Violent cartas win a Conflict in a Caballero space: Score 6 extra Puntos.",
+    "ability_pt": "Next time one of your Violent cartas win a Conflict in a Cavaleiro space: Score 6 extra Pontos."
   },
   {
     "id": "col-203",
@@ -5967,7 +6977,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-203.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lucy_Baptiste&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Défausse : Add 2 Forgotten Memories to main.",
+    "ability_it": "When Discartaed: Add 2 Forgotten Memories to hand.",
+    "ability_de": "When DisKarteed: Add 2 Forgotten Memories to hand.",
+    "ability_es": "When Discartaed: Add 2 Forgotten Memories to hand.",
+    "ability_pt": "When Discartaed: Add 2 Forgotten Memories to hand."
   },
   {
     "id": "col-204",
@@ -5997,7 +7012,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-204.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Boyar_Musat&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Sorcerer"
+    "archetype_en": "Sorcerer",
+    "ability_fr": "Fin de Manche : Trigger all your connecté(e) 'On Reveal' abilities.",
+    "ability_it": "Fine del Turno: Trigger all your connected 'On Reveal' abilities.",
+    "ability_de": "Rundenende: Trigger all your connected 'On Reveal' abilities.",
+    "ability_es": "Fin de Ronda: Trigger all your connected 'On Reveal' abilities.",
+    "ability_pt": "Fim da Rodada: Trigger all your connected 'On Reveal' abilities."
   },
   {
     "id": "col-205",
@@ -6026,7 +7046,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-205.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Paulo_Marques&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Pour chaque Bête en jeu, ajoute un Loup (Bête) à votre main. Confère +1 Puissance à toutes les Bêtes en main.",
+    "ability_it": "Alla Rivelazione: For each Beast you have in gioco, add a Wolf (Beast) to your hand. Give all Beasts in hand +1 Potere.",
+    "ability_de": "Beim Aufdecken: For each Beast you have im Spiel, add a Wolf (Beast) to your hand. Give all Beasts in hand +1 Macht.",
+    "ability_es": "Al Revelar: For each Beast you have en juego, add a Wolf (Beast) to your hand. Give all Beasts in hand +1 de Poder.",
+    "ability_pt": "Ao Revelar: For each Beast you have em jogo, add a Wolf (Beast) to your hand. Give all Beasts in hand +1 de Poder."
   },
   {
     "id": "col-206",
@@ -6043,7 +7068,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Elitist"
     ],
-    "ability": "Fin de Manche : If your Prince is Élitiste, score Points equal to its Puissance. You cannot score any other Points.",
+    "ability": "Fin de Manche : Si votre Prince est Élitiste, score Points equal to its Puissance. You cannot score any other Points.",
     "ability_en": "End of Round: If your Prince is Elitist, score Points equal to its Power. You cannot score any other Points.",
     "flavorText": "\"Lady Gloria - Carte officielle Vampire: The Masquerade – Clans of London (Série 5).\"",
     "rarity": "Épique",
@@ -6056,7 +7081,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-206.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lady_Gloria&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "Fin de Manche : Si votre Prince est Élitiste, score Points equal to its Puissance. You cannot score any other Points.",
+    "ability_it": "Fine del Turno: If your Principe is Elitist, score Punti equal to its Potere. You cannot score any other Punti.",
+    "ability_de": "Rundenende: If your Prinz is Elitist, score Punkte equal to its Macht. You cannot score any other Punkte.",
+    "ability_es": "Fin de Ronda: If your Príncipe is Elitist, score Puntos equal to its de Poder. You cannot score any other Puntos.",
+    "ability_pt": "Fim da Rodada: If your Príncipe is Elitist, score Pontos equal to its de Poder. You cannot score any other Pontos."
   },
   {
     "id": "col-207",
@@ -6073,7 +7103,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Elitist"
     ],
-    "ability": "À la Révélation : Steal all Puissance from your highest Puissance carte in main, then défausse it.",
+    "ability": "À la Révélation : Steal all Puissance from your highest Puissance carte in hand, then Discarte it.",
     "ability_en": "On Reveal: Steal all Power from your highest Power card in hand, then Discard it.",
     "flavorText": "\"Octavia Mullcroft - Carte officielle Vampire: The Masquerade – Clans of London (Série 5).\"",
     "rarity": "Épique",
@@ -6086,7 +7116,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-207.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Octavia_Mullcroft&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "À la Révélation : Steal all Puissance from your highest Puissance carte in hand, then Discarte it.",
+    "ability_it": "Alla Rivelazione: Steal all Potere from your highest Potere carta in hand, then Discarta it.",
+    "ability_de": "Beim Aufdecken: Steal all Macht from your highest Macht Karte in hand, then DisKarte it.",
+    "ability_es": "Al Revelar: Steal all de Poder from your highest de Poder carta in hand, then Discarta it.",
+    "ability_pt": "Ao Revelar: Steal all de Poder from your highest de Poder carta in hand, then Discarta it."
   },
   {
     "id": "col-208",
@@ -6102,7 +7137,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Toreador"
     ],
-    "ability": "When any of your cartes en jeu gain Puissance définitivement: Gagne +1 Puissance (wherever this is)",
+    "ability": "When any of your cartes en jeu gain Puissance permanently: Gagne +1 Puissance (wherever this is)",
     "ability_en": "When any of your cards in play gain Power permanently: Gain +1 Power (wherever this is)",
     "flavorText": "\"Nektarios Makris - Carte officielle Vampire: The Masquerade – Clans of London (Série 5).\"",
     "rarity": "Épique",
@@ -6115,7 +7150,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-208.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Nektarios_Makris",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "When any of your cartes en jeu gain Puissance permanently: Gagne +1 Puissance (wherever this is)",
+    "ability_it": "When any of your cartas in gioco gain Potere permanently: Ottieni +1 Potere (wherever this is)",
+    "ability_de": "When any of your Kartes im Spiel gain Macht permanently: Erhalte +1 Macht (wherever this is)",
+    "ability_es": "When any of your cartas en juego gain de Poder permanently: Gana +1 de Poder (wherever this is)",
+    "ability_pt": "When any of your cartas em jogo gain de Poder permanently: Ganhe +1 de Poder (wherever this is)"
   },
   {
     "id": "col-209",
@@ -6144,7 +7184,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-209.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Richard_de_Worde&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "Tant qu'en jeu : Your cartes without Support have double Puissance.",
+    "ability_it": "Mentre è in Gioco: Your cartas without Support have double Potere.",
+    "ability_de": "Solange im Spiel: Your Kartes without Support have double Macht.",
+    "ability_es": "Mientras esté en Juego: Your cartas without Support have double de Poder.",
+    "ability_pt": "Enquanto em Jogo: Your cartas without Support have double de Poder."
   },
   {
     "id": "col-210",
@@ -6160,7 +7205,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Gangrel"
     ],
-    "ability": "Tant qu'en jeu : Your Rats have +1 Puissance pour chaque other Rat you have en jeu.",
+    "ability": "While in Play: Your Rats ont +1 Puissance for each other Rat you have in play.",
     "ability_en": "While in Play: Your Rats have +1 Power for each other Rat you have in play.",
     "flavorText": "\"Wilhelm Hamm - Carte officielle Vampire: The Masquerade – Clans of London (Série 5).\"",
     "rarity": "Épique",
@@ -6173,7 +7218,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-210.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Wilhelm_Hamm&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "While in Play: Your Rats ont +1 Puissance for each other Rat you have in play.",
+    "ability_it": "Mentre è in Gioco: Your Rats hanno +1 Potere per ogni other Rat you have in gioco.",
+    "ability_de": "Solange im Spiel: Your Rats haben +1 Macht für jeden other Rat you have im Spiel.",
+    "ability_es": "Mientras esté en Juego: Your Rats tienen +1 de Poder por cada other Rat you have en juego.",
+    "ability_pt": "Enquanto em Jogo: Your Rats têm +1 de Poder para cada other Rat you have em jogo."
   },
   {
     "id": "col-211",
@@ -6189,7 +7239,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Malkavian"
     ],
-    "ability": "À la Révélation : inflige -2 Puissance à all other cartes.",
+    "ability": "À la Révélation : Inflige -2 Puissance on all other cartes.",
     "ability_en": "On Reveal: Inflict -2 Power on all other cards.",
     "flavorText": "\"Kenneth Glass - Carte officielle Vampire: The Masquerade – Clans of London (Série 5).\"",
     "rarity": "Légendaire",
@@ -6202,7 +7252,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-211.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Kenneth_Glass&amp;action=edit&amp;redlink=1",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "À la Révélation : Inflige -2 Puissance on all other cartes.",
+    "ability_it": "Alla Rivelazione: Infligge -2 Potere on all other cartas.",
+    "ability_de": "Beim Aufdecken: Füge -2 Macht on all other Kartes.",
+    "ability_es": "Al Revelar: Inflige -2 de Poder on all other cartas.",
+    "ability_pt": "Ao Revelar: Inflige -2 de Poder on all other cartas."
   },
   {
     "id": "col-212",
@@ -6218,7 +7273,7 @@ export const CARDS_DATA = [
       "Neutre",
       "Toreador"
     ],
-    "ability": "Après avoir remporté un Conflit : Marque 3 Points de Victoire pour chaque carte Séduite dans votre main, deck ou en jeu.",
+    "ability": "After this wins a Conflict: Score 3 Points pour chaque Seduced carte in your hand, deck or en jeu.",
     "ability_en": "After this wins a Conflict: Score 3 Points for each Seduced card in your hand, deck or in play.",
     "flavorText": "\"Ivory Lux - Carte officielle Vampire: The Masquerade – Clans of London (Série 5).\"",
     "rarity": "Légendaire",
@@ -6231,7 +7286,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-212.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Ivory_Lux",
-    "archetype_en": "N/A"
+    "archetype_en": "N/A",
+    "ability_fr": "After this wins a Conflict: Score 3 Points pour chaque Seduced carte in your hand, deck or en jeu.",
+    "ability_it": "After this wins a Conflict: Score 3 Punti per ogni Seduced carta in your hand, deck or in gioco.",
+    "ability_de": "After this wins a Conflict: Score 3 Punkte für jeden Seduced Karte in your hand, deck or im Spiel.",
+    "ability_es": "After this wins a Conflict: Score 3 Puntos por cada Seduced carta in your hand, deck or en juego.",
+    "ability_pt": "After this wins a Conflict: Score 3 Pontos para cada Seduced carta in your hand, deck or em jogo."
   },
   {
     "id": "col-213",
@@ -6261,7 +7321,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-213.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Monika_Kovac&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Violent, Elitist"
+    "archetype_en": "Violent, Elitist",
+    "ability_fr": "Can always be played Prince or Cavalier.",
+    "ability_it": "Can always be played Principe or Cavaliere.",
+    "ability_de": "Can always be played Prinz or Ritter.",
+    "ability_es": "Can always be played Príncipe or Caballero.",
+    "ability_pt": "Can always be played Príncipe or Cavaleiro."
   },
   {
     "id": "col-214",
@@ -6277,7 +7342,7 @@ export const CARDS_DATA = [
       "Murder",
       "Hecata"
     ],
-    "ability": "Tant qu'en jeu : This has +2 pour chaque carte Murdered this game.",
+    "ability": "Tant qu'en jeu : This a +2 pour chaque carte Murdered this game.",
     "ability_en": "While in Play: This has +2 for each card Murdered this game.",
     "flavorText": "\"Ian Dunsirn - Carte officielle Vampire: The Masquerade – Clans of London (Série 5).\"",
     "rarity": "Légendaire",
@@ -6290,7 +7355,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-214.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Ian_Dunsirn&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "Tant qu'en jeu : This a +2 pour chaque carte Murdered this game.",
+    "ability_it": "Mentre è in Gioco: This ha +2 per ogni carta Murdered this game.",
+    "ability_de": "Solange im Spiel: This hat +2 für jeden Karte Murdered this game.",
+    "ability_es": "Mientras esté en Juego: This tiene +2 por cada carta Murdered this game.",
+    "ability_pt": "Enquanto em Jogo: This tem +2 para cada carta Murdered this game."
   },
   {
     "id": "col-215",
@@ -6320,7 +7390,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-215.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Thaddeus_the_Thespian&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Seduced"
+    "archetype_en": "Seduced",
+    "ability_fr": "Start of game: Copy the ability and Puissance of the highest cost carte in your opponent's deck.",
+    "ability_it": "Start of game: Copy the ability and Potere of the highest cost carta in your opponent's deck.",
+    "ability_de": "Start of game: Copy the ability and Macht of the highest cost Karte in your opponent's deck.",
+    "ability_es": "Start of game: Copy the ability and de Poder of the highest cost carta in your opponent's deck.",
+    "ability_pt": "Start of game: Copy the ability and de Poder of the highest cost carta in your opponent's deck."
   },
   {
     "id": "col-216",
@@ -6337,7 +7412,7 @@ export const CARDS_DATA = [
       "Ventrue",
       "Elitist"
     ],
-    "ability": "When any other carte en jeu loses Puissance: Gain that much Puissance. (wherever this is)",
+    "ability": "When any other carte en jeu loses puissance: Gain that much Puissance. (wherever this is)",
     "ability_en": "When any other card in play loses power: Gain that much Power. (wherever this is)",
     "flavorText": "\"Charles Crane - Carte officielle Vampire: The Masquerade – Clans of London (Série 5).\"",
     "rarity": "Légendaire",
@@ -6350,7 +7425,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-216.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Charles_Crane&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "When any other carte en jeu loses puissance: Gain that much Puissance. (wherever this is)",
+    "ability_it": "When any other carta in gioco loses potere: Gain that much Potere. (wherever this is)",
+    "ability_de": "When any other Karte im Spiel loses Macht: Gain that much Macht. (wherever this is)",
+    "ability_es": "When any other carta en juego loses de poder: Gain that much de Poder. (wherever this is)",
+    "ability_pt": "When any other carta em jogo loses de poder: Gain that much de Poder. (wherever this is)"
   },
   {
     "id": "col-217",
@@ -6366,7 +7446,7 @@ export const CARDS_DATA = [
       "Delusion",
       "Malkavian"
     ],
-    "ability": "À la Révélation : If Prince, défausse your lowest Puissance carte(s). When you défausse a carte: Gagne +1 Puissance and 4 Points.",
+    "ability": "À la Révélation : If Prince, Discarte your lowest Puissance carte(s). When you Discarte a carte: Gagne +1 Puissance and 4 Points.",
     "ability_en": "On Reveal: If Prince, Discard your lowest Power card(s). When you Discard a card: Gain +1 Power and 4 Points.",
     "flavorText": "\"Justicar Parr - Carte officielle Vampire: The Masquerade – Clans of London (Série 5).\"",
     "rarity": "Légendaire",
@@ -6379,7 +7459,12 @@ export const CARDS_DATA = [
     "artType": "vampire",
     "imageUrl": "/cards/col-217.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Justicar_Parr&amp;action=edit&amp;redlink=1",
-    "archetype_en": "Elitist"
+    "archetype_en": "Elitist",
+    "ability_fr": "À la Révélation : If Prince, Discarte your lowest Puissance carte(s). When you Discarte a carte: Gagne +1 Puissance and 4 Points.",
+    "ability_it": "Alla Rivelazione: If Principe, Discarta your lowest Potere carta(s). When you Discarta a carta: Ottieni +1 Potere and 4 Punti.",
+    "ability_de": "Beim Aufdecken: If Prinz, DisKarte your lowest Macht Karte(s). When you DisKarte a Karte: Erhalte +1 Macht and 4 Punkte.",
+    "ability_es": "Al Revelar: If Príncipe, Discarta your lowest de Poder carta(s). When you Discarta a carta: Gana +1 de Poder and 4 Puntos.",
+    "ability_pt": "Ao Revelar: If Príncipe, Discarta your lowest de Poder carta(s). When you Discarta a carta: Ganhe +1 de Poder and 4 Pontos."
   },
   {
     "id": "col-ing-01",
@@ -6398,7 +7483,7 @@ export const CARDS_DATA = [
       "Ingrédient",
       "Alchimie"
     ],
-    "ability": "À la révélation : Une carte aléatoire en main coûte 1 de moins. (minimum de 1)",
+    "ability": "À la Révélation : A random carte in hand costs 1 less. (minimum of 1)",
     "ability_en": "On Reveal: A random card in hand costs 1 less. (minimum of 1)",
     "flavorText": "\"Blood Bag - Ingrédient d'Alchimie du Sang-Clair (Saison Rise of the Duskborn).\"",
     "rarity": "Commune",
@@ -6410,7 +7495,12 @@ export const CARDS_DATA = [
     ],
     "artType": "object",
     "imageUrl": "/cards/col-ing-01.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Blood_Bag"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Blood_Bag",
+    "ability_fr": "À la Révélation : A random carte in hand costs 1 less. (minimum of 1)",
+    "ability_it": "Alla Rivelazione: A random carta in hand costs 1 less. (minimum of 1)",
+    "ability_de": "Beim Aufdecken: A random Karte in hand costs 1 less. (minimum of 1)",
+    "ability_es": "Al Revelar: A random carta in hand costs 1 less. (minimum of 1)",
+    "ability_pt": "Ao Revelar: A random carta in hand costs 1 less. (minimum of 1)"
   },
   {
     "id": "col-ing-02",
@@ -6429,7 +7519,7 @@ export const CARDS_DATA = [
       "Ingrédient",
       "Alchimie"
     ],
-    "ability": "À la révélation : Infligez -2 Puissance à la carte ennemie ayant la plus grande Puissance.",
+    "ability": "À la Révélation : Deal -2 Puissance to the carte ennemie with the highest Puissance.",
     "ability_en": "On Reveal: Deal -2 Power to the enemy card with the highest Power.",
     "flavorText": "\"Bleach - Ingrédient corrosif pour neutraliser les bêtes et vampires adverses.\"",
     "rarity": "Commune",
@@ -6441,7 +7531,12 @@ export const CARDS_DATA = [
     ],
     "artType": "object",
     "imageUrl": "/cards/col-ing-02.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Bleach"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Bleach",
+    "ability_fr": "À la Révélation : Deal -2 Puissance to the carte ennemie with the highest Puissance.",
+    "ability_it": "Alla Rivelazione: Deal -2 Potere to the carta nemica with the highest Potere.",
+    "ability_de": "Beim Aufdecken: Deal -2 Macht to the gegnerische Karte with the highest Macht.",
+    "ability_es": "Al Revelar: Deal -2 de Poder to the carta enemiga with the highest de Poder.",
+    "ability_pt": "Ao Revelar: Deal -2 de Poder to the carta inimiga with the highest de Poder."
   },
   {
     "id": "col-ing-03",
@@ -6472,6 +7567,30 @@ export const CARDS_DATA = [
     ],
     "artType": "object",
     "imageUrl": "/cards/col-ing-03.jpg",
-    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Caffeine_Powder"
+    "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Caffeine_Powder",
+    "ability_fr": "À la révélation : Donnez +3 Puissance au Mortel le plus à droite en main.",
+    "ability_it": "Alla Rivelazione: Dai +3 Potere to the rightmost Mortal in hand.",
+    "ability_de": "Beim Aufdecken: Gib +3 Macht to the rightmost Mortal in hand.",
+    "ability_es": "Al Revelar: Otorga +3 de Poder to the rightmost Mortal in hand.",
+    "ability_pt": "Ao Revelar: Conceda +3 de Poder to the rightmost Mortal in hand."
   }
 ];
+
+export function getCardAbility(card, lang = 'fr') {
+  if (!card) return '';
+  switch (lang) {
+    case 'en':
+      return card.ability_en || card.ability || '';
+    case 'it':
+      return card.ability_it || card.ability_en || card.ability || '';
+    case 'de':
+      return card.ability_de || card.ability_en || card.ability || '';
+    case 'es':
+      return card.ability_es || card.ability_en || card.ability || '';
+    case 'pt':
+      return card.ability_pt || card.ability_en || card.ability || '';
+    case 'fr':
+    default:
+      return card.ability_fr || card.ability || card.ability_en || '';
+  }
+}

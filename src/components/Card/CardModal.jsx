@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { X, Plus, Minus, BookOpen, Check, Layers, Share2, Sparkles, Edit3, ExternalLink } from 'lucide-react';
 import CardArtwork from './CardArtwork';
 import { CLANS } from '../../data/clansData';
-import { CARDS_DATA } from '../../data/cardsData';
+import { CARDS_DATA, getCardAbility } from '../../data/cardsData';
 import { getShareableCardUrl } from '../../utils/router';
 
 export default function CardModal({ 
@@ -27,7 +27,7 @@ export default function CardModal({
 
   const clanInfo = CLANS[card.clan] || CLANS.Mortal;
   const isFrench = lang === 'fr';
-  const displayedAbility = (!isFrench && card.ability_en) ? card.ability_en : (card.ability || card.ability_en);
+  const displayedAbility = getCardAbility(card, lang);
   const displayedType = t?.cardAttributes?.types?.[card.type] || card.type;
   const displayedArchetype = t?.cardAttributes?.archetypes?.[card.archetype] || t?.cardAttributes?.archetypes?.[card.archetype_en] || card.archetype;
   const displayedClan = (card.clan === 'Malkavien' && !isFrench) ? 'Malkavian' : card.clan;

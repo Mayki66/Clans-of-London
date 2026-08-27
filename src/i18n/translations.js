@@ -26,7 +26,7 @@ export const TRANSLATIONS = {
       "deckbuilder": "Deck Builder",
       "community": "Decks Communauté",
       "metadecks": "Decks Méta",
-      "arena": "Arène & Duel IA",
+      "arena": "Arène",
       "profile": "Mon Profil",
       "langSwitch": "Langue"
     },
@@ -414,7 +414,7 @@ export const TRANSLATIONS = {
       "deckbuilder": "Deck Builder",
       "community": "Community Decks",
       "metadecks": "Meta Decks",
-      "arena": "Arena & AI Duel",
+      "arena": "Arena",
       "profile": "My Profile",
       "langSwitch": "Language"
     },
@@ -802,7 +802,7 @@ export const TRANSLATIONS = {
       "deckbuilder": "Deck Builder",
       "community": "Deck Comunitari",
       "metadecks": "Deck Meta",
-      "arena": "Arena & Duello IA",
+      "arena": "Arena",
       "profile": "Mio Profilo",
       "langSwitch": "Lingua"
     },
@@ -1190,7 +1190,7 @@ export const TRANSLATIONS = {
       "deckbuilder": "Deck-Builder",
       "community": "Community-Decks",
       "metadecks": "Meta-Decks",
-      "arena": "Arena & KI-Duell",
+      "arena": "Arena",
       "profile": "Mein Profil",
       "langSwitch": "Sprache"
     },
@@ -1578,7 +1578,7 @@ export const TRANSLATIONS = {
       "deckbuilder": "Deck Builder",
       "community": "Mazos Comunidad",
       "metadecks": "Mazos Meta",
-      "arena": "Arena & Duelo IA",
+      "arena": "Arena",
       "profile": "Mi Perfil",
       "langSwitch": "Idioma"
     },
@@ -1966,7 +1966,7 @@ export const TRANSLATIONS = {
       "deckbuilder": "Deck Builder",
       "community": "Baralhos Comunidade",
       "metadecks": "Baralhos Meta",
-      "arena": "Arena & Duelo IA",
+      "arena": "Arena",
       "profile": "Meu Perfil",
       "langSwitch": "Idioma"
     },

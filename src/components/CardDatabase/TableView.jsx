@@ -1,6 +1,7 @@
 import React from 'react';
 import { Shield, Plus, Minus } from 'lucide-react';
 import { CLANS } from '../../data/clansData';
+import { getCardAbility } from '../../data/cardsData';
 
 export default function TableView({ cards, onInspectCard, onAddCard, onRemoveCard, deckCards = [], lang = 'fr', t }) {
   const isFrench = lang === 'fr';
@@ -45,7 +46,7 @@ export default function TableView({ cards, onInspectCard, onAddCard, onRemoveCar
             {cards.map((card) => {
               const clanInfo = CLANS[card.clan] || CLANS.Mortal;
               const count = deckCards.filter(c => c.id === card.id).length;
-              const displayedAbility = (!isFrench && card.ability_en) ? card.ability_en : (card.ability || card.ability_en);
+              const displayedAbility = getCardAbility(card, lang);
               const displayedType = t?.cardAttributes?.types?.[card.type] || card.type;
               const displayedArchetype = t?.cardAttributes?.archetypes?.[card.archetype] || t?.cardAttributes?.archetypes?.[card.archetype_en] || card.archetype;
               const displayedClan = (card.clan === 'Malkavien' && !isFrench) ? 'Malkavian' : card.clan;
