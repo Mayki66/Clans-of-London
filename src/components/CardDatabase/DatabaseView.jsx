@@ -16,8 +16,6 @@ export default function DatabaseView({
   lang = 'fr',
   t
 }) {
-  const isEn = lang === 'en';
-
   const [filters, setFilters] = useState({
     search: '',
     clan: 'ALL',

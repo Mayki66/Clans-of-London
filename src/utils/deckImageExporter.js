@@ -208,7 +208,7 @@ export async function generateDeckImageBlob({
     // Ability Text (Wrapped)
     ctx.fillStyle = '#d1d5db';
     ctx.font = '10px sans-serif';
-    const ability = (lang === 'en' && card.ability_en) ? card.ability_en : (card.ability || '');
+    const ability = (lang !== 'fr' && card.ability_en) ? card.ability_en : (card.ability || '');
     wrapText(ctx, ability, x + 10, y + 90, colWidth - 20, 14, 6);
 
     // Keywords Tags at bottom

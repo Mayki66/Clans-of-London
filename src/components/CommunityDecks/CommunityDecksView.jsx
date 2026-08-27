@@ -79,9 +79,9 @@ export default function CommunityDecksView({
           });
 
           setLiveNotification(
-            lang === 'en'
-              ? `🆕 Live update: "${deck.name}" by ${deck.author} was just shared!`
-              : `🆕 En direct : "${deck.name}" par ${deck.author} vient d'être publié !`
+            lang === 'fr'
+              ? `🆕 En direct : "${deck.name}" par ${deck.author} vient d'être publié !`
+              : `🆕 Live update: "${deck.name}" by ${deck.author} was just shared!`
           );
           setTimeout(() => setLiveNotification(null), 6000);
         } else if (type === 'UPDATE' && deck) {
@@ -211,7 +211,7 @@ export default function CommunityDecksView({
                     : 'bg-amber-400 animate-pulse'
                 }`} />
                 <span className="text-[10px] font-mono text-emerald-300">
-                  {realtimeStatus === 'connected' ? (lang === 'en' ? 'Live' : 'En Direct') : (lang === 'en' ? 'Connecting...' : 'Connexion...')}
+                  {realtimeStatus === 'connected' ? (lang === 'fr' ? 'En Direct' : 'Live') : (lang === 'fr' ? 'Connexion...' : 'Connecting...')}
                 </span>
               </span>
             </div>
@@ -354,7 +354,7 @@ export default function CommunityDecksView({
                       )}
                     </div>
                     <h3 className="font-gothic font-extrabold text-lg text-gray-100 mt-1">
-                      {lang === 'en' && deck.name_en ? deck.name_en : deck.name}
+                      {lang !== 'fr' && deck.name_en ? deck.name_en : deck.name}
                     </h3>
                     <p className="text-[11px] font-mono text-gray-400">
                       {t?.community?.author || "Créé par"} <strong className="text-amber-400">{deck.author}</strong> • {deck.publishedAt}
@@ -373,21 +373,21 @@ export default function CommunityDecksView({
 
                 {/* Strategy Text */}
                 <p className="text-xs text-gray-300 leading-relaxed bg-[#090b10] p-3 rounded-xl border border-white/5 font-sans">
-                  {lang === 'en' && deck.strategy_en ? deck.strategy_en : deck.strategy_fr}
+                  {lang !== 'fr' && deck.strategy_en ? deck.strategy_en : deck.strategy_fr}
                 </p>
 
                 {/* Quick Stats */}
                 <div className="grid grid-cols-3 gap-2 text-center text-xs font-mono">
                   <div className="p-2 rounded-lg bg-[#141824] border border-white/5">
-                    <span className="text-[10px] text-gray-400 block uppercase">Cartes</span>
+                    <span className="text-[10px] text-gray-400 block uppercase">{t?.stats?.cardCount || "Cartes"}</span>
                     <span className="font-bold text-gray-200">{cards.length}</span>
                   </div>
                   <div className="p-2 rounded-lg bg-[#141824] border border-white/5">
-                    <span className="text-[10px] text-gray-400 block uppercase">Puissance</span>
+                    <span className="text-[10px] text-gray-400 block uppercase">{t?.stats?.avgPower || "Puissance"}</span>
                     <span className="font-bold text-amber-400">{totalPower}</span>
                   </div>
                   <div className="p-2 rounded-lg bg-[#141824] border border-white/5">
-                    <span className="text-[10px] text-gray-400 block uppercase">Coût Moyen</span>
+                    <span className="text-[10px] text-gray-400 block uppercase">{t?.stats?.avgCost || "Coût Moyen"}</span>
                     <span className="font-bold text-rose-400">{avgCost}</span>
                   </div>
                 </div>
@@ -395,8 +395,8 @@ export default function CommunityDecksView({
                 {/* 15 Cards Visual Artworks Grid */}
                 <div className="space-y-1.5 pt-1">
                   <div className="flex items-center justify-between text-[11px] font-mono text-gray-400">
-                    <span>{lang === 'en' ? "Deck Cards (15) :" : "Cartes du Deck (15) :"}</span>
-                    <span className="text-gray-500">{lang === 'en' ? "Click to inspect" : "Cliquer pour inspecter"}</span>
+                    <span>{lang === 'fr' ? "Cartes du Deck (15) :" : "Deck Cards (15) :"}</span>
+                    <span className="text-gray-500">{lang === 'fr' ? "Cliquer pour inspecter" : "Click to inspect"}</span>
                   </div>
 
                   <div className="grid grid-cols-5 gap-2">
@@ -452,7 +452,7 @@ export default function CommunityDecksView({
                 <button
                   onClick={() => onNavigateToArena(deck)}
                   className="px-3 py-2.5 rounded-xl bg-amber-950/70 hover:bg-amber-900 border border-amber-500/50 text-amber-300 font-gothic font-bold text-xs transition-all"
-                  title="Tester directement dans l'Arène de Combat"
+                  title={lang === 'fr' ? "Tester directement dans l'Arène de Combat" : "Test directly in the Arena"}
                 >
                   <Swords className="w-4 h-4" />
                 </button>
@@ -465,11 +465,11 @@ export default function CommunityDecksView({
                       ? 'bg-indigo-900 border-indigo-400 text-white shadow-[0_0_15px_rgba(99,102,241,0.4)]'
                       : 'bg-[#141824] hover:bg-[#1f2538] border-white/15 text-indigo-300 hover:text-white'
                   }`}
-                  title={lang === 'en' ? 'Discussions & Advice' : 'Discussions & Conseils'}
+                  title={lang === 'fr' ? 'Discussions & Conseils' : 'Discussions & Advice'}
                 >
                   <MessageSquare className="w-4 h-4 text-indigo-400" />
                   <span className="hidden sm:inline text-[11px] font-gothic">
-                    {expandedComments[deck.id] ? (lang === 'en' ? 'Hide' : 'Fermer') : (lang === 'en' ? 'Comments' : 'Avis')}
+                    {expandedComments[deck.id] ? (lang === 'fr' ? 'Fermer' : 'Hide') : (lang === 'fr' ? 'Avis' : 'Comments')}
                   </span>
                 </button>
 
@@ -481,7 +481,7 @@ export default function CommunityDecksView({
                       ? 'bg-emerald-950/80 border-emerald-500 text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.4)]'
                       : 'bg-indigo-950/60 hover:bg-indigo-900 border-indigo-500/40 text-indigo-300 hover:text-white'
                   }`}
-                  title={lang === 'en' ? 'Copy direct share link for this deck' : 'Copier le lien direct vers ce deck'}
+                  title={lang === 'fr' ? 'Copier le lien direct vers ce deck' : 'Copy direct share link for this deck'}
                 >
                   {copiedLinkDeckId === deck.id ? <Check className="w-4 h-4 text-emerald-400" /> : <LinkIcon className="w-4 h-4" />}
                 </button>
@@ -490,7 +490,7 @@ export default function CommunityDecksView({
                 <button
                   onClick={() => handleCopyCode(deck)}
                   className="px-3 py-2.5 rounded-xl bg-[#141824] hover:bg-[#1e2538] border border-white/15 text-gray-300 font-mono text-xs transition-all"
-                  title="Copier le code texte du deck"
+                  title={lang === 'fr' ? "Copier le code texte du deck" : "Copy deck text code"}
                 >
                   {copiedDeckId === deck.id ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
                 </button>

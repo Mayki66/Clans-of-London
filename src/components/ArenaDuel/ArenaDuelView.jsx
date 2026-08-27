@@ -612,7 +612,7 @@ export default function ArenaDuelView({
           <div className="flex items-center justify-between flex-wrap gap-2">
             <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-500/50 text-red-300 text-xs font-semibold uppercase tracking-wider">
               <Swords className="w-3.5 h-3.5" />
-              <span>Arène Officielle & Simulateur Duel IA</span>
+              <span>{t?.arena?.title || "Arène Officielle & Simulateur Duel IA"}</span>
             </div>
 
             {/* Leaderboard Trigger Button */}
@@ -622,15 +622,15 @@ export default function ArenaDuelView({
               className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 hover:to-yellow-500 text-black font-gothic font-bold text-xs shadow-gold transition-all ml-auto"
             >
               <Trophy className="w-3.5 h-3.5" />
-              <span>🏆 Classement de Londres</span>
+              <span>🏆 {t?.arena?.leaderboardBtn || "Classement de Londres"}</span>
             </button>
           </div>
 
           <h1 className="font-gothic font-extrabold text-3xl md:text-4xl text-gray-100">
-            Arène de Combat de Londres
+            {t?.arena?.title || "Arène de Combat de Londres"}
           </h1>
           <p className="text-sm md:text-base text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Affrontez une Intelligence Artificielle en conditions réelles sur le plateau officiel à 15 cases. Gérez votre Sang, établissez vos chaînes de soutien et conquérez le Trône du Prince en 7 manches !
+            {t?.arena?.subtitle || "Affrontez une Intelligence Artificielle en conditions réelles sur le plateau officiel à 15 cases. Gérez votre Sang, établissez vos chaînes de soutien et conquérez le Trône du Prince en 7 manches !"}
           </p>
         </div>
 
@@ -640,7 +640,7 @@ export default function ArenaDuelView({
             <div>
               <div className="flex items-center space-x-2 text-amber-400 font-gothic font-bold text-sm mb-3">
                 <Crown className="w-4 h-4" />
-                <span>1. Lieu & Règle Globale</span>
+                <span>{t?.arena?.locationTitle || "1. Lieu & Règle Globale"}</span>
               </div>
               <div className="space-y-2">
                 {ARENA_LOCATIONS.map(loc => (
@@ -668,7 +668,7 @@ export default function ArenaDuelView({
               <div className="flex items-center justify-between text-purple-400 font-gothic font-bold text-sm mb-3">
                 <div className="flex items-center space-x-2">
                   <Sparkles className="w-4 h-4" />
-                  <span>2. Adversaire IA</span>
+                  <span>{t?.arena?.aiOpponentTitle || "2. Adversaire IA"}</span>
                 </div>
               </div>
 
@@ -683,7 +683,7 @@ export default function ArenaDuelView({
                       : 'text-gray-400 hover:text-gray-200'
                   }`}
                 >
-                  🤖 Boss IA
+                  🤖 {t?.arena?.aiBossTab || "Boss IA"}
                 </button>
                 <button
                   type="button"
@@ -694,7 +694,7 @@ export default function ArenaDuelView({
                       : 'text-gray-400 hover:text-gray-200'
                   }`}
                 >
-                  👥 Commu ({communityDecks.length})
+                  👥 {t?.arena?.communityDecksTab || "Commu"} ({communityDecks.length})
                 </button>
               </div>
 
@@ -725,7 +725,7 @@ export default function ArenaDuelView({
                 <div className="space-y-2 max-h-64 overflow-y-auto pr-1">
                   {communityDecks.length === 0 && (
                     <div className="p-4 text-center text-xs text-gray-400 font-mono">
-                      Aucun deck communautaire chargé.
+                      {t?.arena?.noCommunityDecks || "Aucun deck communautaire chargé."}
                     </div>
                   )}
                   {communityDecks.map(deck => (
@@ -739,7 +739,7 @@ export default function ArenaDuelView({
                       }`}
                     >
                       <div className="font-gothic font-bold text-xs text-indigo-300 truncate">{deck.name}</div>
-                      <div className="text-[10px] font-mono text-amber-400">Par {deck.author} • {deck.clan}</div>
+                      <div className="text-[10px] font-mono text-amber-400">{t?.community?.by || "Par"} {deck.author} • {deck.clan}</div>
                       <div className="text-[9px] font-sans text-gray-400 line-clamp-1 mt-0.5">{deck.strategy_fr}</div>
                     </div>
                   ))}
@@ -753,7 +753,7 @@ export default function ArenaDuelView({
             <div>
               <div className="flex items-center space-x-2 text-emerald-400 font-gothic font-bold text-sm mb-3">
                 <Shield className="w-4 h-4" />
-                <span>3. Votre Deck de Combat</span>
+                <span>{t?.arena?.playerDeckTitle || "3. Votre Deck de Combat"}</span>
               </div>
               <div className="space-y-2">
                 <div
@@ -764,13 +764,13 @@ export default function ArenaDuelView({
                       : 'bg-[#0c0f16] border-white/10 text-gray-400 hover:text-gray-200'
                   }`}
                 >
-                  <div className="font-gothic font-bold text-xs text-emerald-300">Mon Deck Personnalisé</div>
+                  <div className="font-gothic font-bold text-xs text-emerald-300">{t?.arena?.customDeckOption || "Mon Deck Personnalisé"}</div>
                   <div className="text-[10px] font-mono text-gray-400 mt-0.5">
-                    {customDeckCardIds.length} cartes sélectionnées
+                    {customDeckCardIds.length} {t?.stats?.cardCount || "cartes"}
                   </div>
                 </div>
 
-                <div className="text-[10px] uppercase font-mono text-gray-500 pt-1">Ou choisir un Deck Méta :</div>
+                <div className="text-[10px] uppercase font-mono text-gray-500 pt-1">{t?.arena?.orChooseMeta || "Ou choisir un Deck Méta :"}</div>
                 <div className="max-h-36 overflow-y-auto space-y-1.5 pr-1">
                   {META_DECKS.slice(0, 5).map(md => (
                     <div
@@ -797,7 +797,7 @@ export default function ArenaDuelView({
             onClick={initMatch}
             className="px-10 py-4 rounded-2xl bg-gradient-to-r from-red-800 via-red-700 to-rose-900 hover:from-red-700 hover:to-rose-800 text-white font-gothic font-extrabold text-base shadow-blood transition-all transform hover:scale-105"
           >
-            ⚔️ Lancer le Match d'Arène
+            ⚔️ {t?.arena?.launchMatchBtn || "Lancer le Match d'Arène"}
           </button>
         </div>
       </div>
@@ -893,16 +893,16 @@ export default function ArenaDuelView({
           <div className="max-w-md w-full rounded-2xl glass-panel-blood border-2 border-amber-400 p-6 text-center space-y-5 shadow-[0_0_50px_rgba(212,175,55,0.4)]">
             <div className="space-y-1">
               <h2 className="font-gothic font-extrabold text-4xl text-amber-300 tracking-wider">
-                {playerScore > aiScore ? 'VICTOIRE' : playerScore < aiScore ? 'DÉFAITE' : 'ÉGALITÉ'}
+                {playerScore > aiScore ? (t?.arena?.victory || 'VICTOIRE') : playerScore < aiScore ? (t?.arena?.defeat || 'DÉFAITE') : (t?.arena?.draw || 'ÉGALITÉ')}
               </h2>
               <p className="font-mono text-xs tracking-widest text-red-400 uppercase">
-                {playerScore > aiScore ? 'VICTORIA EST IMMORTALITAS' : 'LONDRES APPARTIENT AUX RIVAUX'}
+                {playerScore > aiScore ? (lang === 'fr' ? 'VICTORIA EST IMMORTALITAS' : 'VICTORIA EST IMMORTALITAS') : (lang === 'fr' ? 'LONDRES APPARTIENT AUX RIVAUX' : 'LONDON BELONGS TO RIVALS')}
               </p>
             </div>
 
             <div className="grid grid-cols-2 gap-4 p-4 rounded-xl bg-black/60 border border-white/10">
               <div>
-                <span className="text-[10px] font-mono uppercase text-gray-400">Votre Score</span>
+                <span className="text-[10px] font-mono uppercase text-gray-400">{lang === 'fr' ? 'Votre Score' : 'Your Score'}</span>
                 <div className="text-3xl font-extrabold font-gothic text-emerald-400">{playerScore} Pts</div>
               </div>
               <div>
@@ -916,13 +916,13 @@ export default function ArenaDuelView({
                 onClick={initMatch}
                 className="flex-1 py-3 rounded-xl bg-gradient-to-r from-red-700 to-rose-900 text-white font-gothic font-bold text-xs shadow-blood hover:from-red-600 hover:to-rose-800"
               >
-                Rejouer un Match
+                {t?.arena?.rematchBtn || "Rejouer un Match"}
               </button>
               <button
                 onClick={() => setGamePhase('setup')}
                 className="flex-1 py-3 rounded-xl bg-[#141824] border border-white/10 text-gray-300 hover:text-white font-gothic font-bold text-xs"
               >
-                Quitter l'Arène
+                {t?.arena?.quitArenaBtn || "Quitter l'Arène"}
               </button>
             </div>
           </div>
@@ -937,10 +937,10 @@ export default function ArenaDuelView({
           <div className="flex items-center justify-between border-b border-white/10 pb-2">
             <div className="flex items-center space-x-2 text-amber-400 font-gothic font-bold text-xs">
               <Layers className="w-4 h-4" />
-              <span>Votre Deck ({fullPlayerDeck.length})</span>
+              <span>{t?.arena?.deckTrackerTitle || "Votre Deck"} ({fullPlayerDeck.length})</span>
             </div>
             <span className="text-[10px] font-mono text-gray-400">
-              Main : {playerHand.length}
+              {t?.simulator?.handTitle || "Main"} : {playerHand.length}
             </span>
           </div>
 
@@ -1414,7 +1414,7 @@ export default function ArenaDuelView({
                 onClick={() => setGamePhase('setup')}
                 className="flex-1 py-2.5 rounded-full bg-[#12151f] hover:bg-[#1c2233] border border-white/15 text-gray-400 hover:text-white font-gothic font-bold text-xs transition-all text-center tracking-wider"
               >
-                ABANDONNER
+                {t?.arena?.surrenderBtn || "ABANDONNER"}
               </button>
 
               <div className="w-12 h-12 rounded-full bg-gradient-to-b from-red-700 to-rose-950 border-2 border-red-500 flex items-center justify-center text-white font-mono font-bold text-lg shadow-blood animate-pulse">
@@ -1430,10 +1430,10 @@ export default function ArenaDuelView({
                     : 'bg-gray-800 opacity-50 cursor-wait'
                 }`}
               >
-                {gamePhase === 'revealing' ? 'RÉSOLUTION...' : gamePhase === 'scoring' ? 'COMPTAGE DES POINTS...' : (
+                {gamePhase === 'revealing' ? (t?.arena?.resolving || 'RÉSOLUTION...') : gamePhase === 'scoring' ? (t?.arena?.scoringInProgress || 'COMPTAGE DES POINTS...') : (
                   <>
-                    FIN DU TOUR<br />
-                    <span className="text-[9px] font-mono opacity-80">MANCHE {turn}/7</span>
+                    {t?.arena?.endTurnBtn || "FIN DU TOUR"}<br />
+                    <span className="text-[9px] font-mono opacity-80">{t?.arena?.round || "MANCHE"} {turn}/7</span>
                   </>
                 )}
               </button>
@@ -1445,7 +1445,7 @@ export default function ArenaDuelView({
         <div className="lg:col-span-3 glass-panel rounded-2xl p-3.5 border border-white/10 space-y-3">
           <div className="flex items-center space-x-2 text-red-400 font-gothic font-bold text-xs border-b border-white/10 pb-2">
             <ScrollText className="w-4 h-4" />
-            <span>Journal de Combat</span>
+            <span>{t?.arena?.combatJournal || "Journal de Combat"}</span>
           </div>
 
           <div className="space-y-1.5 max-h-[580px] overflow-y-auto text-[11px] font-mono pr-1">
