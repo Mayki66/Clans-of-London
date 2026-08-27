@@ -1101,7 +1101,12 @@ export default function ArenaDuelView({
                 {[0, 1, 2].map(col => {
                   const sp = board[`ai_pawn_${col}`];
                   return (
-                    <div key={sp.key} className="h-16 rounded-xl bg-black/40 border border-purple-500/20 overflow-hidden relative flex flex-col justify-between p-1 text-center">
+                    <div 
+                      key={sp.key} 
+                      onClick={() => sp.card && onInspectCard?.(sp.card)}
+                      title={sp.card ? `${sp.card.name} (${sp.card.clan}) • P${sp.power}\n${getCardAbility(sp.card, lang)}` : ''}
+                      className={`h-16 rounded-xl bg-black/40 border border-purple-500/20 overflow-hidden relative flex flex-col justify-between p-1 text-center ${sp.card ? 'cursor-pointer hover:border-purple-400 transition-colors' : ''}`}
+                    >
                       {sp.card ? (
                         <>
                           <img src={sp.card.imageUrl} alt={sp.card.name} className="absolute inset-0 w-full h-full object-cover opacity-50" />
@@ -1123,7 +1128,12 @@ export default function ArenaDuelView({
                 {[0, 1, 2].map(col => {
                   const sp = board[`ai_rook_${col}`];
                   return (
-                    <div key={sp.key} className="h-16 rounded-xl bg-black/40 border border-purple-500/20 overflow-hidden relative flex flex-col justify-between p-1 text-center">
+                    <div 
+                      key={sp.key} 
+                      onClick={() => sp.card && onInspectCard?.(sp.card)}
+                      title={sp.card ? `${sp.card.name} (${sp.card.clan}) • P${sp.power}\n${getCardAbility(sp.card, lang)}` : ''}
+                      className={`h-16 rounded-xl bg-black/40 border border-purple-500/20 overflow-hidden relative flex flex-col justify-between p-1 text-center ${sp.card ? 'cursor-pointer hover:border-purple-400 transition-colors' : ''}`}
+                    >
                       {sp.card ? (
                         <>
                           <img src={sp.card.imageUrl} alt={sp.card.name} className="absolute inset-0 w-full h-full object-cover opacity-50" />
@@ -1299,12 +1309,16 @@ export default function ArenaDuelView({
                   return (
                     <div
                       key={sp.key}
-                      onClick={() => selectedHandCard && handleDeployToSpace(sp.key)}
-                      className={`h-16 rounded-xl border transition-all flex flex-col justify-between p-1 relative overflow-hidden ${
+                      onClick={() => {
+                        if (selectedHandCard) handleDeployToSpace(sp.key);
+                        else if (sp.card) onInspectCard?.(sp.card);
+                      }}
+                      title={sp.card ? `${sp.card.name} (${sp.card.clan}) • P${sp.power}\n${getCardAbility(sp.card, lang)}` : ''}
+                      className={`h-16 rounded-xl border transition-all flex flex-col justify-between p-1 relative overflow-hidden cursor-pointer ${
                         sp.card
-                          ? 'bg-emerald-950/50 border-emerald-500/70 shadow-[0_0_10px_rgba(16,185,129,0.2)]'
+                          ? 'bg-emerald-950/50 border-emerald-500/70 shadow-[0_0_10px_rgba(16,185,129,0.2)] hover:border-emerald-300'
                           : isValidTarget
-                            ? 'bg-red-950/30 border-red-500/60 hover:border-emerald-400 cursor-pointer animate-pulse'
+                            ? 'bg-red-950/30 border-red-500/60 hover:border-emerald-400 animate-pulse'
                             : 'bg-black/40 border-white/10 opacity-60'
                       }`}
                     >
@@ -1404,16 +1418,30 @@ export default function ArenaDuelView({
               })}
             </div>
 
-            {/* Action Bar (ABANDONNER | BLOOD DROP | FIN DU TOUR) */}
-            <div className="flex items-center justify-between gap-3 px-1">
+            {/* Action Bar (ABANDONNER | [ANNULER] | BLOOD DROP | FIN DU TOUR) */}
+            <div className="flex items-center justify-between gap-2 px-1">
               <button
                 onClick={() => setGamePhase('setup')}
-                className="flex-1 py-2.5 rounded-full bg-[#12151f] hover:bg-[#1c2233] border border-white/15 text-gray-400 hover:text-white font-gothic font-bold text-xs transition-all text-center tracking-wider"
+                className="py-2.5 px-3 rounded-full bg-[#12151f] hover:bg-[#1c2233] border border-white/15 text-gray-400 hover:text-white font-gothic font-bold text-xs transition-all text-center tracking-wider"
               >
-                {t?.arena?.surrenderBtn || "ABANDONNER"}
+                {t?.arena?.surrenderBtn || "Abandonner"}
               </button>
 
-              <div className="w-12 h-12 rounded-full bg-gradient-to-b from-red-700 to-rose-950 border-2 border-red-500 flex items-center justify-center text-white font-mono font-bold text-lg shadow-blood animate-pulse">
+              {turnActionHistory.length > 0 && gamePhase === 'playing' && (
+                <button
+                  onClick={handleUndo}
+                  className="py-2 px-3.5 rounded-full bg-amber-950/90 hover:bg-amber-900 border-2 border-amber-400/80 text-amber-200 font-gothic font-bold text-xs shadow-gold transition-all flex items-center space-x-1 animate-pulse"
+                  title={lang === 'fr' ? "Annuler la dernière carte posée ce tour-ci" : "Undo last card played this turn"}
+                >
+                  <Undo2 className="w-3.5 h-3.5" />
+                  <span>{t?.arena?.undoBtn || "Annuler"}</span>
+                </button>
+              )}
+
+              <div 
+                className="w-12 h-12 rounded-full bg-gradient-to-b from-red-700 to-rose-950 border-2 border-red-500 flex items-center justify-center text-white font-mono font-bold text-lg shadow-blood animate-pulse flex-shrink-0"
+                title={`${bloodAvailable} ${t?.arena?.bloodAvailable || "Sang"}`}
+              >
                 {bloodAvailable}
               </div>
 

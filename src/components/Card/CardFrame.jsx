@@ -161,9 +161,11 @@ export default function CardFrame({
         onClick={() => onInspect?.(card)}
       >
         <CardArtwork 
-          artworkUrl={card.artworkUrl} 
+          artType={card.artType}
           clan={card.clan} 
-          name={card.name} 
+          imageUrl={card.imageUrl}
+          hasOfficialImage={card.hasOfficialImage}
+          className="w-full h-full"
         />
         
         {/* Subtle Gradient Shadow on Art */}
