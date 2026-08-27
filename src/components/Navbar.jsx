@@ -1,5 +1,6 @@
-import React from 'react';
-import { Layers, BookOpen, Trophy, Shield, User, Swords, Users } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Layers, BookOpen, Trophy, Shield, User, Swords, Users, Globe, ChevronDown, Check } from 'lucide-react';
+import { SUPPORTED_LANGUAGES } from '../i18n/translations';
 
 export default function Navbar({ 
   activeView, 
@@ -11,6 +12,21 @@ export default function Navbar({
   onChangeLang,
   t
 }) {
+  const [showLangDropdown, setShowLangDropdown] = useState(false);
+  const langDropdownRef = useRef(null);
+
+  const currentLangObj = SUPPORTED_LANGUAGES.find(l => l.code === lang) || SUPPORTED_LANGUAGES[0];
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target)) {
+        setShowLangDropdown(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
     <header className="sticky top-0 z-40 w-full glass-panel border-b border-white/10 backdrop-blur-xl">
       <div className="w-full max-w-[1700px] mx-auto px-2 sm:px-4 lg:px-6">
@@ -78,7 +94,7 @@ export default function Navbar({
               <span>{t?.nav?.database || "Base de Cartes"}</span>
             </button>
 
-            {/* COMMUNITY DECKS TAB (Directly to the left of Meta Decks) */}
+            {/* COMMUNITY DECKS TAB */}
             <button
               onClick={() => setActiveView('community')}
               className={`flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-gothic font-bold transition-all whitespace-nowrap ${
@@ -104,20 +120,20 @@ export default function Navbar({
               <span>{t?.nav?.metadecks || "Decks Méta"}</span>
             </button>
 
-            {/* Arena & AI Duel Tab */}
+            {/* Arena Tab */}
             <button
               onClick={() => setActiveView('arena')}
               className={`flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-gothic font-bold transition-all whitespace-nowrap ${
                 activeView === 'arena'
-                  ? 'bg-gradient-to-r from-purple-900 via-red-900 to-rose-900 text-white border border-amber-400 shadow-[0_0_15px_rgba(212,175,55,0.4)]'
-                  : 'text-amber-300/90 hover:text-white hover:bg-purple-950/40 border border-amber-500/20'
+                  ? 'bg-gradient-to-r from-red-800 to-rose-900 text-white border border-red-500/60 shadow-blood'
+                  : 'text-gray-400 hover:text-gray-200 hover:bg-white/5 border border-transparent'
               }`}
             >
-              <Swords className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
-              <span className="font-bold">{t?.nav?.arena || "Arène & Duel IA"}</span>
+              <Swords className="w-3.5 h-3.5 text-red-400" />
+              <span>{t?.nav?.arena || "Arène"}</span>
             </button>
 
-            {/* Rules Guide Tab */}
+            {/* Rules Tab */}
             <button
               onClick={() => setActiveView('rules')}
               className={`flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-gothic font-bold transition-all whitespace-nowrap ${
@@ -148,26 +164,50 @@ export default function Navbar({
 
           </nav>
 
-          {/* Language Switcher Button in Header */}
-          <div className="flex items-center space-x-1 p-1 rounded-xl bg-[#141824] border border-white/10 text-xs font-bold font-mono flex-shrink-0">
+          {/* Globe Planet Language Switcher with Dropdown Menu */}
+          <div className="relative flex-shrink-0" ref={langDropdownRef}>
             <button
-              onClick={() => onChangeLang('fr')}
-              className={`px-2 py-0.5 rounded-lg transition-all text-[11px] ${
-                lang === 'fr' ? 'bg-red-800 text-white shadow-blood' : 'text-gray-400 hover:text-white'
-              }`}
-              title="Passer en Français"
+              onClick={() => setShowLangDropdown(!showLangDropdown)}
+              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-[#121622] hover:bg-[#1c2236] border border-white/15 hover:border-amber-400/60 text-xs font-bold font-mono text-gray-200 hover:text-white transition-all shadow-sm"
+              title={t?.nav?.langSwitch || "Changer de Langue"}
             >
-              FR
+              <Globe className="w-4 h-4 text-amber-400" />
+              <span className="text-xs">{currentLangObj?.flag}</span>
+              <span className="hidden sm:inline text-[11px] font-gothic uppercase">{currentLangObj?.code}</span>
+              <ChevronDown className={`w-3 h-3 text-gray-400 transition-transform ${showLangDropdown ? 'rotate-180 text-amber-400' : ''}`} />
             </button>
-            <button
-              onClick={() => onChangeLang('en')}
-              className={`px-2 py-0.5 rounded-lg transition-all text-[11px] ${
-                lang === 'en' ? 'bg-red-800 text-white shadow-blood' : 'text-gray-400 hover:text-white'
-              }`}
-              title="Switch to English"
-            >
-              EN
-            </button>
+
+            {/* Dropdown Menu (6 Languages) */}
+            {showLangDropdown && (
+              <div className="absolute right-0 mt-2 w-44 rounded-2xl bg-[#0b0e15] border-2 border-amber-500/40 shadow-[0_10px_30px_rgba(0,0,0,0.8)] py-1.5 z-50 animate-fadeIn">
+                <div className="px-3 py-1 text-[10px] font-mono uppercase text-gray-400 border-b border-white/10 mb-1">
+                  {t?.nav?.langSwitch || "Choisir la Langue"}
+                </div>
+                {SUPPORTED_LANGUAGES.map((l) => {
+                  const isSelected = lang === l.code;
+                  return (
+                    <button
+                      key={l.code}
+                      onClick={() => {
+                        onChangeLang(l.code);
+                        setShowLangDropdown(false);
+                      }}
+                      className={`w-full flex items-center justify-between px-3 py-2 text-xs font-gothic transition-colors text-left ${
+                        isSelected
+                          ? 'bg-red-950/80 text-amber-300 font-bold border-l-2 border-amber-400'
+                          : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                      }`}
+                    >
+                      <div className="flex items-center space-x-2.5">
+                        <span className="text-base leading-none">{l.flag}</span>
+                        <span>{l.label}</span>
+                      </div>
+                      {isSelected && <Check className="w-3.5 h-3.5 text-amber-400" />}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
         </div>
