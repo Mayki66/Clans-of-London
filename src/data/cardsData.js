@@ -25,7 +25,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Luis_Castano.jpg",
+    "imageUrl": "/cards/col-001.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Luis_Castano"
   },
   {
@@ -54,7 +54,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Shifa.jpg",
+    "imageUrl": "/cards/col-002.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Shifa"
   },
   {
@@ -83,7 +83,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Abir.jpg",
+    "imageUrl": "/cards/col-003.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Abir"
   },
   {
@@ -112,7 +112,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Bakunawa.jpg",
+    "imageUrl": "/cards/col-004.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Bakunawa"
   },
   {
@@ -141,7 +141,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Helen_Lloyd.jpg",
+    "imageUrl": "/cards/col-005.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Helen_Lloyd"
   },
   {
@@ -170,7 +170,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Violet_Green.jpg",
+    "imageUrl": "/cards/col-006.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Violet_Green"
   },
   {
@@ -199,7 +199,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Aster_Banda.jpg",
+    "imageUrl": "/cards/col-007.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Aster_Banda"
   },
   {
@@ -228,7 +228,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Jurgen_Mayer.jpg",
+    "imageUrl": "/cards/col-008.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Jurgen_Mayer"
   },
   {
@@ -257,7 +257,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Penelope_Dane.jpg",
+    "imageUrl": "/cards/col-009.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Penelope_Dane"
   },
   {
@@ -286,7 +286,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Ember.jpg",
+    "imageUrl": "/cards/col-010.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Ember"
   },
   {
@@ -315,7 +315,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Francisco_the_Bold.jpg",
+    "imageUrl": "/cards/col-011.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Francisco_the_Bold"
   },
   {
@@ -344,7 +344,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Sapphire.jpg",
+    "imageUrl": "/cards/col-012.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sapphire"
   },
   {
@@ -373,14 +373,14 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Szofia.jpg",
+    "imageUrl": "/cards/col-013.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Szofia"
   },
   {
     "id": "col-014",
     "name": "Lavanya Sekh",
     "originalName": "Lavanya Sekh",
-    "clan": "Tremere",
+    "clan": "Ventrue",
     "series": 0,
     "cost": 3,
     "power": 3,
@@ -402,7 +402,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Lavanya_Sekh.jpg",
+    "imageUrl": "/cards/col-014.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Lavanya_Sekh"
   },
   {
@@ -430,7 +430,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Dante.jpg",
+    "imageUrl": "/cards/col-015.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Dante"
   },
   {
@@ -458,7 +458,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Razor.jpg",
+    "imageUrl": "/cards/col-016.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Razor"
   },
   {
@@ -487,7 +487,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Niall_Flynn.jpg",
+    "imageUrl": "/cards/col-017.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Niall_Flynn"
   },
   {
@@ -516,7 +516,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Aurora_Torres.jpg",
+    "imageUrl": "/cards/col-018.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Aurora_Torres"
   },
   {
@@ -545,7 +545,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Blaze.jpg",
+    "imageUrl": "/cards/col-019.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Blaze"
   },
   {
@@ -574,7 +574,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Mx._Korpal.jpg",
+    "imageUrl": "/cards/col-020.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Mx_Korpal"
   },
   {
@@ -603,7 +603,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Harry_Tyler.jpg",
+    "imageUrl": "/cards/col-021.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Harry_Tyler"
   },
   {
@@ -632,7 +632,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Stephen_Fane.jpg",
+    "imageUrl": "/cards/col-022.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Stephen_Fane"
   },
   {
@@ -661,7 +661,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Brittany_Webb.jpg",
+    "imageUrl": "/cards/col-023.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Brittany_Webb"
   },
   {
@@ -690,7 +690,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Hope_Ekaette.jpg",
+    "imageUrl": "/cards/col-024.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Hope_Ekaette"
   },
   {
@@ -719,7 +719,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Robert_Cavendish.jpg",
+    "imageUrl": "/cards/col-025.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Robert_Cavendish"
   },
   {
@@ -748,7 +748,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Annabella_Wright.jpg",
+    "imageUrl": "/cards/col-026.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Annabella_Wright"
   },
   {
@@ -777,7 +777,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Mrs._Fitzgerald.jpg",
+    "imageUrl": "/cards/col-027.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Mrs_Fitzgerald"
   },
   {
@@ -805,7 +805,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Kate_Dixon.jpg",
+    "imageUrl": "/cards/col-028.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Kate_Dixon"
   },
   {
@@ -834,7 +834,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Amy_West.jpg",
+    "imageUrl": "/cards/col-029.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Amy_West"
   },
   {
@@ -862,7 +862,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Grace_Ward.jpg",
+    "imageUrl": "/cards/col-030.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Grace_Ward"
   },
   {
@@ -890,7 +890,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Simon_Lee.jpg",
+    "imageUrl": "/cards/col-031.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Simon_Lee"
   },
   {
@@ -919,7 +919,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Abigail_Smith.jpg",
+    "imageUrl": "/cards/col-032.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Abigail_Smith"
   },
   {
@@ -948,7 +948,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Morag_Stewart.jpg",
+    "imageUrl": "/cards/col-033.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Morag_Stewart"
   },
   {
@@ -976,7 +976,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Grendel_Ward.jpg",
+    "imageUrl": "/cards/col-034.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Grendel_Ward"
   },
   {
@@ -1005,7 +1005,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Lan_Chen.jpg",
+    "imageUrl": "/cards/col-035.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Lan_Chen"
   },
   {
@@ -1033,7 +1033,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Zara_Bradley.jpg",
+    "imageUrl": "/cards/col-036.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Zara_Bradley"
   },
   {
@@ -1061,7 +1061,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Sanjay_Ali.jpg",
+    "imageUrl": "/cards/col-037.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sanjay_Ali"
   },
   {
@@ -1090,7 +1090,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Cynthia_Hargreaves.jpg",
+    "imageUrl": "/cards/col-038.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Cynthia_Hargreaves"
   },
   {
@@ -1118,7 +1118,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Jeremiah_Saha.jpg",
+    "imageUrl": "/cards/col-039.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Jeremiah_Saha"
   },
   {
@@ -1147,7 +1147,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Amelie.jpg",
+    "imageUrl": "/cards/col-040.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Amelie"
   },
   {
@@ -1176,7 +1176,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Tristan_Stag.jpg",
+    "imageUrl": "/cards/col-041.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Tristan_Stag"
   },
   {
@@ -1204,7 +1204,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Nick_Locke.jpg",
+    "imageUrl": "/cards/col-042.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Nick_Locke"
   },
   {
@@ -1233,7 +1233,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Adrian_Yu.jpg",
+    "imageUrl": "/cards/col-043.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Adrian_Yu"
   },
   {
@@ -1262,7 +1262,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Sheriff_Fletcher.jpg",
+    "imageUrl": "/cards/col-044.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sheriff_Fletcher"
   },
   {
@@ -1291,7 +1291,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Mr._Stewart.jpg",
+    "imageUrl": "/cards/col-045.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Mr_Stewart"
   },
   {
@@ -1319,7 +1319,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Sid_Scabies.jpg",
+    "imageUrl": "/cards/col-046.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sid_Scabies"
   },
   {
@@ -1347,7 +1347,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Robby%27s_Crew.jpg",
+    "imageUrl": "/cards/col-047.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Robbys_Crew"
   },
   {
@@ -1376,7 +1376,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Ravi_Patel.jpg",
+    "imageUrl": "/cards/col-048.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Ravi_Patel"
   },
   {
@@ -1405,7 +1405,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Mr._Moore.jpg",
+    "imageUrl": "/cards/col-049.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Mr_Moore"
   },
   {
@@ -1434,7 +1434,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Roland_Heffe.jpg",
+    "imageUrl": "/cards/col-050.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Roland_Heffe"
   },
   {
@@ -1463,7 +1463,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Lawrence.jpg",
+    "imageUrl": "/cards/col-051.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Lawrence"
   },
   {
@@ -1492,7 +1492,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Julian_L._Hector.jpg",
+    "imageUrl": "/cards/col-052.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Julian_L_Hector"
   },
   {
@@ -1521,7 +1521,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Horatio_Drake.jpg",
+    "imageUrl": "/cards/col-053.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Horatio_Drake"
   },
   {
@@ -1550,7 +1550,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Tim_Holdsworth.jpg",
+    "imageUrl": "/cards/col-054.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Tim_Holdsworth"
   },
   {
@@ -1578,7 +1578,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Jari.jpg",
+    "imageUrl": "/cards/col-055.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Jari"
   },
   {
@@ -1607,7 +1607,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Cathy_Carmine.jpg",
+    "imageUrl": "/cards/col-056.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Cathy_Carmine"
   },
   {
@@ -1636,7 +1636,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Ophelia.jpg",
+    "imageUrl": "/cards/col-057.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Ophelia"
   },
   {
@@ -1665,7 +1665,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Eliza_Iyer.jpg",
+    "imageUrl": "/cards/col-058.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Eliza_Iyer"
   },
   {
@@ -1694,7 +1694,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Herald_of_the_Hunt.jpg",
+    "imageUrl": "/cards/col-059.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Herald_of_the_Hunt&amp;action=edit&amp;redlink=1"
   },
   {
@@ -1723,7 +1723,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Branwen_White.jpg",
+    "imageUrl": "/cards/col-060.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Branwen_White&amp;action=edit&amp;redlink=1"
   },
   {
@@ -1752,7 +1752,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Bloodcaller%27s_Pack.jpg",
+    "imageUrl": "/cards/col-061.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Bloodcallers_Pack"
   },
   {
@@ -1780,7 +1780,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Łukasz_Baran.jpg",
+    "imageUrl": "/cards/col-062.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lukasz_Baran&amp;action=edit&amp;redlink=1"
   },
   {
@@ -1809,7 +1809,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Ms._Harriot.jpg",
+    "imageUrl": "/cards/col-063.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Ms_Harriot"
   },
   {
@@ -1838,7 +1838,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Aurelius.jpg",
+    "imageUrl": "/cards/col-064.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Aurelius"
   },
   {
@@ -1866,7 +1866,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Nafula_Juma.jpg",
+    "imageUrl": "/cards/col-065.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Nafula_Juma"
   },
   {
@@ -1895,7 +1895,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Damon.jpg",
+    "imageUrl": "/cards/col-066.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Damon"
   },
   {
@@ -1924,7 +1924,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Aylin.jpg",
+    "imageUrl": "/cards/col-067.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Aylin"
   },
   {
@@ -1952,7 +1952,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Leo_Stein.jpg",
+    "imageUrl": "/cards/col-068.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Leo_Stein&amp;action=edit&amp;redlink=1"
   },
   {
@@ -1981,7 +1981,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Lord_Colville.jpg",
+    "imageUrl": "/cards/col-069.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Lord_Colville"
   },
   {
@@ -2009,7 +2009,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Marissa_the_Butcher.jpg",
+    "imageUrl": "/cards/col-070.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Marissa_the_Butcher"
   },
   {
@@ -2038,7 +2038,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-The_Bloodcaller.jpg",
+    "imageUrl": "/cards/col-071.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:The_Bloodcaller"
   },
   {
@@ -2067,7 +2067,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Sir_Kingston.jpg",
+    "imageUrl": "/cards/col-072.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sir_Kingston"
   },
   {
@@ -2094,7 +2094,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Theo_Conti.jpg",
+    "imageUrl": "/cards/col-073.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Theo_Conti"
   },
   {
@@ -2121,7 +2121,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Breakfast.jpg",
+    "imageUrl": "/cards/col-074.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Breakfast"
   },
   {
@@ -2149,14 +2149,14 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Carlo_Galli.jpg",
+    "imageUrl": "/cards/col-075.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Carlo_Galli&amp;action=edit&amp;redlink=1"
   },
   {
     "id": "col-076",
     "name": "Gillian Sardar",
     "originalName": "Gillian Sardar",
-    "clan": "Mortel",
+    "clan": "Tremere",
     "series": 2,
     "cost": 1,
     "power": 0,
@@ -2177,7 +2177,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Gillian_Sardar.jpg",
+    "imageUrl": "/cards/col-076.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Gillian_Sardar&amp;action=edit&amp;redlink=1"
   },
   {
@@ -2205,7 +2205,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-The_Rat_Collector.jpg",
+    "imageUrl": "/cards/col-077.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Rat_Collector&amp;action=edit&amp;redlink=1"
   },
   {
@@ -2233,7 +2233,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Wendy_Hill.jpg",
+    "imageUrl": "/cards/col-078.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Wendy_Hill&amp;action=edit&amp;redlink=1"
   },
   {
@@ -2261,7 +2261,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Sheloa.jpg",
+    "imageUrl": "/cards/col-079.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sheloa"
   },
   {
@@ -2289,7 +2289,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Sadako_Asano.jpg",
+    "imageUrl": "/cards/col-080.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sadako_Asano"
   },
   {
@@ -2317,7 +2317,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Toru_Asano.jpg",
+    "imageUrl": "/cards/col-081.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Toru_Asano"
   },
   {
@@ -2344,7 +2344,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Marco.jpg",
+    "imageUrl": "/cards/col-082.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Marco&amp;action=edit&amp;redlink=1"
   },
   {
@@ -2372,7 +2372,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Maria_Puttanesca.jpg",
+    "imageUrl": "/cards/col-083.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Maria_Puttanesca"
   },
   {
@@ -2400,7 +2400,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Caesar_Cornello.jpg",
+    "imageUrl": "/cards/col-084.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Caesar_Cornello"
   },
   {
@@ -2429,7 +2429,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-James_the_Bloodhound.jpg",
+    "imageUrl": "/cards/col-085.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:James_the_Bloodhound&amp;action=edit&amp;redlink=1"
   },
   {
@@ -2458,7 +2458,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Mr._Kaufmann.jpg",
+    "imageUrl": "/cards/col-086.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Mr_Kauffman&amp;action=edit&amp;redlink=1"
   },
   {
@@ -2486,7 +2486,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Haji_Wahyuni.jpg",
+    "imageUrl": "/cards/col-087.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Haji_Wahyuni&amp;action=edit&amp;redlink=1"
   },
   {
@@ -2514,7 +2514,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Brixton.jpg",
+    "imageUrl": "/cards/col-088.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Brixton"
   },
   {
@@ -2542,14 +2542,14 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Sylvia.jpg",
+    "imageUrl": "/cards/col-089.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sylvia"
   },
   {
     "id": "col-090",
     "name": "Abraham",
     "originalName": "Abraham",
-    "clan": "Mortel",
+    "clan": "Tremere",
     "series": 2,
     "cost": 3,
     "power": 0,
@@ -2561,7 +2561,7 @@ export const CARDS_DATA = [
     ],
     "ability": "Fin de Manche : Ajoute un Acolyte Mortel à votre main.",
     "ability_en": "End of Round: Add a Mortal Acolyte to your hand.",
-    "flavorText": "\"Abraham - Carte officielle Vampire: The Masquerade – Clans of London (Série 2).\"",
+    "flavorText": "\"Abraham - Goule Tremere de Londres (Série 2).\"",
     "rarity": "Rare",
     "notes": "Create Token: Mortal Acolyte",
     "synergies": [
@@ -2570,7 +2570,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Abraham.jpg",
+    "imageUrl": "/cards/col-090.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Abraham&amp;action=edit&amp;redlink=1"
   },
   {
@@ -2598,7 +2598,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Travis_Laurent.jpg",
+    "imageUrl": "/cards/col-091.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Travis_Laurent&amp;action=edit&amp;redlink=1"
   },
   {
@@ -2626,18 +2626,18 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Madison_Wolfe.jpg",
+    "imageUrl": "/cards/col-092.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Madison_Wolfe&amp;action=edit&amp;redlink=1"
   },
   {
     "id": "col-093",
     "name": "Asano Wraiths",
     "originalName": "Asano Wraiths",
-    "clan": "Mortel",
+    "clan": "Hecata",
     "series": 2,
     "cost": 4,
     "power": 9,
-    "type": "Mortel",
+    "type": "Spectre",
     "archetype": "Neutre",
     "keywords": [
       "Neutre"
@@ -2653,7 +2653,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Asano_Wraiths.jpg",
+    "imageUrl": "/cards/col-093.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Asano_Wraiths&amp;action=edit&amp;redlink=1"
   },
   {
@@ -2681,7 +2681,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Yomi.jpg",
+    "imageUrl": "/cards/col-094.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Yomi&amp;action=edit&amp;redlink=1"
   },
   {
@@ -2710,7 +2710,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Runa.jpg",
+    "imageUrl": "/cards/col-095.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Runa&amp;action=edit&amp;redlink=1"
   },
   {
@@ -2738,7 +2738,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Kieran_Gulley.jpg",
+    "imageUrl": "/cards/col-096.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Kieran_Gulley&amp;action=edit&amp;redlink=1"
   },
   {
@@ -2767,7 +2767,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Ivy_du_Pont.jpg",
+    "imageUrl": "/cards/col-097.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Ivy_du_Pont&amp;action=edit&amp;redlink=1"
   },
   {
@@ -2796,7 +2796,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Madame_Tessier.jpg",
+    "imageUrl": "/cards/col-098.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Madame_Tessier&amp;action=edit&amp;redlink=1"
   },
   {
@@ -2824,7 +2824,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Dr._Ellis.jpg",
+    "imageUrl": "/cards/col-099.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Dr_Ellis&amp;action=edit&amp;redlink=1"
   },
   {
@@ -2851,7 +2851,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Benny_Cox.jpg",
+    "imageUrl": "/cards/col-100.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Benny_Cox"
   },
   {
@@ -2878,7 +2878,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Karl_Craven.jpg",
+    "imageUrl": "/cards/col-101.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Karl_Craven&amp;action=edit&amp;redlink=1"
   },
   {
@@ -2905,7 +2905,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Doomed_Debtor.jpg",
+    "imageUrl": "/cards/col-102.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Doomed_Debtor&amp;action=edit&amp;redlink=1"
   },
   {
@@ -2933,7 +2933,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Fiona_Millar.jpg",
+    "imageUrl": "/cards/col-103.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Fiona_Millar&amp;action=edit&amp;redlink=1"
   },
   {
@@ -2962,7 +2962,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-R.O.U.S..jpg",
+    "imageUrl": "/cards/col-104.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:ROUS&amp;action=edit&amp;redlink=1"
   },
   {
@@ -2991,7 +2991,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Vincent_Monroe.jpg",
+    "imageUrl": "/cards/col-105.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Vincent_Monroe&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3019,7 +3019,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Rosaline_Armitage.jpg",
+    "imageUrl": "/cards/col-106.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Rosaline_Armitage&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3048,7 +3048,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Rat-Eater.jpg",
+    "imageUrl": "/cards/col-107.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Rat-Eater&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3076,7 +3076,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Shauna_Bench.jpg",
+    "imageUrl": "/cards/col-108.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Shauna_Bench&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3104,7 +3104,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Isabel_Segura.jpg",
+    "imageUrl": "/cards/col-109.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Isabel_Segura"
   },
   {
@@ -3132,7 +3132,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Luca_the_Grim.jpg",
+    "imageUrl": "/cards/col-110.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Luca_the_Grim&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3160,7 +3160,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Jacob_Toolbox.jpg",
+    "imageUrl": "/cards/col-111.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Jacob_Toolbox&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3187,7 +3187,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Mark_Hooke.jpg",
+    "imageUrl": "/cards/col-112.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Mark_Hooke&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3215,7 +3215,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Robby_Jackson.jpg",
+    "imageUrl": "/cards/col-113.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Robby_Jackson&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3243,7 +3243,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Jacqueline.jpg",
+    "imageUrl": "/cards/col-114.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Jacqueline&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3271,7 +3271,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Natalya_Volkova.jpg",
+    "imageUrl": "/cards/col-115.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Natalya_Volkova&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3299,7 +3299,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Jax_Cook.jpg",
+    "imageUrl": "/cards/col-116.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Jax_Cook&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3328,7 +3328,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Huang_Jin.jpg",
+    "imageUrl": "/cards/col-117.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Huang_Jin&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3356,7 +3356,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Missy_Mythos.jpg",
+    "imageUrl": "/cards/col-118.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Missy_Mythos&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3384,7 +3384,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Salvo_Calvo.jpg",
+    "imageUrl": "/cards/col-119.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Salvo_Calvo&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3413,7 +3413,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Maeve.jpg",
+    "imageUrl": "/cards/col-120.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Maeve&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3442,7 +3442,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Murat_Kazan.jpg",
+    "imageUrl": "/cards/col-121.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Murat_Kazan&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3470,14 +3470,14 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Eduardo_Santana.jpg",
+    "imageUrl": "/cards/col-122.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Eduardo_Santana&amp;action=edit&amp;redlink=1"
   },
   {
     "id": "col-123",
     "name": "Lt. Chamkaur Gupta",
     "originalName": "Lt. Chamkaur Gupta",
-    "clan": "Brujah",
+    "clan": "Nosferatu",
     "series": 3,
     "cost": 3,
     "power": 7,
@@ -3498,7 +3498,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Lt._Chamkaur_Gupta.jpg",
+    "imageUrl": "/cards/col-123.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lt_Chamkaur_Gupta&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3526,7 +3526,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Angelo.jpg",
+    "imageUrl": "/cards/col-124.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Angelo"
   },
   {
@@ -3554,7 +3554,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Oberon.jpg",
+    "imageUrl": "/cards/col-125.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Oberon&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3582,7 +3582,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Miss_Hidaka.jpg",
+    "imageUrl": "/cards/col-126.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Miss_Hidaka&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3610,7 +3610,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Ron_Queen.jpg",
+    "imageUrl": "/cards/col-127.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Ron_Queen&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3639,7 +3639,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Errol_Fontaine.jpg",
+    "imageUrl": "/cards/col-128.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Errol_Fontaine&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3668,7 +3668,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Paulo%27s_Hunter.jpg",
+    "imageUrl": "/cards/col-129.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Paulos_Hunter&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3696,7 +3696,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Bruno.jpg",
+    "imageUrl": "/cards/col-130.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Bruno&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3724,7 +3724,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Acton_Blackburn.jpg",
+    "imageUrl": "/cards/col-131.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Acton_Blackburn&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3753,7 +3753,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Maximilian.jpg",
+    "imageUrl": "/cards/col-132.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Maximilian&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3781,7 +3781,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Randy_Brash.jpg",
+    "imageUrl": "/cards/col-133.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Randy_Brash&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3809,7 +3809,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Whisper.jpg",
+    "imageUrl": "/cards/col-134.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Whisper&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3837,7 +3837,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Jeanne_Blanc.jpg",
+    "imageUrl": "/cards/col-135.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Jeanne_Blanc&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3865,7 +3865,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Vena_Danube.jpg",
+    "imageUrl": "/cards/col-136.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Vena_Danube&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3892,7 +3892,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Half-Pint.jpg",
+    "imageUrl": "/cards/col-137.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Half-Pint&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3920,7 +3920,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Mercedes.jpg",
+    "imageUrl": "/cards/col-138.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Mercedes&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3948,7 +3948,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Ragnar.jpg",
+    "imageUrl": "/cards/col-139.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Ragnar&amp;action=edit&amp;redlink=1"
   },
   {
@@ -3976,14 +3976,14 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Dan_Washington.jpg",
+    "imageUrl": "/cards/col-140.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Dan_Washington&amp;action=edit&amp;redlink=1"
   },
   {
     "id": "col-141",
     "name": "Filipe the Bloody",
     "originalName": "Filipe the Bloody",
-    "clan": "Brujah",
+    "clan": "Nosferatu",
     "series": 3,
     "cost": 4,
     "power": 5,
@@ -4004,7 +4004,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Filipe_the_Bloody.jpg",
+    "imageUrl": "/cards/col-141.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Filipe_the_Bloody&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4032,7 +4032,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Elizabeth_Dunsirn.jpg",
+    "imageUrl": "/cards/col-142.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Elizabeth_Dunsirn&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4060,7 +4060,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Mother_Everly.jpg",
+    "imageUrl": "/cards/col-143.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Mother_Everly&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4088,7 +4088,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Sister_Lilim.jpg",
+    "imageUrl": "/cards/col-144.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Sister_Lilim"
   },
   {
@@ -4116,7 +4116,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-The_Auctioneer.jpg",
+    "imageUrl": "/cards/col-145.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Auctioneer&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4144,7 +4144,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Annabella%27s_Pet.jpg",
+    "imageUrl": "/cards/col-146.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Annabellas_Pet&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4172,7 +4172,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Rana_Hayek.jpg",
+    "imageUrl": "/cards/col-147.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Rana_Hayek"
   },
   {
@@ -4201,7 +4201,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Esme.jpg",
+    "imageUrl": "/cards/col-148.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Esme&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4229,7 +4229,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Aurum.jpg",
+    "imageUrl": "/cards/col-149.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Aurum"
   },
   {
@@ -4258,7 +4258,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Marquis_Leroux.jpg",
+    "imageUrl": "/cards/col-150.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Marquis_Leroux&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4286,7 +4286,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Lorenzo_Perello.jpg",
+    "imageUrl": "/cards/col-151.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lorenzo_Perello&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4315,7 +4315,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Archibald_Rothwell.jpg",
+    "imageUrl": "/cards/col-152.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Archibald_Rothwell&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4344,7 +4344,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Florence.jpg",
+    "imageUrl": "/cards/col-153.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Florence"
   },
   {
@@ -4372,7 +4372,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Shoshana.jpg",
+    "imageUrl": "/cards/col-154.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Shoshana&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4400,7 +4400,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Athena.jpg",
+    "imageUrl": "/cards/col-155.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Athena&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4429,7 +4429,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Morgana.jpg",
+    "imageUrl": "/cards/col-156.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Morgana&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4458,7 +4458,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Joseph.jpg",
+    "imageUrl": "/cards/col-157.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Joseph&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4487,7 +4487,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Cecile_St-Fleur.jpg",
+    "imageUrl": "/cards/col-158.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Cecile_St-Fleur&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4516,16 +4516,16 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Nelson_Macamo.jpg",
+    "imageUrl": "/cards/col-159.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Nelson_Macamo&amp;action=edit&amp;redlink=1"
   },
   {
     "id": "col-160",
     "name": "Benedict",
     "originalName": "Benedict",
-    "clan": "Malkavian",
+    "clan": "Ventrue",
     "series": 3,
-    "cost": 8,
+    "cost": 7,
     "power": 8,
     "type": "Vampire",
     "archetype": "Démence",
@@ -4545,7 +4545,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Benedict.jpg",
+    "imageUrl": "/cards/col-160.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Benedict&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4574,7 +4574,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Manfred.jpg",
+    "imageUrl": "/cards/col-161.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Manfred&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4602,7 +4602,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Minnie_Chadwick.jpg",
+    "imageUrl": "/cards/col-162.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Minnie_Chadwick&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4630,7 +4630,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Jackie_Pincher.jpg",
+    "imageUrl": "/cards/col-163.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Jackie_Pincher&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4659,7 +4659,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Juniper_Fey.jpg",
+    "imageUrl": "/cards/col-164.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Juniper_Fey&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4687,7 +4687,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Bruce_Sparks.jpg",
+    "imageUrl": "/cards/col-165.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Bruce_Sparks&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4715,7 +4715,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Celine_Musat.jpg",
+    "imageUrl": "/cards/col-166.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Celine_Musat&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4743,7 +4743,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Harald_Basilier.jpg",
+    "imageUrl": "/cards/col-167.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Harald_Basilier&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4771,7 +4771,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Olavi_%27Tappava%27_Puttanesca.jpg",
+    "imageUrl": "/cards/col-168.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Olavi_Tappava_Puttanesca&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4799,7 +4799,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Ethan.jpg",
+    "imageUrl": "/cards/col-169.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Ethan&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4827,7 +4827,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Eugene_Kister.jpg",
+    "imageUrl": "/cards/col-170.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Eugene_Kister&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4855,7 +4855,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Clive_Crawford.jpg",
+    "imageUrl": "/cards/col-171.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Clive_Crawford&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4883,7 +4883,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Agent_%27S%27.jpg",
+    "imageUrl": "/cards/col-172.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Agent_S&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4911,7 +4911,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Yves_Dubois.jpg",
+    "imageUrl": "/cards/col-173.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Yves_Dubois&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4939,7 +4939,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Molly_Cybin.jpg",
+    "imageUrl": "/cards/col-174.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Molly_Cybin&amp;action=edit&amp;redlink=1"
   },
   {
@@ -4967,7 +4967,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Wayne_Stahl.jpg",
+    "imageUrl": "/cards/col-175.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Wayne_Stahl"
   },
   {
@@ -4978,7 +4978,7 @@ export const CARDS_DATA = [
     "series": 4,
     "cost": 3,
     "power": 10,
-    "type": "Vampire",
+    "type": "Mortel",
     "archetype": "Charm",
     "keywords": [
       "Charm",
@@ -4995,7 +4995,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Lili_Valentine.jpg",
+    "imageUrl": "/cards/col-176.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Lili_Valentine"
   },
   {
@@ -5024,7 +5024,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Felicity_Drake.jpg",
+    "imageUrl": "/cards/col-177.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Felicity_Drake&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5053,7 +5053,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Antoni_Mazur.jpg",
+    "imageUrl": "/cards/col-178.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Antoni_Mazur&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5081,7 +5081,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Agent_%27<3%27.jpg",
+    "imageUrl": "/cards/col-179.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Agent_Heart&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5109,7 +5109,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Kelsey_Griffin.jpg",
+    "imageUrl": "/cards/col-180.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Kelsey_Griffin&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5137,7 +5137,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Zara%27s_Troupe.jpg",
+    "imageUrl": "/cards/col-181.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Zaras_Troupe&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5166,7 +5166,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Victor_Chang.jpg",
+    "imageUrl": "/cards/col-182.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Victor_Chang&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5195,7 +5195,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Fitzwilliam_Hardy.jpg",
+    "imageUrl": "/cards/col-183.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Fitzwilliam_Hardy&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5223,7 +5223,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Valora.jpg",
+    "imageUrl": "/cards/col-184.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Valora&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5251,14 +5251,14 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Lazer_J._Christ.jpg",
+    "imageUrl": "/cards/col-185.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lazer_J_Christ&amp;action=edit&amp;redlink=1"
   },
   {
     "id": "col-186",
     "name": "Michael",
     "originalName": "Michael",
-    "clan": "Brujah",
+    "clan": "Nosferatu",
     "series": 4,
     "cost": 5,
     "power": 8,
@@ -5279,7 +5279,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Michael.jpg",
+    "imageUrl": "/cards/col-186.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Michael&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5307,7 +5307,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Agent_%27V%27.jpg",
+    "imageUrl": "/cards/col-187.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Agent_V&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5335,7 +5335,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Luciano_DiCamillo.jpg",
+    "imageUrl": "/cards/col-188.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Luciano_DiCamillo"
   },
   {
@@ -5363,7 +5363,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Gonzo_Thompson.jpg",
+    "imageUrl": "/cards/col-189.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Gonzo_Thompson&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5392,14 +5392,14 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Father_Azriel.jpg",
+    "imageUrl": "/cards/col-190.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Father_Azriel&amp;action=edit&amp;redlink=1"
   },
   {
     "id": "col-191",
     "name": "Forterra Face",
     "originalName": "Forterra Face",
-    "clan": "Brujah",
+    "clan": "Nosferatu",
     "series": 5,
     "cost": 1,
     "power": 3,
@@ -5420,7 +5420,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Forterra_Face.jpg",
+    "imageUrl": "/cards/col-191.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Forterra_Face&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5453,7 +5453,7 @@ export const CARDS_DATA = [
       "Luis Castaño"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Cormac_Flynn.jpg",
+    "imageUrl": "/cards/col-192.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Cormac_Flynn&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5481,7 +5481,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Scarlett_Redline.jpg",
+    "imageUrl": "/cards/col-193.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Scarlett_Redline&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5509,7 +5509,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Lynne_Dunsirn.jpg",
+    "imageUrl": "/cards/col-194.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lynne_Dunsirn&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5537,7 +5537,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Caspen_Vodrak.jpg",
+    "imageUrl": "/cards/col-195.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Caspen_Vodrak&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5565,7 +5565,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-V4mpire_xX_queen_Xx.jpg",
+    "imageUrl": "/cards/col-196.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Vampire_Queen"
   },
   {
@@ -5593,7 +5593,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Marcus_Kiley.jpg",
+    "imageUrl": "/cards/col-197.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Marcus_Kiley&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5621,7 +5621,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-The_Actor.jpg",
+    "imageUrl": "/cards/col-198.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:The_Actor&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5650,14 +5650,14 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Muhsin_Abbas.jpg",
+    "imageUrl": "/cards/col-199.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Muhsin_Abbas&amp;action=edit&amp;redlink=1"
   },
   {
     "id": "col-200",
     "name": "Arturo de Vitry",
     "originalName": "Arturo de Vitry",
-    "clan": "Ventrue",
+    "clan": "Nosferatu",
     "series": 5,
     "cost": 4,
     "power": 5,
@@ -5678,7 +5678,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Arturo_de_Vitry.jpg",
+    "imageUrl": "/cards/col-200.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Arturo_de_Vitry&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5707,7 +5707,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-The_Queen_Rat.jpg",
+    "imageUrl": "/cards/col-201.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Queen_Rat&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5735,7 +5735,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Torben_Briar.jpg",
+    "imageUrl": "/cards/col-202.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Torben_Briar&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5763,7 +5763,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Lucy_Baptiste.jpg",
+    "imageUrl": "/cards/col-203.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lucy_Baptiste&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5792,7 +5792,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Boyar_Musat.jpg",
+    "imageUrl": "/cards/col-204.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Boyar_Musat&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5820,7 +5820,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Paulo_Marques.jpg",
+    "imageUrl": "/cards/col-205.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Paulo_Marques&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5849,7 +5849,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Lady_Gloria.jpg",
+    "imageUrl": "/cards/col-206.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Lady_Gloria&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5878,7 +5878,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Octavia_Mullcroft.jpg",
+    "imageUrl": "/cards/col-207.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Octavia_Mullcroft&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5906,7 +5906,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Nektarios_Makris.jpg",
+    "imageUrl": "/cards/col-208.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Nektarios_Makris"
   },
   {
@@ -5934,7 +5934,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Richard_de_Worde.jpg",
+    "imageUrl": "/cards/col-209.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Richard_de_Worde&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5962,7 +5962,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Wilhelm_Hamm.jpg",
+    "imageUrl": "/cards/col-210.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Wilhelm_Hamm&amp;action=edit&amp;redlink=1"
   },
   {
@@ -5990,7 +5990,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Kenneth_Glass.jpg",
+    "imageUrl": "/cards/col-211.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Kenneth_Glass&amp;action=edit&amp;redlink=1"
   },
   {
@@ -6018,7 +6018,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Ivory_Lux.jpg",
+    "imageUrl": "/cards/col-212.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/CoL_Card:Ivory_Lux"
   },
   {
@@ -6047,7 +6047,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Monika_Kovac.jpg",
+    "imageUrl": "/cards/col-213.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Monika_Kovac&amp;action=edit&amp;redlink=1"
   },
   {
@@ -6075,7 +6075,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Ian_Dunsirn.jpg",
+    "imageUrl": "/cards/col-214.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Ian_Dunsirn&amp;action=edit&amp;redlink=1"
   },
   {
@@ -6104,7 +6104,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Thaddeus_the_Thespian.jpg",
+    "imageUrl": "/cards/col-215.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Thaddeus_the_Thespian&amp;action=edit&amp;redlink=1"
   },
   {
@@ -6133,7 +6133,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Charles_Crane.jpg",
+    "imageUrl": "/cards/col-216.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Charles_Crane&amp;action=edit&amp;redlink=1"
   },
   {
@@ -6161,7 +6161,7 @@ export const CARDS_DATA = [
       "Amy West"
     ],
     "artType": "vampire",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Justicar_Parr.jpg",
+    "imageUrl": "/cards/col-217.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Justicar_Parr&amp;action=edit&amp;redlink=1"
   },
   {
@@ -6192,7 +6192,7 @@ export const CARDS_DATA = [
       "Natalya Volkova"
     ],
     "artType": "object",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Blood_Bag.jpg",
+    "imageUrl": "/cards/col-ing-01.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Blood_Bag"
   },
   {
@@ -6223,7 +6223,7 @@ export const CARDS_DATA = [
       "Natalya Volkova"
     ],
     "artType": "object",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Bleach.jpg",
+    "imageUrl": "/cards/col-ing-02.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Bleach"
   },
   {
@@ -6254,7 +6254,7 @@ export const CARDS_DATA = [
       "Natalya Volkova"
     ],
     "artType": "object",
-    "imageUrl": "https://vtm.paradoxwikis.com/Special:FilePath/CoL-Caffeine_Powder.jpg",
+    "imageUrl": "/cards/col-ing-03.jpg",
     "wikiUrl": "https://vtm.paradoxwikis.com/index.php?title=CoL_Card:Caffeine_Powder"
   }
 ];
