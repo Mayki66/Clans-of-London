@@ -526,9 +526,9 @@ export default function ArenaDuelView({
 
       const newMatchLog = {
         id: `m-${Date.now()}`,
-        date: lang === 'fr' ? "Aujourd'hui" : "Today",
+        date: new Date().toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }),
         result,
-        deckName: fullPlayerDeck[0]?.name ? `${fullPlayerDeck[0]?.clan} Deck` : "Deck Personnalisé",
+        deckName: fullPlayerDeck[0]?.name ? `${fullPlayerDeck[0]?.clan} Deck` : (lang === 'fr' ? "Deck Personnalisé" : "Custom Deck"),
         opponentClan,
         pointsChange: pointsDelta >= 0 ? `+${pointsDelta}` : `${pointsDelta}`
       };
@@ -1465,6 +1465,7 @@ export default function ArenaDuelView({
           onClose={() => setShowLeaderboardModal(false)}
           currentUserPseudo={userProfile?.playerName}
           lang={lang}
+          t={t}
         />
       )}
     </div>

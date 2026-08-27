@@ -10,10 +10,9 @@ export default function FilterBar({
   setViewMode,
   totalResults,
   allCount,
-  lang = 'fr'
+  lang = 'fr',
+  t
 }) {
-  const isEn = lang === 'en';
-
   const handleClanToggle = (clanName) => {
     if (filters.clan === clanName) {
       setFilters(prev => ({ ...prev, clan: 'ALL' }));
@@ -57,7 +56,7 @@ export default function FilterBar({
             type="text"
             value={filters.search}
             onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
-            placeholder={isEn ? "Search a card, ability, keyword (e.g. Morag, Murder, Violent)..." : "Rechercher une carte, un effet, un mot-clé (ex: Morag, Murder, Violent)..."}
+            placeholder={t?.database?.searchPlaceholder || "Rechercher une carte, un effet, un mot-clé (ex: Morag, Murder, Violent)..."}
             className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#0b0e14] border border-white/15 focus:border-red-500 focus:ring-1 focus:ring-red-500 text-sm text-gray-100 placeholder-gray-500 transition-all"
           />
           {filters.search && (
@@ -65,7 +64,7 @@ export default function FilterBar({
               onClick={() => setFilters(prev => ({ ...prev, search: '' }))}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400 hover:text-white"
             >
-              {isEn ? "Clear" : "Effacer"}
+              {t?.database?.clearSearch || "Effacer"}
             </button>
           )}
         </div>
@@ -80,13 +79,13 @@ export default function FilterBar({
               onChange={(e) => setFilters(prev => ({ ...prev, sortBy: e.target.value }))}
               className="bg-transparent border-none text-xs text-gray-200 focus:outline-none cursor-pointer pr-2 font-mono"
             >
-              <option value="cost-asc" className="bg-[#121520]">{isEn ? "Cost: Blood (1 → 7)" : "Coût : Sang (1 → 7)"}</option>
-              <option value="cost-desc" className="bg-[#121520]">{isEn ? "Cost: Blood (7 → 1)" : "Coût : Sang (7 → 1)"}</option>
-              <option value="power-desc" className="bg-[#121520]">{isEn ? "Power: High → Low" : "Puissance : Haute → Basse"}</option>
-              <option value="power-asc" className="bg-[#121520]">{isEn ? "Power: Low → High" : "Puissance : Basse → Haute"}</option>
-              <option value="name-asc" className="bg-[#121520]">{isEn ? "Name: A → Z" : "Nom : A → Z"}</option>
-              <option value="series-asc" className="bg-[#121520]">{isEn ? "Series: S0 → S5" : "Série : S0 → S5"}</option>
-              <option value="rarity-desc" className="bg-[#121520]">{isEn ? "Rarity: Legendary → Common" : "Rareté : Légendaire → Commune"}</option>
+              <option value="cost-asc" className="bg-[#121520]">{t?.database?.sortCostAsc || "Coût : Sang (1 → 7)"}</option>
+              <option value="cost-desc" className="bg-[#121520]">{t?.database?.sortCostDesc || "Coût : Sang (7 → 1)"}</option>
+              <option value="power-desc" className="bg-[#121520]">{t?.database?.sortPowerDesc || "Puissance : Haute → Basse"}</option>
+              <option value="power-asc" className="bg-[#121520]">{t?.database?.sortPowerAsc || "Puissance : Basse → Haute"}</option>
+              <option value="name-asc" className="bg-[#121520]">{t?.database?.sortNameAsc || "Nom : A → Z"}</option>
+              <option value="series-asc" className="bg-[#121520]">{t?.database?.sortSeriesAsc || "Série : S0 → S5"}</option>
+              <option value="rarity-desc" className="bg-[#121520]">{t?.database?.sortRarityDesc || "Rareté : Légendaire → Commune"}</option>
             </select>
           </div>
 
@@ -99,7 +98,7 @@ export default function FilterBar({
                   ? 'bg-gradient-to-r from-red-800 to-rose-900 text-white shadow-blood'
                   : 'text-gray-400 hover:text-white'
               }`}
-              title={isEn ? "Grid View" : "Vue Grille de Cartes"}
+              title={t?.database?.gridView || "Vue Grille de Cartes"}
             >
               <LayoutGrid className="w-4 h-4" />
             </button>
@@ -110,7 +109,7 @@ export default function FilterBar({
                   ? 'bg-gradient-to-r from-red-800 to-rose-900 text-white shadow-blood'
                   : 'text-gray-400 hover:text-white'
               }`}
-              title={isEn ? "Table View" : "Vue Liste Compacte"}
+              title={t?.database?.tableView || "Vue Liste Compacte"}
             >
               <ListFilter className="w-4 h-4" />
             </button>
@@ -120,10 +119,10 @@ export default function FilterBar({
           <button
             onClick={onResetFilters}
             className="flex items-center space-x-1.5 px-3 py-2 rounded-xl bg-[#0b0e14] hover:bg-[#151926] border border-white/15 text-xs text-gray-300 hover:text-white transition-all"
-            title={isEn ? "Reset all filters" : "Réinitialiser tous les filtres"}
+            title={t?.database?.reset || "Réinitialiser tous les filtres"}
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">{isEn ? "Reset" : "Réinitialiser"}</span>
+            <span className="hidden sm:inline">{t?.database?.reset || "Réinitialiser"}</span>
           </button>
         </div>
       </div>
@@ -131,8 +130,8 @@ export default function FilterBar({
       {/* Quick Clan Buttons */}
       <div className="space-y-1.5">
         <div className="flex items-center justify-between text-xs font-mono text-gray-400">
-          <span className="uppercase tracking-wider font-semibold">{isEn ? "Clans & Factions" : "Clans & Factions"} :</span>
-          <span>{totalResults} / {allCount} {isEn ? "cards" : "cartes"}</span>
+          <span className="uppercase tracking-wider font-semibold">{t?.database?.clansFactions || "Clans & Factions"} :</span>
+          <span>{totalResults} / {allCount} {t?.database?.cardsCount || "cartes"}</span>
         </div>
 
         <div className="flex flex-wrap gap-1.5">
@@ -144,7 +143,7 @@ export default function FilterBar({
                 : 'bg-[#0e111a] text-gray-400 border-white/10 hover:text-white hover:border-white/20'
             }`}
           >
-            {isEn ? "All Clans" : "Tous les Clans"}
+            {t?.database?.allClans || "Tous les Clans"}
           </button>
 
           {Object.entries(CLANS).map(([clanKey, clanData]) => {
@@ -173,7 +172,7 @@ export default function FilterBar({
         {/* Cost Filter */}
         <div>
           <span className="font-mono text-[11px] text-gray-400 uppercase font-semibold block mb-1.5">
-            {isEn ? "Blood Cost" : "Coût en Sang"} :
+            {t?.database?.bloodCost || "Coût en Sang"} :
           </span>
           <div className="flex flex-wrap items-center gap-1">
             <button
@@ -184,7 +183,7 @@ export default function FilterBar({
                   : 'bg-[#0e111a] text-gray-400 border-white/10 hover:text-white'
               }`}
             >
-              {isEn ? "All" : "Tous"}
+              {t?.database?.allCosts || "Tous"}
             </button>
             {[1, 2, 3, 4, 5, 6, '7+', 'X'].map((c) => (
               <button
@@ -205,7 +204,7 @@ export default function FilterBar({
         {/* Series Filter */}
         <div>
           <span className="font-mono text-[11px] text-gray-400 uppercase font-semibold block mb-1.5">
-            {isEn ? "Release Series" : "Série d'extension"} :
+            {t?.database?.releaseSeries || "Série d'extension"} :
           </span>
           <div className="flex flex-wrap items-center gap-1">
             <button
@@ -216,7 +215,7 @@ export default function FilterBar({
                   : 'bg-[#0e111a] text-gray-400 border-white/10 hover:text-white'
               }`}
             >
-              {isEn ? "All" : "Toutes"}
+              {t?.database?.allSeries || "Toutes"}
             </button>
             {SERIES_LIST.map((s) => (
               <button
@@ -237,14 +236,14 @@ export default function FilterBar({
         {/* Archetypes Filter */}
         <div>
           <span className="font-mono text-[11px] text-gray-400 uppercase font-semibold block mb-1.5">
-            {isEn ? "Archetype" : "Archétype Tactique"} :
+            {t?.database?.archetype || "Archétype Tactique"} :
           </span>
           <select
             value={filters.archetype}
             onChange={(e) => setFilters(prev => ({ ...prev, archetype: e.target.value }))}
             className="w-full px-2.5 py-1.5 rounded-xl bg-[#0e111a] border border-white/15 text-xs text-gray-200 focus:outline-none focus:border-red-500 font-mono"
           >
-            <option value="ALL">{isEn ? "All Archetypes" : "Tous les Archétypes"}</option>
+            <option value="ALL">{t?.database?.allArchetypes || "Tous les Archétypes"}</option>
             {ARCHETYPES.map((arch) => (
               <option key={arch.id} value={arch.id} className="bg-[#121520]">
                 {arch.name}
@@ -256,7 +255,7 @@ export default function FilterBar({
         {/* Collection Ownership Filter */}
         <div>
           <span className="font-mono text-[11px] text-gray-400 uppercase font-semibold block mb-1.5">
-            {isEn ? "Collection Status" : "Statut de Collection"} :
+            {t?.database?.collectionStatus || "Statut de Collection"} :
           </span>
           <div className="flex items-center gap-1">
             <button
@@ -267,7 +266,7 @@ export default function FilterBar({
                   : 'bg-[#0e111a] text-gray-400 border-white/10 hover:text-white'
               }`}
             >
-              {isEn ? "All" : "Toutes"}
+              {t?.database?.allStatus || "Toutes"}
             </button>
             <button
               onClick={() => setFilters(prev => ({ ...prev, ownership: 'owned' }))}
@@ -277,7 +276,7 @@ export default function FilterBar({
                   : 'bg-[#0e111a] text-gray-400 border-white/10 hover:text-white'
               }`}
             >
-              {isEn ? "✔ Owned" : "✔ Possédées"}
+              {t?.database?.owned || "✔ Possédées"}
             </button>
             <button
               onClick={() => setFilters(prev => ({ ...prev, ownership: 'missing' }))}
@@ -287,7 +286,7 @@ export default function FilterBar({
                   : 'bg-[#0e111a] text-gray-400 border-white/10 hover:text-white'
               }`}
             >
-              {isEn ? "❌ Missing" : "❌ Manquantes"}
+              {t?.database?.missing || "❌ Manquantes"}
             </button>
           </div>
         </div>

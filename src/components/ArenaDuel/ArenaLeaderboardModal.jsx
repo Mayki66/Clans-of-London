@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Trophy, Crown, Medal, X, RefreshCw, Sparkles, Swords, Shield, User } from 'lucide-react';
 import { fetchCloudLeaderboard } from '../../utils/cloudDatabase';
 
-export default function ArenaLeaderboardModal({ onClose, currentUserPseudo, lang = 'fr' }) {
+export default function ArenaLeaderboardModal({ onClose, currentUserPseudo = '', lang = 'fr', t }) {
   const [leaderboard, setLeaderboard] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -23,30 +23,12 @@ export default function ArenaLeaderboardModal({ onClose, currentUserPseudo, lang
   }, []);
 
   const getRankBadge = (rank) => {
-    if (rank === 1) {
-      return (
-        <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-amber-400 to-yellow-600 border border-amber-300 flex items-center justify-center shadow-gold">
-          <Crown className="w-4 h-4 text-black" />
-        </div>
-      );
-    }
-    if (rank === 2) {
-      return (
-        <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-slate-300 to-slate-500 border border-slate-200 flex items-center justify-center shadow-md">
-          <Medal className="w-4 h-4 text-black" />
-        </div>
-      );
-    }
-    if (rank === 3) {
-      return (
-        <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-amber-700 to-amber-900 border border-amber-500/60 flex items-center justify-center shadow-md">
-          <Medal className="w-4 h-4 text-amber-200" />
-        </div>
-      );
-    }
+    if (rank === 1) return <span className="w-8 h-8 rounded-full bg-amber-500 text-black font-extrabold flex items-center justify-center text-sm shadow-gold">1</span>;
+    if (rank === 2) return <span className="w-8 h-8 rounded-full bg-slate-400 text-black font-extrabold flex items-center justify-center text-sm">2</span>;
+    if (rank === 3) return <span className="w-8 h-8 rounded-full bg-amber-700 text-amber-100 font-extrabold flex items-center justify-center text-sm">3</span>;
     return (
-      <div className="w-8 h-8 rounded-xl bg-[#141824] border border-white/10 flex items-center justify-center font-mono font-bold text-xs text-gray-400">
-        #{rank}
+      <div className="w-8 h-8 rounded-xl bg-[#141824] border border-white/10 text-gray-400 font-mono font-bold flex items-center justify-center text-xs">
+        {rank}
       </div>
     );
   };
@@ -63,15 +45,13 @@ export default function ArenaLeaderboardModal({ onClose, currentUserPseudo, lang
             </div>
             <div>
               <h2 className="font-gothic font-extrabold text-xl sm:text-2xl text-gray-100 flex items-center space-x-2">
-                <span>{lang === 'fr' ? 'Classement des Kindreds' : 'Kindreds Leaderboard'}</span>
+                <span>{t?.leaderboard?.title || "Classement des Kindreds"}</span>
                 <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40">
-                  Londres
+                  {t?.leaderboard?.londonBadge || "Londres"}
                 </span>
               </h2>
               <p className="text-xs text-gray-400 font-sans mt-0.5">
-                {lang === 'fr' 
-                  ? 'Les meilleurs vampires de la cité classés par Points d\'Arène et prestige.' 
-                  : 'Top London vampires ranked by Arena Points and prestige.'}
+                {t?.leaderboard?.subtitle || "Les meilleurs vampires de la cité classés par Points d'Arène et prestige."}
               </p>
             </div>
           </div>
@@ -81,7 +61,7 @@ export default function ArenaLeaderboardModal({ onClose, currentUserPseudo, lang
               onClick={loadLeaderboard}
               disabled={loading}
               className="p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 transition-colors disabled:opacity-50"
-              title="Rafraîchir le classement"
+              title={t?.leaderboard?.refresh || "Rafraîchir"}
             >
               <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
             </button>
@@ -98,7 +78,6 @@ export default function ArenaLeaderboardModal({ onClose, currentUserPseudo, lang
         {/* Podium Top 3 (if available) */}
         {leaderboard.length >= 3 && (
           <div className="grid grid-cols-3 gap-3 p-4 sm:p-6 bg-[#080a0f] border-b border-white/5">
-            {/* 2nd place */}
             <div className="flex flex-col items-center p-3 rounded-2xl bg-gradient-to-b from-slate-900/60 to-black border border-slate-700/60 text-center">
               <span className="text-xl mb-1">🥈</span>
               <span className="font-gothic font-bold text-xs text-slate-200 truncate max-w-full">{leaderboard[1]?.pseudo}</span>
@@ -106,7 +85,6 @@ export default function ArenaLeaderboardModal({ onClose, currentUserPseudo, lang
               <span className="text-[9px] font-mono text-gray-500 mt-1">{leaderboard[1]?.vampireRank}</span>
             </div>
 
-            {/* 1st place */}
             <div className="flex flex-col items-center p-3 rounded-2xl bg-gradient-to-b from-amber-950/60 via-yellow-950/30 to-black border-2 border-amber-500/60 text-center shadow-gold -mt-2">
               <span className="text-2xl mb-1">👑</span>
               <span className="font-gothic font-extrabold text-sm text-amber-200 truncate max-w-full">{leaderboard[0]?.pseudo}</span>
@@ -114,7 +92,6 @@ export default function ArenaLeaderboardModal({ onClose, currentUserPseudo, lang
               <span className="text-[10px] font-mono text-amber-400/90 mt-1">{leaderboard[0]?.vampireRank}</span>
             </div>
 
-            {/* 3rd place */}
             <div className="flex flex-col items-center p-3 rounded-2xl bg-gradient-to-b from-amber-950/40 to-black border border-amber-800/40 text-center">
               <span className="text-xl mb-1">🥉</span>
               <span className="font-gothic font-bold text-xs text-amber-300 truncate max-w-full">{leaderboard[2]?.pseudo}</span>
@@ -129,7 +106,7 @@ export default function ArenaLeaderboardModal({ onClose, currentUserPseudo, lang
           {loading && (
             <div className="py-12 text-center text-xs font-mono text-gray-400">
               <span className="animate-pulse">
-                {lang === 'fr' ? 'Chargement du classement de Londres...' : 'Loading London Leaderboard...'}
+                {t?.leaderboard?.loading || "Chargement du classement de Londres..."}
               </span>
             </div>
           )}
@@ -156,12 +133,12 @@ export default function ArenaLeaderboardModal({ onClose, currentUserPseudo, lang
                       </span>
                       {isCurrentUser && (
                         <span className="px-2 py-0.2 rounded-full text-[9px] font-mono font-bold bg-amber-500 text-black">
-                          {lang === 'fr' ? 'VOUS' : 'YOU'}
+                          {t?.leaderboard?.you || "VOUS"}
                         </span>
                       )}
                     </div>
                     <span className="text-xs text-gray-400 font-mono block">
-                      {player.vampireRank} • {lang === 'fr' ? `Niveau Collection ${player.level}` : `Collection Lvl ${player.level}`}
+                      {player.vampireRank} • {t?.leaderboard?.collectionLevel ? `${t.leaderboard.collectionLevel} ${player.level}` : `Niveau Collection ${player.level}`}
                     </span>
                   </div>
                 </div>
@@ -183,13 +160,13 @@ export default function ArenaLeaderboardModal({ onClose, currentUserPseudo, lang
         <div className="p-4 border-t border-white/10 bg-[#080a0f] flex items-center justify-between text-xs font-mono text-gray-400">
           <div className="flex items-center space-x-2">
             <Swords className="w-4 h-4 text-red-400" />
-            <span>{lang === 'fr' ? 'Victoire : +35 Pts • Défaite : -15 Pts' : 'Win: +35 Pts • Loss: -15 Pts'}</span>
+            <span>{t?.leaderboard?.pointsRules || "Victoire : +35 Pts • Défaite : -15 Pts"}</span>
           </div>
           <button
             onClick={onClose}
             className="px-4 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-gothic font-bold text-xs transition-colors"
           >
-            {lang === 'fr' ? 'Fermer' : 'Close'}
+            {t?.leaderboard?.close || "Fermer"}
           </button>
         </div>
 

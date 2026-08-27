@@ -26,10 +26,13 @@ export default function ProfileView({
   onToggleOwnedCard,
   onUnlockBatch,
   deckCards,
-  savedDecks
+  savedDecks,
+  lang = 'fr',
+  t
 }) {
+  const isFrench = lang === 'fr';
   const [matchResult, setMatchResult] = useState('victory');
-  const [matchDeck, setMatchDeck] = useState(savedDecks[0]?.name || 'Deck Actuel');
+  const [matchDeck, setMatchDeck] = useState(savedDecks[0]?.name || (isFrench ? 'Deck Actuel' : 'Current Deck'));
   const [matchOpponentClan, setMatchOpponentClan] = useState('Brujah');
   const [showSyncInfo, setShowSyncInfo] = useState(false);
   const [isEditingName, setIsEditingName] = useState(false);
@@ -74,7 +77,7 @@ export default function ProfileView({
     downloadAnchor.click();
     downloadAnchor.remove();
 
-    setImportNotification(`Profil de ${userProfile.playerName || 'Mayki'} exporté avec succès !`);
+    setImportNotification(isFrench ? `Profil de ${userProfile.playerName || 'Mayki'} exporté avec succès !` : `Profile of ${userProfile.playerName || 'Mayki'} exported successfully!`);
     setTimeout(() => setImportNotification(''), 3500);
 
     try {
@@ -98,33 +101,34 @@ export default function ProfileView({
             ...userProfile,
             playerName: parsed.playerName || userProfile.playerName || 'Mayki',
             collectionLevel: parsed.collectionLevel || Math.max(1, Math.floor(parsed.ownedCardIds.length / 5)),
-            arenaPoints: parsed.arenaPoints !== undefined ? parsed.arenaPoints : (userProfile.arenaPoints || 1250),
+            arenaPoints: typeof parsed.arenaPoints === 'number' ? parsed.arenaPoints : (userProfile.arenaPoints || 1250),
             ownedCardIds: parsed.ownedCardIds,
-            matchHistory: parsed.matchHistory || userProfile.matchHistory || []
+            matchHistory: Array.isArray(parsed.matchHistory) ? parsed.matchHistory : (userProfile.matchHistory || [])
           };
 
           onUpdateProfile(updatedProfile);
           setTempPlayerName(updatedProfile.playerName);
-          confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
-          setImportNotification(`Compte "${updatedProfile.playerName}" importé avec succès (${parsed.ownedCardIds.length} cartes) !`);
-          setTimeout(() => setImportNotification(''), 4500);
+          setImportNotification(isFrench ? `Profil de ${updatedProfile.playerName} importé avec succès (${parsed.ownedCardIds.length} cartes) !` : `Profile of ${updatedProfile.playerName} imported successfully (${parsed.ownedCardIds.length} cards)!`);
+          setTimeout(() => setImportNotification(''), 3500);
+          confetti({ particleCount: 50, spread: 70, origin: { y: 0.6 } });
         } else {
-          alert('Fichier JSON invalide : structure de cartes manquante.');
+          alert(isFrench ? "Fichier JSON invalide. Impossible de trouver les données de collection." : "Invalid JSON file. Collection data could not be found.");
         }
       } catch (err) {
         console.error('Error importing JSON profile', err);
-        alert('Erreur lors de la lecture du fichier JSON.');
+        alert(isFrench ? "Erreur lors de la lecture du fichier JSON." : "Error reading JSON file.");
       }
     };
 
     fileReader.readAsText(file);
-    if (fileInputRef.current) fileInputRef.current.value = '';
+    e.target.value = '';
   };
 
   // Switch to blank / guest account
   const handleCreateNewAccount = () => {
-    const newName = prompt("Entrez le pseudo du nouveau joueur :", "Nouveau Joueur");
-    if (!newName) return;
+    const defaultName = isFrench ? 'Nouveau Vampire' : 'New Kindred';
+    const newName = prompt(isFrench ? "Entrez le pseudo du nouveau joueur :" : "Enter nickname for new player:", defaultName);
+    if (!newName || !newName.trim()) return;
 
     const newProfile = {
       playerName: newName.trim(),
@@ -136,7 +140,7 @@ export default function ProfileView({
 
     onUpdateProfile(newProfile);
     setTempPlayerName(newProfile.playerName);
-    setImportNotification(`Nouveau compte créé pour ${newName} !`);
+    setImportNotification(isFrench ? `Nouveau compte créé pour ${newName} !` : `New account created for ${newName}!`);
     setTimeout(() => setImportNotification(''), 3500);
   };
 
@@ -187,7 +191,7 @@ export default function ProfileView({
       const matchName = card.name.toLowerCase().includes(q);
       const matchClan = card.clan.toLowerCase().includes(q);
       const matchArch = card.archetype.toLowerCase().includes(q);
-      const matchAbility = card.ability.toLowerCase().includes(q);
+      const matchAbility = card.ability.toLowerCase().includes(q) || (card.ability_en && card.ability_en.toLowerCase().includes(q));
       const matchKeywords = card.keywords?.some(k => k.toLowerCase().includes(q));
       const matchWiki = card.wikiUrl?.toLowerCase().includes(q) || (q.includes('kate') && card.name.toLowerCase().includes('katie'));
       if (!matchName && !matchClan && !matchArch && !matchAbility && !matchKeywords && !matchWiki) return false;
@@ -236,7 +240,7 @@ export default function ProfileView({
     
     const newMatch = {
       id: `match-${Date.now()}`,
-      date: new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }),
+      date: new Date().toLocaleTimeString(isFrench ? 'fr-FR' : 'en-US', { hour: '2-digit', minute: '2-digit' }),
       result: matchResult,
       deckName: matchDeck,
       opponentClan: matchOpponentClan,
@@ -293,7 +297,7 @@ export default function ProfileView({
                     <h1 
                       onClick={() => setIsEditingName(true)}
                       className="font-gothic font-extrabold text-2xl text-gray-100 cursor-pointer hover:text-amber-400 transition-colors"
-                      title="Cliquez pour modifier votre pseudo"
+                      title={isFrench ? "Cliquez pour modifier votre pseudo" : "Click to edit nickname"}
                     >
                       {userProfile.playerName || 'Mayki'}
                     </h1>
@@ -301,18 +305,18 @@ export default function ProfileView({
                       onClick={() => setIsEditingName(true)} 
                       className="text-[10px] font-mono text-gray-400 hover:text-amber-300 underline"
                     >
-                      (modifier)
+                      ({isFrench ? "modifier" : "edit"})
                     </button>
                   </div>
                 )}
 
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-amber-500/20 border border-amber-500/40 text-amber-300">
-                  Niveau {userProfile.collectionLevel || Math.max(1, Math.floor(ownedCount / 5))}
+                  {t?.profile?.collectionLevel || "Niveau"} {userProfile.collectionLevel || Math.max(1, Math.floor(ownedCount / 5))}
                 </span>
               </div>
 
               <p className="text-xs text-gray-400 font-mono mt-0.5">
-                Compte Actif : <strong className="text-amber-400">{userProfile.playerName || 'Mayki'}</strong> • Rang : <strong className="text-emerald-400">{currentRank.name}</strong> • {userProfile.arenaPoints || 1250} Pts d'Arène
+                {t?.profile?.activeAccount || "Compte Actif"} : <strong className="text-amber-400">{userProfile.playerName || 'Mayki'}</strong> • {isFrench ? "Rang" : "Rank"} : <strong className="text-emerald-400">{currentRank.name}</strong> • {userProfile.arenaPoints || 1250} {t?.profile?.arenaPoints || "Pts d'Arène"}
               </p>
             </div>
           </div>
@@ -330,28 +334,28 @@ export default function ProfileView({
             <button
               onClick={handleExportJSON}
               className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-600 via-amber-700 to-amber-800 hover:from-amber-500 hover:to-amber-700 text-white font-gothic font-bold text-xs shadow-gold transition-all"
-              title="Télécharger votre fichier de profil et vos cartes au format JSON"
+              title="JSON"
             >
               <Download className="w-4 h-4" />
-              <span>Exporter mon Profil (.json)</span>
+              <span>{t?.profile?.exportProfile || "Exporter mon Profil (.json)"}</span>
             </button>
 
             <button
               onClick={() => fileInputRef.current?.click()}
               className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-blue-900 to-indigo-900 hover:from-blue-800 hover:to-indigo-800 border border-cyan-400/50 text-cyan-200 hover:text-white font-gothic font-bold text-xs shadow-[0_0_12px_rgba(6,182,212,0.3)] transition-all"
-              title="Charger un fichier JSON existant pour retrouver vos cartes et votre compte"
+              title="JSON"
             >
               <Upload className="w-4 h-4" />
-              <span>Importer un Profil (.json)</span>
+              <span>{t?.profile?.importProfile || "Importer un Profil (.json)"}</span>
             </button>
 
             <button
               onClick={handleCreateNewAccount}
               className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-[#141824] hover:bg-[#1f2538] border border-white/15 text-gray-300 hover:text-white font-gothic font-bold text-xs transition-all"
-              title="Créer ou basculer vers un autre compte joueur"
+              title="Switch"
             >
               <Users className="w-4 h-4 text-purple-400" />
-              <span>Changer de Compte</span>
+              <span>{t?.profile?.newAccount || "Changer de Compte"}</span>
             </button>
           </div>
         </div>
@@ -360,7 +364,7 @@ export default function ProfileView({
         <div className="p-3 rounded-xl bg-[#090b10] border border-white/10 flex items-center space-x-2 text-xs text-gray-400">
           <UserCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
           <span>
-            Sauvegardez ou transférez votre collection en 1 clic grâce aux boutons d'exportation/importation JSON ci-dessus !
+            {isFrench ? "Sauvegardez ou transférez votre collection en 1 clic grâce aux boutons d'exportation/importation JSON ci-dessus !" : "Backup or transfer your collection in 1 click with the JSON export/import buttons above!"}
           </span>
         </div>
       </div>
@@ -376,7 +380,7 @@ export default function ProfileView({
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <h3 className="font-gothic font-bold text-base text-gray-100 flex items-center space-x-2">
                 <Trophy className="w-5 h-5 text-amber-400" />
-                <span>Statistiques d'Arène</span>
+                <span>{isFrench ? "Statistiques d'Arène" : "Arena Stats"}</span>
               </h3>
               <span className="text-xs font-mono font-bold text-amber-400">
                 {currentRank.name}
@@ -385,22 +389,22 @@ export default function ProfileView({
 
             <div className="grid grid-cols-3 gap-2 text-center">
               <div className="p-3 rounded-xl bg-[#0a0d14] border border-white/5">
-                <span className="text-[10px] font-mono text-gray-400 block uppercase">Points</span>
+                <span className="text-[10px] font-mono text-gray-400 block uppercase">{t?.profile?.arenaPoints || "Points"}</span>
                 <span className="text-lg font-bold font-mono text-amber-400">{userProfile.arenaPoints || 1250}</span>
               </div>
               <div className="p-3 rounded-xl bg-[#0a0d14] border border-white/5">
-                <span className="text-[10px] font-mono text-gray-400 block uppercase">Matchs</span>
+                <span className="text-[10px] font-mono text-gray-400 block uppercase">{t?.profile?.matchesPlayed || "Matchs"}</span>
                 <span className="text-lg font-bold font-mono text-gray-200">{totalMatches}</span>
               </div>
               <div className="p-3 rounded-xl bg-[#0a0d14] border border-white/5">
-                <span className="text-[10px] font-mono text-gray-400 block uppercase">Winrate</span>
+                <span className="text-[10px] font-mono text-gray-400 block uppercase">{t?.profile?.winrate || "Winrate"}</span>
                 <span className="text-lg font-bold font-mono text-emerald-400">{winrate}%</span>
               </div>
             </div>
 
             {/* Ranks Ladder */}
             <div className="space-y-1.5 pt-2 border-t border-white/10">
-              <span className="text-[11px] font-mono text-gray-400 uppercase font-bold">Ligue de Londres :</span>
+              <span className="text-[11px] font-mono text-gray-400 uppercase font-bold">{isFrench ? "Ligue de Londres :" : "London League:"}</span>
               {ARENA_RANKS.map((rank) => {
                 const isReached = (userProfile.arenaPoints || 0) >= rank.minPts;
                 const isCurrent = currentRank.id === rank.id;
@@ -435,7 +439,7 @@ export default function ProfileView({
           <div className="glass-panel rounded-2xl p-5 border border-white/10 space-y-4 shadow-xl">
             <h3 className="font-gothic font-bold text-base text-gray-100 flex items-center space-x-2">
               <Award className="w-5 h-5 text-red-500" />
-              <span>Enregistrer un Match d'Arène</span>
+              <span>{isFrench ? "Enregistrer un Match d'Arène" : "Log Arena Match"}</span>
             </h3>
 
             <form onSubmit={handleAddMatch} className="space-y-3">
@@ -449,60 +453,59 @@ export default function ProfileView({
                       : 'bg-slate-900 border-white/10 text-gray-400'
                   }`}
                 >
-                  🏆 Victoire (+35 Pts)
+                  {isFrench ? "Victoire (+35)" : "Victory (+35)"}
                 </button>
                 <button
                   type="button"
                   onClick={() => setMatchResult('defeat')}
                   className={`py-2 rounded-xl text-xs font-gothic font-bold border transition-all ${
                     matchResult === 'defeat'
-                      ? 'bg-red-950 border-red-500 text-white shadow-blood'
+                      ? 'bg-red-900 border-red-400 text-white shadow-[0_0_10px_rgba(239,68,68,0.4)]'
                       : 'bg-slate-900 border-white/10 text-gray-400'
                   }`}
                 >
-                  💀 Défaite (-15 Pts)
+                  {isFrench ? "Défaite (-15)" : "Defeat (-15)"}
                 </button>
               </div>
 
-              <div>
-                <label className="block text-[11px] font-mono text-gray-400 mb-1">
-                  Deck Utilisé
-                </label>
-                <input
-                  type="text"
+              <div className="space-y-1">
+                <label className="text-[10px] font-mono text-gray-400 uppercase">{isFrench ? "Deck Utilisé :" : "Deck Used:"}</label>
+                <select
                   value={matchDeck}
                   onChange={(e) => setMatchDeck(e.target.value)}
-                  placeholder="Ex: Hecata Murder, Brujah Rush..."
-                  className="w-full px-3 py-1.5 rounded-xl bg-[#090b10] border border-white/15 text-xs text-gray-200"
-                />
+                  className="w-full px-3 py-1.5 rounded-lg bg-[#141824] border border-white/10 text-xs text-gray-200 focus:outline-none focus:border-amber-400"
+                >
+                  <option value={isFrench ? "Deck Actuel" : "Current Deck"}>{isFrench ? "Deck Actuel" : "Current Deck"}</option>
+                  {savedDecks.map(d => (
+                    <option key={d.id} value={d.name}>{d.name}</option>
+                  ))}
+                </select>
               </div>
 
-              <div>
-                <label className="block text-[11px] font-mono text-gray-400 mb-1">
-                  Clan Adverse Affronté
-                </label>
+              <div className="space-y-1">
+                <label className="text-[10px] font-mono text-gray-400 uppercase">{isFrench ? "Clan Adverse :" : "Opponent Clan:"}</label>
                 <select
                   value={matchOpponentClan}
                   onChange={(e) => setMatchOpponentClan(e.target.value)}
-                  className="w-full px-3 py-1.5 rounded-xl bg-[#090b10] border border-white/15 text-xs text-gray-200"
+                  className="w-full px-3 py-1.5 rounded-lg bg-[#141824] border border-white/10 text-xs text-gray-200 focus:outline-none focus:border-amber-400"
                 >
-                  {Object.keys(CLANS).map(c => (
-                    <option key={c} value={c} className="bg-[#121520]">{c}</option>
+                  {Object.keys(CLANS).map(ck => (
+                    <option key={ck} value={ck}>{ck}</option>
                   ))}
                 </select>
               </div>
 
               <button
                 type="submit"
-                className="w-full py-2.5 rounded-xl bg-gradient-to-r from-red-800 to-rose-900 hover:from-red-700 hover:to-rose-800 text-white font-gothic font-bold text-xs shadow-blood transition-all"
+                className="w-full py-2 rounded-xl bg-gradient-to-r from-red-800 to-rose-900 hover:from-red-700 text-white font-gothic font-bold text-xs shadow-blood transition-all"
               >
-                Valider & Actualiser mes Stats
+                {isFrench ? "Valider le Résultat" : "Confirm Result"}
               </button>
             </form>
 
             {history.length > 0 && (
               <div className="space-y-1.5 pt-2 border-t border-white/10 max-h-48 overflow-y-auto pr-1">
-                <div className="text-[10px] font-mono text-gray-500 uppercase">Derniers Matchs :</div>
+                <div className="text-[10px] font-mono text-gray-500 uppercase">{isFrench ? "Derniers Matchs :" : "Recent Matches:"}</div>
                 {history.slice(0, 8).map((m) => (
                   <div
                     key={m.id}
@@ -533,10 +536,10 @@ export default function ProfileView({
               <div>
                 <h3 className="font-gothic font-bold text-lg text-gray-100 flex items-center space-x-2">
                   <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-                  <span>Ma Collection de Cartes ({userProfile.playerName || 'Mayki'})</span>
+                  <span>{t?.profile?.collectionChecklist || "Ma Collection de Cartes"} ({userProfile.playerName || 'Mayki'})</span>
                 </h3>
                 <p className="text-xs text-gray-400 mt-0.5 font-mono">
-                  {ownedCount} / {GAME_TOTAL_CARDS} cartes du jeu officiel ({gameCompletionPct}% complété)
+                  {ownedCount} / {GAME_TOTAL_CARDS} {t?.database?.cardsCount || "cartes"} ({gameCompletionPct}% {isFrench ? "complété" : "completed"})
                 </p>
               </div>
 
@@ -544,16 +547,16 @@ export default function ProfileView({
                 <button
                   onClick={() => onUnlockBatch?.('all')}
                   className="px-3 py-1.5 rounded-xl bg-emerald-950 hover:bg-emerald-900 border border-emerald-500/50 text-emerald-300 text-xs font-semibold transition-all"
-                  title="Tout débloquer pour tester l'ensemble du jeu"
+                  title="Unlock all"
                 >
-                  Tout Posséder (217)
+                  {t?.profile?.unlockAll || "Tout Débloquer (217)"}
                 </button>
                 <button
                   onClick={() => onUnlockBatch?.('reset')}
                   className="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-red-950 border border-slate-700 hover:border-red-500 text-gray-400 hover:text-red-300 text-xs font-semibold transition-all"
-                  title="Réinitialiser ma collection"
+                  title="Reset"
                 >
-                  Vider
+                  {t?.profile?.resetCollection || "Vider"}
                 </button>
               </div>
             </div>
@@ -568,14 +571,14 @@ export default function ProfileView({
                   type="text"
                   value={filters.search}
                   onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
-                  placeholder="Rechercher une carte par nom, clan, capacité..."
+                  placeholder={isFrench ? "Rechercher une carte par nom, clan, capacité..." : "Search card by name, clan, ability..."}
                   className="w-full pl-9 pr-3 py-2 rounded-xl bg-[#141824] border border-white/15 text-xs text-gray-100 placeholder-gray-500"
                 />
               </div>
 
               {/* Clickable Ownership Status */}
               <div className="space-y-1">
-                <span className="text-[10px] font-mono text-gray-400 uppercase font-bold">Statut de possession :</span>
+                <span className="text-[10px] font-mono text-gray-400 uppercase font-bold">{isFrench ? "Statut de possession :" : "Ownership Status:"}</span>
                 <div className="flex flex-wrap gap-1.5">
                   <button
                     onClick={() => setFilters(prev => ({ ...prev, ownership: 'ALL' }))}
@@ -585,7 +588,7 @@ export default function ProfileView({
                         : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
                     }`}
                   >
-                    Toutes ({GAME_TOTAL_CARDS})
+                    {t?.profile?.allCards ? `${t?.profile?.allCards} (${GAME_TOTAL_CARDS})` : `Toutes (${GAME_TOTAL_CARDS})`}
                   </button>
                   <button
                     onClick={() => setFilters(prev => ({ ...prev, ownership: 'owned' }))}
@@ -595,7 +598,7 @@ export default function ProfileView({
                         : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
                     }`}
                   >
-                    ✔ Possédées ({ownedCount})
+                    {t?.profile?.onlyOwned ? `${t?.profile?.onlyOwned} (${ownedCount})` : `✔ Possédées (${ownedCount})`}
                   </button>
                   <button
                     onClick={() => setFilters(prev => ({ ...prev, ownership: 'unowned' }))}
@@ -605,14 +608,14 @@ export default function ProfileView({
                         : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
                     }`}
                   >
-                    ❌ Manquantes ({GAME_TOTAL_CARDS - ownedCount})
+                    {t?.profile?.onlyMissing ? `${t?.profile?.onlyMissing} (${GAME_TOTAL_CARDS - ownedCount})` : `❌ Manquantes (${GAME_TOTAL_CARDS - ownedCount})`}
                   </button>
                 </div>
               </div>
 
               {/* Clickable Clan Quick Chips */}
               <div className="space-y-1 pt-1 border-t border-white/5">
-                <span className="text-[10px] font-mono text-gray-400 uppercase font-bold">Clan / Faction :</span>
+                <span className="text-[10px] font-mono text-gray-400 uppercase font-bold">{isFrench ? "Clan / Faction :" : "Clan / Faction:"}</span>
                 <div className="flex flex-wrap gap-1">
                   <button
                     onClick={() => setFilters(prev => ({ ...prev, clan: 'ALL' }))}
@@ -622,7 +625,7 @@ export default function ProfileView({
                         : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
                     }`}
                   >
-                    Tous
+                    {isFrench ? "Tous" : "All"}
                   </button>
                   {Object.entries(CLANS).map(([ck, c]) => (
                     <button
@@ -648,7 +651,7 @@ export default function ProfileView({
                 <div className="space-y-1">
                   <span className="text-[10px] font-mono text-gray-400 uppercase font-bold flex items-center space-x-1">
                     <Droplets className="w-3 h-3 text-red-400" />
-                    <span>Coût en Sang :</span>
+                    <span>{isFrench ? "Coût en Sang :" : "Blood Cost:"}</span>
                   </span>
                   <div className="flex flex-wrap items-center gap-1">
                     <button
@@ -657,7 +660,7 @@ export default function ProfileView({
                         filters.cost === 'ALL' ? 'bg-red-800 text-white border-red-500 shadow-blood' : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
                       }`}
                     >
-                      Tous
+                      {isFrench ? "Tous" : "All"}
                     </button>
                     {[1, 2, 3, 4, 5, 6, '7+', 'X'].map(cost => (
                       <button
@@ -679,7 +682,7 @@ export default function ProfileView({
                 <div className="space-y-1">
                   <span className="text-[10px] font-mono text-gray-400 uppercase font-bold flex items-center space-x-1">
                     <Shield className="w-3 h-3 text-amber-400" />
-                    <span>Puissance :</span>
+                    <span>{isFrench ? "Puissance :" : "Power:"}</span>
                   </span>
                   <div className="flex flex-wrap items-center gap-1">
                     <button
@@ -688,7 +691,7 @@ export default function ProfileView({
                         filters.power === 'ALL' ? 'bg-amber-800 text-white border-amber-500 shadow-gold' : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
                       }`}
                     >
-                      Tous
+                      {isFrench ? "Tous" : "All"}
                     </button>
                     {['1-3', '4-6', '7-9', '10+'].map(pw => (
                       <button
@@ -713,8 +716,8 @@ export default function ProfileView({
             {/* Interactive Cards Checklist */}
             <div className="space-y-1.5 max-h-[520px] overflow-y-auto pr-1">
               <div className="flex items-center justify-between text-[11px] font-mono text-gray-400 px-2 py-1">
-                <span>{displayedCards.length} cartes affichées</span>
-                <span>Cliquer sur une ligne pour cocher / décocher</span>
+                <span>{displayedCards.length} {t?.database?.cardsCount || "cartes"}</span>
+                <span>{isFrench ? "Cliquer sur une ligne pour cocher / décocher" : "Click a row to toggle owned"}</span>
               </div>
 
               {displayedCards.map((card) => {
@@ -765,7 +768,7 @@ export default function ProfileView({
                       <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-md ${
                         isOwned ? 'bg-emerald-950/70 text-emerald-300 border border-emerald-500/40' : 'bg-black/30 text-gray-500'
                       }`}>
-                        {isOwned ? '✓ Possédée' : 'Non possédée'}
+                        {isOwned ? (isFrench ? '✓ Possédée' : '✓ Owned') : (isFrench ? 'Non possédée' : 'Missing')}
                       </span>
                     </div>
                   </div>
@@ -774,12 +777,12 @@ export default function ProfileView({
 
               {displayedCards.length === 0 && (
                 <div className="text-center py-10 text-xs text-gray-500 space-y-2">
-                  <p>Aucune carte ne correspond aux critères sélectionnés.</p>
+                  <p>{t?.database?.noCardsMatch || "Aucune carte ne correspond aux critères sélectionnés."}</p>
                   <button
                     onClick={resetFilters}
                     className="px-3 py-1 rounded-lg bg-slate-800 text-gray-300 hover:text-white"
                   >
-                    Réinitialiser les filtres
+                    {t?.database?.resetFiltersBtn || "Réinitialiser les filtres"}
                   </button>
                 </div>
               )}

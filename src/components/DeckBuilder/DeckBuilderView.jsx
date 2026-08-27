@@ -165,6 +165,8 @@ export default function DeckBuilderView({
         onSaveDeck={onSaveDeck}
         onDeleteSavedDeck={onDeleteSavedDeck}
         userProfile={userProfile}
+        lang={lang}
+        t={t}
       />
 
       {/* Main Builder Grid (Deck on Left / Catalog on Right on Large Screens) */}
@@ -196,7 +198,7 @@ export default function DeckBuilderView({
               }`}
             >
               <BarChart3 className="w-3.5 h-3.5" />
-              <span>Courbes & Stats</span>
+              <span>{lang === 'fr' ? 'Courbes & Stats' : 'Stats & Mana Curve'}</span>
             </button>
 
             <button
@@ -208,7 +210,7 @@ export default function DeckBuilderView({
               }`}
             >
               <Play className="w-3.5 h-3.5" />
-              <span>Simulateur 7 Tours</span>
+              <span>{lang === 'fr' ? 'Simulateur 7 Tours' : '7-Round Simulator'}</span>
             </button>
           </div>
 
@@ -216,16 +218,16 @@ export default function DeckBuilderView({
           {activeTab === 'cards' && (
             <div className="glass-panel rounded-2xl p-4 border border-white/10 space-y-3 shadow-2xl">
               <div className="flex items-center justify-between text-xs text-gray-300 font-gothic font-semibold uppercase tracking-wider pb-2 border-b border-white/10">
-                <span>Cartes dans votre Deck :</span>
-                <span className="font-mono text-amber-400 font-bold">{deckCards.length} / 15 cartes</span>
+                <span>{lang === 'fr' ? 'Cartes dans votre Deck :' : 'Cards in your Deck:'}</span>
+                <span className="font-mono text-amber-400 font-bold">{deckCards.length} / 15 {t?.database?.cardsCount || "cartes"}</span>
               </div>
 
               {deckCards.length === 0 ? (
                 <div className="p-8 text-center text-gray-500 space-y-2">
                   <Layers className="w-8 h-8 mx-auto text-gray-600 opacity-50" />
-                  <p className="text-sm font-gothic">Votre deck est vide.</p>
+                  <p className="text-sm font-gothic">{t?.deckbuilder?.emptyDeckTitle || "Votre deck est actuellement vide"}</p>
                   <p className="text-xs text-gray-500">
-                    Sélectionnez des cartes dans la bibliothèque à droite pour construire votre stratégie.
+                    {t?.deckbuilder?.emptyDeckSubtitle || "Sélectionnez des cartes ci-dessous pour composer votre stratégie (15 cartes exactement)."}
                   </p>
                 </div>
               ) : (
@@ -241,6 +243,8 @@ export default function DeckBuilderView({
                         onInspect={onInspectCard}
                         onAdd={onAddCard}
                         onRemove={onRemoveCard}
+                        lang={lang}
+                        t={t}
                       />
                     ))}
                 </div>
@@ -250,12 +254,12 @@ export default function DeckBuilderView({
 
           {/* TAB 2: Stats & Mana Curve */}
           {activeTab === 'stats' && (
-            <DeckStats deckCards={deckCards} />
+            <DeckStats deckCards={deckCards} lang={lang} t={t} />
           )}
 
           {/* TAB 3: 7-Turn Conflict Simulator */}
           {activeTab === 'simulator' && (
-            <TurnSimulator deckCards={deckCards} onInspectCard={onInspectCard} />
+            <TurnSimulator deckCards={deckCards} onInspectCard={onInspectCard} lang={lang} t={t} />
           )}
 
         </div>
@@ -271,26 +275,30 @@ export default function DeckBuilderView({
             setViewMode={setViewMode}
             totalResults={filteredCards.length}
             allCount={CARDS_DATA.length}
+            lang={lang}
+            t={t}
           />
 
           {/* Results Grid / Table */}
           {filteredCards.length === 0 ? (
             <div className="glass-panel rounded-2xl p-8 text-center text-gray-500 border border-white/10 space-y-2">
-              <p className="text-sm font-gothic">Aucune carte ne correspond à ces critères.</p>
+              <p className="text-sm font-gothic">{t?.database?.noCardsMatch || "Aucune carte ne correspond aux critères sélectionnés."}</p>
               <button
                 onClick={onResetFilters}
                 className="px-4 py-1.5 rounded-lg bg-red-950 text-red-200 border border-red-500/40 text-xs font-semibold"
               >
-                Réinitialiser les filtres
+                {t?.database?.resetFiltersBtn || "Réinitialiser les Filtres"}
               </button>
             </div>
           ) : viewMode === 'table' ? (
             <TableView
               cards={filteredCards}
-              onInspect={onInspectCard}
-              onAdd={onAddCard}
-              onRemove={onRemoveCard}
-              deckCardsMap={deckCardsMap}
+              onInspectCard={onInspectCard}
+              onAddCard={onAddCard}
+              onRemoveCard={onRemoveCard}
+              deckCards={deckCards}
+              lang={lang}
+              t={t}
             />
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3.5">
@@ -302,6 +310,8 @@ export default function DeckBuilderView({
                   onInspect={onInspectCard}
                   onAdd={onAddCard}
                   onRemove={onRemoveCard}
+                  lang={lang}
+                  t={t}
                 />
               ))}
             </div>

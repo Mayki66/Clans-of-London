@@ -7,12 +7,13 @@ export default function DeckCommentsDrawer({
   deckName,
   userProfile,
   lang = 'fr',
-  isOpen = false
+  t,
+  isOpen
 }) {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [author, setAuthor] = useState(userProfile?.playerName || '');
   const [content, setContent] = useState('');
-  const [author, setAuthor] = useState(userProfile?.playerName || 'Mayki');
   const [submitting, setSubmitting] = useState(false);
   const messagesEndRef = useRef(null);
 
@@ -37,26 +38,22 @@ export default function DeckCommentsDrawer({
       }
     });
 
-    const unsubscribe = subscribeToDeckComments(deckId, (event) => {
-      if (event.type === 'INSERT' && event.comment) {
-        setComments((prev) => {
-          if (prev.some((c) => c.id === event.comment.id)) return prev;
-          return [...prev, event.comment];
-        });
-      } else if (event.type === 'DELETE' && event.commentId) {
-        setComments((prev) => prev.filter((c) => c.id !== event.commentId));
-      }
+    const unsubscribe = subscribeToDeckComments(deckId, (newComment) => {
+      setComments(prev => {
+        if (prev.some(c => c.id === newComment.id)) return prev;
+        return [...prev, newComment];
+      });
     });
 
     return () => {
       isMounted = false;
-      unsubscribe();
+      if (unsubscribe) unsubscribe();
     };
-  }, [deckId, isOpen]);
+  }, [isOpen, deckId]);
 
   // Auto-scroll to bottom on new comments
   useEffect(() => {
-    if (isOpen && comments.length > 0) {
+    if (isOpen) {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
   }, [comments, isOpen]);
@@ -67,16 +64,16 @@ export default function DeckCommentsDrawer({
 
     setSubmitting(true);
     try {
-      const added = await postDeckComment({
+      const saved = await postDeckComment({
         deckId,
-        author: author.trim() || userProfile?.playerName || 'Mayki',
+        author: author.trim() || userProfile?.playerName || (lang === 'fr' ? 'Kindred Anonyme' : 'Anonymous Kindred'),
         content: content.trim()
       });
 
-      if (added) {
-        setComments((prev) => {
-          if (prev.some((c) => c.id === added.id)) return prev;
-          return [...prev, added];
+      if (saved) {
+        setComments(prev => {
+          if (prev.some(c => c.id === saved.id)) return prev;
+          return [...prev, saved];
         });
         setContent('');
       }
@@ -110,14 +107,14 @@ export default function DeckCommentsDrawer({
         <div className="flex items-center space-x-2">
           <MessageSquare className="w-4 h-4 text-indigo-400" />
           <span className="font-gothic font-bold text-xs text-gray-200 uppercase tracking-wider">
-            {lang === 'fr' ? 'Discussions & Conseils Stratégiques' : 'Discussions & Strategy Advice'}
+            {t?.community?.commentsTitle || (lang === 'fr' ? 'Discussions & Conseils Stratégiques' : 'Discussions & Strategy Advice')}
           </span>
           <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-indigo-950/80 border border-indigo-500/40 text-indigo-300">
             {comments.length}
           </span>
         </div>
         <span className="text-[10px] font-mono text-gray-500">
-          {lang === 'fr' ? 'Diffusion en direct' : 'Live updates'}
+          {t?.community?.live || (lang === 'fr' ? 'Diffusion en direct' : 'Live updates')}
         </span>
       </div>
 
@@ -126,7 +123,7 @@ export default function DeckCommentsDrawer({
         {loading && (
           <div className="py-6 text-center text-xs font-mono text-gray-400">
             <span className="animate-pulse">
-              {lang === 'fr' ? 'Chargement des messages...' : 'Loading comments...'}
+              {t?.community?.loadingComments || (lang === 'fr' ? 'Chargement des messages...' : 'Loading comments...')}
             </span>
           </div>
         )}
@@ -134,14 +131,10 @@ export default function DeckCommentsDrawer({
         {!loading && comments.length === 0 && (
           <div className="p-4 rounded-xl bg-black/40 border border-white/5 text-center space-y-1">
             <p className="text-xs text-gray-400 font-sans">
-              {lang === 'fr' 
-                ? 'Aucun commentaire pour le moment.' 
-                : 'No comments yet on this deck.'}
+              {t?.community?.noCommentsYet || (lang === 'fr' ? 'Aucun commentaire pour le moment.' : 'No comments yet on this deck.')}
             </p>
             <p className="text-[11px] text-indigo-300/80 font-mono">
-              {lang === 'fr'
-                ? 'Soyez le premier vampire à partager votre avis ou une variante !'
-                : 'Be the first Kindred to share advice or a card variant!'}
+              {t?.community?.beFirstComment || (lang === 'fr' ? 'Soyez le premier vampire à partager votre avis ou une variante !' : 'Be the first Kindred to share advice or a card variant!')}
             </p>
           </div>
         )}
@@ -180,7 +173,7 @@ export default function DeckCommentsDrawer({
             type="text"
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
-            placeholder={lang === 'fr' ? 'Votre pseudo' : 'Your name'}
+            placeholder={t?.community?.pseudoPlaceholder || (lang === 'fr' ? 'Votre pseudo' : 'Your name')}
             maxLength={25}
             className="w-1/3 px-3 py-2 rounded-xl bg-[#141824] border border-white/10 text-xs font-gothic text-gray-200 focus:border-indigo-400 focus:outline-none placeholder-gray-500"
           />
@@ -188,7 +181,7 @@ export default function DeckCommentsDrawer({
             type="text"
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            placeholder={lang === 'fr' ? 'Votre conseil, variante ou question...' : 'Your advice, variant or question...'}
+            placeholder={t?.community?.commentPlaceholder || (lang === 'fr' ? 'Votre conseil, variante ou question...' : 'Your advice, variant or question...')}
             maxLength={300}
             className="flex-1 px-3 py-2 rounded-xl bg-[#141824] border border-white/10 text-xs font-sans text-gray-200 focus:border-indigo-400 focus:outline-none placeholder-gray-500"
           />
@@ -198,7 +191,7 @@ export default function DeckCommentsDrawer({
             className="px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-800 to-purple-900 hover:from-indigo-700 hover:to-purple-800 text-white font-gothic font-bold text-xs border border-indigo-400/40 shadow-sm transition-all disabled:opacity-40 flex items-center space-x-1 flex-shrink-0"
           >
             <Send className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">{lang === 'fr' ? 'Envoyer' : 'Send'}</span>
+            <span className="hidden sm:inline">{t?.community?.sendBtn || (lang === 'fr' ? 'Envoyer' : 'Send')}</span>
           </button>
         </div>
       </form>

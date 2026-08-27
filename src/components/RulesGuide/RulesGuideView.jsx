@@ -7,7 +7,7 @@ import {
 import { CLANS, ARCHETYPES, INGREDIENTS } from '../../data/clansData';
 
 export default function RulesGuideView({ onGoToDeckBuilder, lang = 'fr', t }) {
-  const isEn = lang === 'en';
+  const isEn = lang !== 'fr';
 
   return (
     <div className="space-y-8 max-w-5xl mx-auto pb-12">

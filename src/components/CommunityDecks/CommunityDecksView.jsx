@@ -502,6 +502,7 @@ export default function CommunityDecksView({
                 deckName={deck.name}
                 userProfile={userProfile}
                 lang={lang}
+                t={t}
                 isOpen={!!expandedComments[deck.id]}
               />
             </div>
@@ -517,12 +518,12 @@ export default function CommunityDecksView({
           </div>
           <div className="space-y-1">
             <h3 className="font-gothic font-bold text-xl text-gray-100">
-              {lang === 'fr' ? 'Aucun deck communautaire pour le moment' : 'No community decks yet'}
+              {t?.community?.noDecksTitle || (lang === 'fr' ? 'Aucun deck communautaire pour le moment' : 'No community decks yet')}
             </h3>
             <p className="text-xs text-gray-400 leading-relaxed font-sans">
-              {lang === 'fr' 
+              {t?.community?.noDecksSubtitle || (lang === 'fr' 
                 ? 'Soyez le premier à partager votre deck avec les joueurs de Clans of London du monde entier !' 
-                : 'Be the first player to share your custom deck with the worldwide Clans of London community!'}
+                : 'Be the first player to share your custom deck with the worldwide Clans of London community!')}
             </p>
           </div>
           <button
@@ -533,7 +534,7 @@ export default function CommunityDecksView({
             className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-800 to-indigo-900 hover:from-purple-700 text-white font-gothic font-bold text-xs shadow-gold transition-all"
           >
             <Share2 className="w-4 h-4" />
-            <span>{lang === 'fr' ? 'Partager le Premier Deck' : 'Share the First Deck'}</span>
+            <span>{t?.community?.shareFirstBtn || (lang === 'fr' ? 'Partager le Premier Deck' : 'Share the First Deck')}</span>
           </button>
         </div>
       )}

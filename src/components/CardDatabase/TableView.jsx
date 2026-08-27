@@ -2,7 +2,9 @@ import React from 'react';
 import { Shield, Droplets, Plus, Minus, Eye, Sparkles } from 'lucide-react';
 import { CLANS } from '../../data/clansData';
 
-export default function TableView({ cards, onInspect, onAdd, onRemove, deckCardsMap = {} }) {
+export default function TableView({ cards, onInspectCard, onAddCard, onRemoveCard, deckCards = [], lang = 'fr', t }) {
+  const isFrench = lang === 'fr';
+
   const getRarityBadge = (rarity) => {
     switch (rarity) {
       case 'Légendaire':
@@ -18,32 +20,49 @@ export default function TableView({ cards, onInspect, onAdd, onRemove, deckCards
     }
   };
 
+  const getHeader = (key, fallback) => {
+    switch (key) {
+      case 'blood': return isFrench ? 'Sang' : 'Blood';
+      case 'name': return isFrench ? 'Nom de la Carte' : 'Card Name';
+      case 'clan': return 'Clan';
+      case 'power': return isFrench ? 'Puiss.' : 'Power';
+      case 'series': return isFrench ? 'Série' : 'Series';
+      case 'type': return 'Type';
+      case 'archetype': return isFrench ? 'Archétype' : 'Archetype';
+      case 'ability': return isFrench ? 'Capacité / Effet' : 'Ability / Rules Text';
+      case 'deck': return 'Deck';
+      default: return fallback;
+    }
+  };
+
   return (
     <div className="glass-panel rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
       <div className="overflow-x-auto">
         <table className="w-full text-left text-xs text-gray-200">
           <thead className="bg-[#0b0e15] border-b border-white/10 font-gothic text-gray-400 uppercase tracking-wider text-[11px]">
             <tr>
-              <th className="px-3.5 py-3 text-center w-14">Sang</th>
-              <th className="px-4 py-3">Nom de la Carte</th>
-              <th className="px-3 py-3">Clan</th>
-              <th className="px-3 py-3 text-center">Puiss.</th>
-              <th className="px-3 py-3 text-center">Série</th>
-              <th className="px-3 py-3">Type</th>
-              <th className="px-3 py-3">Archétype</th>
-              <th className="px-4 py-3 min-w-[280px]">Capacité / Effet</th>
-              <th className="px-4 py-3 text-center w-28">Deck</th>
+              <th className="px-3.5 py-3 text-center w-14">{getHeader('blood', 'Sang')}</th>
+              <th className="px-4 py-3">{getHeader('name', 'Nom')}</th>
+              <th className="px-3 py-3">{getHeader('clan', 'Clan')}</th>
+              <th className="px-3 py-3 text-center">{getHeader('power', 'Puiss.')}</th>
+              <th className="px-3 py-3 text-center">{getHeader('series', 'Série')}</th>
+              <th className="px-3 py-3">{getHeader('type', 'Type')}</th>
+              <th className="px-3 py-3">{getHeader('archetype', 'Archétype')}</th>
+              <th className="px-4 py-3 min-w-[280px]">{getHeader('ability', 'Capacité')}</th>
+              <th className="px-4 py-3 text-center w-28">{getHeader('deck', 'Deck')}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-white/5 font-sans">
             {cards.map((card) => {
               const clanInfo = CLANS[card.clan] || CLANS.Mortal;
-              const count = deckCardsMap[card.id] || 0;
+              const count = deckCards.filter(c => c.id === card.id).length;
+              const displayedAbility = (lang !== 'fr' && card.ability_en) ? card.ability_en : card.ability;
+              const displayedType = (lang !== 'fr' && card.type === 'Objet') ? 'Object' : card.type;
 
               return (
                 <tr 
                   key={card.id}
-                  onClick={() => onInspect?.(card)}
+                  onClick={() => onInspectCard?.(card)}
                   className="hover:bg-[#151926] cursor-pointer transition-colors group"
                 >
                   {/* Blood Cost */}
@@ -90,7 +109,7 @@ export default function TableView({ cards, onInspect, onAdd, onRemove, deckCards
 
                   {/* Type */}
                   <td className="px-3 py-3 text-gray-400">
-                    {card.type}
+                    {displayedType}
                   </td>
 
                   {/* Archetype */}
@@ -102,7 +121,7 @@ export default function TableView({ cards, onInspect, onAdd, onRemove, deckCards
 
                   {/* Ability */}
                   <td className="px-4 py-3 text-gray-300 text-xs leading-relaxed line-clamp-2">
-                    {card.ability}
+                    {displayedAbility}
                   </td>
 
                   {/* Deck Actions */}
@@ -110,7 +129,7 @@ export default function TableView({ cards, onInspect, onAdd, onRemove, deckCards
                     <div className="flex items-center justify-center space-x-1.5">
                       {count > 0 && (
                         <button
-                          onClick={() => onRemove?.(card)}
+                          onClick={() => onRemoveCard?.(card.id)}
                           className="p-1 rounded bg-red-950/80 hover:bg-red-800 border border-red-500/40 text-red-300 hover:text-white"
                           title="Retirer du deck"
                         >
@@ -123,14 +142,14 @@ export default function TableView({ cards, onInspect, onAdd, onRemove, deckCards
                         </span>
                       )}
                       <button
-                        onClick={() => onAdd?.(card)}
+                        onClick={() => onAddCard?.(card)}
                         disabled={count >= 1}
                         className={`p-1 rounded border transition-colors ${
                           count >= 1
                             ? 'bg-gray-800/40 border-gray-700/40 text-gray-600 cursor-not-allowed'
                             : 'bg-emerald-950/80 hover:bg-emerald-800 border-emerald-500/40 text-emerald-300 hover:text-white'
                         }`}
-                        title={count >= 1 ? "Déjà dans le deck" : "Ajouter au deck"}
+                        title="Ajouter au deck"
                       >
                         <Plus className="w-3 h-3" />
                       </button>

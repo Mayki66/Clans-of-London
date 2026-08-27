@@ -176,13 +176,11 @@ export default function DatabaseView({
             <div className="flex items-center space-x-2">
               <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
               <h1 className="font-gothic font-extrabold text-2xl md:text-3xl text-gray-100">
-                {isEn ? "Complete London Card Database" : "Base de Données Complète de Londres"}
+                {t?.database?.title || "Base de Données Complète de Londres"}
               </h1>
             </div>
             <p className="text-xs md:text-sm text-gray-400 font-sans">
-              {isEn 
-                ? "Official catalog aligned with Paradox Wiki. Complete with card art, verified abilities and full clan/faction tags."
-                : "Catalogue officiel certifié et aligné sur le Wiki Paradox. Illustrations officielles, textes de règles littéraux et factions vérifiées."}
+              {t?.database?.subtitle || "Catalogue officiel certifié et aligné sur le Wiki Paradox. Illustrations officielles, textes de règles littéraux et factions vérifiées."}
             </p>
           </div>
 
@@ -195,11 +193,11 @@ export default function DatabaseView({
               title="Vérifier en direct les nouveautés et ajustements depuis le Wiki Paradox"
             >
               <RefreshCw className={`w-3.5 h-3.5 text-amber-300 ${isSyncing ? 'animate-spin' : ''}`} />
-              <span>{isSyncing ? (isEn ? "Syncing Wiki..." : "Vérification Wiki...") : (isEn ? "🔄 Sync Paradox Wiki" : "🔄 Synchroniser Wiki Paradox")}</span>
+              <span>{isSyncing ? (t?.database?.syncingWiki || "Vérification Wiki...") : (t?.database?.syncWiki || "🔄 Synchroniser Wiki Paradox")}</span>
             </button>
 
             <div className="px-3 py-2 rounded-xl bg-[#090b10] border border-white/10 text-xs font-mono text-gray-300">
-              <strong className="text-amber-400 font-bold">{filteredCards.length}</strong> / {CARDS_DATA.length} {isEn ? "cards" : "cartes"}
+              <strong className="text-amber-400 font-bold">{filteredCards.length}</strong> / {CARDS_DATA.length} {t?.database?.cardsCount || "cartes"}
             </div>
           </div>
         </div>
@@ -229,6 +227,7 @@ export default function DatabaseView({
         totalResults={filteredCards.length}
         allCount={CARDS_DATA.length}
         lang={lang}
+        t={t}
       />
 
       {/* Grid or Table Card Listing */}
@@ -246,6 +245,7 @@ export default function DatabaseView({
                 countInDeck={countInDeck}
                 showActions={true}
                 lang={lang}
+                t={t}
               />
             );
           })}
@@ -258,6 +258,7 @@ export default function DatabaseView({
           onRemoveCard={onRemoveCard}
           deckCards={deckCards}
           lang={lang}
+          t={t}
         />
       )}
 
@@ -265,13 +266,13 @@ export default function DatabaseView({
       {filteredCards.length === 0 && (
         <div className="text-center py-16 px-4 glass-panel rounded-2xl border border-white/10 space-y-3">
           <p className="text-gray-400 text-sm">
-            {isEn ? "No cards match the selected criteria." : "Aucune carte ne correspond aux critères sélectionnés."}
+            {t?.database?.noCardsMatch || "Aucune carte ne correspond aux critères sélectionnés."}
           </p>
           <button
             onClick={onResetFilters}
             className="px-4 py-2 rounded-xl bg-red-900 hover:bg-red-800 text-white font-gothic text-xs font-bold"
           >
-            {isEn ? "Reset Filters" : "Réinitialiser les Filtres"}
+            {t?.database?.resetFiltersBtn || "Réinitialiser les Filtres"}
           </button>
         </div>
       )}

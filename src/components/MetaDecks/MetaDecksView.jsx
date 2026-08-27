@@ -13,7 +13,7 @@ export default function MetaDecksView({
   lang = 'fr',
   t
 }) {
-  const isEn = lang === 'en';
+  const isFrench = lang === 'fr';
   const [filterMode, setFilterMode] = useState('all');
   const [expandedSubstitutions, setExpandedSubstitutions] = useState({});
 
@@ -76,7 +76,7 @@ export default function MetaDecksView({
   const handleLoadWithSubstitutions = (deck) => {
     onLoadMetaDeck?.({
       ...deck,
-      name: `${deck.name} (${isEn ? 'Adapted' : 'Adapté'})`,
+      name: `${deck.name} (${isFrench ? 'Adapté' : 'Adapted'})`,
       cardIds: deck.completedCardIds
     });
   };
@@ -88,15 +88,13 @@ export default function MetaDecksView({
         <div className="relative z-10 max-w-3xl space-y-3">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-semibold uppercase tracking-wider">
             <Trophy className="w-3.5 h-3.5 text-amber-400" />
-            <span>{isEn ? "Competitive Meta & Tier List" : "Méta Compétitive & Tier List"}</span>
+            <span>{t?.metadecks?.badge || "Méta Compétitive & Tier List"}</span>
           </div>
           <h1 className="font-gothic font-extrabold text-3xl md:text-4xl text-gray-100">
-            {isEn ? "Official Meta Decks (15 Cards)" : "Decks Méta Officiels (15 Cartes)"}
+            {t?.metadecks?.title || "Decks Méta Officiels (15 Cartes)"}
           </h1>
           <p className="text-sm md:text-base text-gray-300 leading-relaxed">
-            {isEn
-              ? "Optimized tournament lineups for London competitive format. Owned cards are highlighted in green. If missing cards, the app automatically suggests the best replacements!"
-              : "Compositions optimisées du format compétitif de Londres. Vos cartes possédées sont surlignées en vert. S'il vous manque des cartes, l'application vous propose automatiquement les meilleurs remplacements équivalents !"}
+            {t?.metadecks?.description || "Compositions optimisées du format compétitif de Londres. Vos cartes possédées sont surlignées en vert. S'il vous manque des cartes, l'application vous propose automatiquement les meilleurs remplacements équivalents !"}
           </p>
         </div>
       </div>
@@ -105,7 +103,7 @@ export default function MetaDecksView({
       <div className="glass-panel p-4 rounded-2xl border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
         <div className="flex items-center space-x-2 text-xs font-gothic text-gray-300">
           <Filter className="w-4 h-4 text-amber-400" />
-          <span>{isEn ? "Filter by collection readiness:" : "Filtrer par constructibilité :"}</span>
+          <span>{t?.metadecks?.filterReadiness || "Filtrer par constructibilité :"}</span>
         </div>
 
         <div className="flex items-center space-x-2">
@@ -117,7 +115,7 @@ export default function MetaDecksView({
                 : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
             }`}
           >
-            {isEn ? `All Decks (${enhancedDecks.length})` : `Tous les Decks (${enhancedDecks.length})`}
+            {t?.metadecks?.allDecks ? `${t?.metadecks?.allDecks} (${enhancedDecks.length})` : `Tous les Decks (${enhancedDecks.length})`}
           </button>
 
           <button
@@ -128,7 +126,7 @@ export default function MetaDecksView({
                 : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
             }`}
           >
-            {isEn ? `✔ Ready to Play (${readyDecksCount})` : `✔ Prêts à Jouer (${readyDecksCount})`}
+            {t?.metadecks?.readyToPlay ? `${t?.metadecks?.readyToPlay} (${readyDecksCount})` : `✔ Prêts à Jouer (${readyDecksCount})`}
           </button>
 
           <button
@@ -139,7 +137,7 @@ export default function MetaDecksView({
                 : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
             }`}
           >
-            {isEn ? `⚡ Almost Complete (${almostDecksCount})` : `⚡ Presque Complets (${almostDecksCount})`}
+            {t?.metadecks?.almostComplete ? `${t?.metadecks?.almostComplete} (${almostDecksCount})` : `⚡ Presque Complets (${almostDecksCount})`}
           </button>
         </div>
       </div>
@@ -174,7 +172,7 @@ export default function MetaDecksView({
                     </div>
 
                     <h3 className="font-gothic font-extrabold text-xl text-gray-100 mt-1">
-                      {isEn && deck.name_en ? deck.name_en : deck.name}
+                      {!isFrench && deck.name_en ? deck.name_en : deck.name}
                     </h3>
                   </div>
 
@@ -183,31 +181,31 @@ export default function MetaDecksView({
                     <span className={`text-xs font-mono font-bold block ${
                       deck.isFullyReady ? 'text-emerald-400' : deck.isAlmostReady ? 'text-amber-400' : 'text-gray-400'
                     }`}>
-                      {deck.ownedCount}/15 {isEn ? "cards" : "cartes"}
+                      {deck.ownedCount}/15 {t?.database?.cardsCount || "cartes"}
                     </span>
                     <span className="text-[10px] font-mono text-gray-500">
-                      {deck.completionPercent}% {isEn ? "owned" : "possédé"}
+                      {deck.completionPercent}% {isFrench ? "possédé" : "owned"}
                     </span>
                   </div>
                 </div>
 
                 {/* Strategy Text */}
                 <p className="text-xs text-gray-300 leading-relaxed bg-[#090b10] p-3 rounded-xl border border-white/5 font-sans">
-                  {isEn && deck.strategy_en ? deck.strategy_en : deck.strategy}
+                  {!isFrench && deck.strategy_en ? deck.strategy_en : deck.strategy}
                 </p>
 
                 {/* Stats row */}
                 <div className="grid grid-cols-3 gap-2 text-center text-xs font-mono">
                   <div className="p-2 rounded-lg bg-[#141824] border border-white/5">
-                    <span className="text-[10px] text-gray-400 block uppercase">{isEn ? "Cards" : "Cartes"}</span>
+                    <span className="text-[10px] text-gray-400 block uppercase">{t?.metadecks?.cards || "Cartes"}</span>
                     <span className="font-bold text-gray-200">15</span>
                   </div>
                   <div className="p-2 rounded-lg bg-[#141824] border border-white/5">
-                    <span className="text-[10px] text-gray-400 block uppercase">{isEn ? "Total Power" : "Puissance"}</span>
+                    <span className="text-[10px] text-gray-400 block uppercase">{t?.metadecks?.totalPower || "Puissance"}</span>
                     <span className="font-bold text-amber-400">{deck.totalPower}</span>
                   </div>
                   <div className="p-2 rounded-lg bg-[#141824] border border-white/5">
-                    <span className="text-[10px] text-gray-400 block uppercase">{isEn ? "Avg Cost" : "Coût Moyen"}</span>
+                    <span className="text-[10px] text-gray-400 block uppercase">{t?.metadecks?.avgCost || "Coût Moyen"}</span>
                     <span className="font-bold text-rose-400">{deck.avgCost}</span>
                   </div>
                 </div>
@@ -215,8 +213,8 @@ export default function MetaDecksView({
                 {/* 15 Cards Mini Visual Strip (Clean & Immediate Owned Outline) */}
                 <div className="space-y-1.5 pt-1">
                   <div className="flex items-center justify-between text-[11px] font-mono text-gray-400">
-                    <span>{isEn ? "Deck Composition (15 Cards) :" : "Composition du Deck (15 Cartes) :"}</span>
-                    <span className="text-gray-500">{isEn ? "Click to inspect" : "Cliquer pour inspecter"}</span>
+                    <span>{isFrench ? "Composition du Deck (15 Cartes) :" : "Deck Composition (15 Cards) :"}</span>
+                    <span className="text-gray-500">{isFrench ? "Cliquer pour inspecter" : "Click to inspect"}</span>
                   </div>
 
                   <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
@@ -231,7 +229,7 @@ export default function MetaDecksView({
                               ? 'border-2 border-emerald-400/90 bg-gradient-to-b from-emerald-950/60 to-[#0c1612] text-emerald-200 shadow-[0_0_14px_rgba(16,185,129,0.35)] hover:border-emerald-300 hover:scale-[1.03]'
                               : 'border border-white/10 bg-[#0c0f17] text-gray-400 opacity-60 hover:opacity-100 hover:border-amber-400/60 hover:scale-[1.02]'
                           }`}
-                          title={`${card.name} (${card.costDisplay || card.cost} Sang • P${card.power} • ${isOwned ? 'Possédée dans votre profil' : 'Non possédée'})`}
+                          title={`${card.name} (${card.costDisplay || card.cost} Sang • P${card.power} • ${isOwned ? 'Possédée' : 'Manquante'})`}
                         >
                           {/* Top Badges: Cost & Power */}
                           <div className="flex items-center justify-between gap-1 mb-1">
@@ -255,11 +253,11 @@ export default function MetaDecksView({
                             {isOwned ? (
                               <span className="inline-flex items-center space-x-0.5 text-[9px] font-mono font-bold text-emerald-400">
                                 <span>✓</span>
-                                <span>{isEn ? "Owned" : "Possédée"}</span>
+                                <span>{isFrench ? "Possédée" : "Owned"}</span>
                               </span>
                             ) : (
                               <span className="text-[9px] font-mono text-gray-500">
-                                {isEn ? "Missing" : "Manquante"}
+                                {isFrench ? "Manquante" : "Missing"}
                               </span>
                             )}
                           </div>
@@ -280,19 +278,19 @@ export default function MetaDecksView({
                         <RefreshCw className={`w-3.5 h-3.5 text-purple-400 ${isExpanded ? 'rotate-180' : ''} transition-transform`} />
                         <span className="font-bold">
                           {isExpanded 
-                            ? (isEn ? 'Hide substitute suggestions' : 'Masquer les suggestions de remplacement') 
-                            : (isEn ? `View ${deck.substitutions.length} suggested substitutes` : `Voir les ${deck.substitutions.length} remplacements suggérés`)}
+                            ? (isFrench ? 'Masquer les suggestions de remplacement' : 'Hide substitute suggestions') 
+                            : (isFrench ? `Voir les ${deck.substitutions.length} remplacements suggérés` : `View ${deck.substitutions.length} suggested substitutes`)}
                         </span>
                       </div>
                       <span className="text-[10px] font-mono bg-purple-900 px-2 py-0.5 rounded-full text-purple-200">
-                        {deck.substitutions.length} {isEn ? "cards" : "cartes"}
+                        {deck.substitutions.length} {t?.database?.cardsCount || "cartes"}
                       </span>
                     </button>
 
                     {isExpanded && (
                       <div className="mt-2 p-3 rounded-xl bg-[#0b0e15] border border-purple-500/30 space-y-2 text-xs animate-fadeIn">
                         <p className="text-[11px] text-gray-400 font-mono">
-                          {isEn ? `Optimal substitutes found in your collection (${ownedCardIds.length} cards):` : `Équivalents optimaux trouvés dans votre collection (${ownedCardIds.length} cartes) :`}
+                          {isFrench ? `Équivalents optimaux trouvés dans votre collection (${ownedCardIds.length} cartes) :` : `Optimal substitutes found in your collection (${ownedCardIds.length} cards):`}
                         </p>
                         <div className="space-y-2">
                           {deck.substitutions.map((sub, idx) => (
@@ -301,7 +299,7 @@ export default function MetaDecksView({
                               <div
                                 onClick={() => onInspectCard?.(sub.missing)}
                                 className="flex items-center space-x-1.5 text-gray-400 line-through cursor-pointer hover:text-gray-200"
-                                title={isEn ? "Missing card" : "Carte manquante"}
+                                title={isFrench ? "Carte manquante" : "Missing card"}
                               >
                                 <span className="w-5 h-5 rounded-full bg-red-950/80 border border-red-500/50 flex items-center justify-center text-[10px] font-bold text-red-300">
                                   {sub.missing.costDisplay || sub.missing.cost}
@@ -343,17 +341,17 @@ export default function MetaDecksView({
                   className="flex-1 flex items-center justify-center space-x-1.5 py-2.5 rounded-xl bg-gradient-to-r from-red-800 to-rose-900 hover:from-red-700 hover:to-rose-800 text-white font-gothic font-bold text-xs shadow-blood transition-all"
                 >
                   <Layers className="w-4 h-4" />
-                  <span>{isEn ? "Load in Deck Builder" : "Charger dans le Deck Builder"}</span>
+                  <span>{t?.metadecks?.loadInDeckbuilder || "Charger dans le Deck Builder"}</span>
                 </button>
 
                 {hasSubstitutions && !deck.isFullyReady && (
                   <button
                     onClick={() => handleLoadWithSubstitutions(deck)}
                     className="px-3 py-2.5 rounded-xl bg-amber-950 hover:bg-amber-900 border border-amber-500/50 text-amber-200 font-gothic font-bold text-xs transition-all"
-                    title={isEn ? "Load with smart replacements for missing cards" : "Charger avec les remplacements intelligents pour cartes manquantes"}
+                    title={isFrench ? "Charger avec les remplacements intelligents pour cartes manquantes" : "Load with smart replacements for missing cards"}
                   >
                     <Zap className="w-4 h-4 text-amber-400 inline mr-1" />
-                    <span>{isEn ? "Adapt" : "Adapter"}</span>
+                    <span>{isFrench ? "Adapter" : "Adapt"}</span>
                   </button>
                 )}
               </div>

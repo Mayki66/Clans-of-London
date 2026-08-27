@@ -26,7 +26,8 @@ export default function CardFrame({
   compact = false,
   isFoil = false,
   showActions = true,
-  lang = 'fr'
+  lang = 'fr',
+  t
 }) {
   const clanInfo = CLANS[card.clan] || CLANS.Mortal;
   const ClanIcon = CLAN_ICONS[clanInfo.icon] || Shield;
@@ -61,8 +62,9 @@ export default function CardFrame({
     }
   };
 
-  const displayedAbility = (lang === 'en' && card.ability_en) ? card.ability_en : card.ability;
-  const displayedType = lang === 'en' ? (card.type === 'Objet' ? 'Object' : card.type) : card.type;
+  const isFrench = lang === 'fr';
+  const displayedAbility = (!isFrench && card.ability_en) ? card.ability_en : card.ability;
+  const displayedType = (!isFrench && card.type === 'Objet') ? 'Object' : card.type;
 
   if (compact) {
     return (
@@ -104,24 +106,29 @@ export default function CardFrame({
             <div className="flex items-center space-x-1" onClick={(e) => e.stopPropagation()}>
               {countInDeck > 0 && (
                 <button
-                  onClick={() => onRemove?.(card)}
-                  className="p-1 rounded bg-red-950 hover:bg-red-800 border border-red-500/40 text-red-200"
-                  title={lang === 'en' ? "Remove from deck" : "Retirer du deck"}
+                  onClick={onRemove}
+                  className="p-1 rounded bg-red-950/80 hover:bg-red-800 border border-red-500/40 text-red-300 hover:text-white transition-colors"
+                  title={isFrench ? "Retirer du deck" : "Remove from deck"}
                 >
-                  <Minus className="w-3.5 h-3.5" />
+                  <Minus className="w-3 h-3" />
                 </button>
               )}
+              {countInDeck > 0 && (
+                <span className="w-4 text-center font-mono font-bold text-amber-400 text-xs">
+                  {countInDeck}
+                </span>
+              )}
               <button
-                onClick={() => onAdd?.(card)}
+                onClick={onAdd}
                 disabled={countInDeck >= 1}
-                className={`p-1 rounded text-xs font-bold ${
-                  countInDeck >= 1 
-                    ? 'bg-gray-800 text-gray-500 border border-gray-700 cursor-not-allowed' 
-                    : 'bg-red-800 hover:bg-red-700 text-white border border-red-500/50'
+                className={`p-1 rounded border transition-colors ${
+                  countInDeck >= 1
+                    ? 'bg-gray-800/40 border-gray-700/40 text-gray-600 cursor-not-allowed'
+                    : 'bg-emerald-950/80 hover:bg-emerald-800 border-emerald-500/40 text-emerald-300 hover:text-white'
                 }`}
-                title={countInDeck >= 1 ? (lang === 'en' ? "Already in deck" : "Déjà inclus") : (lang === 'en' ? "Add to deck" : "Ajouter au deck")}
+                title={countInDeck >= 1 ? (isFrench ? "Déjà inclus" : "Already in deck") : (isFrench ? "Ajouter au deck" : "Add to deck")}
               >
-                <Plus className="w-3.5 h-3.5" />
+                <Plus className="w-3 h-3" />
               </button>
             </div>
           )}
@@ -130,107 +137,107 @@ export default function CardFrame({
     );
   }
 
+  // Full Standard Card View
   return (
-    <div 
-      className={`group relative rounded-xl overflow-hidden bg-[#10131d] border flex flex-col justify-between transition-all duration-300 hover:scale-[1.02] ${getRarityBorder(card.rarity)} ${isFoil ? 'card-foil ring-2 ring-amber-400/50' : ''}`}
-    >
-      {/* Top Header: Cost, Clan, Power */}
-      <div className="px-3 py-2 bg-[#0c0e15] border-b border-white/10 flex items-center justify-between z-10">
-        <div className="flex items-center space-x-2">
-          {/* Blood Cost Orb */}
-          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-red-600 via-red-800 to-rose-950 border border-red-400 flex items-center justify-center font-bold text-xs text-white shadow-blood">
-            {card.costDisplay || card.cost}
-          </div>
+    <div className={`group relative rounded-2xl bg-[#0c0f17] border-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden flex flex-col ${getRarityBorder(card.rarity)} ${isFoil ? 'ring-2 ring-amber-400/50' : ''}`}>
+      
+      {/* Top Banner: Series & Rarity */}
+      <div className="flex items-center justify-between px-3 py-1.5 bg-[#080a10] border-b border-white/10 text-[10px] font-mono">
+        <span className="text-gray-400">
+          S{card.series}
+        </span>
+        <span className={`px-2 py-0.2 rounded-full font-bold uppercase tracking-wider text-[9px] border ${getRarityBadge(card.rarity)}`}>
+          {card.rarity}
+        </span>
+      </div>
 
-          <div className="flex items-center space-x-1.5">
-            <ClanIcon className="w-3.5 h-3.5" style={{ color: clanInfo.themeColor }} />
-            <span className="font-gothic font-semibold text-xs text-gray-200" style={{ color: clanInfo.themeColor }}>
+      {/* Card Artwork & Overlay */}
+      <div 
+        className="relative h-44 bg-black overflow-hidden cursor-pointer"
+        onClick={() => onInspect?.(card)}
+      >
+        <CardArtwork 
+          artworkUrl={card.artworkUrl} 
+          clan={card.clan} 
+          name={card.name} 
+        />
+        
+        {/* Subtle Gradient Shadow on Art */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0c0f17] via-transparent to-transparent pointer-events-none" />
+
+        {/* Floating Blood Cost */}
+        <div className="absolute top-2.5 left-2.5 w-9 h-9 rounded-full bg-gradient-to-br from-red-600 via-rose-800 to-rose-950 border-2 border-amber-400/80 flex items-center justify-center font-extrabold font-mono text-base text-white shadow-blood z-10">
+          {card.costDisplay || card.cost}
+        </div>
+
+        {/* Floating Power */}
+        <div className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-xl bg-black/80 backdrop-blur-md border border-amber-500/60 flex items-center space-x-1 font-extrabold font-mono text-xs text-amber-300 shadow-md z-10">
+          <Shield className="w-3.5 h-3.5 text-amber-400" />
+          <span>{card.power}</span>
+        </div>
+
+        {/* Inspect Hover Pill */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 backdrop-blur-xs pointer-events-none">
+          <span className="px-3 py-1 rounded-full bg-red-950/90 border border-red-500 text-white font-gothic text-xs font-bold shadow-blood flex items-center space-x-1.5">
+            <Eye className="w-3.5 h-3.5 text-amber-400" />
+            <span>{isFrench ? 'Inspecter' : 'Inspect'}</span>
+          </span>
+        </div>
+      </div>
+
+      {/* Card Body Details */}
+      <div 
+        className="p-3.5 space-y-2 flex-1 flex flex-col justify-between cursor-pointer"
+        onClick={() => onInspect?.(card)}
+      >
+        <div>
+          {/* Card Title & Type Header */}
+          <div className="flex items-start justify-between gap-1.5">
+            <h3 className="font-gothic font-bold text-sm text-gray-100 group-hover:text-amber-400 transition-colors leading-tight">
+              {card.name}
+            </h3>
+            <span 
+              className="text-[11px] font-bold flex-shrink-0 font-gothic"
+              style={{ color: clanInfo.themeColor }}
+            >
               {card.clan}
             </span>
           </div>
-        </div>
 
-        <div className="flex items-center space-x-2">
-          <span className="text-[11px] font-mono text-gray-400 font-bold">
-            {lang === 'en' ? `Series ${card.series}` : `Série ${card.series}`}
-          </span>
-          {/* Power Orb */}
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-amber-600 via-amber-700 to-amber-950 border border-amber-400 flex items-center justify-center font-bold text-xs text-white shadow-gold">
-            {card.power}
+          <div className="text-[10px] text-gray-400 font-mono mb-1.5">
+            {displayedType} • {card.archetype}
+          </div>
+
+          {/* Rules Ability Box */}
+          <div className="p-2 rounded-xl bg-[#07090e] border border-white/10 text-xs text-gray-300 leading-relaxed min-h-[50px]">
+            {displayedAbility}
           </div>
         </div>
-      </div>
 
-      {/* Card Artwork with Rarity Pill */}
-      <div 
-        onClick={() => onInspect?.(card)}
-        className="relative cursor-pointer overflow-hidden group-hover:brightness-105 transition-all"
-      >
-        <CardArtwork artType={card.artType} clan={card.clan} imageUrl={card.imageUrl} className="w-full h-44" />
-        
-        {/* Rarity & Archetype Overlay Pill */}
-        <div className="absolute top-2 left-2 flex items-center space-x-1">
-          <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${getRarityBadge(card.rarity)}`}>
-            {card.rarity}
-          </span>
-          {card.archetype && (
-            <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-black/70 border border-white/20 text-gray-200 backdrop-blur-md">
-              {card.archetype}
-            </span>
-          )}
-        </div>
-
-        {/* Hover Inspect Indicator */}
-        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-          <span className="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-vampire-crimson/90 text-white font-gothic text-xs font-bold tracking-wide shadow-blood">
-            <Eye className="w-3.5 h-3.5" />
-            <span>{lang === 'en' ? 'Inspect' : 'Inspecter'}</span>
-          </span>
-        </div>
-      </div>
-
-      {/* Card Name */}
-      <div className="px-3.5 pt-2.5 pb-1 bg-gradient-to-b from-[#141824] to-[#0f121a] border-t border-b border-white/5">
-        <div className="flex items-baseline justify-between">
-          <h3 
-            onClick={() => onInspect?.(card)}
-            className="font-gothic font-bold text-base text-gray-100 group-hover:text-amber-300 transition-colors truncate cursor-pointer"
-            title={card.name}
-          >
-            {card.name}
-          </h3>
-          <span className="text-[11px] font-mono text-gray-400 capitalize">
-            {displayedType}
-          </span>
-        </div>
-      </div>
-
-      {/* Ability Text Box */}
-      <div className="px-3 py-2.5 flex-1 bg-[#0b0d14] flex flex-col justify-between text-xs space-y-2">
-        <p className="text-gray-300 leading-relaxed font-sans">
-          {displayedAbility}
-        </p>
-
-        {/* Flavor Lore Text */}
-        {card.flavorText && (
-          <p className="italic text-[11px] text-gray-500 font-gothic border-t border-white/5 pt-1.5 line-clamp-2">
-            {card.flavorText}
-          </p>
+        {/* Keywords Tags */}
+        {card.keywords && card.keywords.length > 0 && (
+          <div className="flex flex-wrap gap-1 pt-1">
+            {card.keywords.slice(0, 3).map((kw, i) => (
+              <span key={i} className="px-1.5 py-0.2 rounded text-[9px] font-mono bg-white/5 border border-white/10 text-gray-400">
+                #{kw}
+              </span>
+            ))}
+          </div>
         )}
       </div>
 
-      {/* Card Footer / Deck Builder Action Bar */}
+      {/* Footer Actions (Add / Remove) */}
       {showActions && (
-        <div className="px-3 py-2 bg-[#121520] border-t border-white/10 flex items-center justify-between">
-          <div className="flex items-center space-x-1">
+        <div className="p-2.5 bg-[#080a10] border-t border-white/10 flex items-center justify-between">
+          <div className="text-xs font-mono">
+            <span className="text-gray-500 mr-1">{isFrench ? 'Dans le deck :' : 'In deck:'}</span>
             {countInDeck > 0 ? (
-              <span className="flex items-center space-x-1 px-2 py-0.5 rounded bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-semibold font-mono">
-                <span>{lang === 'en' ? 'In deck:' : 'Dans le deck :'}</span>
-                <span className="font-bold">{countInDeck}/1</span>
+              <span className="font-bold text-emerald-400 bg-emerald-950/60 px-1.5 py-0.2 rounded border border-emerald-500/40">
+                {countInDeck}/1
               </span>
             ) : (
-              <span className="text-[11px] text-gray-500 italic">
-                {lang === 'en' ? 'Not included' : 'Non inclus'}
+              <span className="text-gray-600 text-[11px]">
+                {isFrench ? 'Non inclus' : 'Not included'}
               </span>
             )}
           </div>
@@ -238,30 +245,31 @@ export default function CardFrame({
           <div className="flex items-center space-x-1.5">
             {countInDeck > 0 && (
               <button
-                onClick={() => onRemove?.(card)}
-                className="p-1.5 rounded-lg bg-red-950/80 hover:bg-red-800 border border-red-500/40 text-red-200 hover:text-white transition-all transform active:scale-95"
-                title={lang === 'en' ? "Remove a copy" : "Retirer une copie"}
+                onClick={onRemove}
+                className="p-1.5 rounded-lg bg-red-950/80 hover:bg-red-800 border border-red-500/40 text-red-300 hover:text-white transition-colors"
+                title={isFrench ? "Retirer une copie" : "Remove a copy"}
               >
-                <Minus className="w-4 h-4" />
+                <Minus className="w-3.5 h-3.5" />
               </button>
             )}
 
             <button
-              onClick={() => onAdd?.(card)}
+              onClick={onAdd}
               disabled={countInDeck >= 1}
-              className={`flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-bold font-gothic transition-all transform active:scale-95 ${
+              className={`flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-gothic font-bold border transition-all ${
                 countInDeck >= 1
-                  ? 'bg-gray-800 text-gray-500 border border-gray-700 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-red-800 to-rose-900 hover:from-red-700 hover:to-rose-800 text-white border border-red-500/60 shadow-blood'
+                  ? 'bg-gray-800/40 border-gray-700/40 text-gray-500 cursor-not-allowed'
+                  : 'bg-gradient-to-r from-emerald-700 to-teal-800 hover:from-emerald-600 hover:to-teal-700 text-white border-emerald-400 shadow-sm transform active:scale-95'
               }`}
-              title={countInDeck >= 1 ? (lang === 'en' ? "Limit of 1 copy reached" : "Limite de 1 copie atteinte") : (lang === 'en' ? "Add to deck" : "Ajouter au deck")}
+              title={countInDeck >= 1 ? (isFrench ? "Limite de 1 copie atteinte" : "Limit of 1 copy reached") : (isFrench ? "Ajouter au deck" : "Add to deck")}
             >
               <Plus className="w-3.5 h-3.5" />
-              <span>{countInDeck >= 1 ? (lang === 'en' ? 'Included' : 'Inclus') : (lang === 'en' ? 'Add' : 'Ajouter')}</span>
+              <span>{countInDeck >= 1 ? (isFrench ? 'Inclus' : 'Included') : (isFrench ? 'Ajouter' : 'Add')}</span>
             </button>
           </div>
         </div>
       )}
+
     </div>
   );
 }

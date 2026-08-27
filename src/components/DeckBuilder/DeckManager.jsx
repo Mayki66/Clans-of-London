@@ -14,7 +14,9 @@ export default function DeckManager({
   savedDecks,
   onSaveDeck,
   onDeleteSavedDeck,
-  userProfile
+  userProfile,
+  lang = 'fr',
+  t
 }) {
   const [showSavedModal, setShowSavedModal] = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
@@ -25,28 +27,29 @@ export default function DeckManager({
 
   const cardCount = deckCards.length;
   const isComplete = cardCount === 15;
+  const isFrench = lang === 'fr';
 
   const handleSave = () => {
     if (!deckName.trim()) {
-      alert('Veuillez entrer un nom pour votre deck.');
+      alert(isFrench ? 'Veuillez entrer un nom pour votre deck.' : 'Please enter a name for your deck.');
       return;
     }
     onSaveDeck({
       id: `deck-${Date.now()}`,
       name: deckName,
-      createdAt: new Date().toLocaleDateString('fr-FR'),
+      createdAt: new Date().toLocaleDateString(isFrench ? 'fr-FR' : 'en-US'),
       cardIds: deckCards.map(c => c.id)
     });
-    alert(`Deck "${deckName}" sauvegardé avec succès !`);
+    alert(isFrench ? `Deck "${deckName}" sauvegardé avec succès !` : `Deck "${deckName}" saved successfully!`);
   };
 
   const handleExportText = () => {
     const lines = [
-      `// Deck: ${deckName || 'Deck Sans Titre'}`,
-      `// Jeu: Vampire: The Masquerade - Clans of London`,
-      `// Total: ${cardCount}/15 cartes`,
+      `// Deck: ${deckName || (isFrench ? 'Deck Sans Titre' : 'Untitled Deck')}`,
+      `// Game: Vampire: The Masquerade - Clans of London`,
+      `// Total: ${cardCount}/15`,
       '',
-      ...deckCards.map(c => `1x ${c.name} [${c.clan}] (S${c.series}) - Coût: ${c.cost}, Puiss: ${c.power}`)
+      ...deckCards.map(c => `1x ${c.name} [${c.clan}] (S${c.series}) - Cost: ${c.cost}, Power: ${c.power}`)
     ];
     const text = lines.join('\n');
     navigator.clipboard.writeText(text);
@@ -76,14 +79,14 @@ export default function DeckManager({
 
     if (matchedCardIds.length > 0) {
       onLoadDeck({
-        name: 'Deck Importé',
+        name: isFrench ? 'Deck Importé' : 'Imported Deck',
         cardIds: matchedCardIds
       });
       setShowImportModal(false);
       setImportText('');
-      alert(`${matchedCardIds.length} cartes importées avec succès !`);
+      alert(isFrench ? `${matchedCardIds.length} cartes importées avec succès !` : `${matchedCardIds.length} cards successfully imported!`);
     } else {
-      alert("Aucune carte correspondante n'a été trouvée dans le texte fourni.");
+      alert(isFrench ? "Aucune carte correspondante n'a été trouvée dans le texte fourni." : "No matching cards found in the provided text.");
     }
   };
 
@@ -94,13 +97,13 @@ export default function DeckManager({
         {/* Name input */}
         <div className="flex-1">
           <label className="block text-[11px] font-mono text-gray-400 mb-1">
-            NOM DU DECK
+            {t?.deckbuilder?.deckNameLabel || "NOM DU DECK"}
           </label>
           <input
             type="text"
             value={deckName}
             onChange={(e) => setDeckName(e.target.value)}
-            placeholder="Ex: Hecata Murder Tempo, Brujah Aggro..."
+            placeholder={t?.deckbuilder?.deckPlaceholder || "Ex: Hecata Murder Tempo, Brujah Aggro..."}
             className="w-full px-3.5 py-2 rounded-xl bg-[#0a0d14] border border-white/15 focus:border-red-500 text-sm font-gothic font-semibold text-gray-100 placeholder-gray-500"
           />
         </div>
@@ -118,7 +121,11 @@ export default function DeckManager({
               {cardCount} / 15
             </span>
             <span className="text-xs">
-              {isComplete ? '• Prêt !' : cardCount > 15 ? '• Trop de cartes' : '• Incomplet'}
+              {isComplete 
+                ? (t?.deckbuilder?.ready || '• Prêt !') 
+                : cardCount > 15 
+                  ? (t?.deckbuilder?.tooManyCards || '• Trop de cartes') 
+                  : (t?.deckbuilder?.incomplete || '• Incomplet')}
             </span>
           </div>
         </div>
@@ -134,7 +141,7 @@ export default function DeckManager({
             className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-red-800 to-rose-900 hover:from-red-700 hover:to-rose-800 text-white text-xs font-gothic font-bold border border-red-500/60 shadow-blood transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Save className="w-4 h-4" />
-            <span>Sauvegarder</span>
+            <span>{t?.deckbuilder?.save || "Sauvegarder"}</span>
           </button>
 
           {/* Open Saved Decks Modal */}
@@ -143,7 +150,7 @@ export default function DeckManager({
             className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-[#121520] hover:bg-[#1a1f2e] border border-white/15 text-gray-200 text-xs font-semibold transition-all"
           >
             <FolderOpen className="w-4 h-4 text-amber-400" />
-            <span>Mes Decks ({savedDecks.length})</span>
+            <span>{t?.deckbuilder?.myDecks || "Mes Decks"} ({savedDecks.length})</span>
           </button>
 
           {/* Export to Clipboard */}
@@ -153,7 +160,7 @@ export default function DeckManager({
             className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-[#121520] hover:bg-[#1a1f2e] border border-white/15 text-gray-200 text-xs font-semibold transition-all disabled:opacity-50"
           >
             {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4 text-blue-400" />}
-            <span>{copied ? 'Copié !' : 'Texte'}</span>
+            <span>{copied ? (t?.deckbuilder?.copied || 'Copié !') : (t?.deckbuilder?.exportText || 'Texte')}</span>
           </button>
 
           {/* Export Visual Image for Discord */}
@@ -164,7 +171,7 @@ export default function DeckManager({
             title="Générer une fiche image HD pour Discord ou les réseaux"
           >
             <Image className="w-4 h-4 text-purple-400" />
-            <span>Image Discord</span>
+            <span>{t?.deckbuilder?.exportImage || "Image Discord"}</span>
           </button>
 
           {/* Import Modal */}
@@ -173,33 +180,32 @@ export default function DeckManager({
             className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-[#121520] hover:bg-[#1a1f2e] border border-white/15 text-gray-200 text-xs font-semibold transition-all"
           >
             <Upload className="w-4 h-4 text-purple-400" />
-            <span>Importer</span>
+            <span>{t?.deckbuilder?.import || "Importer"}</span>
           </button>
 
           {/* Ajouter Commu Button */}
           <button
             onClick={() => setShowPublishModal(true)}
             disabled={cardCount === 0}
-            className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-indigo-900 to-purple-900 hover:from-indigo-800 hover:to-purple-800 border border-indigo-500/50 text-indigo-200 hover:text-white text-xs font-gothic font-bold transition-all shadow-[0_0_12px_rgba(99,102,241,0.3)] disabled:opacity-50"
-            title="Publier ce deck dans l'espace communautaire"
+            className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-950 hover:from-indigo-800 hover:to-purple-800 text-indigo-100 hover:text-white text-xs font-gothic font-bold border border-indigo-400 shadow-[0_0_15px_rgba(99,102,241,0.3)] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <Share2 className="w-4 h-4 text-indigo-400" />
-            <span>Ajouter Commu</span>
+            <Users className="w-4 h-4 text-indigo-300" />
+            <span>{t?.deckbuilder?.addCommunity || "Ajouter Commu"}</span>
           </button>
         </div>
 
-        {/* Clear Deck */}
+        {/* Clear Deck Button */}
         {cardCount > 0 && (
           <button
             onClick={() => {
-              if (window.confirm('Voulez-vous vraiment vider ce deck ?')) {
+              if (window.confirm(isFrench ? 'Voulez-vous vraiment vider ce deck ?' : 'Are you sure you want to clear this deck?')) {
                 onClearDeck();
               }
             }}
-            className="flex items-center space-x-1 px-3 py-2 rounded-xl bg-red-950/40 hover:bg-red-950 border border-red-500/30 text-red-300 hover:text-white text-xs font-semibold transition-all"
+            className="flex items-center space-x-1.5 px-3 py-2 rounded-xl bg-transparent hover:bg-red-950/40 text-red-400 hover:text-red-300 text-xs font-semibold transition-all"
           >
-            <Trash2 className="w-3.5 h-3.5" />
-            <span>Vider</span>
+            <Trash2 className="w-4 h-4" />
+            <span>{t?.deckbuilder?.clear || "Vider"}</span>
           </button>
         )}
       </div>
