@@ -325,6 +325,8 @@ export default function DeckManager({
         deckName={deckName}
         deckCards={deckCards}
         userProfile={userProfile}
+        lang={lang}
+        t={t}
       />
 
       {/* Export Deck Image Modal */}

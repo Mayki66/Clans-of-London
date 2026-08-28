@@ -18,7 +18,9 @@ export default function CardArtwork({
   clan, 
   imageUrl, 
   hasOfficialImage = false,
-  className = "w-full h-44" 
+  className = "w-full h-44",
+  lang = 'fr',
+  t
 }) {
   const [imageError, setImageError] = useState(false);
 

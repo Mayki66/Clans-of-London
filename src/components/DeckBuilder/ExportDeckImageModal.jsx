@@ -7,6 +7,7 @@ export default function ExportDeckImageModal({
   author = "Kindred",
   deckCards = [],
   lang = 'fr',
+  t,
   onClose
 }) {
   const [imageBlob, setImageBlob] = useState(null);

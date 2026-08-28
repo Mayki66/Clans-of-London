@@ -10,7 +10,9 @@ export default function PublishCommunityDeckModal({
   deckName = '',
   deckCards = [],
   userProfile,
-  onPublished
+  onPublished,
+  lang = 'fr',
+  t
 }) {
   if (!isOpen) return null;
 
@@ -31,9 +33,10 @@ export default function PublishCommunityDeckModal({
   const [author, setAuthor] = useState(userProfile?.playerName || 'Mayki');
   const [clan, setClan] = useState(getDominantClan());
   const [strategy, setStrategy] = useState('');
+  const [submitting, setSubmitting] = useState(false);
   const [publishedSuccess, setPublishedSuccess] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title.trim()) {
       alert(t?.publishModal?.enterTitleAlert || "Veuillez saisir un titre pour votre deck.");
@@ -44,27 +47,35 @@ export default function PublishCommunityDeckModal({
       return;
     }
 
-    const cardIds = deckCards.map(c => c.id);
-    const newDeck = publishCommunityDeck({
-      name: title.trim(),
-      clan,
-      author: author.trim() || 'Kindred Anonyme',
-      strategy: strategy.trim() || 'Deck compétitif partagé par la communauté de Londres.',
-      cardIds
-    });
-
-    if (newDeck) {
-      confetti({
-        particleCount: 80,
-        spread: 60,
-        origin: { y: 0.6 }
+    setSubmitting(true);
+    try {
+      const cardIds = deckCards.map(c => c.id);
+      const newDeck = await publishCommunityDeck({
+        name: title.trim(),
+        clan,
+        author: author.trim() || 'Kindred Anonyme',
+        strategy: strategy.trim() || 'Deck compétitif partagé par la communauté de Londres.',
+        cardIds
       });
-      setPublishedSuccess(true);
-      if (onPublished) onPublished(newDeck);
-      setTimeout(() => {
-        setPublishedSuccess(false);
-        onClose();
-      }, 1800);
+
+      if (newDeck) {
+        confetti({
+          particleCount: 80,
+          spread: 60,
+          origin: { y: 0.6 }
+        });
+        setPublishedSuccess(true);
+        if (onPublished) onPublished(newDeck);
+        setTimeout(() => {
+          setPublishedSuccess(false);
+          onClose();
+        }, 1800);
+      }
+    } catch (err) {
+      console.error("Error publishing deck", err);
+      alert("Erreur lors de la publication du deck.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -188,17 +199,24 @@ export default function PublishCommunityDeckModal({
           <div className="pt-2">
             <button
               type="submit"
-              disabled={publishedSuccess || deckCards.length === 0}
+              disabled={submitting || publishedSuccess || deckCards.length === 0}
               className={`w-full py-3 rounded-xl font-gothic font-bold text-xs flex items-center justify-center space-x-2 transition-all transform active:scale-98 shadow-lg ${
                 publishedSuccess
                   ? 'bg-emerald-700 text-white'
-                  : 'bg-gradient-to-r from-indigo-800 via-purple-700 to-indigo-900 hover:from-indigo-700 hover:to-purple-600 text-white border border-indigo-400 shadow-[0_0_20px_rgba(99,102,241,0.4)]'
+                  : submitting
+                    ? 'bg-indigo-950/80 text-gray-400 border border-indigo-500/40 cursor-wait'
+                    : 'bg-gradient-to-r from-indigo-800 via-purple-700 to-indigo-900 hover:from-indigo-700 hover:to-purple-600 text-white border border-indigo-400 shadow-[0_0_20px_rgba(99,102,241,0.4)]'
               }`}
             >
               {publishedSuccess ? (
                 <>
                   <Check className="w-4 h-4 text-emerald-300" />
                   <span>{t?.publishModal?.success || "Deck publié avec succès dans la Communauté !"}</span>
+                </>
+              ) : submitting ? (
+                <>
+                  <Sparkles className="w-4 h-4 text-amber-400 animate-spin" />
+                  <span>Publication en cours...</span>
                 </>
               ) : (
                 <>
