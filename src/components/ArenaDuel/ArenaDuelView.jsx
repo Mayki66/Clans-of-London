@@ -272,19 +272,19 @@ export default function ArenaDuelView({
     const effectiveCost = selectedHandCard.cost === 'X' ? bloodAvailable : selectedHandCard.cost;
 
     if (effectiveCost > bloodAvailable) {
-      alert(`Pas assez de Sang ! Coût : ${effectiveCost} Sang (Disponible : ${bloodAvailable})`);
+      alert((t?.arena?.notEnoughBloodAlert || "Pas assez de Sang ! Coût : {cost} Sang (Disponible : {blood})").replace("{cost}", effectiveCost).replace("{blood}", bloodAvailable));
       return;
     }
 
     // Check Placement Connection Rule
     if (!isPlacementValid(spaceKey, selectedHandCard)) {
-      alert("Placement interdit : Vous devez d'abord poser une carte sur le Pion (ou la Tour) derrière pour établir le lien de chaîne !");
+      alert(t?.arena?.placementForbiddenAlert || "Placement interdit : Vous devez d'abord poser une carte sur le Pion (ou la Tour) derrière pour établir le lien de chaîne !");
       return;
     }
 
     const targetSpace = board[spaceKey];
     if (targetSpace.card || (targetSpace.playerCard && (spaceKey === 'prince' || spaceKey.startsWith('knight')))) {
-      alert('Cet emplacement est déjà occupé par une de vos unités !');
+      alert(t?.arena?.spaceOccupiedAlert || "Cet emplacement est déjà occupé par une de vos unités !");
       return;
     }
 
@@ -524,7 +524,7 @@ export default function ArenaDuelView({
         id: `m-${Date.now()}`,
         date: new Date().toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }),
         result,
-        deckName: fullPlayerDeck[0]?.name ? `${fullPlayerDeck[0]?.clan} Deck` : (lang === 'fr' ? "Deck Personnalisé" : "Custom Deck"),
+        deckName: fullPlayerDeck[0]?.name ? `${fullPlayerDeck[0]?.clan} Deck` : (t?.arena?.customDeck || (lang === 'fr' ? "Deck Personnalisé" : "Custom Deck")),
         opponentClan,
         pointsChange: pointsDelta >= 0 ? `+${pointsDelta}` : `${pointsDelta}`
       };
@@ -557,7 +557,7 @@ export default function ArenaDuelView({
     const nextTurnNum = turn + 1;
     const nextBlood = nextTurnNum + 1;
 
-    setRoundTransitionText(nextTurnNum === 7 ? 'DERNIÈRE MANCHE' : `MANCHE ${nextTurnNum} SUR 7`);
+    setRoundTransitionText(nextTurnNum === 7 ? (t?.arena?.lastRound || 'DERNIÈRE MANCHE') : (t?.arena?.roundXof7 || 'MANCHE {turn} SUR 7').replace('{turn}', nextTurnNum));
     setGamePhase('round_transition');
     await new Promise(r => setTimeout(r, 1400));
     setRoundTransitionText('');
@@ -892,13 +892,13 @@ export default function ArenaDuelView({
                 {playerScore > aiScore ? (t?.arena?.victory || 'VICTOIRE') : playerScore < aiScore ? (t?.arena?.defeat || 'DÉFAITE') : (t?.arena?.draw || 'ÉGALITÉ')}
               </h2>
               <p className="font-mono text-xs tracking-widest text-red-400 uppercase">
-                {playerScore > aiScore ? (lang === 'fr' ? 'VICTORIA EST IMMORTALITAS' : 'VICTORIA EST IMMORTALITAS') : (lang === 'fr' ? 'LONDRES APPARTIENT AUX RIVAUX' : 'LONDON BELONGS TO RIVALS')}
+                {playerScore > aiScore ? (t?.arena?.victorySubtitle || 'VICTORIA EST IMMORTALITAS') : (t?.arena?.defeatSubtitle || 'LONDRES APPARTIENT AUX RIVAUX')}
               </p>
             </div>
 
             <div className="grid grid-cols-2 gap-4 p-4 rounded-xl bg-black/60 border border-white/10">
               <div>
-                <span className="text-[10px] font-mono uppercase text-gray-400">{lang === 'fr' ? 'Votre Score' : 'Your Score'}</span>
+                <span className="text-[10px] font-mono uppercase text-gray-400">{t?.arena?.yourScore || (lang === 'fr' ? 'Votre Score' : 'Your Score')}</span>
                 <div className="text-3xl font-extrabold font-gothic text-emerald-400">{playerScore} Pts</div>
               </div>
               <div>
@@ -1005,7 +1005,7 @@ export default function ArenaDuelView({
             <div 
               onClick={() => setShowLocationModal(true)}
               className="flex flex-col items-center cursor-pointer group"
-              title="Cliquez pour voir la règle du lieu"
+              title={t?.arena?.locationRuleTooltip || "Cliquez pour voir la règle du lieu"}
             >
               <div className="w-9 h-9 rounded-full bg-red-950/90 border-2 border-red-500 flex items-center justify-center text-red-200 font-mono font-bold text-sm shadow-blood group-hover:scale-105 transition-transform">
                 {turn}
@@ -1089,7 +1089,7 @@ export default function ArenaDuelView({
               <button
                 onClick={handleUndo}
                 className="absolute top-1/2 left-2 transform -translate-y-1/2 z-20 p-2 rounded-full bg-slate-900/90 border border-white/20 text-gray-300 hover:text-white shadow-xl hover:scale-110 transition-all"
-                title="Annuler le dernier coup"
+                title={t?.arena?.undoTooltip || "Annuler le dernier coup"}
               >
                 <Undo2 className="w-4 h-4 text-cyan-400" />
               </button>
@@ -1195,7 +1195,7 @@ export default function ArenaDuelView({
                         <div className="text-[10px] font-mono text-amber-400 font-bold">{board.knight_left.aiPower} (+{aiChain[0].totalSupportToFront})</div>
                       </div>
                     ) : (
-                      <span className="text-xs text-gray-500">{selectedHandCard ? 'Déployer ici' : 'Contesté'}</span>
+                      <span className="text-xs text-gray-500">{selectedHandCard ? (t?.arena?.deployHere || 'Déployer ici') : (t?.arena?.contested || 'Contesté')}</span>
                     )}
                   </div>
                 </div>
@@ -1246,7 +1246,7 @@ export default function ArenaDuelView({
                         <div className="text-[10px] font-mono text-amber-400 font-bold">{board.prince.aiPower} (+{aiChain[1].totalSupportToFront})</div>
                       </div>
                     ) : (
-                      <span className="text-xs text-amber-400/80 font-gothic font-bold bg-black/50 px-1 rounded">{selectedHandCard ? '👑 Régner' : 'Trône Vacant'}</span>
+                      <span className="text-xs text-amber-400/80 font-gothic font-bold bg-black/50 px-1 rounded">{selectedHandCard ? (t?.arena?.reignThrone || '👑 Régner') : (t?.arena?.vacantThrone || 'Trône Vacant')}</span>
                     )}
                   </div>
                 </div>
@@ -1294,7 +1294,7 @@ export default function ArenaDuelView({
                         <div className="text-[10px] font-mono text-amber-400 font-bold">{board.knight_right.aiPower} (+{aiChain[2].totalSupportToFront})</div>
                       </div>
                     ) : (
-                      <span className="text-xs text-gray-500">{selectedHandCard ? 'Déployer ici' : 'Contesté'}</span>
+                      <span className="text-xs text-gray-500">{selectedHandCard ? (t?.arena?.deployHere || 'Déployer ici') : (t?.arena?.contested || 'Contesté')}</span>
                     )}
                   </div>
                 </div>
@@ -1431,7 +1431,7 @@ export default function ArenaDuelView({
                 <button
                   onClick={handleUndo}
                   className="py-2 px-3.5 rounded-full bg-amber-950/90 hover:bg-amber-900 border-2 border-amber-400/80 text-amber-200 font-gothic font-bold text-xs shadow-gold transition-all flex items-center space-x-1 animate-pulse"
-                  title={lang === 'fr' ? "Annuler la dernière carte posée ce tour-ci" : "Undo last card played this turn"}
+                  title={t?.arena?.undoTooltip || (lang === 'fr' ? "Annuler la dernière carte posée ce tour-ci" : "Undo last card played this turn")}
                 >
                   <Undo2 className="w-3.5 h-3.5" />
                   <span>{t?.arena?.undoBtn || "Annuler"}</span>

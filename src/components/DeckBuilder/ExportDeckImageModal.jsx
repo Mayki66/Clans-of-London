@@ -62,11 +62,11 @@ export default function ExportDeckImageModal({
         setCopied(true);
         setTimeout(() => setCopied(false), 2500);
       } else {
-        alert(lang === 'fr' ? 'La copie directe d\'image n\'est pas supportée par votre navigateur. Utilisez le bouton Télécharger.' : 'Direct image copy is not supported in this browser. Please use Download.');
+        alert(t?.exportImage?.copyNotSupported || (lang === 'fr' ? 'La copie directe d\'image n\'est pas supportée par votre navigateur. Utilisez le bouton Télécharger.' : 'Direct image copy is not supported in this browser. Please use Download.'));
       }
     } catch (e) {
       console.warn("Clipboard write failed", e);
-      alert(lang === 'fr' ? 'Impossible de copier l\'image automatiquement. Téléchargez-la avec le bouton dédié.' : 'Failed to copy image to clipboard. Please use Download.');
+      alert(t?.exportImage?.copyFailed || (lang === 'fr' ? 'Impossible de copier l\'image automatiquement. Téléchargez-la avec le bouton dédié.' : 'Failed to copy image to clipboard. Please use Download.'));
     }
   };
 
@@ -82,7 +82,7 @@ export default function ExportDeckImageModal({
             </div>
             <div>
               <h3 className="font-gothic font-bold text-lg text-gray-100 flex items-center space-x-2">
-                <span>{lang === 'fr' ? 'Fiche Visuelle de Deck HD' : 'HD Visual Deck Sheet'}</span>
+                <span>{t?.exportImage?.title || (lang === 'fr' ? 'Fiche Visuelle de Deck HD' : 'HD Visual Deck Sheet')}</span>
                 <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">
                   PNG 1200x850
                 </span>
@@ -111,7 +111,7 @@ export default function ExportDeckImageModal({
                 <Sparkles className="w-6 h-6 animate-spin" />
               </div>
               <p className="font-mono text-xs text-gray-400">
-                {lang === 'fr' ? 'Génération de la fiche HD en cours...' : 'Generating HD deck sheet...'}
+                {t?.exportImage?.generating || (lang === 'fr' ? 'Génération de la fiche HD en cours...' : 'Generating HD deck sheet...')}
               </p>
             </div>
           )}
@@ -131,7 +131,7 @@ export default function ExportDeckImageModal({
         <div className="p-4 sm:p-5 border-t border-white/10 bg-[#0a0c12] flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="text-xs font-mono text-gray-400 flex items-center space-x-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>{lang === 'fr' ? 'Prêt à être collé dans Discord (Ctrl+V) !' : 'Ready to paste in Discord (Ctrl+V)!'}</span>
+            <span>{t?.exportImage?.readyToPaste || (lang === 'fr' ? 'Prêt à être collé dans Discord (Ctrl+V) !' : 'Ready to paste in Discord (Ctrl+V)!')}</span>
           </div>
 
           <div className="flex items-center space-x-2 w-full sm:w-auto">
@@ -146,7 +146,7 @@ export default function ExportDeckImageModal({
               }`}
             >
               {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-              <span>{copied ? (lang === 'fr' ? 'Image Copiée !' : 'Image Copied!') : (lang === 'fr' ? 'Copier l\'Image' : 'Copy Image')}</span>
+              <span>{copied ? (t?.exportImage?.copied || 'Image Copiée !') : (t?.exportImage?.copy || 'Copier l\'Image')}</span>
             </button>
 
             {/* Download PNG */}
@@ -160,7 +160,7 @@ export default function ExportDeckImageModal({
               }`}
             >
               {downloaded ? <Check className="w-4 h-4 text-emerald-400" /> : <Download className="w-4 h-4" />}
-              <span>{downloaded ? (lang === 'fr' ? 'Téléchargé !' : 'Downloaded!') : (lang === 'fr' ? 'Télécharger PNG' : 'Download PNG')}</span>
+              <span>{downloaded ? (t?.exportImage?.downloaded || 'Téléchargé !') : (t?.exportImage?.download || 'Télécharger PNG')}</span>
             </button>
           </div>
         </div>

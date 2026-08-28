@@ -16,7 +16,7 @@ export default function OnboardingModal({
 
   const handleSubmitPseudo = (e) => {
     e.preventDefault();
-    const finalName = pseudo.trim() || (lang === 'fr' ? 'Kindred de Londres' : 'London Kindred');
+    const finalName = pseudo.trim() || (t?.onboarding?.defaultPlayerName || (lang === 'fr' ? 'Kindred de Londres' : 'London Kindred'));
     confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
     try {
       trackUserRegistration(finalName, 1, 'Néophyte');
@@ -39,11 +39,11 @@ export default function OnboardingModal({
           onImportProfile(parsed);
           onComplete(parsed);
         } else {
-          alert(lang === 'fr' ? 'Fichier JSON invalide : cartes non trouvées.' : 'Invalid JSON file: cards missing.');
+          alert(t?.onboarding?.invalidJsonAlert || (lang === 'fr' ? 'Fichier JSON invalide : cartes non trouvées.' : 'Invalid JSON file: cards missing.'));
         }
       } catch (err) {
         console.error("Failed to parse JSON file", err);
-        alert(lang === 'fr' ? 'Erreur de lecture du fichier JSON.' : 'Error reading JSON file.');
+        alert(t?.onboarding?.readErrorAlert || (lang === 'fr' ? 'Erreur de lecture du fichier JSON.' : 'Error reading JSON file.'));
       }
     };
     reader.readAsText(file);
@@ -112,7 +112,7 @@ export default function OnboardingModal({
                 type="text"
                 value={pseudo}
                 onChange={(e) => setPseudo(e.target.value)}
-                placeholder={lang === 'fr' ? "Entrez votre pseudo..." : "Enter your nickname..."}
+                placeholder={t?.onboarding?.pseudoPlaceholder || "Entrez votre pseudo..."}
                 className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#090b10] border border-amber-500/40 text-sm text-gray-100 font-gothic font-bold placeholder-gray-600 focus:outline-none focus:border-amber-400"
                 autoFocus
               />

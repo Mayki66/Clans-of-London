@@ -164,7 +164,7 @@ export default function CommunityDecksView({
   const handlePublishSubmit = async (e) => {
     e.preventDefault();
     if (currentDeckCards.length === 0) {
-      alert(lang === 'fr' ? 'Votre deck actuel est vide ! Ajoutez des cartes dans le Deck Builder d\'abord.' : 'Your current deck is empty! Add cards in the Deck Builder first.');
+      alert(t?.community?.emptyDeckAlert || (lang === 'fr' ? 'Votre deck actuel est vide ! Ajoutez des cartes dans le Deck Builder d\'abord.' : 'Your current deck is empty! Add cards in the Deck Builder first.'));
       return;
     }
 
@@ -202,7 +202,7 @@ export default function CommunityDecksView({
               <Users className="w-3.5 h-3.5 text-indigo-400" />
               <span>{t?.community?.badge || "Partage & Stratégie Publics"}</span>
               <span className="text-gray-600">•</span>
-              <span className="flex items-center space-x-1.5" title={realtimeStatus === 'connected' ? 'Connexion WebSocket active' : 'Connexion en cours...'}>
+              <span className="flex items-center space-x-1.5" title={realtimeStatus === 'connected' ? (t?.community?.wsConnected || 'Connexion WebSocket active') : (t?.community?.wsConnecting || 'Connexion en cours...')}>
                 <span className={`w-2 h-2 rounded-full ${
                   realtimeStatus === 'connected' 
                     ? 'bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]' 
@@ -211,7 +211,7 @@ export default function CommunityDecksView({
                     : 'bg-amber-400 animate-pulse'
                 }`} />
                 <span className="text-[10px] font-mono text-emerald-300">
-                  {realtimeStatus === 'connected' ? (lang === 'fr' ? 'En Direct' : 'Live') : (lang === 'fr' ? 'Connexion...' : 'Connecting...')}
+                  {realtimeStatus === 'connected' ? (t?.community?.live || 'En Direct') : (t?.community?.connecting || 'Connexion...')}
                 </span>
               </span>
             </div>
@@ -229,10 +229,10 @@ export default function CommunityDecksView({
               onClick={loadDecks}
               disabled={loadingCloud}
               className="flex items-center space-x-2 px-3.5 py-3 rounded-xl bg-[#141824] hover:bg-[#1f2538] text-gray-200 hover:text-white font-gothic font-bold text-xs border border-white/15 transition-all shadow-sm disabled:opacity-50"
-              title="Recharger les decks de la communauté"
+              title={t?.community?.refreshTooltip || "Recharger les decks de la communauté"}
             >
               <RefreshCw className={`w-4 h-4 text-indigo-400 ${loadingCloud ? 'animate-spin' : ''}`} />
-              <span>{loadingCloud ? "Chargement..." : "Rafraîchir"}</span>
+              <span>{loadingCloud ? (t?.community?.refreshing || "Chargement...") : (t?.community?.refresh || "Rafraîchir")}</span>
             </button>
 
             {/* Publish Deck Button */}
@@ -395,8 +395,8 @@ export default function CommunityDecksView({
                 {/* 15 Cards Visual Artworks Grid */}
                 <div className="space-y-1.5 pt-1">
                   <div className="flex items-center justify-between text-[11px] font-mono text-gray-400">
-                    <span>{lang === 'fr' ? "Cartes du Deck (15) :" : "Deck Cards (15) :"}</span>
-                    <span className="text-gray-500">{lang === 'fr' ? "Cliquer pour inspecter" : "Click to inspect"}</span>
+                    <span>{t?.community?.deckCards15 || (lang === 'fr' ? "Cartes du Deck (15) :" : "Deck Cards (15) :")}</span>
+                    <span className="text-gray-500">{t?.community?.clickToInspect || (lang === 'fr' ? "Cliquer pour inspecter" : "Click to inspect")}</span>
                   </div>
 
                   <div className="grid grid-cols-5 gap-2">
@@ -452,7 +452,7 @@ export default function CommunityDecksView({
                 <button
                   onClick={() => onNavigateToArena(deck)}
                   className="px-3 py-2.5 rounded-xl bg-amber-950/70 hover:bg-amber-900 border border-amber-500/50 text-amber-300 font-gothic font-bold text-xs transition-all"
-                  title={lang === 'fr' ? "Tester directement dans l'Arène de Combat" : "Test directly in the Arena"}
+                  title={t?.community?.testInArenaTooltip || (lang === 'fr' ? "Tester directement dans l'Arène de Combat" : "Test directly in the Arena")}
                 >
                   <Swords className="w-4 h-4" />
                 </button>
@@ -465,11 +465,11 @@ export default function CommunityDecksView({
                       ? 'bg-indigo-900 border-indigo-400 text-white shadow-[0_0_15px_rgba(99,102,241,0.4)]'
                       : 'bg-[#141824] hover:bg-[#1f2538] border-white/15 text-indigo-300 hover:text-white'
                   }`}
-                  title={lang === 'fr' ? 'Discussions & Conseils' : 'Discussions & Advice'}
+                  title={t?.community?.discussionsTooltip || (lang === 'fr' ? 'Discussions & Conseils' : 'Discussions & Advice')}
                 >
                   <MessageSquare className="w-4 h-4 text-indigo-400" />
                   <span className="hidden sm:inline text-[11px] font-gothic">
-                    {expandedComments[deck.id] ? (lang === 'fr' ? 'Fermer' : 'Hide') : (lang === 'fr' ? 'Avis' : 'Comments')}
+                    {expandedComments[deck.id] ? (t?.community?.hide || 'Fermer') : (t?.community?.comments || 'Avis')}
                   </span>
                 </button>
 
@@ -481,7 +481,7 @@ export default function CommunityDecksView({
                       ? 'bg-emerald-950/80 border-emerald-500 text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.4)]'
                       : 'bg-indigo-950/60 hover:bg-indigo-900 border-indigo-500/40 text-indigo-300 hover:text-white'
                   }`}
-                  title={lang === 'fr' ? 'Copier le lien direct vers ce deck' : 'Copy direct share link for this deck'}
+                  title={t?.community?.copyShareLink || (lang === 'fr' ? 'Copier le lien direct vers ce deck' : 'Copy direct share link for this deck')}
                 >
                   {copiedLinkDeckId === deck.id ? <Check className="w-4 h-4 text-emerald-400" /> : <LinkIcon className="w-4 h-4" />}
                 </button>
@@ -490,7 +490,7 @@ export default function CommunityDecksView({
                 <button
                   onClick={() => handleCopyCode(deck)}
                   className="px-3 py-2.5 rounded-xl bg-[#141824] hover:bg-[#1e2538] border border-white/15 text-gray-300 font-mono text-xs transition-all"
-                  title={lang === 'fr' ? "Copier le code texte du deck" : "Copy deck text code"}
+                  title={t?.community?.copyDeckCode || (lang === 'fr' ? "Copier le code texte du deck" : "Copy deck text code")}
                 >
                   {copiedDeckId === deck.id ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
                 </button>

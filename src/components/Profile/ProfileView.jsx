@@ -32,7 +32,7 @@ export default function ProfileView({
 }) {
   const isFrench = lang === 'fr';
   const [matchResult, setMatchResult] = useState('victory');
-  const [matchDeck, setMatchDeck] = useState(savedDecks[0]?.name || (isFrench ? 'Deck Actuel' : 'Current Deck'));
+  const [matchDeck, setMatchDeck] = useState(savedDecks[0]?.name || (t?.profile?.currentDeck || (isFrench ? 'Deck Actuel' : 'Current Deck')));
   const [matchOpponentClan, setMatchOpponentClan] = useState('Brujah');
   const [showSyncInfo, setShowSyncInfo] = useState(false);
   const [isEditingName, setIsEditingName] = useState(false);
@@ -77,7 +77,7 @@ export default function ProfileView({
     downloadAnchor.click();
     downloadAnchor.remove();
 
-    setImportNotification(isFrench ? `Profil de ${userProfile.playerName || 'Mayki'} exporté avec succès !` : `Profile of ${userProfile.playerName || 'Mayki'} exported successfully!`);
+    setImportNotification((t?.profile?.exportSuccess || "Profil de {name} exporté avec succès !").replace("{name}", userProfile.playerName || "Mayki"));
     setTimeout(() => setImportNotification(''), 3500);
 
     try {
@@ -108,15 +108,15 @@ export default function ProfileView({
 
           onUpdateProfile(updatedProfile);
           setTempPlayerName(updatedProfile.playerName);
-          setImportNotification(isFrench ? `Profil de ${updatedProfile.playerName} importé avec succès (${parsed.ownedCardIds.length} cartes) !` : `Profile of ${updatedProfile.playerName} imported successfully (${parsed.ownedCardIds.length} cards)!`);
+          setImportNotification((t?.profile?.importSuccess || "Profil de {name} importé avec succès ({count} cartes) !").replace("{name}", updatedProfile.playerName).replace("{count}", parsed.ownedCardIds.length));
           setTimeout(() => setImportNotification(''), 3500);
           confetti({ particleCount: 50, spread: 70, origin: { y: 0.6 } });
         } else {
-          alert(isFrench ? "Fichier JSON invalide. Impossible de trouver les données de collection." : "Invalid JSON file. Collection data could not be found.");
+          alert(t?.profile?.invalidJsonAlert || "Fichier JSON invalide. Impossible de trouver les données de collection.");
         }
       } catch (err) {
         console.error('Error importing JSON profile', err);
-        alert(isFrench ? "Erreur lors de la lecture du fichier JSON." : "Error reading JSON file.");
+        alert(t?.profile?.readErrorAlert || "Erreur lors de la lecture du fichier JSON.");
       }
     };
 
@@ -126,8 +126,8 @@ export default function ProfileView({
 
   // Switch to blank / guest account
   const handleCreateNewAccount = () => {
-    const defaultName = isFrench ? 'Nouveau Vampire' : 'New Kindred';
-    const newName = prompt(isFrench ? "Entrez le pseudo du nouveau joueur :" : "Enter nickname for new player:", defaultName);
+    const defaultName = t?.profile?.newPlayerDefault || 'Nouveau Vampire';
+    const newName = prompt(t?.profile?.newPlayerPrompt || "Entrez le pseudo du nouveau joueur :", defaultName);
     if (!newName || !newName.trim()) return;
 
     const newProfile = {
@@ -140,7 +140,7 @@ export default function ProfileView({
 
     onUpdateProfile(newProfile);
     setTempPlayerName(newProfile.playerName);
-    setImportNotification(isFrench ? `Nouveau compte créé pour ${newName} !` : `New account created for ${newName}!`);
+    setImportNotification((t?.profile?.newAccountSuccess || "Nouveau compte créé pour {name} !").replace("{name}", newName));
     setTimeout(() => setImportNotification(''), 3500);
   };
 
@@ -297,7 +297,7 @@ export default function ProfileView({
                     <h1 
                       onClick={() => setIsEditingName(true)}
                       className="font-gothic font-extrabold text-2xl text-gray-100 cursor-pointer hover:text-amber-400 transition-colors"
-                      title={isFrench ? "Cliquez pour modifier votre pseudo" : "Click to edit nickname"}
+                      title={t?.profile?.editTooltip || "Cliquez pour modifier votre pseudo"}
                     >
                       {userProfile.playerName || 'Mayki'}
                     </h1>
@@ -316,7 +316,7 @@ export default function ProfileView({
               </div>
 
               <p className="text-xs text-gray-400 font-mono mt-0.5">
-                {t?.profile?.activeAccount || "Compte Actif"} : <strong className="text-amber-400">{userProfile.playerName || 'Mayki'}</strong> • {isFrench ? "Rang" : "Rank"} : <strong className="text-emerald-400">{currentRank.name}</strong> • {userProfile.arenaPoints || 1250} {t?.profile?.arenaPoints || "Pts d'Arène"}
+                {t?.profile?.activeAccount || "Compte Actif"} : <strong className="text-amber-400">{userProfile.playerName || 'Mayki'}</strong> • {t?.profile?.rank || "Rang"} : <strong className="text-emerald-400">{currentRank.name}</strong> • {userProfile.arenaPoints || 1250} {t?.profile?.arenaPoints || "Pts d'Arène"}
               </p>
             </div>
           </div>
@@ -364,7 +364,7 @@ export default function ProfileView({
         <div className="p-3 rounded-xl bg-[#090b10] border border-white/10 flex items-center space-x-2 text-xs text-gray-400">
           <UserCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
           <span>
-            {isFrench ? "Sauvegardez ou transférez votre collection en 1 clic grâce aux boutons d'exportation/importation JSON ci-dessus !" : "Backup or transfer your collection in 1 click with the JSON export/import buttons above!"}
+            {t?.profile?.backupNotice || "Sauvegardez ou transférez votre collection en 1 clic grâce aux boutons d'exportation/importation JSON ci-dessus !"}
           </span>
         </div>
       </div>
@@ -380,7 +380,7 @@ export default function ProfileView({
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <h3 className="font-gothic font-bold text-base text-gray-100 flex items-center space-x-2">
                 <Trophy className="w-5 h-5 text-amber-400" />
-                <span>{isFrench ? "Statistiques d'Arène" : "Arena Stats"}</span>
+                <span>{t?.profile?.arenaStatsTitle || "Statistiques d'Arène"}</span>
               </h3>
               <span className="text-xs font-mono font-bold text-amber-400">
                 {currentRank.name}
@@ -404,7 +404,7 @@ export default function ProfileView({
 
             {/* Ranks Ladder */}
             <div className="space-y-1.5 pt-2 border-t border-white/10">
-              <span className="text-[11px] font-mono text-gray-400 uppercase font-bold">{isFrench ? "Ligue de Londres :" : "London League:"}</span>
+              <span className="text-[11px] font-mono text-gray-400 uppercase font-bold">{t?.profile?.londonLeague || "Ligue de Londres :"}</span>
               {ARENA_RANKS.map((rank) => {
                 const isReached = (userProfile.arenaPoints || 0) >= rank.minPts;
                 const isCurrent = currentRank.id === rank.id;
@@ -439,7 +439,7 @@ export default function ProfileView({
           <div className="glass-panel rounded-2xl p-5 border border-white/10 space-y-4 shadow-xl">
             <h3 className="font-gothic font-bold text-base text-gray-100 flex items-center space-x-2">
               <Award className="w-5 h-5 text-red-500" />
-              <span>{isFrench ? "Enregistrer un Match d'Arène" : "Log Arena Match"}</span>
+              <span>{t?.profile?.logMatchTitle || "Enregistrer un Match d'Arène"}</span>
             </h3>
 
             <form onSubmit={handleAddMatch} className="space-y-3">
@@ -453,7 +453,7 @@ export default function ProfileView({
                       : 'bg-slate-900 border-white/10 text-gray-400'
                   }`}
                 >
-                  {isFrench ? "Victoire (+35)" : "Victory (+35)"}
+                  {t?.profile?.victoryBtn || "Victoire (+35)"}
                 </button>
                 <button
                   type="button"
@@ -464,18 +464,18 @@ export default function ProfileView({
                       : 'bg-slate-900 border-white/10 text-gray-400'
                   }`}
                 >
-                  {isFrench ? "Défaite (-15)" : "Defeat (-15)"}
+                  {t?.profile?.defeatBtn || "Défaite (-15)"}
                 </button>
               </div>
 
               <div className="space-y-1">
-                <label className="text-[10px] font-mono text-gray-400 uppercase">{isFrench ? "Deck Utilisé :" : "Deck Used:"}</label>
+                <label className="text-[10px] font-mono text-gray-400 uppercase">{t?.profile?.deckUsedLabel || "Deck Utilisé :"}</label>
                 <select
                   value={matchDeck}
                   onChange={(e) => setMatchDeck(e.target.value)}
                   className="w-full px-3 py-1.5 rounded-lg bg-[#141824] border border-white/10 text-xs text-gray-200 focus:outline-none focus:border-amber-400"
                 >
-                  <option value={isFrench ? "Deck Actuel" : "Current Deck"}>{isFrench ? "Deck Actuel" : "Current Deck"}</option>
+                  <option value={t?.profile?.currentDeck || "Deck Actuel"}>{t?.profile?.currentDeck || "Deck Actuel"}</option>
                   {savedDecks.map(d => (
                     <option key={d.id} value={d.name}>{d.name}</option>
                   ))}
@@ -483,7 +483,7 @@ export default function ProfileView({
               </div>
 
               <div className="space-y-1">
-                <label className="text-[10px] font-mono text-gray-400 uppercase">{isFrench ? "Clan Adverse :" : "Opponent Clan:"}</label>
+                <label className="text-[10px] font-mono text-gray-400 uppercase">{t?.profile?.opponentClanLabel || "Clan Adverse :"}</label>
                 <select
                   value={matchOpponentClan}
                   onChange={(e) => setMatchOpponentClan(e.target.value)}
@@ -499,13 +499,13 @@ export default function ProfileView({
                 type="submit"
                 className="w-full py-2 rounded-xl bg-gradient-to-r from-red-800 to-rose-900 hover:from-red-700 text-white font-gothic font-bold text-xs shadow-blood transition-all"
               >
-                {isFrench ? "Valider le Résultat" : "Confirm Result"}
+                {t?.profile?.confirmResultBtn || "Valider le Résultat"}
               </button>
             </form>
 
             {history.length > 0 && (
               <div className="space-y-1.5 pt-2 border-t border-white/10 max-h-48 overflow-y-auto pr-1">
-                <div className="text-[10px] font-mono text-gray-500 uppercase">{isFrench ? "Derniers Matchs :" : "Recent Matches:"}</div>
+                <div className="text-[10px] font-mono text-gray-500 uppercase">{t?.profile?.recentMatchesTitle || "Derniers Matchs :"}</div>
                 {history.slice(0, 8).map((m) => (
                   <div
                     key={m.id}
@@ -539,7 +539,7 @@ export default function ProfileView({
                   <span>{t?.profile?.collectionChecklist || "Ma Collection de Cartes"} ({userProfile.playerName || 'Mayki'})</span>
                 </h3>
                 <p className="text-xs text-gray-400 mt-0.5 font-mono">
-                  {ownedCount} / {GAME_TOTAL_CARDS} {t?.database?.cardsCount || "cartes"} ({gameCompletionPct}% {isFrench ? "complété" : "completed"})
+                  {ownedCount} / {GAME_TOTAL_CARDS} {t?.database?.cardsCount || "cartes"} ({gameCompletionPct}% {t?.profile?.completed || "complété"})
                 </p>
               </div>
 
@@ -571,14 +571,14 @@ export default function ProfileView({
                   type="text"
                   value={filters.search}
                   onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
-                  placeholder={isFrench ? "Rechercher une carte par nom, clan, capacité..." : "Search card by name, clan, ability..."}
+                  placeholder={t?.profile?.searchPlaceholder || "Rechercher une carte par nom, clan, capacité..."}
                   className="w-full pl-9 pr-3 py-2 rounded-xl bg-[#141824] border border-white/15 text-xs text-gray-100 placeholder-gray-500"
                 />
               </div>
 
               {/* Clickable Ownership Status */}
               <div className="space-y-1">
-                <span className="text-[10px] font-mono text-gray-400 uppercase font-bold">{isFrench ? "Statut de possession :" : "Ownership Status:"}</span>
+                <span className="text-[10px] font-mono text-gray-400 uppercase font-bold">{t?.profile?.ownershipFilterLabel || "Statut de possession :"}</span>
                 <div className="flex flex-wrap gap-1.5">
                   <button
                     onClick={() => setFilters(prev => ({ ...prev, ownership: 'ALL' }))}
@@ -615,7 +615,7 @@ export default function ProfileView({
 
               {/* Clickable Clan Quick Chips */}
               <div className="space-y-1 pt-1 border-t border-white/5">
-                <span className="text-[10px] font-mono text-gray-400 uppercase font-bold">{isFrench ? "Clan / Faction :" : "Clan / Faction:"}</span>
+                <span className="text-[10px] font-mono text-gray-400 uppercase font-bold">{t?.profile?.clanFilterLabel || "Clan / Faction :"}</span>
                 <div className="flex flex-wrap gap-1">
                   <button
                     onClick={() => setFilters(prev => ({ ...prev, clan: 'ALL' }))}
@@ -625,7 +625,7 @@ export default function ProfileView({
                         : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
                     }`}
                   >
-                    {isFrench ? "Tous" : "All"}
+                    {t?.profile?.allFilter || "Tous"}
                   </button>
                   {Object.entries(CLANS).map(([ck, c]) => (
                     <button
@@ -651,7 +651,7 @@ export default function ProfileView({
                 <div className="space-y-1">
                   <span className="text-[10px] font-mono text-gray-400 uppercase font-bold flex items-center space-x-1">
                     <Droplets className="w-3 h-3 text-red-400" />
-                    <span>{isFrench ? "Coût en Sang :" : "Blood Cost:"}</span>
+                    <span>{t?.profile?.costFilterLabel || "Coût en Sang :"}</span>
                   </span>
                   <div className="flex flex-wrap items-center gap-1">
                     <button
@@ -660,7 +660,7 @@ export default function ProfileView({
                         filters.cost === 'ALL' ? 'bg-red-800 text-white border-red-500 shadow-blood' : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
                       }`}
                     >
-                      {isFrench ? "Tous" : "All"}
+                      {t?.profile?.allFilter || "Tous"}
                     </button>
                     {[1, 2, 3, 4, 5, 6, '7+', 'X'].map(cost => (
                       <button
@@ -682,7 +682,7 @@ export default function ProfileView({
                 <div className="space-y-1">
                   <span className="text-[10px] font-mono text-gray-400 uppercase font-bold flex items-center space-x-1">
                     <Shield className="w-3 h-3 text-amber-400" />
-                    <span>{isFrench ? "Puissance :" : "Power:"}</span>
+                    <span>{t?.profile?.powerFilterLabel || "Puissance :"}</span>
                   </span>
                   <div className="flex flex-wrap items-center gap-1">
                     <button
@@ -691,7 +691,7 @@ export default function ProfileView({
                         filters.power === 'ALL' ? 'bg-amber-800 text-white border-amber-500 shadow-gold' : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
                       }`}
                     >
-                      {isFrench ? "Tous" : "All"}
+                      {t?.profile?.allFilter || "Tous"}
                     </button>
                     {['1-3', '4-6', '7-9', '10+'].map(pw => (
                       <button
@@ -717,7 +717,7 @@ export default function ProfileView({
             <div className="space-y-1.5 max-h-[520px] overflow-y-auto pr-1">
               <div className="flex items-center justify-between text-[11px] font-mono text-gray-400 px-2 py-1">
                 <span>{displayedCards.length} {t?.database?.cardsCount || "cartes"}</span>
-                <span>{isFrench ? "Cliquer sur une ligne pour cocher / décocher" : "Click a row to toggle owned"}</span>
+                <span>{t?.profile?.toggleRowHint || "Cliquer sur une ligne pour cocher / décocher"}</span>
               </div>
 
               {displayedCards.map((card) => {
@@ -768,7 +768,7 @@ export default function ProfileView({
                       <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-md ${
                         isOwned ? 'bg-emerald-950/70 text-emerald-300 border border-emerald-500/40' : 'bg-black/30 text-gray-500'
                       }`}>
-                        {isOwned ? (isFrench ? '✓ Possédée' : '✓ Owned') : (isFrench ? 'Non possédée' : 'Missing')}
+                        {isOwned ? (t?.profile?.ownedBadge || '✓ Possédée') : (t?.profile?.missingBadge || 'Non possédée')}
                       </span>
                     </div>
                   </div>

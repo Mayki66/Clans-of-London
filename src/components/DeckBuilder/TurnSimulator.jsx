@@ -50,7 +50,7 @@ export default function TurnSimulator({ deckCards, onInspectCard, lang = 'fr', t
       board: {
         // Frontline
         knight_left: { id: 'knight_left', name: getSpaceName('knight_left'), type: 'Knight', points: 2, cards: [], power: 0, col: 0, row: 'front' },
-        prince: { id: 'prince', name: getSpaceName('prince'), type: 'Prince', points: isFrench ? '1 pt / carte alliée' : '1 pt / allied unit', cards: [], power: 0, col: 1, row: 'front' },
+        prince: { id: 'prince', name: getSpaceName('prince'), type: 'Prince', points: t?.simulator?.princeScoreRule || (isFrench ? '1 pt / carte alliée' : '1 pt / allied unit'), cards: [], power: 0, col: 1, row: 'front' },
         knight_right: { id: 'knight_right', name: getSpaceName('knight_right'), type: 'Knight', points: 2, cards: [], power: 0, col: 2, row: 'front' },
         // Midline
         rook_left: { id: 'rook_left', name: getSpaceName('rook_left'), type: 'Rook', cards: [], power: 0, col: 0, row: 'mid' },
@@ -153,22 +153,22 @@ export default function TurnSimulator({ deckCards, onInspectCard, lang = 'fr', t
 
     if (gameState.board.knight_left.cards.length > 0) {
       roundPoints += 2;
-      scoreDetails.push(isFrench ? 'Cavalier Ouest (+2 pts)' : 'Knight West (+2 pts)');
+      scoreDetails.push((t?.simulator?.spaceKnightWest || 'Cavalier Ouest') + ' (+2 pts)');
     }
     if (gameState.board.knight_right.cards.length > 0) {
       roundPoints += 2;
-      scoreDetails.push(isFrench ? 'Cavalier Est (+2 pts)' : 'Knight East (+2 pts)');
+      scoreDetails.push((t?.simulator?.spaceKnightEast || 'Cavalier Est') + ' (+2 pts)');
     }
     if (gameState.board.prince.cards.length > 0) {
       const princePts = totalAlliesOnBoard;
       roundPoints += princePts;
-      scoreDetails.push(isFrench ? `Trône du Prince (+${princePts} pts pour ${totalAlliesOnBoard} unités)` : `Prince Throne (+${princePts} pts for ${totalAlliesOnBoard} units)`);
+      scoreDetails.push(`${t?.simulator?.spacePrince || 'Trône du Prince'} (+${princePts} pts)`);
     }
 
     const newVictoryPoints = gameState.victoryPoints + roundPoints;
     const roundSummary = scoreDetails.length > 0
-      ? (isFrench ? `Fin Round ${gameState.turn} : +${roundPoints} Points (${scoreDetails.join(' • ')})` : `End of Round ${gameState.turn}: +${roundPoints} Points (${scoreDetails.join(' • ')})`)
-      : (isFrench ? `Fin Round ${gameState.turn} : 0 point marqué.` : `End of Round ${gameState.turn}: 0 points scored.`);
+      ? ((t?.simulator?.roundEndLog || 'Fin Round {turn} : +{points} Points ({details})').replace('{turn}', gameState.turn).replace('{points}', roundPoints).replace('{details}', scoreDetails.join(' • ')))
+      : ((t?.simulator?.roundEndZeroLog || 'Fin Round {turn} : 0 point marqué.').replace('{turn}', gameState.turn));
 
     if (gameState.turn >= gameState.maxTurns) {
       // Climax turn 7
@@ -177,7 +177,7 @@ export default function TurnSimulator({ deckCards, onInspectCard, lang = 'fr', t
         victoryPoints: newVictoryPoints,
         isFinished: true,
         turnHistory: [
-          isFrench ? `🏆 VICTOIRE FINALE : Score total de ${newVictoryPoints} Points de Victoire !` : `🏆 FINAL SCORE: Total of ${newVictoryPoints} Victory Points!`,
+          (t?.simulator?.finalVictoryLog || '🏆 VICTOIRE FINALE : Score total de {points} Points de Victoire !').replace('{points}', newVictoryPoints),
           roundSummary,
           ...prev.turnHistory
         ]
@@ -231,12 +231,12 @@ export default function TurnSimulator({ deckCards, onInspectCard, lang = 'fr', t
             </h3>
             {gameState.isFinished && (
               <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/20 border border-amber-500/40 text-amber-300 animate-pulse">
-                {isFrench ? "Match Terminé (7 Rounds Climax)" : "Match Complete (7 Rounds Climax)"}
+                {t?.simulator?.matchComplete || (isFrench ? "Match Terminé (7 Rounds Climax)" : "Match Complete (7 Rounds Climax)")}
               </span>
             )}
           </div>
           <p className="text-xs text-gray-400">
-            {isFrench ? "Topologie officielle 15 cases • Chaîne de Soutien • Score officiel" : "Official 15-space topology • Support Chain • Official scoring"}
+            {t?.simulator?.headerSubtitle || (isFrench ? "Topologie officielle 15 cases • Chaîne de Soutien • Score officiel" : "Official 15-space topology • Support Chain • Official scoring")}
           </p>
         </div>
 
@@ -244,7 +244,7 @@ export default function TurnSimulator({ deckCards, onInspectCard, lang = 'fr', t
           <button
             onClick={startSimulation}
             className="flex items-center space-x-1 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-gray-300 hover:text-white text-xs font-semibold transition-all"
-            title="Mulligan"
+            title={t?.simulator?.mulliganTooltip || 'Mulligan'}
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>{t?.simulator?.resetBtn || "Relancer"}</span>
@@ -255,7 +255,7 @@ export default function TurnSimulator({ deckCards, onInspectCard, lang = 'fr', t
               onClick={nextTurn}
               className="flex items-center space-x-1.5 px-4 py-1.5 rounded-xl bg-gradient-to-r from-red-700 to-rose-900 hover:from-red-600 hover:to-rose-800 text-white font-gothic font-bold text-xs shadow-blood transition-all"
             >
-              <span>{gameState.turn === 7 ? (isFrench ? 'Calculer le Score Final' : 'Calculate Final Score') : (t?.simulator?.endTurnBtn || 'Fin du Round & Décompte')}</span>
+              <span>{gameState.turn === 7 ? (t?.simulator?.calculateFinalScore || (isFrench ? 'Calculer le Score Final' : 'Calculate Final Score')) : (t?.simulator?.endTurnBtn || 'Fin du Round & Décompte')}</span>
               <ChevronRight className="w-4 h-4" />
             </button>
           )}
@@ -298,7 +298,7 @@ export default function TurnSimulator({ deckCards, onInspectCard, lang = 'fr', t
               <Shield className="w-4 h-4" />
             </div>
             <div>
-              <div className="text-[10px] uppercase font-mono text-gray-400">{isFrench ? "Puissance Totale" : "Total Power"}</div>
+              <div className="text-[10px] uppercase font-mono text-gray-400">{t?.simulator?.totalPower || (isFrench ? "Puissance Totale" : "Total Power")}</div>
               <div className="text-base font-bold font-mono text-amber-400">
                 {totalBoardPower}
               </div>
@@ -325,14 +325,14 @@ export default function TurnSimulator({ deckCards, onInspectCard, lang = 'fr', t
       <div className="space-y-3">
         <div className="flex items-center justify-between text-[11px] uppercase font-mono text-gray-400 font-bold px-1">
           <span>{t?.simulator?.boardTopologyTitle || "Topologie Officielle du Plateau :"}</span>
-          <span className="text-amber-400">{isFrench ? "Soutien ascendant : Pions ➔ Tours ➔ Cavaliers/Prince" : "Ascending support: Pawns ➔ Rooks ➔ Knights/Prince"}</span>
+          <span className="text-amber-400">{t?.simulator?.supportChainHint || (isFrench ? "Soutien ascendant : Pions ➔ Tours ➔ Cavaliers/Prince" : "Ascending support: Pawns ➔ Rooks ➔ Knights/Prince")}</span>
         </div>
 
         {/* Row 1: Frontline (Knight Left, Prince Center, Knight Right) */}
         <div className="space-y-1">
           <div className="text-[10px] uppercase font-mono text-red-400 font-bold px-1 flex items-center space-x-1">
             <Swords className="w-3 h-3" />
-            <span>{isFrench ? "Ligne de Front Disputée (Score actif en fin de round)" : "Contested Frontline (Scored at end of round)"}</span>
+            <span>{t?.simulator?.frontlineTitle || (isFrench ? "Ligne de Front Disputée (Score actif en fin de round)" : "Contested Frontline (Scored at end of round)")}</span>
           </div>
           <div className="grid grid-cols-3 gap-2">
             {['knight_left', 'prince', 'knight_right'].map(key => {
@@ -365,7 +365,7 @@ export default function TurnSimulator({ deckCards, onInspectCard, lang = 'fr', t
                   <div className="space-y-1 my-1">
                     {space.cards.length === 0 ? (
                       <p className="text-[10px] text-gray-500 italic text-center py-2">
-                        {gameState.selectedCard ? (t?.simulator?.clickSpaceToDeploy || 'Cliquer pour déployer') : (isFrench ? 'Emplacement libre' : 'Open slot')}
+                        {gameState.selectedCard ? (t?.simulator?.clickSpaceToDeploy || 'Cliquer pour déployer') : (t?.simulator?.openSlot || (isFrench ? 'Emplacement libre' : 'Open slot'))}
                       </p>
                     ) : (
                       space.cards.map((c, i) => (
@@ -382,7 +382,7 @@ export default function TurnSimulator({ deckCards, onInspectCard, lang = 'fr', t
                   </div>
 
                   <div className="text-[10px] font-mono text-gray-400 flex items-center justify-between pt-1 border-t border-white/5">
-                    <span>{isFrench ? "Puissance totale :" : "Total Power:"}</span>
+                    <span>{t?.simulator?.slotTotalPower || (isFrench ? "Puissance totale :" : "Total Power:")}</span>
                     <span className="font-bold text-amber-300">{space.power} Pts</span>
                   </div>
                 </div>
@@ -395,7 +395,7 @@ export default function TurnSimulator({ deckCards, onInspectCard, lang = 'fr', t
         <div className="space-y-1">
           <div className="text-[10px] uppercase font-mono text-purple-400 font-bold px-1 flex items-center space-x-1">
             <ArrowUp className="w-3 h-3" />
-            <span>{isFrench ? "Rangée Médiane : 3 Tours (Rooks - Relais de Soutien)" : "Middle Row: 3 Rooks (Support Relays)"}</span>
+            <span>{t?.simulator?.midlineTitle || (isFrench ? "Rangée Médiane : 3 Tours (Rooks - Relais de Soutien)" : "Middle Row: 3 Rooks (Support Relays)")}</span>
           </div>
           <div className="grid grid-cols-3 gap-2">
             {['rook_left', 'rook_center', 'rook_right'].map(key => {
@@ -417,7 +417,7 @@ export default function TurnSimulator({ deckCards, onInspectCard, lang = 'fr', t
 
                   <div className="space-y-1 my-1">
                     {space.cards.length === 0 ? (
-                      <p className="text-[10px] text-gray-600 italic text-center py-1">{isFrench ? "Libre" : "Empty"}</p>
+                      <p className="text-[10px] text-gray-600 italic text-center py-1">{t?.simulator?.emptySlot || (isFrench ? "Libre" : "Empty")}</p>
                     ) : (
                       space.cards.map((c, i) => (
                         <div
@@ -440,7 +440,7 @@ export default function TurnSimulator({ deckCards, onInspectCard, lang = 'fr', t
         {/* Row 3: Backline (Pawns) */}
         <div className="space-y-1">
           <div className="text-[10px] uppercase font-mono text-blue-400 font-bold px-1 flex items-center space-x-1">
-            <span>{isFrench ? "Rangée Arrière : 3 Pions (Pawns - Base & Ancrage)" : "Back Row: 3 Pawns (Base & Anchors)"}</span>
+            <span>{t?.simulator?.backlineTitle || (isFrench ? "Rangée Arrière : 3 Pions (Pawns - Base & Ancrage)" : "Back Row: 3 Pawns (Base & Anchors)")}</span>
           </div>
           <div className="grid grid-cols-3 gap-2">
             {['pawn_left', 'pawn_center', 'pawn_right'].map(key => {
@@ -462,7 +462,7 @@ export default function TurnSimulator({ deckCards, onInspectCard, lang = 'fr', t
 
                   <div className="space-y-1 my-1">
                     {space.cards.length === 0 ? (
-                      <p className="text-[10px] text-gray-600 italic text-center py-1">{isFrench ? "Libre" : "Empty"}</p>
+                      <p className="text-[10px] text-gray-600 italic text-center py-1">{t?.simulator?.emptySlot || (isFrench ? "Libre" : "Empty")}</p>
                     ) : (
                       space.cards.map((c, i) => (
                         <div
@@ -488,13 +488,13 @@ export default function TurnSimulator({ deckCards, onInspectCard, lang = 'fr', t
         <div className="flex items-center justify-between text-xs text-gray-300 font-gothic font-semibold uppercase tracking-wider">
           <span>{t?.simulator?.handTitle || "Main Actuelle"} ({gameState.hand.length} {t?.stats?.cardCount || "cartes"}) :</span>
           <span className="text-[11px] font-mono text-amber-400">
-            {gameState.selectedCard ? (isFrench ? `Sélectionnée : "${gameState.selectedCard.name}" (Cliquez sur une case du plateau pour la jouer)` : `Selected: "${gameState.selectedCard.name}" (Click a board space to deploy)`) : (isFrench ? 'Cliquez sur une carte abordable pour la sélectionner' : 'Click an affordable card to select')}
+            {gameState.selectedCard ? (isFrench ? `Sélectionnée : "${gameState.selectedCard.name}" (Cliquez sur une case du plateau pour la jouer)` : `Selected: "${gameState.selectedCard.name}" (Click a board space to deploy)`) : (t?.simulator?.clickCardToSelect || (isFrench ? 'Cliquez sur une carte abordable pour la sélectionner' : 'Click an affordable card to select'))}
           </span>
         </div>
 
         {gameState.hand.length === 0 ? (
           <p className="text-xs text-gray-500 italic p-3 text-center bg-[#090b10] rounded-xl">
-            {isFrench ? 'Votre main est vide pour ce tour. Cliquez sur "Fin du Round" pour piocher et recharger votre réserve de Sang.' : 'Your hand is empty for this round. Click "End Turn" to draw and restore Blood.'}
+            {t?.simulator?.emptyHandHint || (isFrench ? 'Votre main est vide pour ce tour. Cliquez sur "Fin du Round" pour piocher et recharger votre réserve de Sang.' : 'Your hand is empty for this round. Click "End Turn" to draw and restore Blood.')}
           </p>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2">

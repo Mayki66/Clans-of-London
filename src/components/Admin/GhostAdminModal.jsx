@@ -121,29 +121,29 @@ CREATE POLICY "Public insert col_visits" ON col_visits FOR INSERT WITH CHECK (tr
             <div>
               <div className="flex items-center space-x-2">
                 <h2 className="font-gothic font-extrabold text-2xl text-gray-100">
-                  Espace Fantôme • Administration Privée
+                  {t?.admin?.ghostTitle || "Espace Fantôme • Administration Privée"}
                 </h2>
                 <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-red-950 border border-red-500/50 text-red-300">
-                  MAYKI EXCLUSIVE
+                  {t?.admin?.exclusive || "MAYKI EXCLUSIVE"}
                 </span>
                 {cloudConnected ? (
                   <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-950 border border-emerald-500/60 text-emerald-300 flex items-center space-x-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>Cloud Supabase Connecté</span>
+                    <span>{t?.admin?.cloudConnected || "Cloud Supabase Connecté"}</span>
                   </span>
                 ) : (
                   <button
                     onClick={() => setShowConfig(!showConfig)}
                     className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-amber-950/80 hover:bg-amber-900 border border-amber-500/60 text-amber-300 transition-all flex items-center space-x-1"
                   >
-                    <span>⚡ Configurer Base Cloud</span>
+                    <span>{t?.admin?.configureCloud || "⚡ Configurer Base Cloud"}</span>
                   </button>
                 )}
               </div>
               <p className="text-xs text-gray-400 font-mono">
                 {cloudConnected 
-                  ? "Télémétrie Cloud Globale en direct (visiteurs mondiaux & Discord)" 
-                  : "Télémétrie locale. Cliquez sur 'Configurer Base Cloud' pour synchroniser tous les visiteurs mondiaux."}
+                  ? (t?.admin?.cloudActiveDesc || "Télémétrie Cloud Globale en direct (visiteurs mondiaux & Discord)") 
+                  : (t?.admin?.cloudLocalDesc || "Télémétrie locale. Cliquez sur 'Configurer Base Cloud' pour synchroniser tous les visiteurs mondiaux.")}
               </p>
             </div>
           </div>
@@ -152,7 +152,7 @@ CREATE POLICY "Public insert col_visits" ON col_visits FOR INSERT WITH CHECK (tr
             <button
               onClick={() => setShowConfig(!showConfig)}
               className={`p-2 rounded-xl border transition-all ${showConfig ? 'bg-amber-950 text-amber-200 border-amber-500' : 'bg-[#141824] hover:bg-[#1f2538] border-white/15 text-gray-300 hover:text-white'}`}
-              title="Paramètres de base de données Cloud"
+              title={t?.admin?.configureCloud || "Paramètres de base de données Cloud"}
             >
               <Settings className="w-4 h-4" />
             </button>
@@ -160,7 +160,7 @@ CREATE POLICY "Public insert col_visits" ON col_visits FOR INSERT WITH CHECK (tr
             <button
               onClick={loadData}
               className={`p-2 rounded-xl bg-[#141824] hover:bg-[#1f2538] border border-white/15 text-gray-300 hover:text-white transition-all ${refreshing ? 'animate-spin' : ''}`}
-              title="Rafraîchir les métriques"
+              title={t?.admin?.refreshMetrics || "Rafraîchir les métriques"}
             >
               <RefreshCw className="w-4 h-4 text-amber-400" />
             </button>
@@ -168,7 +168,7 @@ CREATE POLICY "Public insert col_visits" ON col_visits FOR INSERT WITH CHECK (tr
             <button
               onClick={onClose}
               className="p-2 rounded-xl bg-red-950/80 hover:bg-red-900 border border-red-500/50 text-red-200 hover:text-white transition-all"
-              title="Fermer la session"
+              title={t?.admin?.closeSession || "Fermer la session"}
             >
               <X className="w-4 h-4" />
             </button>
@@ -182,10 +182,10 @@ CREATE POLICY "Public insert col_visits" ON col_visits FOR INSERT WITH CHECK (tr
               <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0" />
               <div className="space-y-0.5">
                 <span className="font-bold block">
-                  {cloudError ? cloudError : "Le suivi mondial en direct nécessite votre clé Anon Supabase."}
+                  {cloudError ? cloudError : (t?.admin?.cloudSetupNotice || "Le suivi mondial en direct nécessite votre clé Anon Supabase.")}
                 </span>
                 <span className="text-[11px] text-gray-400 block font-mono">
-                  Les visiteurs de Discord se connectent sans clés locales. Définissez la clé Anon publique pour activer le suivi mondial automatique.
+                  {t?.admin?.cloudSetupDesc || "Les visiteurs de Discord se connectent sans clés locales. Définissez la clé Anon publique pour activer le suivi mondial automatique."}
                 </span>
               </div>
             </div>
@@ -193,7 +193,7 @@ CREATE POLICY "Public insert col_visits" ON col_visits FOR INSERT WITH CHECK (tr
               onClick={() => setShowConfig(true)}
               className="px-3.5 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-black font-bold font-gothic text-xs whitespace-nowrap shadow-sm"
             >
-              ⚙️ Configurer les Clés
+              {t?.admin?.configureKeys || "⚙️ Configurer les Clés"}
             </button>
           </div>
         )}
@@ -205,7 +205,7 @@ CREATE POLICY "Public insert col_visits" ON col_visits FOR INSERT WITH CHECK (tr
               <div className="flex items-center space-x-2">
                 <Database className="w-5 h-5 text-amber-400" />
                 <h3 className="font-gothic font-bold text-sm text-gray-100">
-                  Connexion Base de Données Cloud (Supabase Gratuit)
+                  {t?.admin?.cloudDbTitle || "Connexion Base de Données Cloud (Supabase Gratuit)"}
                 </h3>
               </div>
               <a
@@ -214,7 +214,7 @@ CREATE POLICY "Public insert col_visits" ON col_visits FOR INSERT WITH CHECK (tr
                 rel="noopener noreferrer"
                 className="inline-flex items-center space-x-1 text-xs text-amber-400 hover:underline font-mono"
               >
-                <span>Ouvrir Supabase</span>
+                <span>{t?.admin?.openSupabase || "Ouvrir Supabase"}</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             </div>
@@ -260,7 +260,7 @@ CREATE POLICY "Public insert col_visits" ON col_visits FOR INSERT WITH CHECK (tr
                   title="Copier le script SQL pour créer les tables automatiquement dans le SQL Editor de Supabase"
                 >
                   {copiedSql ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-amber-400" />}
-                  <span>{copiedSql ? "Script SQL Copié !" : "Copier le Script SQL des Tables"}</span>
+                  <span>{copiedSql ? (t?.admin?.sqlCopied || "Script SQL Copié !") : (t?.admin?.copySql || "Copier le Script SQL des Tables")}</span>
                 </button>
 
                 <button
@@ -268,7 +268,7 @@ CREATE POLICY "Public insert col_visits" ON col_visits FOR INSERT WITH CHECK (tr
                   className="flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-800 to-emerald-700 hover:from-emerald-700 hover:to-emerald-600 text-white font-gothic font-bold text-xs shadow-sm"
                 >
                   {configSaved ? <Check className="w-4 h-4" /> : null}
-                  <span>{configSaved ? "Connecté & Enregistré !" : "Activer la Synchronisation Cloud"}</span>
+                  <span>{configSaved ? (t?.admin?.connectedAndSaved || "Connecté & Enregistré !") : (t?.admin?.enableSync || "Activer la Synchronisation Cloud")}</span>
                 </button>
               </div>
             </form>
@@ -280,14 +280,14 @@ CREATE POLICY "Public insert col_visits" ON col_visits FOR INSERT WITH CHECK (tr
           {/* Unique Visitors (Personnes Réelles) */}
           <div className="p-5 rounded-2xl bg-[#0f121a] border border-blue-500/30 space-y-2 relative overflow-hidden shadow-lg">
             <div className="flex items-center justify-between text-blue-400">
-              <span className="text-xs font-mono uppercase font-bold">Visiteurs Uniques</span>
+              <span className="text-xs font-mono uppercase font-bold">{t?.admin?.uniqueVisitors || "Visiteurs Uniques"}</span>
               <Users className="w-4 h-4" />
             </div>
             <div className="text-3xl font-extrabold font-mono text-gray-100">
               {telemetry.uniqueVisitors || 1}
             </div>
             <div className="flex items-center justify-between text-[11px] text-gray-400 font-sans">
-              <span>{cloudConnected ? "Personnes & appareils réels" : "Sur ce navigateur"}</span>
+              <span>{cloudConnected ? (t?.admin?.realPeople || "Personnes & appareils réels") : (t?.admin?.thisBrowser || "Sur ce navigateur")}</span>
               <span className="text-[10px] font-mono text-blue-300/80">
                 ({telemetry.totalVisits || 1} sessions)
               </span>
@@ -297,28 +297,28 @@ CREATE POLICY "Public insert col_visits" ON col_visits FOR INSERT WITH CHECK (tr
           {/* Accounts & JSON Exports */}
           <div className="p-5 rounded-2xl bg-[#0f121a] border border-emerald-500/30 space-y-2 relative overflow-hidden shadow-lg">
             <div className="flex items-center justify-between text-emerald-400">
-              <span className="text-xs font-mono uppercase font-bold">Profils Exportés</span>
+              <span className="text-xs font-mono uppercase font-bold">{t?.admin?.exportedProfiles || "Profils Exportés"}</span>
               <Download className="w-4 h-4" />
             </div>
             <div className="text-3xl font-extrabold font-mono text-gray-100">
               {telemetry.totalProfileExports || 0}
             </div>
             <p className="text-[11px] text-gray-400 font-sans">
-              Téléchargements de fichiers collection .json
+              {t?.admin?.exportedProfilesDesc || "Téléchargements de fichiers collection .json"}
             </p>
           </div>
 
           {/* Registered Nicknames Count */}
           <div className="p-5 rounded-2xl bg-[#0f121a] border border-amber-500/30 space-y-2 relative overflow-hidden shadow-lg">
             <div className="flex items-center justify-between text-amber-400">
-              <span className="text-xs font-mono uppercase font-bold">Joueurs Enregistrés</span>
+              <span className="text-xs font-mono uppercase font-bold">{t?.admin?.registeredPlayers || "Joueurs Enregistrés"}</span>
               <Users className="w-4 h-4" />
             </div>
             <div className="text-3xl font-extrabold font-mono text-gray-100">
               {telemetry.registeredUsers?.length || 0}
             </div>
             <p className="text-[11px] text-gray-400 font-sans">
-              Pseudos uniques enregistrés
+              {t?.admin?.registeredPlayersDesc || "Pseudos uniques enregistrés"}
             </p>
           </div>
         </div>
@@ -336,7 +336,7 @@ CREATE POLICY "Public insert col_visits" ON col_visits FOR INSERT WITH CHECK (tr
               className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-[#141824] hover:bg-[#1f2538] border border-white/15 text-xs text-gray-300 hover:text-white font-gothic transition-all"
             >
               <Download className="w-3.5 h-3.5 text-amber-400" />
-              <span>Exporter le Registre (.json)</span>
+              <span>{t?.admin?.exportRegistry || "Exporter le Registre (.json)"}</span>
             </button>
           </div>
 
@@ -345,11 +345,11 @@ CREATE POLICY "Public insert col_visits" ON col_visits FOR INSERT WITH CHECK (tr
               <thead className="bg-[#121520] border-b border-white/10 text-gray-400 font-mono uppercase text-[10px]">
                 <tr>
                   <th className="px-4 py-3">#</th>
-                  <th className="px-4 py-3">Pseudo Joueur</th>
-                  <th className="px-4 py-3">Première Visite</th>
-                  <th className="px-4 py-3">Dernière Activité</th>
-                  <th className="px-4 py-3">Niveau / Rang</th>
-                  <th className="px-4 py-3 text-right">Export JSON</th>
+                  <th className="px-4 py-3">{t?.admin?.thPlayer || "Pseudo Joueur"}</th>
+                  <th className="px-4 py-3">{t?.admin?.thFirstVisit || "Première Visite"}</th>
+                  <th className="px-4 py-3">{t?.admin?.thLastActive || "Dernière Activité"}</th>
+                  <th className="px-4 py-3">{t?.admin?.thLevelRank || "Niveau / Rang"}</th>
+                  <th className="px-4 py-3 text-right">{t?.admin?.thExportJson || "Export JSON"}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
@@ -394,12 +394,12 @@ CREATE POLICY "Public insert col_visits" ON col_visits FOR INSERT WITH CHECK (tr
 
         {/* Footer info */}
         <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-gray-500 font-mono">
-          <span>Session Administrateur active</span>
+          <span>{t?.admin?.activeSession || "Session Administrateur active"}</span>
           <button
             onClick={onClose}
             className="px-4 py-2 rounded-xl bg-red-950 hover:bg-red-900 border border-red-500 text-white font-gothic font-bold transition-all shadow-blood"
           >
-            Quitter l'Espace Administrateur
+            {t?.admin?.exitAdmin || "Quitter l'Espace Administrateur"}
           </button>
         </div>
 

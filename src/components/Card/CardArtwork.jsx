@@ -134,10 +134,10 @@ export default function CardArtwork({
             className="inline-block text-[9px] font-mono font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full border bg-black/60 backdrop-blur-sm"
             style={{ borderColor: `${colors.primary}60`, color: colors.secondary }}
           >
-            Sceau du Clan {clan}
+            {t?.cardArtwork?.sealOf || "Sceau du Clan"} {clan}
           </span>
           <p className="text-[10px] text-gray-500 font-gothic">
-            Visuel en cours d'archivage • Wiki
+            {t?.cardArtwork?.archiving || "Visuel en cours d'archivage • Wiki"}
           </p>
         </div>
       </div>

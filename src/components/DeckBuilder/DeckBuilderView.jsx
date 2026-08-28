@@ -192,7 +192,7 @@ export default function DeckBuilderView({
               }`}
             >
               <Layers className="w-3.5 h-3.5" />
-              <span>Deck ({deckCards.length}/15)</span>
+              <span>{t?.deckbuilder?.deckTab || 'Deck'} ({deckCards.length}/15)</span>
             </button>
 
             <button
@@ -204,7 +204,7 @@ export default function DeckBuilderView({
               }`}
             >
               <BarChart3 className="w-3.5 h-3.5" />
-              <span>{lang === 'fr' ? 'Courbes & Stats' : 'Stats & Mana Curve'}</span>
+              <span>{t?.deckbuilder?.statsTab || (lang === 'fr' ? 'Courbes & Stats' : 'Stats & Mana Curve')}</span>
             </button>
 
             <button
@@ -216,7 +216,7 @@ export default function DeckBuilderView({
               }`}
             >
               <Play className="w-3.5 h-3.5" />
-              <span>{lang === 'fr' ? 'Simulateur 7 Tours' : '7-Round Simulator'}</span>
+              <span>{t?.deckbuilder?.simulatorTab || (lang === 'fr' ? 'Simulateur 7 Tours' : '7-Round Simulator')}</span>
             </button>
           </div>
 
@@ -224,7 +224,7 @@ export default function DeckBuilderView({
           {activeTab === 'cards' && (
             <div className="glass-panel rounded-2xl p-4 border border-white/10 space-y-3 shadow-2xl">
               <div className="flex items-center justify-between text-xs text-gray-300 font-gothic font-semibold uppercase tracking-wider pb-2 border-b border-white/10">
-                <span>{lang === 'fr' ? 'Cartes dans votre Deck :' : 'Cards in your Deck:'}</span>
+                <span>{t?.deckbuilder?.cardsInDeck || (lang === 'fr' ? 'Cartes dans votre Deck :' : 'Cards in your Deck:')}</span>
                 <span className="font-mono text-amber-400 font-bold">{deckCards.length} / 15 {t?.database?.cardsCount || "cartes"}</span>
               </div>
 

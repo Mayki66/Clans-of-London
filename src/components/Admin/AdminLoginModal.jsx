@@ -46,10 +46,10 @@ export default function AdminLoginModal({ onClose, onSuccess }) {
             🔒
           </div>
           <h3 className="font-gothic font-extrabold text-xl text-gray-100">
-            Accès Administrateur
+            {t?.admin?.loginTitle || "Accès Administrateur"}
           </h3>
           <p className="text-xs text-gray-400 font-mono">
-            Espace de contrôle privé
+            {t?.admin?.loginSubtitle || "Espace de contrôle privé"}
           </p>
         </div>
 
@@ -57,7 +57,7 @@ export default function AdminLoginModal({ onClose, onSuccess }) {
         {error && (
           <div className="p-3 rounded-xl bg-red-950/80 border border-red-500 text-red-200 text-xs font-mono flex items-center space-x-2 animate-shake">
             <ShieldAlert className="w-4 h-4 text-red-400 flex-shrink-0" />
-            <span>Identifiants administrateur incorrects.</span>
+            <span>{t?.admin?.credentialsError || "Identifiants administrateur incorrects."}</span>
           </div>
         )}
 
@@ -74,7 +74,7 @@ export default function AdminLoginModal({ onClose, onSuccess }) {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="w-full pl-9 pr-3 py-2 rounded-xl bg-[#090b10] border border-white/15 text-xs text-gray-100 font-mono focus:outline-none focus:border-red-500"
-                placeholder="Identifiant..."
+                placeholder={t?.admin?.usernamePlaceholder || "Identifiant..."}
                 autoFocus
                 required
               />
@@ -103,7 +103,7 @@ export default function AdminLoginModal({ onClose, onSuccess }) {
             disabled={loading}
             className="w-full py-2.5 rounded-xl bg-gradient-to-r from-red-800 to-rose-900 hover:from-red-700 hover:to-rose-800 text-white font-gothic font-bold text-xs tracking-wider shadow-blood transition-all flex items-center justify-center space-x-2"
           >
-            <span>{loading ? "Vérification..." : "Déverrouiller"}</span>
+            <span>{loading ? (t?.admin?.checking || "Vérification...") : (t?.admin?.unlock || "Déverrouiller")}</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </form>

@@ -31,7 +31,7 @@ export default function DeckManager({
 
   const handleSave = () => {
     if (!deckName.trim()) {
-      alert(isFrench ? 'Veuillez entrer un nom pour votre deck.' : 'Please enter a name for your deck.');
+      alert(t?.deckbuilder?.enterNameAlert || (isFrench ? 'Veuillez entrer un nom pour votre deck.' : 'Please enter a name for your deck.'));
       return;
     }
     onSaveDeck({
@@ -40,12 +40,12 @@ export default function DeckManager({
       createdAt: new Date().toLocaleDateString(isFrench ? 'fr-FR' : 'en-US'),
       cardIds: deckCards.map(c => c.id)
     });
-    alert(isFrench ? `Deck "${deckName}" sauvegardé avec succès !` : `Deck "${deckName}" saved successfully!`);
+    alert((t?.deckbuilder?.deckSavedSuccess || 'Deck "{name}" sauvegardé avec succès !').replace("{name}", deckName));
   };
 
   const handleExportText = () => {
     const lines = [
-      `// Deck: ${deckName || (isFrench ? 'Deck Sans Titre' : 'Untitled Deck')}`,
+      `// Deck: ${deckName || (t?.deckbuilder?.deckPlaceholder || (isFrench ? 'Deck Sans Titre' : 'Untitled Deck'))}`,
       `// Game: Vampire: The Masquerade - Clans of London`,
       `// Total: ${cardCount}/15`,
       '',
@@ -79,14 +79,14 @@ export default function DeckManager({
 
     if (matchedCardIds.length > 0) {
       onLoadDeck({
-        name: isFrench ? 'Deck Importé' : 'Imported Deck',
+        name: t?.deckbuilder?.importedDeckDefault || (isFrench ? 'Deck Importé' : 'Imported Deck'),
         cardIds: matchedCardIds
       });
       setShowImportModal(false);
       setImportText('');
-      alert(isFrench ? `${matchedCardIds.length} cartes importées avec succès !` : `${matchedCardIds.length} cards successfully imported!`);
+      alert((t?.deckbuilder?.importSuccess || "{count} cartes importées avec succès !").replace("{count}", matchedCardIds.length));
     } else {
-      alert(isFrench ? "Aucune carte correspondante n'a été trouvée dans le texte fourni." : "No matching cards found in the provided text.");
+      alert(t?.deckbuilder?.importNoCards || (isFrench ? "Aucune carte correspondante n'a été trouvée dans le texte fourni." : "No matching cards found in the provided text."));
     }
   };
 
@@ -168,7 +168,7 @@ export default function DeckManager({
             onClick={() => setShowImageExportModal(true)}
             disabled={cardCount === 0}
             className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-purple-950/80 to-indigo-950/80 hover:from-purple-900 hover:to-indigo-900 border border-purple-500/40 text-purple-200 hover:text-white text-xs font-gothic font-bold transition-all shadow-sm disabled:opacity-50"
-            title="Générer une fiche image HD pour Discord ou les réseaux"
+            title={t?.deckbuilder?.exportImageTooltip || 'Générer une fiche image HD pour Discord ou les réseaux'}
           >
             <Image className="w-4 h-4 text-purple-400" />
             <span>{t?.deckbuilder?.exportImage || "Image Discord"}</span>
@@ -198,7 +198,7 @@ export default function DeckManager({
         {cardCount > 0 && (
           <button
             onClick={() => {
-              if (window.confirm(isFrench ? 'Voulez-vous vraiment vider ce deck ?' : 'Are you sure you want to clear this deck?')) {
+              if (window.confirm(t?.deckbuilder?.clearConfirm || (isFrench ? 'Voulez-vous vraiment vider ce deck ?' : 'Are you sure you want to clear this deck?'))) {
                 onClearDeck();
               }
             }}
@@ -217,7 +217,7 @@ export default function DeckManager({
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <h3 className="font-gothic font-bold text-lg text-gray-100 flex items-center space-x-2">
                 <FolderOpen className="w-5 h-5 text-amber-400" />
-                <span>Mes Decks Sauvegardés</span>
+                <span>{t?.deckbuilder?.savedDecksTitle || "Mes Decks Sauvegardés"}</span>
               </h3>
               <button
                 onClick={() => setShowSavedModal(false)}
@@ -229,7 +229,7 @@ export default function DeckManager({
 
             {savedDecks.length === 0 ? (
               <p className="text-sm text-gray-400 italic text-center py-6">
-                Aucun deck personnalisé sauvegardé pour le moment.
+                {t?.deckbuilder?.noSavedDecks || "Aucun deck personnalisé sauvegardé pour le moment."}
               </p>
             ) : (
               <div className="space-y-2 max-h-72 overflow-y-auto pr-1">
@@ -258,7 +258,7 @@ export default function DeckManager({
                       <button
                         onClick={() => onDeleteSavedDeck(deck.id)}
                         className="p-1.5 rounded-lg bg-slate-900 hover:bg-red-950 text-gray-400 hover:text-red-300"
-                        title="Supprimer"
+                        title={t?.deckbuilder?.delete || "Supprimer"}
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -278,7 +278,7 @@ export default function DeckManager({
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <h3 className="font-gothic font-bold text-lg text-gray-100 flex items-center space-x-2">
                 <Upload className="w-5 h-5 text-purple-400" />
-                <span>Importer une Liste de Cartes</span>
+                <span>{t?.deckbuilder?.importTitle || "Importer une Liste de Cartes"}</span>
               </h3>
               <button
                 onClick={() => setShowImportModal(false)}
@@ -289,7 +289,7 @@ export default function DeckManager({
             </div>
 
             <p className="text-xs text-gray-400">
-              Collez ci-dessous le texte exporté ou la liste des noms de cartes (ex: Morag Stewart, Carlo Galli...) :
+              {t?.deckbuilder?.importInstructions || "Collez ci-dessous le texte exporté ou la liste des noms de cartes (ex: Morag Stewart, Carlo Galli...) :"}
             </p>
 
             <textarea
@@ -333,7 +333,7 @@ export default function DeckManager({
           deckName={deckName}
           author={userProfile?.playerName || 'Mayki'}
           deckCards={deckCards}
-          lang="fr"
+          lang={lang} t={t}
           onClose={() => setShowImageExportModal(false)}
         />
       )}

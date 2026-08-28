@@ -439,6 +439,8 @@ export default function App() {
               setShowAdminLogin(false);
               setShowAdminDashboard(true);
             }}
+            lang={lang}
+            t={t}
           />
         )}
 
@@ -446,6 +448,8 @@ export default function App() {
         {showAdminDashboard && (
           <GhostAdminModal
             onClose={() => setShowAdminDashboard(false)}
+            lang={lang}
+            t={t}
           />
         )}
       </Suspense>

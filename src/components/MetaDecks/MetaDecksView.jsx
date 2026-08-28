@@ -76,7 +76,7 @@ export default function MetaDecksView({
   const handleLoadWithSubstitutions = (deck) => {
     onLoadMetaDeck?.({
       ...deck,
-      name: `${deck.name} (${isFrench ? 'Adapté' : 'Adapted'})`,
+      name: `${deck.name} (${t?.metadecks?.adaptedSuffix || 'Adapté'})`,
       cardIds: deck.completedCardIds
     });
   };
@@ -115,7 +115,7 @@ export default function MetaDecksView({
                 : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
             }`}
           >
-            {t?.metadecks?.allDecks ? `${t?.metadecks?.allDecks} (${enhancedDecks.length})` : `Tous les Decks (${enhancedDecks.length})`}
+            {t?.metadecks?.allDecks ? `${t?.metadecks?.allDecks} (${enhancedDecks.length})` : `${t?.metadecks?.allDecks || 'Tous les Decks'} (${enhancedDecks.length})`}
           </button>
 
           <button
@@ -126,7 +126,7 @@ export default function MetaDecksView({
                 : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
             }`}
           >
-            {t?.metadecks?.readyToPlay ? `${t?.metadecks?.readyToPlay} (${readyDecksCount})` : `✔ Prêts à Jouer (${readyDecksCount})`}
+            {t?.metadecks?.readyToPlay ? `${t?.metadecks?.readyToPlay} (${readyDecksCount})` : `${t?.metadecks?.readyToPlay || '✔ Prêts à Jouer'} (${readyDecksCount})`}
           </button>
 
           <button
@@ -137,7 +137,7 @@ export default function MetaDecksView({
                 : 'bg-[#141824] text-gray-400 border-white/10 hover:text-white'
             }`}
           >
-            {t?.metadecks?.almostComplete ? `${t?.metadecks?.almostComplete} (${almostDecksCount})` : `⚡ Presque Complets (${almostDecksCount})`}
+            {t?.metadecks?.almostComplete ? `${t?.metadecks?.almostComplete} (${almostDecksCount})` : `${t?.metadecks?.almostComplete || '⚡ Presque Complets'} (${almostDecksCount})`}
           </button>
         </div>
       </div>
@@ -184,7 +184,7 @@ export default function MetaDecksView({
                       {deck.ownedCount}/15 {t?.database?.cardsCount || "cartes"}
                     </span>
                     <span className="text-[10px] font-mono text-gray-500">
-                      {deck.completionPercent}% {isFrench ? "possédé" : "owned"}
+                      {deck.completionPercent}% {t?.metadecks?.ownedPercent || (isFrench ? "possédé" : "owned")}
                     </span>
                   </div>
                 </div>
@@ -213,8 +213,8 @@ export default function MetaDecksView({
                 {/* 15 Cards Mini Visual Strip (Clean & Immediate Owned Outline) */}
                 <div className="space-y-1.5 pt-1">
                   <div className="flex items-center justify-between text-[11px] font-mono text-gray-400">
-                    <span>{isFrench ? "Composition du Deck (15 Cartes) :" : "Deck Composition (15 Cards) :"}</span>
-                    <span className="text-gray-500">{isFrench ? "Cliquer pour inspecter" : "Click to inspect"}</span>
+                    <span>{t?.metadecks?.deckComposition15 || (isFrench ? "Composition du Deck (15 Cartes) :" : "Deck Composition (15 Cards) :")}</span>
+                    <span className="text-gray-500">{t?.metadecks?.clickToInspect || (isFrench ? "Cliquer pour inspecter" : "Click to inspect")}</span>
                   </div>
 
                   <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
@@ -253,11 +253,11 @@ export default function MetaDecksView({
                             {isOwned ? (
                               <span className="inline-flex items-center space-x-0.5 text-[9px] font-mono font-bold text-emerald-400">
                                 <span>✓</span>
-                                <span>{isFrench ? "Possédée" : "Owned"}</span>
+                                <span>{t?.metadecks?.cardOwned || (isFrench ? "Possédée" : "Owned")}</span>
                               </span>
                             ) : (
                               <span className="text-[9px] font-mono text-gray-500">
-                                {isFrench ? "Manquante" : "Missing"}
+                                {t?.metadecks?.cardMissing || (isFrench ? "Manquante" : "Missing")}
                               </span>
                             )}
                           </div>
@@ -290,7 +290,7 @@ export default function MetaDecksView({
                     {isExpanded && (
                       <div className="mt-2 p-3 rounded-xl bg-[#0b0e15] border border-purple-500/30 space-y-2 text-xs animate-fadeIn">
                         <p className="text-[11px] text-gray-400 font-mono">
-                          {isFrench ? `Équivalents optimaux trouvés dans votre collection (${ownedCardIds.length} cartes) :` : `Optimal substitutes found in your collection (${ownedCardIds.length} cards):`}
+                          {(t?.metadecks?.optimalSubstitutesFound || 'Équivalents optimaux trouvés dans votre collection ({count} cartes) :').replace('{count}', ownedCardIds.length)}
                         </p>
                         <div className="space-y-2">
                           {deck.substitutions.map((sub, idx) => (
@@ -299,7 +299,7 @@ export default function MetaDecksView({
                               <div
                                 onClick={() => onInspectCard?.(sub.missing)}
                                 className="flex items-center space-x-1.5 text-gray-400 line-through cursor-pointer hover:text-gray-200"
-                                title={isFrench ? "Carte manquante" : "Missing card"}
+                                title={t?.metadecks?.missingCardTooltip || "Carte manquante"}
                               >
                                 <span className="w-5 h-5 rounded-full bg-red-950/80 border border-red-500/50 flex items-center justify-center text-[10px] font-bold text-red-300">
                                   {sub.missing.costDisplay || sub.missing.cost}
@@ -348,10 +348,10 @@ export default function MetaDecksView({
                   <button
                     onClick={() => handleLoadWithSubstitutions(deck)}
                     className="px-3 py-2.5 rounded-xl bg-amber-950 hover:bg-amber-900 border border-amber-500/50 text-amber-200 font-gothic font-bold text-xs transition-all"
-                    title={isFrench ? "Charger avec les remplacements intelligents pour cartes manquantes" : "Load with smart replacements for missing cards"}
+                    title={t?.metadecks?.adaptTooltip || "Charger avec les remplacements intelligents pour cartes manquantes"}
                   >
                     <Zap className="w-4 h-4 text-amber-400 inline mr-1" />
-                    <span>{isFrench ? "Adapter" : "Adapt"}</span>
+                    <span>{t?.metadecks?.adaptBtn || "Adapter"}</span>
                   </button>
                 )}
               </div>

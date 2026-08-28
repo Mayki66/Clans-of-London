@@ -31,15 +31,15 @@ export default function TableView({ cards, onInspectCard, onAddCard, onRemoveCar
         <table className="w-full text-left text-xs text-gray-200">
           <thead className="bg-[#0b0e15] border-b border-white/10 font-gothic text-gray-400 uppercase tracking-wider text-[11px]">
             <tr>
-              <th className="px-3.5 py-3 text-center w-14">{getHeader('blood', 'Sang')}</th>
-              <th className="px-4 py-3">{getHeader('name', 'Nom')}</th>
-              <th className="px-3 py-3">{getHeader('clan', 'Clan')}</th>
-              <th className="px-3 py-3 text-center">{getHeader('power', 'Puiss.')}</th>
-              <th className="px-3 py-3 text-center">{getHeader('series', 'Série')}</th>
-              <th className="px-3 py-3">{getHeader('type', 'Type')}</th>
-              <th className="px-3 py-3">{getHeader('archetype', 'Archétype')}</th>
-              <th className="px-4 py-3 min-w-[280px]">{getHeader('ability', 'Capacité')}</th>
-              <th className="px-4 py-3 text-center w-28">{getHeader('deck', 'Deck')}</th>
+              <th className="px-3.5 py-3 text-center w-14">{getHeader('blood', t?.table?.blood || 'Sang')}</th>
+              <th className="px-4 py-3">{getHeader('name', t?.table?.name || 'Nom')}</th>
+              <th className="px-3 py-3">{getHeader('clan', t?.table?.clan || 'Clan')}</th>
+              <th className="px-3 py-3 text-center">{getHeader('power', t?.table?.power || 'Puiss.')}</th>
+              <th className="px-3 py-3 text-center">{getHeader('series', t?.table?.series || 'Série')}</th>
+              <th className="px-3 py-3">{getHeader('type', t?.table?.type || 'Type')}</th>
+              <th className="px-3 py-3">{getHeader('archetype', t?.table?.archetype || 'Archétype')}</th>
+              <th className="px-4 py-3 min-w-[280px]">{getHeader('ability', t?.table?.ability || 'Capacité')}</th>
+              <th className="px-4 py-3 text-center w-28">{getHeader('deck', t?.table?.deck || 'Deck')}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-white/5 font-sans">
@@ -49,7 +49,7 @@ export default function TableView({ cards, onInspectCard, onAddCard, onRemoveCar
               const displayedAbility = getCardAbility(card, lang);
               const displayedType = t?.cardAttributes?.types?.[card.type] || card.type;
               const displayedArchetype = t?.cardAttributes?.archetypes?.[card.archetype] || t?.cardAttributes?.archetypes?.[card.archetype_en] || card.archetype;
-              const displayedClan = (card.clan === 'Malkavien' && !isFrench) ? 'Malkavian' : card.clan;
+              const displayedClan = t?.cardAttributes?.clans?.[card.clan] || card.clan;
               const displayedRarity = t?.cardAttributes?.rarities?.[card.rarity] || card.rarity;
 
               return (
@@ -124,7 +124,7 @@ export default function TableView({ cards, onInspectCard, onAddCard, onRemoveCar
                         <button
                           onClick={() => onRemoveCard?.(card.id)}
                           className="p-1 rounded bg-red-950/80 hover:bg-red-800 border border-red-500/40 text-red-300 hover:text-white"
-                          title={isFrench ? "Retirer du deck" : "Remove from deck"}
+                          title={t?.table?.removeFromDeck || (isFrench ? "Retirer du deck" : "Remove from deck")}
                         >
                           <Minus className="w-3 h-3" />
                         </button>
@@ -142,7 +142,7 @@ export default function TableView({ cards, onInspectCard, onAddCard, onRemoveCar
                             ? 'bg-gray-800/40 border-gray-700/40 text-gray-600 cursor-not-allowed'
                             : 'bg-emerald-950/80 hover:bg-emerald-800 border-emerald-500/40 text-emerald-300 hover:text-white'
                         }`}
-                        title={count >= 1 ? (isFrench ? "Limite de 1 copie" : "1 copy limit") : (isFrench ? "Ajouter au deck" : "Add to deck")}
+                        title={count >= 1 ? (t?.table?.oneCopyLimit || "Limite de 1 copie") : (t?.table?.addToDeck || "Ajouter au deck")}
                       >
                         <Plus className="w-3 h-3" />
                       </button>

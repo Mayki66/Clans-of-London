@@ -67,7 +67,7 @@ export default function CardFrame({
   const displayedAbility = getCardAbility(card, lang);
   const displayedType = t?.cardAttributes?.types?.[card.type] || card.type;
   const displayedArchetype = t?.cardAttributes?.archetypes?.[card.archetype] || t?.cardAttributes?.archetypes?.[card.archetype_en] || card.archetype;
-  const displayedClan = (card.clan === 'Malkavien' && !isFrench) ? 'Malkavian' : card.clan;
+  const displayedClan = t?.cardAttributes?.clans?.[card.clan] || card.clan;
   const displayedRarity = t?.cardAttributes?.rarities?.[card.rarity] || card.rarity;
 
   if (compact) {
@@ -112,7 +112,7 @@ export default function CardFrame({
                 <button
                   onClick={onRemove}
                   className="p-1 rounded bg-red-950/80 hover:bg-red-800 border border-red-500/40 text-red-300 hover:text-white transition-colors"
-                  title={isFrench ? "Retirer du deck" : "Remove from deck"}
+                  title={t?.card?.removeFromDeck || (isFrench ? "Retirer du deck" : "Remove from deck")}
                 >
                   <Minus className="w-3 h-3" />
                 </button>
@@ -130,7 +130,7 @@ export default function CardFrame({
                     ? 'bg-gray-800/40 border-gray-700/40 text-gray-600 cursor-not-allowed'
                     : 'bg-emerald-950/80 hover:bg-emerald-800 border-emerald-500/40 text-emerald-300 hover:text-white'
                 }`}
-                title={countInDeck >= 1 ? (isFrench ? "Déjà inclus" : "Already in deck") : (isFrench ? "Ajouter au deck" : "Add to deck")}
+                title={countInDeck >= 1 ? (t?.card?.alreadyInDeck || "Déjà inclus") : (t?.card?.addToDeck || "Ajouter au deck")}
               >
                 <Plus className="w-3 h-3" />
               </button>
@@ -186,7 +186,7 @@ export default function CardFrame({
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 backdrop-blur-xs pointer-events-none">
           <span className="px-3 py-1 rounded-full bg-red-950/90 border border-red-500 text-white font-gothic text-xs font-bold shadow-blood flex items-center space-x-1.5">
             <Eye className="w-3.5 h-3.5 text-amber-400" />
-            <span>{isFrench ? 'Inspecter' : 'Inspect'}</span>
+            <span>{t?.card?.inspect || (isFrench ? "Inspecter" : "Inspect")}</span>
           </span>
         </div>
       </div>
@@ -236,14 +236,14 @@ export default function CardFrame({
       {showActions && (
         <div className="p-2.5 bg-[#080a10] border-t border-white/10 flex items-center justify-between">
           <div className="text-xs font-mono">
-            <span className="text-gray-500 mr-1">{isFrench ? 'Dans le deck :' : 'In deck:'}</span>
+            <span className="text-gray-500 mr-1">{t?.card?.inDeck || (isFrench ? "Dans le deck :" : "In deck:")}</span>
             {countInDeck > 0 ? (
               <span className="font-bold text-emerald-400 bg-emerald-950/60 px-1.5 py-0.2 rounded border border-emerald-500/40">
                 {countInDeck}/1
               </span>
             ) : (
               <span className="text-gray-600 text-[11px]">
-                {isFrench ? 'Non inclus' : 'Not included'}
+                {t?.card?.notIncluded || (isFrench ? "Non inclus" : "Not included")}
               </span>
             )}
           </div>
@@ -253,7 +253,7 @@ export default function CardFrame({
               <button
                 onClick={onRemove}
                 className="p-1.5 rounded-lg bg-red-950/80 hover:bg-red-800 border border-red-500/40 text-red-300 hover:text-white transition-colors"
-                title={isFrench ? "Retirer une copie" : "Remove a copy"}
+                title={t?.card?.removeFromDeck || (isFrench ? "Retirer une copie" : "Remove a copy")}
               >
                 <Minus className="w-3.5 h-3.5" />
               </button>
@@ -267,10 +267,10 @@ export default function CardFrame({
                   ? 'bg-gray-800/40 border-gray-700/40 text-gray-500 cursor-not-allowed'
                   : 'bg-gradient-to-r from-emerald-700 to-teal-800 hover:from-emerald-600 hover:to-teal-700 text-white border-emerald-400 shadow-sm transform active:scale-95'
               }`}
-              title={countInDeck >= 1 ? (isFrench ? "Limite de 1 copie atteinte" : "Limit of 1 copy reached") : (isFrench ? "Ajouter au deck" : "Add to deck")}
+              title={countInDeck >= 1 ? (t?.card?.limitReached || "Limite de 1 copie atteinte") : (t?.card?.addToDeck || "Ajouter au deck")}
             >
               <Plus className="w-3.5 h-3.5" />
-              <span>{countInDeck >= 1 ? (isFrench ? 'Inclus' : 'Included') : (isFrench ? 'Ajouter' : 'Add')}</span>
+              <span>{countInDeck >= 1 ? (t?.card?.included || "Inclus") : (t?.card?.add || "Ajouter")}</span>
             </button>
           </div>
         </div>
