@@ -4,12 +4,12 @@
  */
 
 export const SUPPORTED_LANGUAGES = [
-  { code: 'fr', label: 'Français', flag: '🇫🇷' },
-  { code: 'en', label: 'English', flag: '🇬🇧' },
-  { code: 'it', label: 'Italiano', flag: '🇮🇹' },
-  { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
-  { code: 'es', label: 'Español', flag: '🇪🇸' },
-  { code: 'pt', label: 'Português', flag: '🇵🇹' }
+  { code: 'fr', label: 'Français' },
+  { code: 'en', label: 'English' },
+  { code: 'it', label: 'Italiano' },
+  { code: 'de', label: 'Deutsch' },
+  { code: 'es', label: 'Español' },
+  { code: 'pt', label: 'Português' }
 ];
 
 export const TRANSLATIONS = {
@@ -20,6 +20,8 @@ export const TRANSLATIONS = {
       "footerAttribution": "Application développée, créée, éditée et remplie par Mayki via Antigravity",
       "footerDevBy": "Application développée, créée, éditée et remplie par ",
       "footerWikiNotice": "Données alignées sur le wiki officiel Paradox (CoL_cardlist).",
+      "darkPackBadge": "Accord Dark Pack",
+      "darkPackDisclaimer": "Certains éléments sont des marques déposées et protégées par le droit d'auteur de Paradox Interactive AB, et sont utilisés avec autorisation. Tous droits réservés. Vampire: The Masquerade® – Application communautaire non-officielle réalisée dans le cadre du Dark Pack Agreement. Pour plus d'informations, visitez worldofdarkness.com.",
       "loadingText": "Invocation des Arcanes...",
       "dataSource": "Données :"
     },
@@ -31,6 +33,7 @@ export const TRANSLATIONS = {
       "metadecks": "Decks Méta",
       "arena": "Arène",
       "profile": "Mon Profil",
+      "unofficialApp": "Application non-officielle",
       "langSwitch": "Langue"
     },
     "database": {
@@ -631,6 +634,8 @@ export const TRANSLATIONS = {
       "footerAttribution": "Application developed, designed and populated by Mayki via Antigravity",
       "footerDevBy": "Application developed, designed and populated by ",
       "footerWikiNotice": "Data synchronized with official Paradox Wiki (CoL_cardlist).",
+      "darkPackBadge": "Dark Pack Agreement",
+      "darkPackDisclaimer": "Portions of the materials are the copyrights and trademarks of Paradox Interactive AB, and are used with permission. All rights reserved. Vampire: The Masquerade® – Unofficial community fan application created under the Dark Pack Agreement. For more information please visit worldofdarkness.com.",
       "loadingText": "Invoking the Arcanes...",
       "dataSource": "Data source:"
     },
@@ -642,6 +647,7 @@ export const TRANSLATIONS = {
       "metadecks": "Meta Decks",
       "arena": "Arena",
       "profile": "My Profile",
+      "unofficialApp": "Unofficial Fan Application",
       "langSwitch": "Language"
     },
     "database": {
@@ -1242,6 +1248,8 @@ export const TRANSLATIONS = {
       "footerAttribution": "Applicazione sviluppata, creata e curata da Mayki via Antigravity",
       "footerDevBy": "Applicazione sviluppata, creata e curata da ",
       "footerWikiNotice": "Dati sincronizzati con il Wiki ufficiale Paradox (CoL_cardlist).",
+      "darkPackBadge": "Accordo Dark Pack",
+      "darkPackDisclaimer": "Alcuni elementi sono protetti da copyright e marchi di Paradox Interactive AB, e sono utilizzati con autorizzazione. Tutti i diritti riservati. Vampire: The Masquerade® – Applicazione fan community non ufficiale creata nell'ambito del Dark Pack Agreement. Per ulteriori informazioni, visitare worldofdarkness.com.",
       "loadingText": "Invocazione degli Arcani...",
       "dataSource": "Fonte dati:"
     },
@@ -1253,6 +1261,7 @@ export const TRANSLATIONS = {
       "metadecks": "Mazzi Meta",
       "arena": "Arena",
       "profile": "Mio Profilo",
+      "unofficialApp": "Applicazione non ufficiale",
       "langSwitch": "Lingua"
     },
     "database": {
@@ -1853,6 +1862,8 @@ export const TRANSLATIONS = {
       "footerAttribution": "Anwendung entwickelt, erstellt und gepflegt von Mayki via Antigravity",
       "footerDevBy": "Anwendung entwickelt, erstellt und gepflegt von ",
       "footerWikiNotice": "Daten synchronisiert mit dem offiziellen Paradox Wiki (CoL_cardlist).",
+      "darkPackBadge": "Dark Pack Vereinbarung",
+      "darkPackDisclaimer": "Teile des Materials sind Urheberrechte und Marken von Paradox Interactive AB und werden mit Genehmigung verwendet. Alle Rechte vorbehalten. Vampire: The Masquerade® – Inoffizielle Community-Fan-App im Rahmen des Dark Pack Agreement. Weitere Informationen finden Sie unter worldofdarkness.com.",
       "loadingText": "Arkane Beschwörung...",
       "dataSource": "Datenquelle:"
     },
@@ -1864,6 +1875,7 @@ export const TRANSLATIONS = {
       "metadecks": "Meta Decks",
       "arena": "Arena",
       "profile": "Mein Profil",
+      "unofficialApp": "Inoffizielle Fan-App",
       "langSwitch": "Sprache"
     },
     "database": {
@@ -2464,6 +2476,8 @@ export const TRANSLATIONS = {
       "footerAttribution": "Aplicación desarrollada, creada y mantenida por Mayki vía Antigravity",
       "footerDevBy": "Aplicación desarrollada, creada y mantenida por ",
       "footerWikiNotice": "Datos sincronizados con la Wiki oficial de Paradox (CoL_cardlist).",
+      "darkPackBadge": "Acuerdo Dark Pack",
+      "darkPackDisclaimer": "Partes de los materiales son propiedad intelectual y marcas registradas de Paradox Interactive AB, y se utilizan con permiso. Todos los derechos reservados. Vampire: The Masquerade® – Aplicación comunitaria no oficial creada bajo el Dark Pack Agreement. Para más información, visite worldofdarkness.com.",
       "loadingText": "Invocando los Arcanos...",
       "dataSource": "Fuente de datos:"
     },
@@ -2475,6 +2489,7 @@ export const TRANSLATIONS = {
       "metadecks": "Mazos Meta",
       "arena": "Arena",
       "profile": "Mi Perfil",
+      "unofficialApp": "Aplicación no oficial",
       "langSwitch": "Idioma"
     },
     "database": {
@@ -3075,6 +3090,8 @@ export const TRANSLATIONS = {
       "footerAttribution": "Aplicação desenvolvida, criada e mantida por Mayki via Antigravity",
       "footerDevBy": "Aplicação desenvolvida, criada e mantida por ",
       "footerWikiNotice": "Dados sincronizados com a Wiki oficial da Paradox (CoL_cardlist).",
+      "darkPackBadge": "Acordo Dark Pack",
+      "darkPackDisclaimer": "Partes dos materiais são direitos autorais e marcas registradas da Paradox Interactive AB, e são usadas com permissão. Todos os direitos reservados. Vampire: The Masquerade® – Aplicação comunitária de fãs não oficial criada sob o Dark Pack Agreement. Para mais informações, visite worldofdarkness.com.",
       "loadingText": "Invocando os Arcanos...",
       "dataSource": "Fonte de dados:"
     },
@@ -3086,6 +3103,7 @@ export const TRANSLATIONS = {
       "metadecks": "Baralhos Meta",
       "arena": "Arena",
       "profile": "Meu Perfil",
+      "unofficialApp": "Aplicação não oficial",
       "langSwitch": "Idioma"
     },
     "database": {

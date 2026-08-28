@@ -33,6 +33,16 @@ export default function CardFrame({
   const clanInfo = CLANS[card.clan] || CLANS.Mortal;
   const ClanIcon = CLAN_ICONS[clanInfo.icon] || Shield;
 
+  const handleAdd = (e) => {
+    e?.stopPropagation?.();
+    onAdd?.(card);
+  };
+
+  const handleRemove = (e) => {
+    e?.stopPropagation?.();
+    onRemove?.(card.id);
+  };
+
   const getRarityBadge = (rarity) => {
     switch (rarity) {
       case 'Légendaire':
@@ -110,7 +120,7 @@ export default function CardFrame({
             <div className="flex items-center space-x-1" onClick={(e) => e.stopPropagation()}>
               {countInDeck > 0 && (
                 <button
-                  onClick={onRemove}
+                  onClick={handleRemove}
                   className="p-1 rounded bg-red-950/80 hover:bg-red-800 border border-red-500/40 text-red-300 hover:text-white transition-colors"
                   title={t?.card?.removeFromDeck || (isFrench ? "Retirer du deck" : "Remove from deck")}
                 >
@@ -123,7 +133,7 @@ export default function CardFrame({
                 </span>
               )}
               <button
-                onClick={onAdd}
+                onClick={handleAdd}
                 disabled={countInDeck >= 1}
                 className={`p-1 rounded border transition-colors ${
                   countInDeck >= 1
@@ -251,7 +261,7 @@ export default function CardFrame({
           <div className="flex items-center space-x-1.5">
             {countInDeck > 0 && (
               <button
-                onClick={onRemove}
+                onClick={handleRemove}
                 className="p-1.5 rounded-lg bg-red-950/80 hover:bg-red-800 border border-red-500/40 text-red-300 hover:text-white transition-colors"
                 title={t?.card?.removeFromDeck || (isFrench ? "Retirer une copie" : "Remove a copy")}
               >
@@ -260,7 +270,7 @@ export default function CardFrame({
             )}
 
             <button
-              onClick={onAdd}
+              onClick={handleAdd}
               disabled={countInDeck >= 1}
               className={`flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-gothic font-bold border transition-all ${
                 countInDeck >= 1

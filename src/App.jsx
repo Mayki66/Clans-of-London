@@ -181,22 +181,25 @@ export default function App() {
 
   // Add Card to Deck
   const handleAddCard = (card) => {
+    if (!card || typeof card !== 'object' || !card.id) return;
     if (deckCards.length >= MAX_DECK_SIZE) {
-      alert(t?.deckbuilder?.maxCardsAlert || 'A deck cannot exceed 15 cards.');
+      alert(t?.deckbuilder?.maxCardsAlert || 'Un deck ne peut contenir que 15 cartes maximum.');
       return;
     }
-    if (deckCards.some(c => c.id === card.id)) {
-      alert(t?.deckbuilder?.singletonAlert || 'This card is already in your deck (Singleton rule: 1 copy max).');
+    if (deckCards.some(c => c && c.id === card.id)) {
+      alert(t?.deckbuilder?.singletonAlert || 'Cette carte est déjà dans votre deck (règle Singleton : 1 exemplaire max).');
       return;
     }
-    const newDeck = [...deckCards, card];
+    const newDeck = [...deckCards.filter(c => c && c.id), card];
     setDeckCards(newDeck);
     storageSet(LS_CURRENT_DECK, { name: deckName, cardIds: newDeck.map(c => c.id) });
   };
 
   // Remove Card from Deck
-  const handleRemoveCard = (cardId) => {
-    const newDeck = deckCards.filter(c => c.id !== cardId);
+  const handleRemoveCard = (cardOrId) => {
+    const cardId = typeof cardOrId === 'object' && cardOrId !== null ? cardOrId.id : cardOrId;
+    if (!cardId) return;
+    const newDeck = deckCards.filter(c => c && c.id && c.id !== cardId);
     setDeckCards(newDeck);
     storageSet(LS_CURRENT_DECK, { name: deckName, cardIds: newDeck.map(c => c.id) });
   };
@@ -474,6 +477,16 @@ export default function App() {
                 Wiki Paradox (CoL_cardlist)
               </a>
             </span>
+            <span className="text-gray-600 hidden sm:inline">•</span>
+            <a
+              href="https://www.paradoxinteractive.com/games/world-of-darkness/community/dark-pack-agreement"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[11px] text-gray-400 hover:text-amber-300 hover:underline"
+              title={t?.brand?.darkPackDisclaimer || "Dark Pack Agreement"}
+            >
+              {t?.brand?.darkPackBadge || "Accord Dark Pack"}
+            </a>
           </div>
 
           <div className="flex items-center space-x-2 font-mono text-[11px] text-amber-400/90 font-semibold select-none">

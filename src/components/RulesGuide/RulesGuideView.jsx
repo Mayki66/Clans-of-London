@@ -420,8 +420,19 @@ export default function RulesGuideView({ onGoToDeckBuilder, lang = 'fr', t }) {
         </div>
       </div>
 
+      {/* Dark Pack Agreement & World of Darkness Legal Notice */}
+      <div className="glass-panel rounded-3xl p-6 border border-white/10 bg-[#07090e]/90 space-y-3 text-center shadow-xl">
+        <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-500/40 text-red-300 font-mono text-xs font-bold">
+          <Shield className="w-3.5 h-3.5 text-red-400" />
+          <span>{t?.brand?.darkPackBadge || "Accord Dark Pack"}</span>
+        </div>
+        <p className="max-w-3xl mx-auto leading-relaxed text-xs text-gray-400 font-sans">
+          {t?.brand?.darkPackDisclaimer || "Certains éléments sont des marques déposées et protégées par le droit d'auteur de Paradox Interactive AB, et sont utilisés avec autorisation. Tous droits réservés. Vampire: The Masquerade® – Application communautaire non-officielle réalisée dans le cadre du Dark Pack Agreement. Pour plus d'informations, visitez worldofdarkness.com."}
+        </p>
+      </div>
+
       {/* CTA Button to Deckbuilder */}
-      <div className="text-center pt-4">
+      <div className="text-center pt-2">
         <button
           onClick={onGoToDeckBuilder}
           className="px-8 py-3.5 rounded-full bg-gradient-to-r from-red-800 to-red-600 hover:from-red-700 hover:to-red-500 text-white font-gothic font-bold text-sm shadow-blood transition-all transform hover:scale-105 inline-flex items-center space-x-2"

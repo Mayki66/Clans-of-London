@@ -164,16 +164,23 @@ export default function Navbar({
 
           </nav>
 
+          {/* Unofficial Fan Application Badge (Dark Pack) */}
+          <div className="hidden lg:flex items-center space-x-1.5 px-2.5 py-1 rounded-xl bg-red-950/40 border border-red-500/30 text-[10px] font-mono font-semibold text-red-300 shadow-sm flex-shrink-0">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+            <span>{t?.nav?.unofficialApp || "Application non-officielle"}</span>
+          </div>
+
           {/* Globe Planet Language Switcher with Dropdown Menu */}
           <div className="relative flex-shrink-0" ref={langDropdownRef}>
             <button
               onClick={() => setShowLangDropdown(!showLangDropdown)}
-              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-[#121622] hover:bg-[#1c2236] border border-white/15 hover:border-amber-400/60 text-xs font-bold font-mono text-gray-200 hover:text-white transition-all shadow-sm"
+              className="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-xl bg-[#121622] hover:bg-[#1c2236] border border-white/15 hover:border-amber-400/60 text-xs font-bold font-mono text-gray-200 hover:text-white transition-all shadow-sm"
               title={t?.nav?.langSwitch || "Changer de Langue"}
             >
-              <Globe className="w-4 h-4 text-amber-400" />
-              <span className="text-xs">{currentLangObj?.flag}</span>
-              <span className="hidden sm:inline text-[11px] font-gothic uppercase">{currentLangObj?.code}</span>
+              <Globe className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
+              <span className="text-[11px] font-mono font-bold uppercase text-amber-300">
+                {currentLangObj?.code}
+              </span>
               <ChevronDown className={`w-3 h-3 text-gray-400 transition-transform ${showLangDropdown ? 'rotate-180 text-amber-400' : ''}`} />
             </button>
 
@@ -198,8 +205,10 @@ export default function Navbar({
                           : 'text-gray-300 hover:bg-white/5 hover:text-white'
                       }`}
                     >
-                      <div className="flex items-center space-x-2.5">
-                        <span className="text-base leading-none">{l.flag}</span>
+                      <div className="flex items-center space-x-2">
+                        <span className="px-1.5 py-0.5 rounded bg-black/60 border border-white/10 font-mono text-[10px] font-bold text-amber-400">
+                          {l.code.toUpperCase()}
+                        </span>
                         <span>{l.label}</span>
                       </div>
                       {isSelected && <Check className="w-3.5 h-3.5 text-amber-400" />}
