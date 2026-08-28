@@ -478,10 +478,11 @@ export default function App() {
 
           <div className="flex items-center space-x-2 font-mono text-[11px] text-amber-400/90 font-semibold select-none">
             <span>
-              {t?.brand?.footerAttribution?.replace('Mayki', '') || 'Application developed by '}
+              {t?.brand?.footerDevBy || 'Application developed by '}
               <span
                 onClick={() => setShowAdminLogin(true)}
-                className="cursor-default"
+                className="cursor-pointer hover:underline hover:text-amber-300 transition-colors"
+                title="Mayki"
               >
                 Mayki
               </span>

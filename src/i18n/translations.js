@@ -18,6 +18,7 @@ export const TRANSLATIONS = {
       "title": "CLANS OF LONDON",
       "subtitle": "Vampire: The Masquerade",
       "footerAttribution": "Application développée, créée, éditée et remplie par Mayki via Antigravity",
+      "footerDevBy": "Application développée, créée, éditée et remplie par ",
       "footerWikiNotice": "Données alignées sur le wiki officiel Paradox (CoL_cardlist).",
       "loadingText": "Invocation des Arcanes...",
       "dataSource": "Données :"
@@ -628,6 +629,7 @@ export const TRANSLATIONS = {
       "title": "CLANS OF LONDON",
       "subtitle": "Vampire: The Masquerade",
       "footerAttribution": "Application developed, designed and populated by Mayki via Antigravity",
+      "footerDevBy": "Application developed, designed and populated by ",
       "footerWikiNotice": "Data synchronized with official Paradox Wiki (CoL_cardlist).",
       "loadingText": "Invoking the Arcanes...",
       "dataSource": "Data source:"
@@ -1238,6 +1240,7 @@ export const TRANSLATIONS = {
       "title": "CLANS OF LONDON",
       "subtitle": "Vampire: The Masquerade",
       "footerAttribution": "Applicazione sviluppata, creata e curata da Mayki via Antigravity",
+      "footerDevBy": "Applicazione sviluppata, creata e curata da ",
       "footerWikiNotice": "Dati sincronizzati con il Wiki ufficiale Paradox (CoL_cardlist).",
       "loadingText": "Invocazione degli Arcani...",
       "dataSource": "Fonte dati:"
@@ -1848,6 +1851,7 @@ export const TRANSLATIONS = {
       "title": "CLANS OF LONDON",
       "subtitle": "Vampire: The Masquerade",
       "footerAttribution": "Anwendung entwickelt, erstellt und gepflegt von Mayki via Antigravity",
+      "footerDevBy": "Anwendung entwickelt, erstellt und gepflegt von ",
       "footerWikiNotice": "Daten synchronisiert mit dem offiziellen Paradox Wiki (CoL_cardlist).",
       "loadingText": "Arkane Beschwörung...",
       "dataSource": "Datenquelle:"
@@ -2458,6 +2462,7 @@ export const TRANSLATIONS = {
       "title": "CLANS OF LONDON",
       "subtitle": "Vampire: The Masquerade",
       "footerAttribution": "Aplicación desarrollada, creada y mantenida por Mayki vía Antigravity",
+      "footerDevBy": "Aplicación desarrollada, creada y mantenida por ",
       "footerWikiNotice": "Datos sincronizados con la Wiki oficial de Paradox (CoL_cardlist).",
       "loadingText": "Invocando los Arcanos...",
       "dataSource": "Fuente de datos:"
@@ -3068,6 +3073,7 @@ export const TRANSLATIONS = {
       "title": "CLANS OF LONDON",
       "subtitle": "Vampire: The Masquerade",
       "footerAttribution": "Aplicação desenvolvida, criada e mantida por Mayki via Antigravity",
+      "footerDevBy": "Aplicação desenvolvida, criada e mantida por ",
       "footerWikiNotice": "Dados sincronizados com a Wiki oficial da Paradox (CoL_cardlist).",
       "loadingText": "Invocando os Arcanos...",
       "dataSource": "Fonte de dados:"
