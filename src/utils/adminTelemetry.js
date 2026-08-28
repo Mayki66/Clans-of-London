@@ -2,7 +2,7 @@
  * Cryptographically Secure Admin Telemetry & Authentication Service
  * Clans of London
  */
-import { syncCloudVisit, syncCloudUser, syncCloudExport, fetchAllCloudTelemetry } from './cloudDatabase';
+import { syncCloudVisit, syncCloudUser, syncCloudExport, fetchAllCloudTelemetry } from '../services/cloudService';
 
 const ADMIN_USER_HASH = "66de23131a05ab0d91d9d799aff7a0865fbda0857913c96a7848d7bdc79e9654";
 const ADMIN_PASS_HASH = "94c08fe9d68ac10788bd923aca641cbf6158b32e2534333dc276fdd7bf43e1fe";

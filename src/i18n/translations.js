@@ -18,7 +18,9 @@ export const TRANSLATIONS = {
       "title": "CLANS OF LONDON",
       "subtitle": "Vampire: The Masquerade",
       "footerAttribution": "Application développée, créée, éditée et remplie par Mayki via Antigravity",
-      "footerWikiNotice": "Données alignées sur le wiki officiel Paradox (CoL_cardlist)."
+      "footerWikiNotice": "Données alignées sur le wiki officiel Paradox (CoL_cardlist).",
+      "loadingText": "Invocation des Arcanes...",
+      "dataSource": "Données :"
     },
     "nav": {
       "rules": "Règles",
@@ -84,7 +86,9 @@ export const TRANSLATIONS = {
       "clanDominance": "Dominance des Clans",
       "archetypeDist": "Répartition des Archétypes",
       "simulator": "Simulateur de Mains",
-      "resetDeckBtn": "Effacer tout"
+      "resetDeckBtn": "Effacer tout",
+      "maxCardsAlert": "Un deck ne peut contenir que 15 cartes maximum.",
+      "singletonAlert": "Cette carte est déjà dans votre deck (règle Singleton : 1 exemplaire max)."
     },
     "community": {
       "title": "Decks de la Communauté",
@@ -244,7 +248,9 @@ export const TRANSLATIONS = {
       "title": "CLANS OF LONDON",
       "subtitle": "Vampire: The Masquerade",
       "footerAttribution": "Application developed, designed and populated by Mayki via Antigravity",
-      "footerWikiNotice": "Data synchronized with official Paradox Wiki (CoL_cardlist)."
+      "footerWikiNotice": "Data synchronized with official Paradox Wiki (CoL_cardlist).",
+      "loadingText": "Invoking the Arcanes...",
+      "dataSource": "Data source:"
     },
     "nav": {
       "rules": "Rules",
@@ -310,7 +316,9 @@ export const TRANSLATIONS = {
       "clanDominance": "Clan Dominance",
       "archetypeDist": "Archetype Distribution",
       "simulator": "Opening Hand Simulator",
-      "resetDeckBtn": "Clear all"
+      "resetDeckBtn": "Clear all",
+      "maxCardsAlert": "A deck cannot exceed 15 cards.",
+      "singletonAlert": "This card is already in your deck (Singleton rule: 1 copy max)."
     },
     "community": {
       "title": "Community Decks",
@@ -470,7 +478,9 @@ export const TRANSLATIONS = {
       "title": "CLANS OF LONDON",
       "subtitle": "Vampire: The Masquerade",
       "footerAttribution": "Applicazione sviluppata, creata e gestita da Mayki tramite Antigravity",
-      "footerWikiNotice": "Dati sincronizzati con il Wiki ufficiale Paradox (CoL_cardlist)."
+      "footerWikiNotice": "Dati sincronizzati con il Wiki ufficiale Paradox (CoL_cardlist).",
+      "loadingText": "Invocazione degli Arcani...",
+      "dataSource": "Fonte dati:"
     },
     "nav": {
       "rules": "Regole",
@@ -536,7 +546,9 @@ export const TRANSLATIONS = {
       "clanDominance": "Dominanza dei Clan",
       "archetypeDist": "Distribuzione Archetipi",
       "simulator": "Simulatore di Mano Iniziale",
-      "resetDeckBtn": "Cancella tutto"
+      "resetDeckBtn": "Cancella tutto",
+      "maxCardsAlert": "Un mazzo non puo contenere piu di 15 carte.",
+      "singletonAlert": "Questa carta e gia nel tuo mazzo (regola Singleton: 1 copia max)."
     },
     "community": {
       "title": "Mazzi della Community",
@@ -696,7 +708,9 @@ export const TRANSLATIONS = {
       "title": "CLANS OF LONDON",
       "subtitle": "Vampire: The Masquerade",
       "footerAttribution": "Anwendung entwickelt, erstellt und gepflegt von Mayki über Antigravity",
-      "footerWikiNotice": "Daten synchronisiert mit dem offiziellen Paradox Wiki (CoL_cardlist)."
+      "footerWikiNotice": "Daten synchronisiert mit dem offiziellen Paradox Wiki (CoL_cardlist).",
+      "loadingText": "Arkane Beschworung...",
+      "dataSource": "Datenquelle:"
     },
     "nav": {
       "rules": "Regeln",
@@ -762,7 +776,9 @@ export const TRANSLATIONS = {
       "clanDominance": "Clan-Dominanz",
       "archetypeDist": "Archetypen-Verteilung",
       "simulator": "Starthand-Simulator",
-      "resetDeckBtn": "Alles leeren"
+      "resetDeckBtn": "Alles leeren",
+      "maxCardsAlert": "Ein Deck darf maximal 15 Karten enthalten.",
+      "singletonAlert": "Diese Karte ist bereits in deinem Deck (Singleton-Regel: max. 1 Exemplar)."
     },
     "community": {
       "title": "Community-Decks",
@@ -922,7 +938,9 @@ export const TRANSLATIONS = {
       "title": "CLANS OF LONDON",
       "subtitle": "Vampire: The Masquerade",
       "footerAttribution": "Aplicación desarrollada, creada y mantenida por Mayki mediante Antigravity",
-      "footerWikiNotice": "Datos sincronizados con la Wiki oficial de Paradox (CoL_cardlist)."
+      "footerWikiNotice": "Datos sincronizados con la Wiki oficial de Paradox (CoL_cardlist).",
+      "loadingText": "Invocando los Arcanos...",
+      "dataSource": "Fuente de datos:"
     },
     "nav": {
       "rules": "Reglas",
@@ -988,7 +1006,9 @@ export const TRANSLATIONS = {
       "clanDominance": "Dominio de Clanes",
       "archetypeDist": "Distribución de Arquetipos",
       "simulator": "Simulador de Mano Inicial",
-      "resetDeckBtn": "Borrar todo"
+      "resetDeckBtn": "Borrar todo",
+      "maxCardsAlert": "Un mazo no puede contener mas de 15 cartas.",
+      "singletonAlert": "Esta carta ya esta en tu mazo (regla Singleton: 1 copia max.)."
     },
     "community": {
       "title": "Mazos de la Comunidad",
@@ -1148,7 +1168,9 @@ export const TRANSLATIONS = {
       "title": "CLANS OF LONDON",
       "subtitle": "Vampire: The Masquerade",
       "footerAttribution": "Aplicação desenvolvida, criada e mantida por Mayki via Antigravity",
-      "footerWikiNotice": "Dados sincronizados com a Wiki oficial da Paradox (CoL_cardlist)."
+      "footerWikiNotice": "Dados sincronizados com a Wiki oficial da Paradox (CoL_cardlist).",
+      "loadingText": "Invocando os Arcanos...",
+      "dataSource": "Fonte de dados:"
     },
     "nav": {
       "rules": "Regras",
@@ -1214,7 +1236,9 @@ export const TRANSLATIONS = {
       "clanDominance": "Domínio dos Clãs",
       "archetypeDist": "Distribuição de Arquétipos",
       "simulator": "Simulador de Mão Inicial",
-      "resetDeckBtn": "Limpar tudo"
+      "resetDeckBtn": "Limpar tudo",
+      "maxCardsAlert": "Um baralho nao pode conter mais de 15 cartas.",
+      "singletonAlert": "Esta carta ja esta no seu baralho (regra Singleton: 1 copia max.)."
     },
     "community": {
       "title": "Decks da Comunidade",

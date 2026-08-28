@@ -28,3 +28,7 @@ scratch/
 *.njsproj
 *.sln
 *.sw?
+
+# Local environment variables (sensitive - never commit)
+.env.local
+.env.*.local

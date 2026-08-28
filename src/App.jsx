@@ -7,6 +7,13 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 import { trackVisit, trackInteraction, trackProfileExport, trackUserRegistration } from './utils/adminTelemetry';
 import { parseCurrentRoute, navigateTo } from './utils/router';
 import confetti from 'canvas-confetti';
+import {
+  LS_SAVED_DECKS, LS_CURRENT_DECK, LS_USER_PROFILE, LS_CUSTOM_IMAGES,
+  LS_LANG, LS_ONBOARDING, MAX_DECK_SIZE,
+  DEFAULT_OWNED_CARD_IDS, DEFAULT_USER_PROFILE, DEFAULT_STARTER_DECK_NAME, DEFAULT_STARTER_DECK_COUNT
+} from './config/constants';
+import { storageGet, storageSet, storageGetRaw, storageSetRaw, storageRemove } from './services/storageService';
+
 
 // Lazy-loaded Views and Modals for high-performance Code-Splitting
 const DeckBuilderView = lazy(() => import('./components/DeckBuilder/DeckBuilderView'));
@@ -37,45 +44,13 @@ function ViewLoadingFallback() {
   );
 }
 
-const LOCAL_STORAGE_SAVED_DECKS = 'col_saved_decks_v1';
-const LOCAL_STORAGE_CURRENT_DECK = 'col_current_deck_v1';
-const LOCAL_STORAGE_USER_PROFILE = 'col_user_profile_v1';
-const LOCAL_STORAGE_CUSTOM_IMAGES = 'col_custom_images_v1';
-const LOCAL_STORAGE_LANG = 'col_lang';
-const LOCAL_STORAGE_ONBOARDING = 'col_onboarding_completed';
-
-const DEFAULT_OWNED_CARD_IDS = [
-  "col-001", "col-002", "col-029", "col-003", "col-004", "col-032", "col-028", 
-  "col-005", "col-006", "col-007", "col-008", "col-009", "col-033", "col-034", 
-  "col-035", "col-010", "col-011", "col-040", "col-051", "col-012", "col-041", 
-  "col-013", "col-014", "col-043", "col-044", "col-045", "col-015", "col-016", 
-  "col-017", "col-046", "col-047", "col-048", "col-050", "col-052", "col-018", 
-  "col-019", "col-053", "col-054", "col-055", "col-056", "col-057", "col-058", 
-  "col-059", "col-060", "col-061", "col-020", "col-022", "col-023", "col-153", 
-  "col-021", "col-155", "col-024", "col-065", "col-066", "col-067", "col-068", 
-  "col-069", "col-025", "col-070", "col-071", "col-026", "col-027", "col-072", 
-  "col-160", "col-192", "col-ing-01", "col-ing-02", "col-ing-03"
-];
-
 export default function App() {
   const initialRoute = parseCurrentRoute();
   const [activeView, setActiveView] = useState(initialRoute.view || 'rules');
   const [targetDeckId, setTargetDeckId] = useState(initialRoute.deckId || null);
 
-  const [lang, setLang] = useState(() => {
-    try {
-      return localStorage.getItem(LOCAL_STORAGE_LANG) || 'fr';
-    } catch {
-      return 'fr';
-    }
-  });
-  const [showOnboarding, setShowOnboarding] = useState(() => {
-    try {
-      return !localStorage.getItem(LOCAL_STORAGE_ONBOARDING);
-    } catch {
-      return false;
-    }
-  });
+  const [lang, setLang] = useState(() => storageGetRaw(LS_LANG, 'fr'));
+  const [showOnboarding, setShowOnboarding] = useState(() => !storageGetRaw(LS_ONBOARDING));
 
   const [showAdminLogin, setShowAdminLogin] = useState(false);
   const [showAdminDashboard, setShowAdminDashboard] = useState(false);
@@ -96,72 +71,44 @@ export default function App() {
 
   const handleLangChange = (newLang) => {
     setLang(newLang);
-    try {
-      localStorage.setItem(LOCAL_STORAGE_LANG, newLang);
-    } catch (e) {
-      console.error("Error saving lang preference", e);
-    }
+    storageSetRaw(LS_LANG, newLang);
   };
 
   // User Profile state (Collection, Arena Points, Match History)
-  const [userProfile, setUserProfile] = useState({
-    playerName: '',
-    collectionLevel: 1,
-    arenaPoints: 0,
-    ownedCardIds: DEFAULT_OWNED_CARD_IDS,
-    matchHistory: []
-  });
+  const [userProfile, setUserProfile] = useState(DEFAULT_USER_PROFILE);
 
   // Load saved data on mount & track visit
   useEffect(() => {
-    try {
-      trackVisit();
-    } catch (e) {
-      console.error("Error tracking visit", e);
-    }
+    try { trackVisit(); } catch (e) { console.error('Error tracking visit', e); }
 
     try {
-      const saved = localStorage.getItem(LOCAL_STORAGE_SAVED_DECKS);
-      if (saved) {
-        setSavedDecks(JSON.parse(saved));
-      }
+      const savedDecksData = storageGet(LS_SAVED_DECKS);
+      if (savedDecksData) setSavedDecks(savedDecksData);
 
-      const profile = localStorage.getItem(LOCAL_STORAGE_USER_PROFILE);
+      const profile = storageGet(LS_USER_PROFILE);
       if (profile) {
-        const parsedProfile = JSON.parse(profile);
-        setUserProfile(parsedProfile);
+        setUserProfile(profile);
       } else {
-        // Nouveau joueur : profil neutre, l'onboarding demandera le pseudo
-        const initial = {
-          playerName: '',
-          collectionLevel: 1,
-          arenaPoints: 0,
-          ownedCardIds: DEFAULT_OWNED_CARD_IDS,
-          matchHistory: []
-        };
-        localStorage.setItem(LOCAL_STORAGE_USER_PROFILE, JSON.stringify(initial));
-        setUserProfile(initial);
+        storageSet(LS_USER_PROFILE, DEFAULT_USER_PROFILE);
+        setUserProfile(DEFAULT_USER_PROFILE);
       }
 
-      const images = localStorage.getItem(LOCAL_STORAGE_CUSTOM_IMAGES);
-      if (images) {
-        setCustomImages(JSON.parse(images));
-      }
+      const images = storageGet(LS_CUSTOM_IMAGES);
+      if (images) setCustomImages(images);
 
-      const current = localStorage.getItem(LOCAL_STORAGE_CURRENT_DECK);
+      const current = storageGet(LS_CURRENT_DECK);
       if (current) {
-        const parsed = JSON.parse(current);
-        if (parsed.name) setDeckName(parsed.name);
-        if (parsed.cardIds && Array.isArray(parsed.cardIds)) {
-          const loadedCards = parsed.cardIds
+        if (current.name) setDeckName(current.name);
+        if (current.cardIds && Array.isArray(current.cardIds)) {
+          const loadedCards = current.cardIds
             .map(id => CARDS_DATA.find(c => c.id === id))
             .filter(Boolean);
           setDeckCards(loadedCards);
         }
       } else {
-        const starterCards = CARDS_DATA.slice(0, 10);
+        const starterCards = CARDS_DATA.slice(0, DEFAULT_STARTER_DECK_COUNT);
         setDeckCards(starterCards);
-        setDeckName('Deck d\'Initiation (Série 0)');
+        setDeckName(DEFAULT_STARTER_DECK_NAME);
       }
     } catch (e) {
       console.error('Error loading saved data from localStorage:', e);
@@ -212,16 +159,9 @@ export default function App() {
   };
 
   const handleOnboardingComplete = (data) => {
-    try {
-      localStorage.setItem(LOCAL_STORAGE_ONBOARDING, 'true');
-    } catch (e) {
-      console.error("Error setting onboarding complete", e);
-    }
+    storageSetRaw(LS_ONBOARDING, 'true');
     if (data?.playerName) {
-      handleUpdateProfile({
-        ...userProfile,
-        playerName: data.playerName
-      });
+      handleUpdateProfile({ ...userProfile, playerName: data.playerName });
     }
     setShowOnboarding(false);
   };
@@ -241,69 +181,39 @@ export default function App() {
 
   // Add Card to Deck
   const handleAddCard = (card) => {
-    if (deckCards.length >= 15) {
-      alert(lang === 'fr' ? 'Un deck ne peut contenir que 15 cartes maximum.' : 'A deck cannot exceed 15 cards.');
+    if (deckCards.length >= MAX_DECK_SIZE) {
+      alert(t?.deckbuilder?.maxCardsAlert || 'A deck cannot exceed 15 cards.');
       return;
     }
     if (deckCards.some(c => c.id === card.id)) {
-      alert(lang === 'fr' ? 'Cette carte est déjà dans votre deck (règle Singleton : 1 exemplaire max).' : 'This card is already in your deck (Singleton rule: 1 copy max).');
+      alert(t?.deckbuilder?.singletonAlert || 'This card is already in your deck (Singleton rule: 1 copy max).');
       return;
     }
     const newDeck = [...deckCards, card];
     setDeckCards(newDeck);
-    try {
-      localStorage.setItem(LOCAL_STORAGE_CURRENT_DECK, JSON.stringify({
-        name: deckName,
-        cardIds: newDeck.map(c => c.id)
-      }));
-    } catch (e) {
-      console.error('Error saving current deck:', e);
-    }
+    storageSet(LS_CURRENT_DECK, { name: deckName, cardIds: newDeck.map(c => c.id) });
   };
 
   // Remove Card from Deck
   const handleRemoveCard = (cardId) => {
     const newDeck = deckCards.filter(c => c.id !== cardId);
     setDeckCards(newDeck);
-    try {
-      localStorage.setItem(LOCAL_STORAGE_CURRENT_DECK, JSON.stringify({
-        name: deckName,
-        cardIds: newDeck.map(c => c.id)
-      }));
-    } catch (e) {
-      console.error('Error saving current deck:', e);
-    }
+    storageSet(LS_CURRENT_DECK, { name: deckName, cardIds: newDeck.map(c => c.id) });
   };
 
   // Clear Deck
   const handleClearDeck = () => {
     setDeckCards([]);
-    try {
-      localStorage.removeItem(LOCAL_STORAGE_CURRENT_DECK);
-    } catch (e) {
-      console.error('Error clearing current deck:', e);
-    }
+    storageRemove(LS_CURRENT_DECK);
   };
 
   // Load Saved or Meta / Community Deck
   const handleLoadDeck = (deck) => {
-    const cards = deck.cardIds
-      .map(id => CARDS_DATA.find(c => c.id === id))
-      .filter(Boolean);
-    
+    const cards = deck.cardIds.map(id => CARDS_DATA.find(c => c.id === id)).filter(Boolean);
     setDeckCards(cards);
     setDeckName(deck.name);
     handleNavigate('deckbuilder');
-
-    try {
-      localStorage.setItem(LOCAL_STORAGE_CURRENT_DECK, JSON.stringify({
-        name: deck.name,
-        cardIds: cards.map(c => c.id)
-      }));
-    } catch (e) {
-      console.error('Error loading deck into current:', e);
-    }
-
+    storageSet(LS_CURRENT_DECK, { name: deck.name, cardIds: cards.map(c => c.id) });
     confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
   };
 
@@ -324,32 +234,21 @@ export default function App() {
     };
     const updated = [newDeckEntry, ...savedDecks.filter(d => d.name !== newDeckEntry.name)];
     setSavedDecks(updated);
-    try {
-      localStorage.setItem(LOCAL_STORAGE_SAVED_DECKS, JSON.stringify(updated));
-    } catch (e) {
-      console.error('Error saving decks list:', e);
-    }
+    storageSet(LS_SAVED_DECKS, updated);
   };
+
 
   // Delete Deck
   const handleDeleteSavedDeck = (deckId) => {
     const updated = savedDecks.filter(d => d.id !== deckId);
     setSavedDecks(updated);
-    try {
-      localStorage.setItem(LOCAL_STORAGE_SAVED_DECKS, JSON.stringify(updated));
-    } catch (e) {
-      console.error('Error deleting saved deck:', e);
-    }
+    storageSet(LS_SAVED_DECKS, updated);
   };
 
   // Profile actions
   const handleUpdateProfile = (newProfile) => {
     setUserProfile(newProfile);
-    try {
-      localStorage.setItem(LOCAL_STORAGE_USER_PROFILE, JSON.stringify(newProfile));
-    } catch (e) {
-      console.error('Error updating user profile:', e);
-    }
+    storageSet(LS_USER_PROFILE, newProfile);
   };
 
   const handleToggleOwnedCard = (cardId) => {
@@ -386,11 +285,7 @@ export default function App() {
   const handleUpdateCardImage = (cardId, customUrl) => {
     const updated = { ...customImages, [cardId]: customUrl };
     setCustomImages(updated);
-    try {
-      localStorage.setItem(LOCAL_STORAGE_CUSTOM_IMAGES, JSON.stringify(updated));
-    } catch (e) {
-      console.error('Error saving custom images:', e);
-    }
+    storageSet(LS_CUSTOM_IMAGES, updated);
   };
 
   const activeInspectedCard = inspectedCard ? {
@@ -565,11 +460,11 @@ export default function App() {
             </p>
             <span className="text-gray-600 hidden sm:inline">•</span>
             <span className="text-[11px] text-gray-400">
-              {lang === 'fr' ? 'Données :' : 'Data source:'}{' '}
-              <a 
-                href="https://vtm.paradoxwikis.com/CoL_cardlist" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              {t?.brand?.dataSource || 'Data source:'}{' '}
+              <a
+                href="https://vtm.paradoxwikis.com/CoL_cardlist"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-red-400 hover:text-red-300 hover:underline"
               >
                 Wiki Paradox (CoL_cardlist)
@@ -579,7 +474,7 @@ export default function App() {
 
           <div className="flex items-center space-x-2 font-mono text-[11px] text-amber-400/90 font-semibold select-none">
             <span>
-              {lang === 'fr' ? 'Application développée, créée, éditée et remplie par ' : 'Application developed, created, edited and curated by '}
+              {t?.brand?.footerAttribution?.replace('Mayki', '') || 'Application developed by '}
               <span
                 onClick={() => setShowAdminLogin(true)}
                 className="cursor-default"
