@@ -481,8 +481,7 @@ export default function App() {
               {t?.brand?.footerDevBy || 'Application developed by '}
               <span
                 onClick={() => setShowAdminLogin(true)}
-                className="cursor-pointer hover:underline hover:text-amber-300 transition-colors"
-                title="Mayki"
+                className="cursor-default"
               >
                 Mayki
               </span>

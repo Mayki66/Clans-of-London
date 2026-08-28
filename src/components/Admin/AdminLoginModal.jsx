@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Lock, User, KeyRound, X, ArrowRight, ShieldAlert } from 'lucide-react';
 import { verifyAdminCredentials } from '../../utils/adminTelemetry';
 
-export default function AdminLoginModal({ onClose, onSuccess }) {
+export default function AdminLoginModal({ onClose, onSuccess, lang = 'fr', t }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);

@@ -6,7 +6,7 @@ import {
 import { getTelemetryData } from '../../utils/adminTelemetry';
 import { fetchAllCloudTelemetry, getSupabaseConfig, saveSupabaseConfig, syncCloudVisit, syncCloudUser } from '../../utils/cloudDatabase';
 
-export default function GhostAdminModal({ onClose }) {
+export default function GhostAdminModal({ onClose, lang = 'fr', t }) {
   const [telemetry, setTelemetry] = useState(getTelemetryData());
   const [cloudConnected, setCloudConnected] = useState(false);
   const [cloudError, setCloudError] = useState(null);
