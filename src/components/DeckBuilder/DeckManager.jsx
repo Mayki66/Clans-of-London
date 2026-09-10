@@ -21,6 +21,7 @@ export default function DeckManager({
   const [showSavedModal, setShowSavedModal] = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
   const [showPublishModal, setShowPublishModal] = useState(false);
+  const [publishDeckTarget, setPublishDeckTarget] = useState(null);
   const [showImageExportModal, setShowImageExportModal] = useState(false);
   const [importText, setImportText] = useState('');
   const [copied, setCopied] = useState(false);
@@ -40,7 +41,11 @@ export default function DeckManager({
       createdAt: new Date().toLocaleDateString(isFrench ? 'fr-FR' : 'en-US'),
       cardIds: deckCards.map(c => c.id)
     });
-    alert((t?.deckbuilder?.deckSavedSuccess || 'Deck "{name}" sauvegardé avec succès !').replace("{name}", deckName));
+    const successMsg = (t?.deckbuilder?.deckSavedSuccess || 'Deck "{name}" sauvegardé avec succès !').replace("{name}", deckName);
+    const hintMsg = isFrench 
+      ? "\n\n💡 Astuce : Votre deck est enregistré dans 'Mes Decks'. Pour le rendre visible par tous les joueurs dans l'onglet Communauté, cliquez sur 'Publier en Ligne' !"
+      : "\n\n💡 Tip: Your deck is saved in 'My Decks'. To share it with all players in the Community tab, click 'Publish Online'!";
+    alert(successMsg + hintMsg);
   };
 
   const handleExportText = () => {
@@ -183,14 +188,18 @@ export default function DeckManager({
             <span>{t?.deckbuilder?.import || "Importer"}</span>
           </button>
 
-          {/* Ajouter Commu Button */}
+          {/* Publier en Ligne Button */}
           <button
-            onClick={() => setShowPublishModal(true)}
+            onClick={() => {
+              setPublishDeckTarget(null);
+              setShowPublishModal(true);
+            }}
             disabled={cardCount === 0}
             className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-950 hover:from-indigo-800 hover:to-purple-800 text-indigo-100 hover:text-white text-xs font-gothic font-bold border border-indigo-400 shadow-[0_0_15px_rgba(99,102,241,0.3)] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            title={t?.deckbuilder?.publishSavedDeckTooltip || (isFrench ? "Partager ce deck en ligne avec la communauté" : "Share this deck online with the community")}
           >
-            <Users className="w-4 h-4 text-indigo-300" />
-            <span>{t?.deckbuilder?.addCommunity || "Ajouter Commu"}</span>
+            <Share2 className="w-4 h-4 text-indigo-300" />
+            <span>{t?.deckbuilder?.addCommunity || (isFrench ? "Publier en Ligne" : "Publish Online")}</span>
           </button>
         </div>
 
@@ -253,12 +262,25 @@ export default function DeckManager({
                         }}
                         className="px-3 py-1.5 rounded-lg bg-red-900 hover:bg-red-800 text-white text-xs font-bold font-gothic"
                       >
-                        Charger
+                        {t?.deckbuilder?.load || (isFrench ? "Charger" : "Load")}
+                      </button>
+                      <button
+                        onClick={() => {
+                          const mappedCards = deck.cardIds.map(id => CARDS_DATA.find(c => c.id === id)).filter(Boolean);
+                          setPublishDeckTarget({ name: deck.name, cards: mappedCards });
+                          setShowSavedModal(false);
+                          setShowPublishModal(true);
+                        }}
+                        className="flex items-center space-x-1 px-2.5 py-1.5 rounded-lg bg-gradient-to-r from-indigo-800 to-purple-900 hover:from-indigo-700 hover:to-purple-800 text-white text-xs font-bold font-gothic border border-indigo-400 shadow-sm transition-all"
+                        title={t?.deckbuilder?.publishSavedDeckTooltip || (isFrench ? "Publier ce deck dans la communauté en ligne" : "Publish this deck to the online community")}
+                      >
+                        <Share2 className="w-3.5 h-3.5 text-indigo-300" />
+                        <span>{t?.deckbuilder?.publishSavedDeck || (isFrench ? "Publier" : "Publish")}</span>
                       </button>
                       <button
                         onClick={() => onDeleteSavedDeck(deck.id)}
                         className="p-1.5 rounded-lg bg-slate-900 hover:bg-red-950 text-gray-400 hover:text-red-300"
-                        title={t?.deckbuilder?.delete || "Supprimer"}
+                        title={t?.deckbuilder?.delete || (isFrench ? "Supprimer" : "Delete")}
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -321,9 +343,12 @@ export default function DeckManager({
       {/* Publish to Community Modal */}
       <PublishCommunityDeckModal
         isOpen={showPublishModal}
-        onClose={() => setShowPublishModal(false)}
-        deckName={deckName}
-        deckCards={deckCards}
+        onClose={() => {
+          setShowPublishModal(false);
+          setPublishDeckTarget(null);
+        }}
+        deckName={publishDeckTarget ? publishDeckTarget.name : deckName}
+        deckCards={publishDeckTarget ? publishDeckTarget.cards : deckCards}
         userProfile={userProfile}
         lang={lang}
         t={t}

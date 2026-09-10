@@ -30,11 +30,22 @@ export default function PublishCommunityDeckModal({
   };
 
   const [title, setTitle] = useState(deckName || 'Mon Deck Stratégique');
-  const [author, setAuthor] = useState(userProfile?.playerName || 'Mayki');
+  const [author, setAuthor] = useState(userProfile?.playerName || '');
   const [clan, setClan] = useState(getDominantClan());
   const [strategy, setStrategy] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [publishedSuccess, setPublishedSuccess] = useState(false);
+
+  React.useEffect(() => {
+    if (isOpen) {
+      setTitle(deckName || 'Mon Deck Stratégique');
+      setAuthor(userProfile?.playerName || '');
+      setClan(getDominantClan());
+      setStrategy('');
+      setPublishedSuccess(false);
+      setSubmitting(false);
+    }
+  }, [isOpen, deckName, deckCards, userProfile]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,7 +64,7 @@ export default function PublishCommunityDeckModal({
       const newDeck = await publishCommunityDeck({
         name: title.trim(),
         clan,
-        author: author.trim() || 'Kindred Anonyme',
+        author: author.trim() || userProfile?.playerName || (lang === 'fr' ? 'Kindred Anonyme' : 'Anonymous Kindred'),
         strategy: strategy.trim() || 'Deck compétitif partagé par la communauté de Londres.',
         cardIds
       });

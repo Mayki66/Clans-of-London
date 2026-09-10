@@ -77,6 +77,7 @@ export async function fetchCloudCommunityDecks() {
     const { data: cloudDecks, error } = await supabase
       .from('col_community_decks')
       .select('*')
+      .neq('tier', 'ARCHIVED_TEST')
       .order('published_at', { ascending: false });
 
     if (error) {
@@ -85,21 +86,19 @@ export async function fetchCloudCommunityDecks() {
     }
 
     if (cloudDecks && Array.isArray(cloudDecks)) {
-      // Dédupliquer côté cloud par (name + author) — garder la plus récente
-      const seenNameAuthor = new Map();
+      // Préserver tous les decks légitimes en dédupliquant uniquement par identifiant unique (id)
+      const seenIds = new Set();
+      const validDecks = [];
+
       for (const d of cloudDecks) {
-        const key = `${(d.name || '').toLowerCase()}|${(d.author || '').toLowerCase()}`;
-        if (!seenNameAuthor.has(key)) {
-          seenNameAuthor.set(key, d);
-        }
-        // Les doublons sont ignorés (la liste est triée par published_at DESC, donc on garde la plus récente)
+        if (!d.id || seenIds.has(d.id) || d.tier === 'ARCHIVED_TEST') continue;
+        seenIds.add(d.id);
+        validDecks.push(mapCloudDeck(d));
       }
 
-      const deduped = Array.from(seenNameAuthor.values()).map(mapCloudDeck);
-
-      // Écraser le cache local avec la vérité cloud dédupliquée
-      saveLocalCommunityDecks(deduped);
-      return deduped;
+      // Mettre à jour le cache local avec tous les decks en ligne
+      saveLocalCommunityDecks(validDecks);
+      return validDecks;
     }
   } catch (err) {
     console.error("Error fetching cloud community decks", err);
@@ -110,42 +109,12 @@ export async function fetchCloudCommunityDecks() {
 
 /**
  * Publie un deck dans Supabase PUIS sauvegarde localement avec le vrai UUID.
- * Anti-doublon : vérifie d'abord si un deck (même nom + même auteur) existe déjà.
  */
 export async function publishCommunityDeck(deckData) {
   const supabase = getSupabaseClient();
 
-  const cleanName = (deckData.name || '').trim();
-  const cleanAuthor = (deckData.author || 'Kindred').trim();
-
-  // Vérification anti-doublon : existe-t-il déjà un deck avec ce nom+auteur ?
-  if (supabase) {
-    try {
-      const { data: existing } = await supabase
-        .from('col_community_decks')
-        .select('id, name, author')
-        .ilike('name', cleanName)
-        .ilike('author', cleanAuthor)
-        .limit(1);
-
-      if (existing && existing.length > 0) {
-        console.warn("publishCommunityDeck: deck already exists in cloud, skipping upload", existing[0]);
-        // Retourner l'entrée existante sans créer de doublon
-        const existingEntry = mapCloudDeck({
-          ...existing[0],
-          clan: deckData.clan,
-          card_ids: deckData.cardIds,
-          strategy_fr: deckData.strategy,
-          strategy_en: deckData.strategy,
-          published_at: new Date().toISOString(),
-          likes: 1
-        });
-        return existingEntry;
-      }
-    } catch (e) {
-      console.warn("Error checking for duplicate deck", e);
-    }
-  }
+  const cleanName = (deckData.name || '').trim() || 'Deck sans titre';
+  const cleanAuthor = (deckData.author || '').trim() || 'Kindred';
 
   // Publier dans Supabase (source de vérité) d'abord
   let newEntry = null;
@@ -159,7 +128,7 @@ export async function publishCommunityDeck(deckData) {
           author: cleanAuthor,
           clan: deckData.clan || "Neutre",
           tier: "Communauté",
-          card_ids: deckData.cardIds,
+          card_ids: deckData.cardIds || [],
           strategy_fr: deckData.strategy || "Deck partagé par la communauté.",
           strategy_en: deckData.strategy || "Deck shared by the community.",
           likes: 1
@@ -169,6 +138,8 @@ export async function publishCommunityDeck(deckData) {
 
       if (!error && data) {
         newEntry = mapCloudDeck(data);
+      } else if (error) {
+        console.error("Error publishing deck to Supabase cloud:", error.message);
       }
     } catch (e) {
       console.warn("Error publishing deck to Supabase cloud", e);
@@ -184,7 +155,7 @@ export async function publishCommunityDeck(deckData) {
       author: cleanAuthor,
       clan: deckData.clan || "Neutre",
       tier: "Communauté",
-      cardIds: deckData.cardIds,
+      cardIds: deckData.cardIds || [],
       strategy_fr: deckData.strategy || "Deck partagé par la communauté.",
       strategy_en: deckData.strategy || "Deck shared by the community.",
       publishedAt: new Date().toISOString().split('T')[0],

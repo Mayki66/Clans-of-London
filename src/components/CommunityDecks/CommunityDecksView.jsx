@@ -38,9 +38,8 @@ export default function CommunityDecksView({
   const [copiedDeckId, setCopiedDeckId] = useState(null);
   const [copiedLinkDeckId, setCopiedLinkDeckId] = useState(null);
   const [expandedComments, setExpandedComments] = useState({});
-  const [showPublishModal, setShowPublishModal] = useState(false);
   const [publishName, setPublishName] = useState(currentDeckName);
-  const [publishAuthor, setPublishAuthor] = useState(userProfile?.playerName || 'Mayki');
+  const [publishAuthor, setPublishAuthor] = useState(userProfile?.playerName || '');
   const [publishStrategy, setPublishStrategy] = useState('');
   const [likedDecks, setLikedDecks] = useState({});
   const deckRefs = useRef({});
@@ -69,11 +68,8 @@ export default function CommunityDecksView({
       ({ type, deck, deckId }) => {
         if (type === 'INSERT' && deck) {
           setCommunityDecks(prev => {
-            if (prev.some(d => d.id === deck.id)) return prev;
-            const filtered = prev.filter(d => 
-              !(d.name.toLowerCase() === deck.name.toLowerCase() && d.author.toLowerCase() === deck.author.toLowerCase())
-            );
-            const updated = [deck, ...filtered];
+            if (prev.some(d => d.id === deck.id) || deck.tier === 'ARCHIVED_TEST') return prev;
+            const updated = [deck, ...prev];
             saveLocalCommunityDecks(updated);
             return updated;
           });
@@ -177,7 +173,7 @@ export default function CommunityDecksView({
 
     const newDeck = await publishCommunityDeck({
       name: publishName.trim() || currentDeckName,
-      author: publishAuthor.trim() || userProfile?.playerName || 'Mayki',
+      author: publishAuthor.trim() || userProfile?.playerName || (lang === 'fr' ? 'Kindred Anonyme' : 'Anonymous Kindred'),
       clan: mainClan,
       cardIds: currentDeckCards.map(c => c.id),
       strategy: publishStrategy.trim() || "Deck partagé par la communauté Clans of London."
