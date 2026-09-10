@@ -411,6 +411,7 @@ export default function App() {
                 currentDeckCards={deckCards}
                 currentDeckName={deckName}
                 userProfile={userProfile}
+                onUpdateProfile={handleUpdateProfile}
                 targetDeckId={targetDeckId}
                 lang={lang}
                 t={t}

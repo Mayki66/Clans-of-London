@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Clans of London — Configuration Centrale
  * Toutes les constantes de l'application : cles localStorage, valeurs par defaut
  * et parametres globaux centralises ici pour eviter toute dispersion.
@@ -13,6 +13,7 @@ export const LS_LANG          = 'col_lang';
 export const LS_ONBOARDING    = 'col_onboarding_completed';
 export const LS_WIKI_SYNC     = 'col_wiki_sync_metadata_v1';
 export const LS_SUPABASE_CFG  = 'col_supabase_config_v1';
+export const LS_LIKED_DECKS   = 'col_liked_deck_ids_v1';
 
 // --- Game Rules ---------------------------------------------------------------
 export const MAX_DECK_SIZE      = 15;
@@ -43,7 +44,8 @@ export const DEFAULT_USER_PROFILE = {
   collectionLevel: 1,
   arenaPoints: 0,
   ownedCardIds: DEFAULT_OWNED_CARD_IDS,
-  matchHistory: []
+  matchHistory: [],
+  likedDeckIds: []
 };
 
 // --- Default Starter Deck -----------------------------------------------------

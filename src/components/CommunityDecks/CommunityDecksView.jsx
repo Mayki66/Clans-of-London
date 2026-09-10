@@ -11,7 +11,9 @@ import {
   fetchCloudCommunityDecks, 
   publishCommunityDeck, 
   likeCommunityDeck,
-  subscribeToCommunityDecks 
+  subscribeToCommunityDecks,
+  getLikedDeckIds,
+  saveLikedDeckId
 } from '../../data/communityDecks';
 import { getShareableCommunityDeckUrl } from '../../utils/router';
 import DeckCommentsDrawer from './DeckCommentsDrawer';
@@ -25,6 +27,7 @@ export default function CommunityDecksView({
   currentDeckCards = [],
   currentDeckName = "Mon Deck",
   userProfile,
+  onUpdateProfile,
   targetDeckId = null,
   lang = 'fr',
   t
@@ -42,8 +45,13 @@ export default function CommunityDecksView({
   const [publishName, setPublishName] = useState(currentDeckName);
   const [publishAuthor, setPublishAuthor] = useState(userProfile?.playerName || '');
   const [publishStrategy, setPublishStrategy] = useState('');
-  const [likedDecks, setLikedDecks] = useState({});
+  const [likedDeckIds, setLikedDeckIds] = useState(() => getLikedDeckIds(userProfile));
   const deckRefs = useRef({});
+
+  // Synchroniser les likes si le profil utilisateur change (chargement/import)
+  useEffect(() => {
+    setLikedDeckIds(getLikedDeckIds(userProfile));
+  }, [userProfile]);
 
   const toggleComments = (deckId) => {
     setExpandedComments((prev) => ({ ...prev, [deckId]: !prev[deckId] }));
@@ -147,16 +155,36 @@ export default function CommunityDecksView({
   };
 
   const handleLike = async (deckId) => {
-    // Optimistic UI: incrémenter immédiatement le compteur dans la liste locale
-    setCommunityDecks(prev => prev.map(d =>
-      d.id === deckId ? { ...d, likes: (d.likes || 1) + 1 } : d
-    ));
-    setLikedDecks(prev => ({ ...prev, [deckId]: true }));
-    confetti({ particleCount: 30, spread: 60, origin: { y: 0.8 } });
+    if (!deckId) return;
+    const strId = String(deckId);
 
-    // Sync cloud en arrière-plan
-    const deck = communityDecks.find(d => d.id === deckId);
-    await likeCommunityDeck(deckId, deck?.likes || 1);
+    // Garde anti-doublon : 1 seul like par personne / compte
+    if (likedDeckIds.has(strId)) return;
+
+    // 1. Marquer comme liké localement et enregistrer en mémoire persistante
+    setLikedDeckIds(prev => new Set(prev).add(strId));
+    saveLikedDeckId(strId);
+
+    // Mettre à jour userProfile si la fonction de rappel existe
+    if (onUpdateProfile && userProfile) {
+      const existing = Array.isArray(userProfile.likedDeckIds) ? userProfile.likedDeckIds : [];
+      if (!existing.includes(strId)) {
+        onUpdateProfile({
+          ...userProfile,
+          likedDeckIds: [...existing, strId]
+        });
+      }
+    }
+
+    // 2. Optimistic UI : Incrémenter de +1 exactement
+    setCommunityDecks(prev => prev.map(d =>
+      d.id === deckId ? { ...d, likes: (typeof d.likes === 'number' ? d.likes : 1) + 1 } : d
+    ));
+    confetti({ particleCount: 35, spread: 60, origin: { y: 0.8 } });
+
+    // 3. Sync cloud Supabase en arrière-plan
+    const currentDeck = communityDecks.find(d => d.id === deckId);
+    await likeCommunityDeck(deckId, currentDeck?.likes || 1);
   };
 
   const handlePublishSubmit = async (e) => {
@@ -319,7 +347,8 @@ export default function CommunityDecksView({
           const cards = cardIds.map(id => CARDS_DATA.find(c => c.id === id)).filter(Boolean);
           const totalPower = cards.reduce((sum, c) => sum + (c.power || 0), 0);
           const avgCost = cards.length > 0 ? (cards.reduce((sum, c) => sum + (typeof c.cost === 'number' ? c.cost : 2), 0) / cards.length).toFixed(1) : 0;
-          const likesCount = (deck.likes || 0) + (likedDecks[deck.id] || 0);
+          const likesCount = typeof deck.likes === 'number' ? deck.likes : 1;
+          const isLiked = likedDeckIds.has(String(deck.id));
 
           const isTargeted = targetDeckId === deck.id;
 
@@ -369,10 +398,21 @@ export default function CommunityDecksView({
                   {/* Likes button */}
                   <button
                     onClick={() => handleLike(deck.id)}
-                    className="flex items-center space-x-1.5 px-2.5 py-1 rounded-xl bg-pink-950/40 hover:bg-pink-950 border border-pink-500/40 text-pink-300 text-xs font-mono font-bold transition-all"
+                    disabled={isLiked}
+                    className={`flex items-center space-x-1.5 px-2.5 py-1 rounded-xl text-xs font-mono font-bold transition-all ${
+                      isLiked
+                        ? 'bg-pink-900/50 border border-pink-400 text-pink-200 cursor-default shadow-[0_0_12px_rgba(244,63,94,0.35)]'
+                        : 'bg-pink-950/40 hover:bg-pink-900 border border-pink-500/40 hover:border-pink-400 text-pink-300 hover:text-white cursor-pointer active:scale-95'
+                    }`}
+                    title={
+                      isLiked
+                        ? (t?.community?.alreadyLikedTooltip || (lang === 'fr' ? "Vous avez déjà aimé ce deck (1 like max)" : "You have already liked this deck (1 like max)"))
+                        : (t?.community?.likeTooltip || (lang === 'fr' ? "Aimer ce deck" : "Like this deck"))
+                    }
                   >
-                    <Heart className="w-3.5 h-3.5 fill-pink-500 text-pink-500" />
+                    <Heart className={`w-3.5 h-3.5 transition-transform ${isLiked ? 'fill-pink-400 text-pink-400 scale-110' : 'fill-pink-500/30 text-pink-400 hover:scale-110'}`} />
                     <span>{likesCount}</span>
+                    {isLiked && <Check className="w-3 h-3 text-pink-300 ml-0.5" />}
                   </button>
                 </div>
 

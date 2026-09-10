@@ -9,6 +9,7 @@
  *  - Le cache local est REMPLACÉ intégralement par la liste cloud dédupliquée à chaque fetch.
  */
 import { getSupabaseClient } from '../utils/cloudDatabase';
+import { LS_LIKED_DECKS } from '../config/constants';
 
 export const INITIAL_COMMUNITY_DECKS = [];
 
@@ -196,12 +197,76 @@ export async function publishCommunityDeck(deckData) {
 }
 
 /**
- * Vote / Like un deck dans le cloud
+ * Récupère l'ensemble (Set) des identifiants de decks déjà likés par l'utilisateur.
+ * Combine le stockage local permanent (localStorage) et le profil utilisateur.
  */
-export async function likeCommunityDeck(deckId, currentLikes = 1) {
+export function getLikedDeckIds(userProfile = null) {
+  const ids = new Set();
+  try {
+    const raw = localStorage.getItem(LS_LIKED_DECKS);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) {
+        parsed.forEach(id => {
+          if (id) ids.add(String(id));
+        });
+      }
+    }
+  } catch (e) {
+    console.warn("Error reading liked deck ids from localStorage", e);
+  }
+
+  if (userProfile && Array.isArray(userProfile.likedDeckIds)) {
+    userProfile.likedDeckIds.forEach(id => {
+      if (id) ids.add(String(id));
+    });
+  }
+
+  return ids;
+}
+
+/**
+ * Enregistre un deckId comme liké (dans localStorage).
+ */
+export function saveLikedDeckId(deckId) {
+  if (!deckId) return;
+  const strId = String(deckId);
+  try {
+    const current = getLikedDeckIds();
+    current.add(strId);
+    localStorage.setItem(LS_LIKED_DECKS, JSON.stringify(Array.from(current)));
+  } catch (e) {
+    console.warn("Error saving liked deck id to localStorage", e);
+  }
+}
+
+/**
+ * Vérifie si un deck a déjà été liké par le joueur / compte.
+ */
+export function hasLikedDeck(deckId, userProfile = null) {
+  if (!deckId) return false;
+  const set = getLikedDeckIds(userProfile);
+  return set.has(String(deckId));
+}
+
+/**
+ * Vote / Like un deck dans le cloud (1 seul vote par joueur, synchronisé avec Supabase)
+ */
+export async function likeCommunityDeck(deckId, fallbackLikes = 1) {
   const supabase = getSupabaseClient();
-  if (supabase) {
+  if (supabase && deckId) {
     try {
+      // Récupérer la dernière valeur de likes dans Supabase pour éviter tout écrasement stale
+      const { data, error } = await supabase
+        .from('col_community_decks')
+        .select('likes')
+        .eq('id', deckId)
+        .single();
+
+      const currentLikes = (!error && data && typeof data.likes === 'number')
+        ? data.likes
+        : (Number(fallbackLikes) || 1);
+
       await supabase
         .from('col_community_decks')
         .update({ likes: currentLikes + 1 })

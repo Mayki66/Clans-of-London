@@ -331,7 +331,9 @@ export const TRANSLATIONS = {
       "beFirstComment": "Soyez le premier vampire à partager votre avis ou une variante !",
       "pseudoPlaceholder": "Votre pseudo",
       "commentPlaceholder": "Votre conseil, variante ou question...",
-      "sendBtn": "Envoyer"
+      "sendBtn": "Envoyer",
+      "likeTooltip": "Aimer ce deck (1 like max)",
+      "alreadyLikedTooltip": "Vous avez déjà aimé ce deck (1 like max)"
     },
     "metadecks": {
       "badge": "Méta Compétitive & Tier List",
@@ -947,7 +949,9 @@ export const TRANSLATIONS = {
       "beFirstComment": "Be the first Kindred to share advice or a card variant!",
       "pseudoPlaceholder": "Your nickname",
       "commentPlaceholder": "Your advice, variant or question...",
-      "sendBtn": "Send"
+      "sendBtn": "Send",
+      "likeTooltip": "Like this deck (1 like max)",
+      "alreadyLikedTooltip": "You have already liked this deck (1 like max)"
     },
     "metadecks": {
       "badge": "Competitive Meta & Tier List",
@@ -1563,7 +1567,9 @@ export const TRANSLATIONS = {
       "beFirstComment": "Be the first Kindred to share advice or a card variant!",
       "pseudoPlaceholder": "Your nickname",
       "commentPlaceholder": "Your advice, variant or question...",
-      "sendBtn": "Send"
+      "sendBtn": "Send",
+      "likeTooltip": "Metti 'mi piace' a questo mazzo (max 1)",
+      "alreadyLikedTooltip": "Hai già messo mi piace a questo mazzo (max 1)"
     },
     "metadecks": {
       "badge": "Competitive Meta & Tier List",
@@ -2179,7 +2185,9 @@ export const TRANSLATIONS = {
       "beFirstComment": "Be the first Kindred to share advice or a card variant!",
       "pseudoPlaceholder": "Your nickname",
       "commentPlaceholder": "Your advice, variant or question...",
-      "sendBtn": "Send"
+      "sendBtn": "Send",
+      "likeTooltip": "Dieses Deck liken (max. 1)",
+      "alreadyLikedTooltip": "Du hast dieses Deck bereits geliked (max. 1)"
     },
     "metadecks": {
       "badge": "Competitive Meta & Tier List",
@@ -2795,7 +2803,9 @@ export const TRANSLATIONS = {
       "beFirstComment": "Be the first Kindred to share advice or a card variant!",
       "pseudoPlaceholder": "Your nickname",
       "commentPlaceholder": "Your advice, variant or question...",
-      "sendBtn": "Send"
+      "sendBtn": "Send",
+      "likeTooltip": "Dar me gusta a este mazo (máx. 1)",
+      "alreadyLikedTooltip": "Ya le has dado me gusta a este mazo (máx. 1)"
     },
     "metadecks": {
       "badge": "Competitive Meta & Tier List",
@@ -3411,7 +3421,9 @@ export const TRANSLATIONS = {
       "beFirstComment": "Be the first Kindred to share advice or a card variant!",
       "pseudoPlaceholder": "Your nickname",
       "commentPlaceholder": "Your advice, variant or question...",
-      "sendBtn": "Send"
+      "sendBtn": "Send",
+      "likeTooltip": "Curtir este baralho (máx. 1)",
+      "alreadyLikedTooltip": "Você já curtiu este baralho (máx. 1)"
     },
     "metadecks": {
       "badge": "Competitive Meta & Tier List",

@@ -8,6 +8,7 @@ import confetti from 'canvas-confetti';
 import { CARDS_DATA } from '../../data/cardsData';
 import { CLANS } from '../../data/clansData';
 import { trackProfileExport, trackUserRegistration } from '../../utils/adminTelemetry';
+import { saveLikedDeckId } from '../../data/communityDecks';
 
 const GAME_TOTAL_CARDS = 217;
 
@@ -65,7 +66,8 @@ export default function ProfileView({
       arenaPoints: userProfile.arenaPoints || 1250,
       ownedCardIds: ownedCardIds,
       matchHistory: userProfile.matchHistory || [],
-      savedDecks: savedDecks || []
+      savedDecks: savedDecks || [],
+      likedDeckIds: userProfile.likedDeckIds || []
     };
 
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportData, null, 2));
@@ -97,13 +99,18 @@ export default function ProfileView({
       try {
         const parsed = JSON.parse(event.target.result);
         if (parsed.ownedCardIds && Array.isArray(parsed.ownedCardIds)) {
+          if (Array.isArray(parsed.likedDeckIds)) {
+            parsed.likedDeckIds.forEach(id => saveLikedDeckId(id));
+          }
+
           const updatedProfile = {
             ...userProfile,
             playerName: parsed.playerName || userProfile.playerName || 'Mayki',
             collectionLevel: parsed.collectionLevel || Math.max(1, Math.floor(parsed.ownedCardIds.length / 5)),
             arenaPoints: typeof parsed.arenaPoints === 'number' ? parsed.arenaPoints : (userProfile.arenaPoints || 1250),
             ownedCardIds: parsed.ownedCardIds,
-            matchHistory: Array.isArray(parsed.matchHistory) ? parsed.matchHistory : (userProfile.matchHistory || [])
+            matchHistory: Array.isArray(parsed.matchHistory) ? parsed.matchHistory : (userProfile.matchHistory || []),
+            likedDeckIds: Array.isArray(parsed.likedDeckIds) ? parsed.likedDeckIds : (userProfile.likedDeckIds || [])
           };
 
           onUpdateProfile(updatedProfile);
