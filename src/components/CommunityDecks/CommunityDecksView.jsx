@@ -38,6 +38,7 @@ export default function CommunityDecksView({
   const [copiedDeckId, setCopiedDeckId] = useState(null);
   const [copiedLinkDeckId, setCopiedLinkDeckId] = useState(null);
   const [expandedComments, setExpandedComments] = useState({});
+  const [showPublishModal, setShowPublishModal] = useState(false);
   const [publishName, setPublishName] = useState(currentDeckName);
   const [publishAuthor, setPublishAuthor] = useState(userProfile?.playerName || '');
   const [publishStrategy, setPublishStrategy] = useState('');
