@@ -14,28 +14,62 @@ export const INITIAL_COMMUNITY_DECKS = [];
 
 const LOCAL_STORAGE_COMMUNITY_DECKS = 'col_community_decks_v1';
 
+/**
+ * Nettoie et sécurise un objet deck (garantit cardIds comme tableau)
+ */
+export function sanitizeDeck(d) {
+  if (!d || typeof d !== 'object') return null;
+  const rawCards = Array.isArray(d.cardIds) 
+    ? d.cardIds 
+    : (Array.isArray(d.card_ids) 
+        ? d.card_ids 
+        : (typeof d.cardIds === 'string' 
+            ? d.cardIds.split(',').map(s => s.trim()).filter(Boolean) 
+            : (typeof d.card_ids === 'string' 
+                ? d.card_ids.split(',').map(s => s.trim()).filter(Boolean) 
+                : [])));
+
+  return {
+    id: String(d.id || `deck-${Date.now()}`),
+    name: d.name || "Deck sans nom",
+    name_en: d.name_en || d.name || "Untitled Deck",
+    author: d.author || "Kindred",
+    clan: d.clan || "Brujah",
+    tier: d.tier || "Communauté",
+    cardIds: rawCards,
+    strategy_fr: d.strategy_fr || d.strategy || "Deck partagé par la communauté.",
+    strategy_en: d.strategy_en || d.strategy || "Deck shared by the community.",
+    publishedAt: d.publishedAt || (d.published_at ? new Date(d.published_at).toISOString().split('T')[0] : "Récemment"),
+    likes: typeof d.likes === 'number' ? d.likes : 1
+  };
+}
+
 export function getLocalCommunityDecks() {
   try {
     const custom = localStorage.getItem(LOCAL_STORAGE_COMMUNITY_DECKS);
     if (custom) {
       const parsed = JSON.parse(custom);
-      return Array.isArray(parsed) ? parsed : [];
+      if (Array.isArray(parsed)) {
+        return parsed.map(sanitizeDeck).filter(Boolean);
+      }
     }
   } catch (e) {
     console.error("Error reading local community decks", e);
   }
-  return INITIAL_COMMUNITY_DECKS;
+  return INITIAL_COMMUNITY_DECKS.map(sanitizeDeck).filter(Boolean);
 }
 
 export function saveLocalCommunityDecks(decks) {
   try {
     // Dédupliquer par id avant de sauvegarder
     const seen = new Set();
-    const unique = decks.filter(d => {
-      if (!d.id || seen.has(d.id)) return false;
-      seen.add(d.id);
-      return true;
-    });
+    const unique = decks
+      .map(sanitizeDeck)
+      .filter(d => {
+        if (!d || !d.id || seen.has(d.id)) return false;
+        seen.add(d.id);
+        return true;
+      });
     localStorage.setItem(LOCAL_STORAGE_COMMUNITY_DECKS, JSON.stringify(unique));
   } catch (e) {
     console.error("Error saving local community decks", e);
@@ -46,19 +80,7 @@ export function saveLocalCommunityDecks(decks) {
  * Mappe une ligne Supabase vers l'objet deck utilisé par l'UI.
  */
 function mapCloudDeck(d) {
-  return {
-    id: d.id,
-    name: d.name,
-    name_en: d.name,
-    author: d.author || "Kindred",
-    clan: d.clan || "Brujah",
-    tier: d.tier || "Communauté",
-    cardIds: Array.isArray(d.card_ids) ? d.card_ids : [],
-    strategy_fr: d.strategy_fr || "Deck partagé par la communauté.",
-    strategy_en: d.strategy_en || "Deck shared by the community.",
-    publishedAt: d.published_at ? new Date(d.published_at).toISOString().split('T')[0] : "Récemment",
-    likes: d.likes || 1
-  };
+  return sanitizeDeck(d);
 }
 
 /**

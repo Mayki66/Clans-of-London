@@ -131,7 +131,8 @@ export default function CommunityDecksView({
   }, [targetDeckId, communityDecks]);
 
   const handleCopyCode = (deck) => {
-    const code = `${deck.name} [Clan: ${deck.clan}] - ${deck.cardIds.join(',')}`;
+    const cardIds = Array.isArray(deck.cardIds) ? deck.cardIds : (Array.isArray(deck.card_ids) ? deck.card_ids : []);
+    const code = `${deck.name} [Clan: ${deck.clan}] - ${cardIds.join(',')}`;
     navigator.clipboard.writeText(code);
     setCopiedDeckId(deck.id);
     setTimeout(() => setCopiedDeckId(null), 2000);
@@ -311,8 +312,10 @@ export default function CommunityDecksView({
       {/* Community Decks Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {filteredDecks.map((deck) => {
+          if (!deck) return null;
           const clanInfo = CLANS[deck.clan] || CLANS.Mortal;
-          const cards = deck.cardIds.map(id => CARDS_DATA.find(c => c.id === id)).filter(Boolean);
+          const cardIds = Array.isArray(deck.cardIds) ? deck.cardIds : (Array.isArray(deck.card_ids) ? deck.card_ids : []);
+          const cards = cardIds.map(id => CARDS_DATA.find(c => c.id === id)).filter(Boolean);
           const totalPower = cards.reduce((sum, c) => sum + (c.power || 0), 0);
           const avgCost = cards.length > 0 ? (cards.reduce((sum, c) => sum + (typeof c.cost === 'number' ? c.cost : 2), 0) / cards.length).toFixed(1) : 0;
           const likesCount = (deck.likes || 0) + (likedDecks[deck.id] || 0);
@@ -349,8 +352,13 @@ export default function CommunityDecksView({
                         </span>
                       )}
                     </div>
-                    <h3 className="font-gothic font-extrabold text-lg text-gray-100 mt-1">
-                      {lang !== 'fr' && deck.name_en ? deck.name_en : deck.name}
+                    <h3
+                      onClick={() => onLoadDeck(deck)}
+                      className="font-gothic font-extrabold text-lg text-gray-100 mt-1 cursor-pointer hover:text-amber-400 transition-colors flex items-center space-x-1.5"
+                      title={t?.community?.loadInDeckbuilder || "Charger dans le Deck"}
+                    >
+                      <span>{lang !== 'fr' && deck.name_en ? deck.name_en : deck.name}</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-indigo-400 opacity-60 group-hover:opacity-100 transition-opacity" />
                     </h3>
                     <p className="text-[11px] font-mono text-gray-400">
                       {t?.community?.author || "Créé par"} <strong className="text-amber-400">{deck.author}</strong> • {deck.publishedAt}
@@ -395,8 +403,8 @@ export default function CommunityDecksView({
                     <span className="text-gray-500">{t?.community?.clickToInspect || (lang === 'fr' ? "Cliquer pour inspecter" : "Click to inspect")}</span>
                   </div>
 
-                  <div className="grid grid-cols-5 gap-2">
-                    {cards.slice(0, 10).map((card) => (
+                  <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
+                    {cards.map((card) => (
                       <div
                         key={card.id}
                         onClick={() => onInspectCard(card)}
@@ -410,6 +418,8 @@ export default function CommunityDecksView({
                             clan={card.clan}
                             imageUrl={card.imageUrl}
                             className="w-full h-full object-cover"
+                            lang={lang}
+                            t={t}
                           />
 
                           {/* Top Badges: Cost & Power */}

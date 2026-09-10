@@ -44,6 +44,46 @@ function ViewLoadingFallback() {
   );
 }
 
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+  componentDidCatch(error, errorInfo) {
+    console.error("ErrorBoundary caught error:", error, errorInfo);
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="flex flex-col items-center justify-center min-h-[50vh] p-6 text-center space-y-4 glass-panel rounded-3xl border border-red-500/30 max-w-lg mx-auto my-12">
+          <div className="w-14 h-14 rounded-2xl bg-red-950/60 border border-red-500/40 flex items-center justify-center text-red-400 text-2xl shadow-blood">
+            ⚠️
+          </div>
+          <h3 className="font-gothic font-bold text-lg text-gray-100">
+            Une perturbation des arcanes est survenue
+          </h3>
+          <p className="text-xs text-gray-400">
+            {this.state.error?.message || "Erreur lors de l'affichage de cette section."}
+          </p>
+          <button
+            onClick={() => {
+              this.setState({ hasError: false });
+              window.location.reload();
+            }}
+            className="px-5 py-2.5 rounded-xl bg-red-900 hover:bg-red-800 text-white font-gothic font-bold text-xs shadow-blood transition-all"
+          >
+            Recharger la page
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 export default function App() {
   const initialRoute = parseCurrentRoute();
   const [activeView, setActiveView] = useState(initialRoute.view || 'rules');
@@ -212,11 +252,13 @@ export default function App() {
 
   // Load Saved or Meta / Community Deck
   const handleLoadDeck = (deck) => {
-    const cards = deck.cardIds.map(id => CARDS_DATA.find(c => c.id === id)).filter(Boolean);
+    if (!deck) return;
+    const cardIds = Array.isArray(deck.cardIds) ? deck.cardIds : (Array.isArray(deck.card_ids) ? deck.card_ids : []);
+    const cards = cardIds.map(id => CARDS_DATA.find(c => c.id === id)).filter(Boolean);
     setDeckCards(cards);
-    setDeckName(deck.name);
+    setDeckName(deck.name || 'Deck Importé');
     handleNavigate('deckbuilder');
-    storageSet(LS_CURRENT_DECK, { name: deck.name, cardIds: cards.map(c => c.id) });
+    storageSet(LS_CURRENT_DECK, { name: deck.name || 'Deck Importé', cardIds: cards.map(c => c.id) });
     confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
   };
 
@@ -327,95 +369,97 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="flex-1 max-w-[1700px] w-full mx-auto px-3 sm:px-6 lg:px-8 py-6 md:py-8">
-        <Suspense fallback={<ViewLoadingFallback />}>
-          {activeView === 'deckbuilder' && (
-            <DeckBuilderView
-              deckName={deckName}
-              setDeckName={setDeckName}
-              deckCards={deckCards}
-              onAddCard={handleAddCard}
-              onRemoveCard={handleRemoveCard}
-              onClearDeck={handleClearDeck}
-              onLoadDeck={handleLoadDeck}
-              savedDecks={savedDecks}
-              onSaveDeck={handleSaveDeck}
-              onDeleteSavedDeck={handleDeleteSavedDeck}
-              onInspectCard={handleInspectCard}
-              ownedCardIds={userProfile.ownedCardIds || []}
-              userProfile={userProfile}
-              lang={lang}
-              t={t}
-            />
-          )}
+        <ErrorBoundary>
+          <Suspense fallback={<ViewLoadingFallback />}>
+            {activeView === 'deckbuilder' && (
+              <DeckBuilderView
+                deckName={deckName}
+                setDeckName={setDeckName}
+                deckCards={deckCards}
+                onAddCard={handleAddCard}
+                onRemoveCard={handleRemoveCard}
+                onClearDeck={handleClearDeck}
+                onLoadDeck={handleLoadDeck}
+                savedDecks={savedDecks}
+                onSaveDeck={handleSaveDeck}
+                onDeleteSavedDeck={handleDeleteSavedDeck}
+                onInspectCard={handleInspectCard}
+                ownedCardIds={userProfile.ownedCardIds || []}
+                userProfile={userProfile}
+                lang={lang}
+                t={t}
+              />
+            )}
 
-          {activeView === 'database' && (
-            <DatabaseView
-              onInspectCard={handleInspectCard}
-              onAddCard={handleAddCard}
-              onRemoveCard={handleRemoveCard}
-              deckCards={deckCards}
-              ownedCardIds={userProfile.ownedCardIds || []}
-              lang={lang}
-              t={t}
-            />
-          )}
+            {activeView === 'database' && (
+              <DatabaseView
+                onInspectCard={handleInspectCard}
+                onAddCard={handleAddCard}
+                onRemoveCard={handleRemoveCard}
+                deckCards={deckCards}
+                ownedCardIds={userProfile.ownedCardIds || []}
+                lang={lang}
+                t={t}
+              />
+            )}
 
-          {activeView === 'community' && (
-            <CommunityDecksView
-              onLoadDeck={handleLoadDeck}
-              onInspectCard={handleInspectCard}
-              onNavigateToArena={handleNavigateToArenaWithDeck}
-              currentDeckCards={deckCards}
-              currentDeckName={deckName}
-              userProfile={userProfile}
-              targetDeckId={targetDeckId}
-              lang={lang}
-              t={t}
-            />
-          )}
+            {activeView === 'community' && (
+              <CommunityDecksView
+                onLoadDeck={handleLoadDeck}
+                onInspectCard={handleInspectCard}
+                onNavigateToArena={handleNavigateToArenaWithDeck}
+                currentDeckCards={deckCards}
+                currentDeckName={deckName}
+                userProfile={userProfile}
+                targetDeckId={targetDeckId}
+                lang={lang}
+                t={t}
+              />
+            )}
 
-          {activeView === 'metadecks' && (
-            <MetaDecksView
-              onLoadMetaDeck={handleLoadDeck}
-              onInspectCard={handleInspectCard}
-              ownedCardIds={userProfile.ownedCardIds || []}
-              lang={lang}
-              t={t}
-            />
-          )}
+            {activeView === 'metadecks' && (
+              <MetaDecksView
+                onLoadMetaDeck={handleLoadDeck}
+                onInspectCard={handleInspectCard}
+                ownedCardIds={userProfile.ownedCardIds || []}
+                lang={lang}
+                t={t}
+              />
+            )}
 
-          {activeView === 'arena' && (
-            <ArenaDuelView
-              customDeckCardIds={deckCards.map(c => c.id)}
-              onInspectCard={handleInspectCard}
-              userProfile={userProfile}
-              onUpdateProfile={handleUpdateProfile}
-              lang={lang}
-              t={t}
-            />
-          )}
+            {activeView === 'arena' && (
+              <ArenaDuelView
+                customDeckCardIds={deckCards.map(c => c.id)}
+                onInspectCard={handleInspectCard}
+                userProfile={userProfile}
+                onUpdateProfile={handleUpdateProfile}
+                lang={lang}
+                t={t}
+              />
+            )}
 
-          {activeView === 'rules' && (
-            <RulesGuideView
-              onGoToDeckBuilder={() => handleNavigate('deckbuilder')}
-              lang={lang}
-              t={t}
-            />
-          )}
+            {activeView === 'rules' && (
+              <RulesGuideView
+                onGoToDeckBuilder={() => handleNavigate('deckbuilder')}
+                lang={lang}
+                t={t}
+              />
+            )}
 
-          {activeView === 'profile' && (
-            <ProfileView
-              userProfile={userProfile}
-              onUpdateProfile={handleUpdateProfile}
-              onToggleOwnedCard={handleToggleOwnedCard}
-              onUnlockBatch={handleUnlockBatch}
-              deckCards={deckCards}
-              savedDecks={savedDecks}
-              lang={lang}
-              t={t}
-            />
-          )}
-        </Suspense>
+            {activeView === 'profile' && (
+              <ProfileView
+                userProfile={userProfile}
+                onUpdateProfile={handleUpdateProfile}
+                onToggleOwnedCard={handleToggleOwnedCard}
+                onUnlockBatch={handleUnlockBatch}
+                deckCards={deckCards}
+                savedDecks={savedDecks}
+                lang={lang}
+                t={t}
+              />
+            )}
+          </Suspense>
+        </ErrorBoundary>
       </main>
 
       {/* Fullscreen Card Inspection Modal */}
